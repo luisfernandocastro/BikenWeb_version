@@ -1,0 +1,7 @@
+django
+pillow
+django-3-jet
+django-crispy-forms
+
+
+#pip install -r requirements.txt

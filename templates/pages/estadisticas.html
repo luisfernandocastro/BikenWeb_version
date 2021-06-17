@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../arch/jquery-3.5.0.js" type="text/javascript"></script>
+        <link href="../arch/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+        <link href="../css/all.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/mis_estilos.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="../img/svg/icono.png">
+        <title>Manager || Estadisticas</title>
+    </head>
+    <body>
+             <div class="loader-page"></div>
+
+        <div class="container-fluid ">
+            <nav class="navbar navbar-expand-md bgnav fixed-top">
+
+                <a class="navbar-brand" href="inicio.html">
+                    <img src="../img/svg/icono2.png" alt="logo" style="width:40px;">
+                </a>
+
+                <span class="title-manager"> Manager </span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <i class="fas fa-bars collapse1"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <form class="form-inline" action="#">
+                            <input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Buscar">
+                            <button class="btn btn2" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </ul>
+                </div>
+                <a class="user2" data-toggle="modal" data-target="#Menuuser" data-toggle="tooltip" title="Cuenta">
+                    <img src="../img/svg/user2.svg" alt="logo" style="width:30px;">
+                </a>
+            </nav>
+            <div class="modal fade" id="Menuuser">
+                    <div class="modal-dialog float-right">
+                        <div class="modal-content bg-menuuser user-content">
+                            <a href="#" class="card-header item-user">
+                                <i class="fas fa-user icon2"></i> Ver tu perfil
+                            </a>
+                            <a href="#borrar.html" class="card-body item-user">
+                                <i class="fas fa-cog icon2"></i> Configuración
+                            </a>
+                            <a href="inicio.html" class="card-footer item-user">
+                                <i class="fas fa-sign-out-alt icon2 iconf"></i> Cerrar Sesion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="container-fluid ">
+            <div class="row mt-5">
+                <div class="col-lg-2 bgnav-admin">
+                
+                <div class="mt-box2">
+                  <ul class="nav flex-column nav-admin">
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1" href="HistorialBiken.html"><i class="fas fa-cash-register"></i> Registro Biken</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1" href="Bicicletassubidas.html"><i class="fa fa-upload" aria-hidden="true"></i> Bicicletas en Catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1" href="historialUsers.html"><i class="fas fa-tasks"></i> Control de Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1 actived" href="#"><i class="fas fa-chart-line"></i> Estadisticas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1" href="HistorialCambios.html"><i class="fas fa-history"></i> Historial cambios</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-admin1" href="Administrador.html"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                  </ul>
+                  </div>
+               
+                </div>
+
+
+            <div class="col-lg-10 mt-5">
+
+            <div class="container">
+                <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body card-body1">
+                  <div class="row  align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ganancias (Mensuales)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x iconos-admin"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body card-body2">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ganancias (Anual)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x iconos-admin"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body card-body3">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tareas</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x iconos-admin"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body card-body4">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Solicitudes Pendientes</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x iconos-admin"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+              <div class="card shadow ">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header  d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Resumen de Ganancias</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body card-body-2">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+
+
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Personas Registradas</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body card-body-1">
+                  <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle" style="color: #2059BD"></i> Si alquilaron
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> No alquilaron
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Estadisticas Biken</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small ">Configuracion Base de datos <span class="float-right">20%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small ">Comentarios<span class="float-right">40%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small ">Visitas<span class="float-right">60%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small "> Usuarios leales<span class="float-right">80%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small ">Configuracion cuenta <span class="float-right">Completa!</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">&copy; Biken Computer</h6>
+                </div>
+                <div class="card-body card-body-3">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mb-4" style="width: 23rem;" src="../img/svg/bike.svg" alt="bial">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/functions.js"></script>
+        <script src="../arch/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script src="../arch/chart.js/Chart.min.js"></script>
+
+    <script src="../js/chart-area-demo.js"></script>
+    <script src="../js/chart-pie-demo.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title%}Biken || Registro{% endblock %}
+{% block classbody %}<body class="bgimg_registro">{% endblock %}
+
+{% block navbar %}
+
+<a href="{% url 'home' %}" class="nav__link ">
+    <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
+    <span class="nav__text">Inicio</span>
+</a>
+
+<a href="{% url 'login' %}" class="nav__link">
+    <span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
+    <span class="nav__text">Inicia Sesión</span>
+</a>
+<a href="{% url 'registro' %}" class="nav__link active">
+    <span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
+    <span class="nav__text">Registrarse</span>
+</a>
+<a href="#" class="nav__link">
+    <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
+    <span class="nav__text">Favorites</span>
+</a>
+
+{% endblock %}
+
+
+{% block content%}
+
+<br>
+<div class="container mt-5">
+
+    <div class="row">
+
+        {% load crispy_forms_tags %}
+        <div class="col-lg-4">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="p-2 mb-3 colorbiken text-white text-center">REGISTRO</div>
+                {{ form | crispy}}
+
+                <button type="submitj" class="btn btn-primary colorbiken ml-5">Aceptar</button>
+                <button type="reset" class="btn btn-secondary ml-5">Limpiar</button>
+
+            </form>
+        </div>
+        <div class="col-lg-8">
+            <!--   <img src='{% static "/img/svg/bike2.svg" %}'> -->
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

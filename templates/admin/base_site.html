@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}
+
+{% endblock %}
+{% block branding %}
+
+<h1 id="site_name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static '/img/iconsBiken/IconBiken_Django.svg' %}" height="60%" width="60%">
+        <br><br>
+    </span>{{ site_header }}
+    </a>
+</h1>
+{% endblock %}
+{% block extrahead%}
+<link rel="shortcut icon" type="image/png"  href="{% static '/img/iconsBiken/IconBiken_Django.svg' %}"/>
+{% endblock %}

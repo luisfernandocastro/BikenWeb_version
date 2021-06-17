@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block title %}Biken || Sube tu Bicicleta{% endblock %}
+
+{% block classbody %}<body class="bgimg_upload">{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+
+            <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
+            <strong>
+                <div class="mt-5" style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
+                    ANUNCIA TU BICICLETA</div>
+            </strong>
+
+            <div class="mt-5" style="text-align: center;">Selecciona las características de tu bicicleta, añade una foto y
+                establece la tarifa deseada. Una vez hecho esto, tu bici estarà disponible para ser alquilada.</div>
+
+            <hr size="1px" color="gray" />
+            {% load crispy_forms_tags %}
+
+            <form class="container mt-5" method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {{ form | crispy}}
+
+
+                <button type="submit" class="btn btn-primary mt-5">Subir datos</button>
+
+            </form>
+
+            <div class="img-ruedas mt-5">
+                <!-- <img src="{% static '/img/imgs_plus/fotorueda.png'%}" height="110px" width="240px" align="left"> -->
+            </div>
+
+
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+</div>
+
+<br>
+
+{% endblock %}

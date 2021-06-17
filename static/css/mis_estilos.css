@@ -1,0 +1,1033 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+
+
+nav {
+  font-size: 14px;
+}
+
+
+.colorbiken {
+  background-color: #2059BD;
+}
+/*...........................................index..........................................................................*/
+
+.principal {
+  background-size: cover;
+  position: relative;
+}
+/*-------------------Pagina Bienvenida-------------------------*/
+
+#particles-js {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.icon-index {
+  width: 75px;
+}
+
+.titulo {
+  /*---------------Titulo de la pagina index----------*/
+  font-size: 160px;
+  text-align: center;
+  color: #2059BD;
+  font-family: perpetua;
+  margin-top: 18%;
+}
+
+.subtitulo {
+  /*---------------Subtitulo de la pagina index----------*/
+  font-size: 22px;
+  text-align: center;
+  font-family: bold;
+  margin-top: -11%;
+  z-index: 2;
+}
+
+
+.welcome,
+.welcome1 {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-top: 4%;
+}
+
+.welcome {
+  margin-top: 17%;
+}
+
+.bike {
+  margin-left: 8%;
+  width: 48%;
+  position: fixed;
+}
+
+.contact {
+  position: relative;
+  z-index: 2;
+  margin-right: 15px;
+  font-size: 23px;
+}
+
+.contact1 {
+  color: rgb(255, 255, 255);
+}
+
+.contact1:hover {
+  color: #000000;
+}
+
+
+.btn1,
+.btncat {
+  background-color: #2059BD;
+  color: white;
+}
+
+.btn1 {
+  font-family: bold;
+  position: absolute;
+  z-index: 2;
+  margin-left: 41%;
+  margin-top: 8%;
+}
+
+.btn1:hover {
+  background-color: white;
+  border: solid 1px #2059BD;
+  color: #2059BD;
+}
+
+.btncat:hover {
+  background-color: white;
+  border: solid 1px #2059BD;
+  color: #2059BD;
+}
+
+/*-----------------------------------------------cargar todas las paginas---------------------------------------*/
+
+.loader-page {
+  position: fixed;
+  z-index: 25000;
+  background: rgba(32, 89, 189, 0.2);
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .5s ease;
+}
+
+.loader-page::before {
+  content: "";
+  position: absolute;
+  border: 2px solid rgb(32, 89, 189);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 4px solid rgb(255, 255, 255);
+  border-top: 4px solid rgb(255, 255, 255);
+  animation: rotarload 1s linear infinite;
+  transform: rotate(0deg);
+}
+
+@keyframes rotarload {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.loader-page::after {
+  content: "";
+  position: absolute;
+  border: 4px solid rgb(32, 89, 189, .8);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba(246, 51, 9, 0);
+  border-top: 2px solid rgba(246, 51, 9, 0);
+  animation: rotarload 1s ease-out infinite;
+  transform: rotate(0deg);
+}
+
+/*------------------------------------------------------ home page-----------------------------------------------------------*/
+
+
+
+/*..................Estilos de la imagen de perfil de los usuarios...........*/
+
+.img_perfilUser{
+  background-color: red;
+  border-radius: 30px;
+  margin: 5px; 
+  width: 43px;
+  height: 40px;
+}
+
+.nav__link_user{
+  display: -webkit-box;
+  display: flex; 
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.nav__link_user:hover {
+  background-color: #0C2247;
+  color: white;
+}
+
+/*........................end styles imagen perfil............................*/
+
+
+/*-------------------------start styles card catalogo--------------------------------------*/
+
+.subtitleCard{
+  font-style: italic;
+  text-align: end;
+}
+
+
+.title{
+  font-weight: bold;
+}
+
+
+.col-lg-3 .card{
+  border-radius: 30px;
+  box-shadow:10px 10px 8px 0px  hsl(0, 0%, 90%);
+}
+
+
+a  .card-img-top {
+  border-radius: 30px;
+}
+
+a  .card-img-top:hover{
+  border: solid 1px #d2e2ff;
+}
+
+.placeholderimgup{
+  position: absolute;
+}
+
+
+.placeholderimgdown{
+  position: relative;
+}
+
+.imgperfil_post{
+  border-radius: 50px;
+  height: 35px !important;
+  width: 35px !important;
+}
+
+/*-------------------------end styles card catalogo--------------------------------------*/
+
+.collapse1 {
+  color: #ffffff;
+  font-size: 30px;
+}
+
+/*------------------------------buscar home page-------------------------------*/
+
+
+.div_search{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.input-search{
+  height: 55px;
+  width:80vh;
+  outline: none;
+  border: solid 1px white;
+  border-radius: 30px;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+
+.div-btn-search{
+  display: flex;
+  justify-content: center;
+}
+
+
+.btn-search {
+  color: white;
+  font-size: 20px;
+  z-index: 1000;
+  position: absolute;
+  top: 45%;
+  margin-top: 3px;
+  margin-right: 4%;
+  border-radius: 30px;
+}
+
+.btn-search:hover {
+  background-color: #d3d3d3;
+  color: #2059BD;
+}
+
+/*----------------------------------------end buscar homepage-------------------------------------------*/
+
+
+.container1 {
+  overflow: hidden;
+  /*------No se sale del contenedor----*/
+}
+
+.imgcat {
+  width: 100%;
+  transition: all 500ms ease-out
+}
+
+.imgcat:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.modal-contentx {
+  background-color: rgba(32, 89, 189, 0.7);
+  padding: 0 20px;
+}
+
+.user-img {
+  margin-top: -50px;
+  margin-bottom: 10px;
+  margin-left: 35%;
+}
+
+.user-img img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 0px 3px #848484;
+  border-radius: 50%;
+}
+
+.notifi {
+  margin-left: 10px;
+}
+
+.btn3 {
+  background-color: white;
+  border: 1px solid white;
+  color: #2059BD;
+  margin-left: 10%;
+  width: 200px;
+}
+
+.btn3:hover {
+  background-color: #2059BD;
+  color: #ffffff;
+}
+
+.titulo1 {
+  font-weight: 500;
+}
+
+.filtro {
+  width: 230px;
+  margin-left: 10%;
+  color: #000000;
+}
+
+.flow {
+  overflow: auto;
+  height: 250px;
+}
+
+
+.search1 {
+  margin-left: 112px;
+}
+
+.search2 {
+  margin-left: 130px;
+}
+
+.search3 {
+  margin-left: 31.2px;
+}
+
+.page-link {
+  color: #2059BD;
+}
+
+.pagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  color: #2059BD;
+  text-decoration: none;
+  border: 1px solid #CCCFD4;
+  border-left-width: 0;
+}
+
+.pagination a:hover,
+.pagination .active a {
+  background-color: #2059BD;
+  color: #ffffff;
+}
+
+.pagination li:first-child a {
+  border-left-width: 1px;
+}
+
+
+/*----------------------------------jumbotron paginas--------------------*/
+
+.sociales {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sociales a {
+  font-size: 20px;
+  color: white;
+}
+
+.logo {
+  margin-bottom: 6px;
+  width: 28px;
+  height: 28px;
+}
+
+.logo:hover {
+  background-color: red;
+  border-radius: 50%;
+}
+
+.sociales a:hover {
+  color: #000000;
+}
+
+
+
+.anim {
+  margin-top: 25%;
+}
+
+
+.pushbar {
+  background-color: rgba(32, 89, 189, 0.7);
+}
+
+.btnclose {
+  margin-top: 1%;
+  margin-left: 85%;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.btnclose:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(32, 89, 189);
+  border-radius: 50%;
+}
+
+.navbar2 {
+  color: rgba(255, 255, 255);
+  margin-top: 15%;
+}
+
+.navbar2:hover {
+  color: rgb(0, 0, 0);
+}
+
+.navbar1 {
+  margin-top: 30%;
+  padding: 15%;
+}
+
+.sociales1 {
+  margin-left: 35%;
+  padding: 10%;
+}
+
+.facebook {
+  padding: 5px;
+}
+
+.alerttit {
+  color: #2059BD;
+}
+
+
+
+
+.dropleft {
+  color: white;
+}
+
+.items {
+  color: #2059BD;
+}
+
+.items:hover {
+  background-color: #2059BD;
+  color: #ffff;
+  border: solid 1px #ffff;
+
+}
+
+.menuser {
+  padding: 0;
+}
+
+.content-class {
+  padding: 0 10px !important;
+}
+
+.user-content {
+  padding: 10px;
+  width: 190px;
+  margin-top: 13%;
+  margin-right: 10px;
+}
+
+.bg-menuuser {
+  background-color: #ffff;
+}
+
+.item-user {
+  font-size: 12px;
+  background-color: #ffff;
+  color: #2059BD;
+}
+
+.item-user:hover {
+  text-decoration: none;
+  background: #F1F1F1;
+}
+
+
+.icon2 {
+  padding-right: 10px;
+  color: rgba(2, 89, 189, 0.4);
+  font-size: 17px;
+}
+
+
+.iconf {
+  margin-left: 2px;
+}
+
+.patners {
+  font-size: 15px;
+}
+
+.patners1 {
+  color: #2059BD;
+}
+
+.cars {
+  font-size: 15px;
+  margin-top: 1px;
+}
+
+.cars:hover {
+  color: #518DF6;
+}
+
+.title-manager {
+  font-size: 30px;
+  color: #ffffff;
+  font-family: perpetua;
+}
+
+.recien-admin {
+  color: #2059BD;
+  font-size: 30px;
+}
+
+.persona {
+  background-color: rgba(32, 89, 189, 0.6);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.persona:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.bike-admin {
+  width: 350px;
+  height: 250px;
+  margin-left: 20%;
+}
+
+.nav-admin {
+  margin-top: 10%;
+}
+
+.nav-admin1 {
+  color: #C4C3C0;
+  margin-top: 20px;
+}
+
+.nav-admin1:hover {
+  color: #ffffff;
+}
+
+.btn-plus {
+  background-color: #2059BD;
+  color: #ffff;
+}
+
+.btn-plus:hover {
+  background-color: #ffff;
+  color: #2059BD;
+  border: solid 1px #2059BD;
+}
+
+.title-tab {
+  margin-top: 90px;
+  color: rgb(32, 89, 189);
+}
+
+.tabla {
+  overflow: auto;
+  height: 500px;
+}
+
+th,
+.num {
+  color: rgb(32, 89, 189);
+}
+
+.persona-reg {
+  background-color: rgba(32, 89, 189, 0.6);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.card-managerl {
+  height: 1000px;
+}
+
+.iconos-admin {
+  color: rgba(2, 89, 189, 0.4);
+}
+
+.card-body1 {
+  border-left: solid 3px #2059BD !important;
+}
+
+.card-body2 {
+  border-left: solid 3px #20BD3F !important;
+}
+
+.card-body3 {
+  border-left: solid 3px #0CAAAC !important;
+}
+
+.card-body4 {
+  border-left: solid 3px #E09B07 !important;
+}
+
+.text-uppercase {
+  font-size: 10px;
+}
+
+.card-body-1 {
+  height: 343px;
+}
+
+.card-body-2 {
+  height: 350px;
+}
+
+.chart-area {
+  height: 300px;
+}
+
+.chart-pie {
+  height: 250px;
+}
+
+.bgnav-admin {
+  background-color: rgba(2, 89, 189, 0.8);
+  font-size: 14px;
+}
+
+.actived {
+  color: #ffffff;
+}
+
+.mt-box {
+  margin-top: 150px;
+  margin-left: 20%;
+}
+
+.mt-box2 {
+  margin-top: 170px;
+}
+
+.icons-nav-admin {
+  font-size: 20px;
+}
+
+.card-body-3 {
+  height: 330px;
+}
+
+.alerttit1 {
+  font-family: perpetua;
+  color: rgb(2, 89, 189);
+  font-size: 40px;
+}
+
+input::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 14px;
+}
+
+textarea::-webkit-input-placeholder {
+  font-style: italic;
+  font-size: 14px;
+}
+
+
+.placeholder1 {
+  font-style: italic;
+  font-size: 14px;
+  color: gray;
+}
+
+
+/* .container-com {
+  overflow: hidden; ------No se sale del contenedor----
+} */
+
+.container-com1 {
+  border-color: transparent;
+  background-color: rgba(32, 89, 189, 0.3);
+
+}
+
+.bg-comunity {
+  background-image: url(../img/imgs_login/bg-com2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.bg-comunity::before {
+  content: '';
+  background: inherit;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  filter: blur(6px);
+  transform: scale(1.4, 1.1);
+}
+
+
+
+.form-com {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+}
+
+.title-com {
+  margin-top: 10px;
+  color: #2059BD;
+  font-family: perpetua;
+  font-size: 40px;
+}
+
+
+.title-com2 {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+}
+
+
+.img-comunity {
+  width: 100%;
+  height: auto;
+}
+
+@supports(object-fit: cover) {
+  .img-comunity {
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    /*left: 0;*/
+  }
+}
+
+
+.title-com3 {
+  font-style: italic;
+  margin-top: 50px;
+}
+
+.hyper-com {
+  color: #00FBFF;
+}
+
+
+.hyper-com:hover {
+  text-decoration: none;
+  color: #84AEF7;
+}
+
+.btn-com {
+  margin-top: 30px;
+  background-color: transparent;
+  border: solid 1px #ffff;
+}
+
+.btn-com:hover {
+  background-color: #2059BD;
+}
+
+
+.minh-100 {
+  height: 92.8vh;
+}
+
+.contact1-com {
+  color: #2059BD;
+}
+
+.contact1-com:hover {
+  color: #84AEF7;
+}
+
+.collapse1-com {
+  color: #2059BD;
+}
+
+
+.contenedor img {
+  position: absolute;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.contenedor img.top:hover {
+  opacity: 0;
+}
+
+
+.alerttit2 {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.bg-nav1 {
+  background-image: url(../img/svg/bg-com2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 10%;
+}
+
+
+.text-registro {
+  font-size: 14px;
+}
+
+
+.carouselprincipal {
+  border-bottom-left-radius: 30px;
+  border-end-end-radius: 30px;
+  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+}
+
+
+
+/*--------------------------------------------------------------------------estilos footer-----------------------------------------------*/
+
+.footerInf {
+  padding: 20px ;
+  border-radius: 30px;
+  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  text-align: center;
+  background-color: #0C2247;
+  background-image: url(../img/iconsBiken/icono3.png);
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: right;
+  margin-bottom: 25px;
+}
+
+
+.text-footer {
+  line-height: 70%;
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 70px;
+  font-family: 'Zeyada', cursive;
+  color: #2059BD;
+}
+
+.text-footerCopy {
+  line-height: 0;
+
+}
+
+
+.titlefooter{
+  text-align: start;  
+}
+
+.subtitlefooter{
+  font-size: 15px;
+  color: #aaaaaa;
+  line-height: 90%;
+  text-align: start;
+}
+
+.subtitlefooter:hover{
+  color: #ffffff;
+}
+
+.iconfooter{
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.iconfooter:hover{
+  color: #aaaaaa;
+}
+
+
+/*---------------------------------------------------------------end estilos footer------------------------------------------------------*/
+
+/*-----------------------------------------Fondos de las paginas -------------------------------------------------------------------*/
+.bgimg_upload{
+  background-image: url(../img/animations/bike4.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: right;
+}
+
+.bgimg_registro{
+  background-image: url(../img/animations/bike2.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: right;
+}
+
+.bgimg_paginamensaje{
+  background-image: url(../img/animations/bike3.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: right;
+}
+
+
+
+/*-----------------------------------------end styles Fondos de las paginas --------------------------------------------------------*/
+
+/*--------------------------------------------------------estilos pagina quienes somos-----------------------------------------------------------*/
+
+.banner_qs{
+  width: 60%;
+  height: 20%;
+}
+
+
+/*--------------------------------------------------------end styles pagina quienes somos-----------------------------------------------------------*/
+
+
+/*--------------------------------------------------------media Screen-------------------------------------------------------------------*/
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 800px){
+  
+  .input-search{
+    width: 60vh;
+  }
+
+  .div-btn-search{
+    width: 60vh;
+  }
+
+  .btn-search{
+    top: 23%;
+    margin-top: 3px;
+    margin-left: 55%;
+  }
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .titulo {
+    margin-top: 30%;
+    font-size: 90px;
+  }
+
+  .btn1 {
+    margin-left: 37%;
+  }
+
+  .div-bike {
+    margin-top: 20%;
+    position: fixed;
+    filter: blur(9px);
+  }
+
+  .icon-index {
+    width: 45px;
+    margin-left: -15px;
+  }
+
+  .contact {
+    margin-right: -15px;
+  }
+
+  .carouselprincipal {
+    height: 200px;
+  }
+
+  .welcome,
+  .welcome1 {
+    display: none;
+  }
+
+  .input-search{
+    width: 40vh;
+  }
+
+
+  .div-btn-search{
+    width: 40vh;
+  }
+
+  .btn-search{
+    top: 19%;
+    margin-top: 3px;
+    margin-left: 48%;
+    border-radius: 30px;
+  }
+
+}

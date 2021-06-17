@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src='{% static "/arch/jquery-3.5.0.js" %}' type="text/javascript"></script>
+        <link href='{% static "/arch/bootstrap/css/bootstrap.css" %}'  rel="stylesheet" type="text/css"/>
+        <link href='{% static "/css/normalize.css" %}' type="text/css" rel="stylesheet">
+        <link href='{% static "/css/all.css" %}' rel="stylesheet" type="text/css"/>
+        <link href='{% static "/css/mis_estilos.css" %}'  rel="stylesheet" type="text/css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href='{% static "/img/svg/icono.png" %}' rel="icon" >
+        <title>{% block title %}Registro || Exitoso{% endblock %}</title>
+    </head>
+
+    <body class="bgimg_paginamensaje">
+    {% block content %} 
+            
+    {% if messages %}
+    {% for m in messages %}
+    <script>
+        Swal.fire({
+            "title": '<span class="alerttit">Registro Exitoso</span>',
+            "text": "{{m}}",
+            "icon": "success",
+            "confirmButtonText": 'Ok',
+            "confirmButtonColor": '#2059BD',
+            "allowOutsideClick": false,
+            "allowEscapeKey": false,
+            "allowEnterKey": false,
+            "stopKeydownPropagation": false,
+
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = "{% url 'home' %}"
+            }
+        });
+    </script>
+    {% endfor %}
+    {% endif %}
+
+    {% endblock %}
+        <nav class="navbar navbar-expand-sm fixed-top">
+                <a class="navbar-brand" href="#">
+                    <img src='{% static "/img/svg/icono.png" %}' alt="logo" style="width:75px;">
+                </a>
+            </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                <img class="anim3">
+                </div>
+            </div>
+        </div>
+
+    
+        <script src='{% static "/arch/bootstrap/js/bootstrap.js" %}' type="text/javascript"></script>
+    </body>
+</html>

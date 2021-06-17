@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static%}
+
+
+<title>{% block title %}Biken || Quienes somos{% endblock %}</title>
+
+{%block content%}
+
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">   
+    <img src='{% static "/img/gifs/portada.gif"%}' class="banner_qs" alt='biken_banner'>
+  </div>
+  <br>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div style="font-size: 40px; font-family:times new roman; text-align: left; color : rgb(10, 85, 216);">Quiénes
+          somos</div>
+
+        <br>
+        <p style="text-align: justify">El Proyecto del Alquiler de Bicicletas (BIKEN) se realiza con el fin de mejorar
+          la movilidad de transporte en la ciudad de Popayan , haciendo uso de este vehículo y teniendo como
+          beneficios la reducción de niveles de contaminación ambiental, el mejoramiento de la salud tanto fisica como
+          emocional, y el ahorro de dinero por parte del cliente. Tambien conseguir con facilidad y a precios comodos
+          una bicicleta rentada ya que muchas veces el cliente no cuenta con los recursos suficientes para hacer
+          compra de esta.
+          <br>
+          <br>
+          Una de las estrategias a seguir es brindar un buen servicio y atención al cliente, aumentando los niveles de
+          calidad y empeño de nuestro proyecto cada dia,
+          para asi lograr que el proyecto se mantenga en funcion y sea reconocido cada vez mas.
+          <br>
+          Sin embargo, debe quedar claro que este proyecto no se hace con la intención de generar oposición al uso del
+          vehículo automotor, pues es comprensible que en situaciones especiales
+          es necesario, aunque el uso de la bicicleta es un medio de transporte aún más agil, economico y facil de
+          emplear en cualquier momento.
+          <br>
+          <br>
+        </p>
+        <img src='{% static "/img/imgs_plus/qsomos.png" %}' width="230px" height="180px" class="d-block mx-auto">
+
+
+      </div>
+      <div class="col-lg-6">
+        <img src='{% static "/img/animations/anim.svg"%}' class="anim">
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock%}

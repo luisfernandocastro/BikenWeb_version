@@ -1,0 +1,66 @@
+{% extends 'pages/quienesSomos.html' %}
+
+{% load static %}
+
+{% block title %}Biken || Contacto{% endblock %}
+
+
+{%block content%}
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="font-size: 40px; font-family:times new roman; text-align: left; color : rgb(10, 85, 216)">
+        &nbsp&nbspContacto</div>
+    </div>
+
+
+    Para comunicarte con el equipo de BIKEN, déjanos tu mensaje y en pocos días estaremos respondiéndote.
+    <br>
+    <br>
+
+    <div class="col-md-6">
+      <form>
+
+        <center>
+          <div class="p-2 mb-3 bgnav text-white">Formulario Contacto</div>
+        </center>
+        <div class="form-group">
+
+          <input type="text" class="form-control" placeholder="Nombres completos" maxlength="50" required>
+          <div class="invalid-feedback">No valido</div>
+        </div>
+
+        <div class="form-group">
+
+          <input type="text" class="form-control" placeholder="Apellidos completos" maxlength="50" required>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" id="demo" name="email" maxlength="50"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="El dominio del correo no es Valido" required>
+          <div class="input-group-append">
+            <span class="input-group-text">@example.com</span>
+          </div>
+        </div>
+        <input type="tex" class="form-control" placeholder="Num Telefono" pattern="^[1|2|3|4|5|6|7|8|9]\d{9}$"
+          itle="El numero de Telefono no es Valido" maxlength="10" required>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1"></label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje" id="comment"
+            required></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary colorbiken d-block mx-auto">Enviar</button>
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <img src="{% static '/img/animations/anim2.svg' %}">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

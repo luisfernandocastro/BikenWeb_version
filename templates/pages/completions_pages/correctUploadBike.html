@@ -1,0 +1,33 @@
+
+{% extends 'pages/completions_pages/correctRegistro.html' %}
+{% load static %}
+
+        {% block title %}Subida || Exitosa{% endblock %}
+
+    {% block content %}
+
+        {% if messages %}
+        {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": '<span class="alerttit">Registro Exitoso</span>',
+                "text": "{{m}}",
+                "position": "left",
+                "icon": "success",
+                "confirmButtonText": 'Ok',
+                "confirmButtonColor": '#2059BD',
+                "allowOutsideClick": false,
+                "allowEscapeKey": false,
+                "allowEnterKey": false,
+                "stopKeydownPropagation": false,
+    
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "{% url 'home' %}"
+                }
+            });
+        </script>
+        {% endfor %}
+        {% endif %}
+
+        {% endblock%}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="profile">
+                <img src="{{user.get_image}}" alt="" height="50" width="50">
+                <h2>{{user.username}}</h2>
+                <button></button>
+            </div>
+
+            <div class="follow ">
+                <div>
+                    <h5>Post</h5>
+                    <p>{{user.miBici.count}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

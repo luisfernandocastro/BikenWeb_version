@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Biken || Login{% endblock %}
+
+{% block classbody %}
+
+<body class="bg-comunity container-com"></body>{% endblock %}
+
+{% block navbar %}
+
+<a href="{% url 'home' %}" class="nav__link ">
+	<span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
+	<span class="nav__text">Inicio</span>
+</a>
+
+<a href="{% url 'login' %}" class="nav__link active">
+	<span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
+	<span class="nav__text">Inicia Sesión</span>
+</a>
+<a href="{% url 'registro' %}" class="nav__link ">
+	<span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
+	<span class="nav__text">Registrarse</span>
+</a>
+<a href="#" class="nav__link">
+	<span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
+	<span class="nav__text">Favorites</span>
+</a>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="row align-items-center justify-content-center minh-100">
+	<div class="col-sm-6 offset-com">
+		<br>
+		<div class="card container-com1 ">
+
+			<div class="row">
+				<div class="col-lg-6 contenedor">
+					<img class="img-fluid img-comunity" src='{% static "img/imgs_login/bg-com6.jpg" %}' alt="">
+					<img class="img-fluid img-comunity top" src='{% static "img/imgs_login/bg-com.jpeg" %}' alt="">
+				</div>
+				<div class="col-lg-6 form-com">
+					<div>
+						<h3 class="text-center title-com"> <strong>BIKEN</strong></h3>
+					</div>
+					<br>
+					{% load crispy_forms_tags %}
+					<form action='' method="POST">
+
+						{% csrf_token %}
+						{{form | crispy}}
+<!-- 						<div class="form-group">
+							<input type="email" name="usuario" id="usr" class="form-control"
+								placeholder="juankm@example.com" required>
+						</div>
+						<br>
+						<div class="form-group">
+							<input type="password" name="Password" id="pwd" class="form-control" placeholder="*********"
+								required>
+						</div> -->
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary d-block mx-auto btn-com btn-block">Ingresar</button>
+						</div>
+					</form>
+					<div>
+						<h3 class="text-center title-com2 title-com3"><small>¿No tienes una cuenta? <a
+									href="{% url 'registro' %}" class="hyper-com">Registrate</a> y se parte de
+								la
+								comunidad Biken</small></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}
+{% block footer %}
+
+<div></div>
+{% endblock %}
