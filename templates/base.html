@@ -35,13 +35,13 @@
                     </div>
                     <ul class="nav__list">
                         {% if user.is_authenticated %}
-                        <a href="{% url 'perfil' user.username %}" class="nav__link_user {% if request.path|slice:':9' == '/profile/'%}active{% endif%}">
-                            <img class="img_perfilUser" src="{{request.user.get_image}}" alt="">
+                        <a href="{% url 'perfil' request.user.username %}" class="nav__link_user">
+                            <img class="img_perfilUser" src="{{request.user.perfil.get_image}}" alt="">
                             <span class="nav__text">
-                                {%if user.first_name == '' %}
-                                {{user.username}}
+                                {%if request.user.first_name == '' %}
+                                {{request.user.username}}
                                 {%else%}
-                                {{user.first_name}}
+                                {{request.user.first_name}}
                                 {%endif%}
                             </span>
                         </a>

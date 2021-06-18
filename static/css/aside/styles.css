@@ -194,6 +194,11 @@ a {
   color: var(--first-color);
 }
 
+.activeItemProfile{
+  background-color: #0C2247;
+  color:red;
+}
+
 /*Add padding body*/
 .expander {
   padding: 1rem 0 0 12rem;

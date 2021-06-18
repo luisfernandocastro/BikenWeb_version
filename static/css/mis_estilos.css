@@ -946,7 +946,7 @@ textarea::-webkit-input-placeholder {
 
 /*-----------------------------------------end styles Fondos de las paginas --------------------------------------------------------*/
 
-/*--------------------------------------------------------estilos pagina quienes somos-----------------------------------------------------------*/
+/*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
 .banner_qs{
   width: 60%;
@@ -954,7 +954,37 @@ textarea::-webkit-input-placeholder {
 }
 
 
-/*--------------------------------------------------------end styles pagina quienes somos-----------------------------------------------------------*/
+/*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
+
+/*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
+
+.username_profile{
+  font-size: 20px;
+}
+
+.banner_profile{
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background-position-y: top;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  /* background-color: #aaaaaa; */
+}
+
+.img_profile{
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+
+
+
+/*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
+
+
+
 
 
 /*--------------------------------------------------------media Screen-------------------------------------------------------------------*/

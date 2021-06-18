@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate,login as auth_login
 from Apps.usuario.models import User
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 user = get_user_model()
 # Create your views here.
 
@@ -25,7 +26,7 @@ def home(request):
 def messageRegistro(request):
     return render (request, 'pages/completions_pages/correctRegistro.html')
 
-
+@login_required
 def messageUploadBike(request):
     return render (request, 'pages/completions_pages/correctUploadBike.html')
 
@@ -71,7 +72,7 @@ def murouser(request):
     return render (request, 'pages/muroUser.html')
 
 
-
+@login_required
 def uploadBike(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
@@ -103,7 +104,7 @@ def uploadBike(request):
     #         return redirect('messagebike')
 
     # return render (request, 'pages/uploadBike.html',contexto)
-
+@login_required
 def profileUser(request, username=None):
     current_user = request.user
     if username and username != current_user.username:

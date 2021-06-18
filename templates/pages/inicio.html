@@ -310,7 +310,7 @@
                                 alt="Card image cap"></a>
                                 <div class="card-body">
                                     <p class="card-text title"> 
-                                        <img src="{{b.user.get_image}}" alt="" class="imgperfil_post">
+                                        <img src="{{b.user.perfil.imagen_portada.url}}" alt="" class="imgperfil_post">
                                         <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
                                         {{ b.user.username}}
                                         {%else%}

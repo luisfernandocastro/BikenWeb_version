@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 User=get_user_model()
@@ -14,15 +15,27 @@ User=get_user_model()
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
+    image_portada = models.ImageField(upload_to='user/banner/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de portada')
+    image_user = models.ImageField(upload_to='user/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de perfil')
 
-    def __str_(self):
+    def __str__(self):
         return f'Perfil de {self.user.username}'
+
+    def get_image(self):
+        if self.image_user:
+            return '{}{}'.format(MEDIA_URL,self.image_user)
+        return '{}{}'.format(STATIC_URL,'img/imgs_plus/user.png')
+    
+    def get_imagePortada(self):
+        if self.image_portada:
+            return '{}{}'.format(MEDIA_URL,self.image_portada)
+        return '{}{}'.format(STATIC_URL,'img/imgs_plus/banner.jpg')
 
 
 
 class MiBicicleta(models.Model):
     idmibicicleta = models.AutoField(db_column='idmibicicleta', primary_key=True,default=None) 
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='miBici',default=User.username)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='miBici')
     marca = models.CharField(db_column='Marca', max_length=45,default=None)  # Field name made lowercase.
     color = models.CharField(db_column='Color', max_length=50,default=None)  # Field name made lowercase.
     material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material',default=None)  # Field name made lowercase.
