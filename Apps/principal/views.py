@@ -1,7 +1,7 @@
 import django
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *
-from .forms import PersonaForm, BicicletasForm,CustomUserCreationForm
+from .forms import  BicicletasForm,CustomUserCreationForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model, authenticate,login as auth_login
 from Apps.usuario.models import User
@@ -52,24 +52,15 @@ def registro(request):
             messages.success(request,"Te ha registrado correctamente")
             return redirect(to='messagereg')
         data['form'] =  formulario
+
+
     return render (request, 'registration/registro.html',data) 
-    # contexto={
-    #         'form':form
-    #     }
-    # else: 
-    #     form = PersonaForm(request.POST)
-    #     contexto={
-    #         'Form':form
-    #     
 
 
 
 def login(request):
     return render (request, 'registration/login.html')
 
-
-def murouser(request):
-    return render (request, 'pages/muroUser.html')
 
 
 @login_required
@@ -88,22 +79,6 @@ def uploadBike(request):
     return render (request, 'pages/uploadBike.html',{'form': form})
 
 
-    # if request.method == 'GET':
-    #     form = BicicletasForm()
-    #     contexto={
-    #         'FormBike':form
-    #     }
-    # else: 
-    #     form = BicicletasForm(request.POST,files=request.FILES)
-    #     contexto={
-    #         'FormBike':form
-    #     }
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(request,"Inicia sesión para poder continúar")
-    #         return redirect('messagebike')
-
-    # return render (request, 'pages/uploadBike.html',contexto)
 @login_required
 def profileUser(request, username=None):
     current_user = request.user

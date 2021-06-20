@@ -14,20 +14,21 @@ class PersonaForm(forms.ModelForm):
 class BicicletasForm(forms.ModelForm):
     class Meta:
         model = MiBicicleta
-        fields = '__all__'
+        fields = ('user','marca','color','material','categoria','precioalquiler','foto')
+        # fields = '__all__'
         #fields = ('apellidos',) 
 
 
 class CustomUserCreationForm(UserCreationForm):
-    # Nombres= forms.CharField(required = False)
-    # Apellidos = forms.CharField(required = False)
-    # email = forms.EmailField(required = True)
-
+    first_name= forms.CharField(required = True,)
+    last_name = forms.CharField(required = True,)
+    email = forms.EmailField(required = True,)
     class Meta:
         model = User
-        fields = ['username','first_name','last_name', 'email', 'password1', 'password2','image_user'] 
+        fields = ['username','first_name','last_name', 'email', 'password1', 'password2'] 
         help_texts= {k:'' for k in fields}   
-        verbose_name_plural='Pagos'    
+
+
 
     def save(self,commit = True):   
         user = super(CustomUserCreationForm, self).save(commit = False)

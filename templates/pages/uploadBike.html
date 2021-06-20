@@ -1,52 +1,97 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
+{% load widget_tweaks %}
 
 {% block title %}Biken || Sube tu Bicicleta{% endblock %}
 
-{% block classbody %}<body class="bgimg_upload">{% endblock %}
+{% block classbody %}
+
+<body class="bgimg_upload">{% endblock %}
 
 
 
 
-{% block content %}
+    {% block content %}
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
 
-            <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
-            <strong>
-                <div class="mt-5" style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
-                    ANUNCIA TU BICICLETA</div>
-            </strong>
+                <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
+                <strong>
+                    <div class="mt-5"
+                        style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
+                        ANUNCIA TU BICICLETA</div>
+                </strong>
 
-            <div class="mt-5" style="text-align: center;">Selecciona las características de tu bicicleta, añade una foto y
-                establece la tarifa deseada. Una vez hecho esto, tu bici estarà disponible para ser alquilada.</div>
+                <div class="mt-5" style="text-align: center;">Selecciona las características de tu bicicleta, añade una
+                    foto y
+                    establece la tarifa deseada. Una vez hecho esto, tu bici estarà disponible para ser alquilada.</div>
 
-            <hr size="1px" color="gray" />
-            {% load crispy_forms_tags %}
+                <hr size="1px" color="gray" />
+                <!-- {% load crispy_forms_tags %} -->
 
-            <form class="container mt-5" method="POST" enctype="multipart/form-data">
+                <form class="container mt-5" method="POST" enctype="multipart/form-data">
 
-                {% csrf_token %}
-                {{ form | crispy}}
+                    {% csrf_token %}
+                    <!-- {{ form | crispy}} -->
+                    <div class="form-group">
+                        <label for="user">Usuario</label>
+                        {% render_field form.user class="form-control inputs_forms custom-select" type=""placeholder="Usuario"%}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Marca">Marca</label>
+                        {% render_field form.marca class="form-control inputs_forms" type="" placeholder="Ejemplo:BMX,Gw"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        {% render_field form.color class="form-control inputs_forms" type="" placeholder="Color de tu bici"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="material">Material</label>
+                        {% render_field form.material class="form-control inputs_forms custom-select" type="" placeholder="Material de Bici"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        {% render_field form.categoria class="form-control inputs_forms custom-select" type="" placeholder="Elige una categoria"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio Alquiler</label>
+                        {% render_field form.precioalquiler class="form-control inputs_forms" type="" placeholder="Coloca el precio de alquiler"%}
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="customFile">Foto</label>
+                        {% render_field form.foto class="custom-file-input inputs_forms" type="file" placeholder="Sube la foto de tu Bici"%}
+                    </div>
+
+                    {% if form.errors %}
+                    <ul class="text-danger font-weight-bold font-italic">
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li>
+                            {{ error }}
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-primary mt-5">Subir datos</button>
+
+                </form>
+
+                <div class="img-ruedas mt-5">
+                    <!-- <img src="{% static '/img/imgs_plus/fotorueda.png'%}" height="110px" width="240px" align="left"> -->
+                </div>
 
 
-                <button type="submit" class="btn btn-primary mt-5">Subir datos</button>
-
-            </form>
-
-            <div class="img-ruedas mt-5">
-                <!-- <img src="{% static '/img/imgs_plus/fotorueda.png'%}" height="110px" width="240px" align="left"> -->
             </div>
-
-
+            <div class="col-lg-6"></div>
         </div>
-        <div class="col-lg-6"></div>
     </div>
-</div>
 
-<br>
+    <br>
 
-{% endblock %}
+    {% endblock %}

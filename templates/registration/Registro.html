@@ -1,58 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 
 {% block title%}Biken || Registro{% endblock %}
-{% block classbody %}<body class="bgimg_registro">{% endblock %}
+{% block classbody %}
 
-{% block navbar %}
+<body class="bgimg_registro">{% endblock %}
 
-<a href="{% url 'home' %}" class="nav__link ">
-    <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
-    <span class="nav__text">Inicio</span>
-</a>
+    {% block navbar %}
 
-<a href="{% url 'login' %}" class="nav__link">
-    <span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
-    <span class="nav__text">Inicia Sesión</span>
-</a>
-<a href="{% url 'registro' %}" class="nav__link active">
-    <span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
-    <span class="nav__text">Registrarse</span>
-</a>
-<a href="#" class="nav__link">
-    <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
-    <span class="nav__text">Favorites</span>
-</a>
+    <a href="{% url 'home' %}" class="nav__link ">
+        <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
+        <span class="nav__text">Inicio</span>
+    </a>
 
-{% endblock %}
+    <a href="{% url 'login' %}" class="nav__link">
+        <span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
+        <span class="nav__text">Inicia Sesión</span>
+    </a>
+    <a href="{% url 'registro' %}" class="nav__link active">
+        <span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
+        <span class="nav__text">Registrarse</span>
+    </a>
+    <a href="#" class="nav__link">
+        <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
+        <span class="nav__text">Favorites</span>
+    </a>
+
+    {% endblock %}
 
 
-{% block content%}
+    {% block content%}
 
-<br>
-<div class="container mt-5">
+    <br>
+    <div class="container mt-5">
 
-    <div class="row">
+        <div class="row">
 
-        {% load crispy_forms_tags %}
-        <div class="col-lg-4">
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="p-2 mb-3 colorbiken text-white text-center">REGISTRO</div>
-                {{ form | crispy}}
+            {% load crispy_forms_tags %}
+            <div class="col-lg-4">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="p-2 mb-3 colorbiken text-white text-center" style="border-radius: 30px;">REGISTRO</div>
 
-                <button type="submitj" class="btn btn-primary colorbiken ml-5">Aceptar</button>
-                <button type="reset" class="btn btn-secondary ml-5">Limpiar</button>
+                    <!-- {{ form | crispy}} -->
+                    <!-- <input type="email" class="form-control" placeholder="Enter email" id="email"> -->
 
-            </form>
-        </div>
-        <div class="col-lg-8">
-            <!--   <img src='{% static "/img/svg/bike2.svg" %}'> -->
+                    <div class="form-group">
+                        <label for="user">Nombre de Usuario</label>
+                        {% render_field form.username class="form-control inputs_forms" type="text" placeholder="Usuario"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="names">Nombres</label>
+                        {% render_field form.first_name class="form-control inputs_forms" type="text" placeholder="Agrega tu nombre"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Apellidos</label>
+                        {% render_field form.last_name class="form-control inputs_forms" type="text" placeholder="Agrega tu apellido"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electronico</label>
+                        {% render_field form.email class="form-control inputs_forms" type="email" placeholder="@example.com"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="pass1">Contraseña</label>
+                        {% render_field form.password1 class="form-control inputs_forms" type="password" placeholder="Agrega una contraseña"%}
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="pass2"></label>
+                        {% render_field form.password2  class="form-control inputs_forms" type="password" placeholder="Repite tu contraseña"%}
+                    </div>
+
+                    {% if form.errors %}
+                    <ul class="text-danger font-weight-bold font-italic">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <button type="submitj" class="btn btn-primary colorbiken ml-5 mt-4">Aceptar</button>
+                    <button type="reset" class="btn btn-secondary ml-5 mt-4">Limpiar</button>
+
+                </form>
+            </div>
+            <div class="col-lg-8">
+                <!--   <img src='{% static "/img/svg/bike2.svg" %}'> -->
+            </div>
         </div>
     </div>
-</div>
 
 
 
-{% endblock %}
+    {% endblock %}

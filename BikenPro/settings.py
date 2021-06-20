@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'Apps.principal.apps.PrincipalConfig',
     'Apps.usuario.apps.UsuarioConfig',
     'colorfield',
-    'crispy_forms'
+    'crispy_forms',
+    'widget_tweaks',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -10,12 +10,17 @@ nav {
 .colorbiken {
   background-color: #2059BD;
 }
+
+.colorbikentext{
+  color:#2059BD;
+}
 /*...........................................index..........................................................................*/
 
 .principal {
   background-size: cover;
   position: relative;
 }
+
 /*-------------------Pagina Bienvenida-------------------------*/
 
 #particles-js {
@@ -168,17 +173,17 @@ nav {
 
 /*..................Estilos de la imagen de perfil de los usuarios...........*/
 
-.img_perfilUser{
+.img_perfilUser {
   background-color: red;
   border-radius: 30px;
-  margin: 5px; 
+  margin: 5px;
   width: 43px;
   height: 40px;
 }
 
-.nav__link_user{
+.nav__link_user {
   display: -webkit-box;
-  display: flex; 
+  display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -199,41 +204,41 @@ nav {
 
 /*-------------------------start styles card catalogo--------------------------------------*/
 
-.subtitleCard{
+.subtitleCard {
   font-style: italic;
   text-align: end;
 }
 
 
-.title{
+.title {
   font-weight: bold;
 }
 
 
-.col-lg-3 .card{
+.col-lg-3 .card {
   border-radius: 30px;
-  box-shadow:10px 10px 8px 0px  hsl(0, 0%, 90%);
+  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
 }
 
 
-a  .card-img-top {
+a .card-img-top {
   border-radius: 30px;
 }
 
-a  .card-img-top:hover{
+a .card-img-top:hover {
   border: solid 1px #d2e2ff;
 }
 
-.placeholderimgup{
+.placeholderimgup {
   position: absolute;
 }
 
 
-.placeholderimgdown{
+.placeholderimgdown {
   position: relative;
 }
 
-.imgperfil_post{
+.imgperfil_post {
   border-radius: 50px;
   height: 35px !important;
   width: 35px !important;
@@ -249,7 +254,7 @@ a  .card-img-top:hover{
 /*------------------------------buscar home page-------------------------------*/
 
 
-.div_search{
+.div_search {
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -257,9 +262,9 @@ a  .card-img-top:hover{
   justify-content: center;
 }
 
-.input-search{
+.input-search {
   height: 55px;
-  width:80vh;
+  width: 80vh;
   outline: none;
   border: solid 1px white;
   border-radius: 30px;
@@ -267,7 +272,7 @@ a  .card-img-top:hover{
   text-transform: capitalize;
 }
 
-.div-btn-search{
+.div-btn-search {
   display: flex;
   justify-content: center;
 }
@@ -646,7 +651,7 @@ th,
 }
 
 .card-body4 {
-  border-left: solid 3px #E09B07 !important;
+  border-left: solid 3px #2059BD !important;
 }
 
 .text-uppercase {
@@ -865,7 +870,7 @@ textarea::-webkit-input-placeholder {
 /*--------------------------------------------------------------------------estilos footer-----------------------------------------------*/
 
 .footerInf {
-  padding: 20px ;
+  padding: 20px;
   border-radius: 30px;
   box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
   text-align: center;
@@ -893,27 +898,27 @@ textarea::-webkit-input-placeholder {
 }
 
 
-.titlefooter{
-  text-align: start;  
+.titlefooter {
+  text-align: start;
 }
 
-.subtitlefooter{
+.subtitlefooter {
   font-size: 15px;
   color: #aaaaaa;
   line-height: 90%;
   text-align: start;
 }
 
-.subtitlefooter:hover{
+.subtitlefooter:hover {
   color: #ffffff;
 }
 
-.iconfooter{
+.iconfooter {
   font-size: 30px;
   color: #ffffff;
 }
 
-.iconfooter:hover{
+.iconfooter:hover {
   color: #aaaaaa;
 }
 
@@ -921,21 +926,21 @@ textarea::-webkit-input-placeholder {
 /*---------------------------------------------------------------end estilos footer------------------------------------------------------*/
 
 /*-----------------------------------------Fondos de las paginas -------------------------------------------------------------------*/
-.bgimg_upload{
+.bgimg_upload {
   background-image: url(../img/animations/bike4.svg);
   background-repeat: no-repeat;
   background-size: 50%;
   background-position-x: right;
 }
 
-.bgimg_registro{
+.bgimg_registro {
   background-image: url(../img/animations/bike2.svg);
   background-repeat: no-repeat;
   background-size: 50%;
   background-position-x: right;
 }
 
-.bgimg_paginamensaje{
+.bgimg_paginamensaje {
   background-image: url(../img/animations/bike3.svg);
   background-repeat: no-repeat;
   background-size: 50%;
@@ -948,7 +953,7 @@ textarea::-webkit-input-placeholder {
 
 /*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
-.banner_qs{
+.banner_qs {
   width: 60%;
   height: 20%;
 }
@@ -958,25 +963,23 @@ textarea::-webkit-input-placeholder {
 
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
 
-.username_profile{
+
+.info_user{
+  margin: 30px 0 30px 0;
+}
+
+.username_user_profile {
+  line-height: 0;
   font-size: 20px;
+  color: white;
 }
 
-.banner_profile{
-  padding-top: 5%;
-  padding-bottom: 5%;
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-size: 50%;
-  /* background-color: #aaaaaa; */
-}
 
-.img_profile{
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
+.img_user_profile {
+  margin-bottom: 0;
+  height: 140px;
+  width: 140px;
+  border-radius: 100%;
 }
 
 
@@ -990,17 +993,17 @@ textarea::-webkit-input-placeholder {
 /*--------------------------------------------------------media Screen-------------------------------------------------------------------*/
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media screen and (max-width: 800px){
-  
-  .input-search{
+@media screen and (max-width: 800px) {
+
+  .input-search {
     width: 60vh;
   }
 
-  .div-btn-search{
+  .div-btn-search {
     width: 60vh;
   }
 
-  .btn-search{
+  .btn-search {
     top: 23%;
     margin-top: 3px;
     margin-left: 55%;
@@ -1044,16 +1047,16 @@ textarea::-webkit-input-placeholder {
     display: none;
   }
 
-  .input-search{
+  .input-search {
     width: 40vh;
   }
 
 
-  .div-btn-search{
+  .div-btn-search {
     width: 40vh;
   }
 
-  .btn-search{
+  .btn-search {
     top: 19%;
     margin-top: 3px;
     margin-left: 48%;
@@ -1061,3 +1064,8 @@ textarea::-webkit-input-placeholder {
   }
 
 }
+
+
+
+
+
