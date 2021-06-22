@@ -14,7 +14,7 @@ class PersonaForm(forms.ModelForm):
 class BicicletasForm(forms.ModelForm):
     class Meta:
         model = MiBicicleta
-        fields = ('user','marca','color','material','categoria','precioalquiler','foto')
+        fields = ('marca','color','material','categoria','precioalquiler','foto')
         # fields = '__all__'
         #fields = ('apellidos',) 
 
