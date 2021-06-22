@@ -204,6 +204,14 @@ nav {
 
 /*-------------------------start styles card catalogo--------------------------------------*/
 
+@media (min-width: 75em) {
+  .card-columns {
+      -webkit-column-count: 4;
+      -moz-column-count: 4;
+      column-count: 4;
+  }
+}
+
 .subtitleCard {
   font-style: italic;
   text-align: end;
@@ -215,14 +223,19 @@ nav {
 }
 
 
-.col-lg-3 .card {
+.card-columns .card {
   border-radius: 30px;
   box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+}
+
+.card-columns .card:hover {
+  border: solid 1px rgba(32, 89, 189, 0.5);
 }
 
 
 a .card-img-top {
   border-radius: 30px;
+  height: 20% !important;
 }
 
 a .card-img-top:hover {
@@ -243,6 +256,11 @@ a .card-img-top:hover {
   height: 35px !important;
   width: 35px !important;
 }
+
+.imgcat {
+  width: 100%;
+}
+
 
 /*-------------------------end styles card catalogo--------------------------------------*/
 
@@ -302,33 +320,8 @@ a .card-img-top:hover {
   /*------No se sale del contenedor----*/
 }
 
-.imgcat {
-  width: 100%;
-  transition: all 500ms ease-out
-}
 
-.imgcat:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
 
-.modal-contentx {
-  background-color: rgba(32, 89, 189, 0.7);
-  padding: 0 20px;
-}
-
-.user-img {
-  margin-top: -50px;
-  margin-bottom: 10px;
-  margin-left: 35%;
-}
-
-.user-img img {
-  width: 100px;
-  height: 100px;
-  box-shadow: 0px 0px 3px #848484;
-  border-radius: 50%;
-}
 
 .notifi {
   margin-left: 10px;
