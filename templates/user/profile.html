@@ -33,38 +33,71 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-4 col-md-6 mb-4 mt-5">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body card-body4">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-1"
-                            style="font-size: 15px;">
-                            {% if request.user.username == user.username%}
-                            Mis Bicicletas Subidas
-                            {%else%}
-                            Bicicletas subidas de {{user.first_name}}
-                            {%endif%}
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-lg-12 mt-5">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body card-body4">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-1"
+                                                style="font-size: 15px;">
+                                                {% if request.user.username == user.username%}
+                                                Mis Bicicletas Subidas
+                                                {%else%}
+                                                Bicicletas subidas de {{user.first_name}}
+                                                {%endif%}
+                                            </div>
+                                            <div class="h2 mb-0  font-weight-bold text-gray-800">{{user.miBici.count}}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-bicycle fa-3x iconos-admin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="h2 mb-0 font-weight-bold text-gray-800">{{user.miBici.count}}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-bicycle fa-4x iconos-admin"></i>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body card-body3">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-3"
+                                                style="font-size: 15px;">
+                                                {% if request.user.username == user.username%}
+                                                Eres miembro desde el
+                                                {%else%}
+                                                {{user.first_name}} es miembro desde el
+                                                {%endif%}
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{user.date_joined|naturalday}}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar-alt fa-3x iconos-admin"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <div class="row">
         {% for b in miBici %}
         <div class="col-lg-3 mt-3">
             <div class="card">
-                {% if user.is_authenticated %}
-                <a>
-                    {%else%}
-                    <a id="alert">
-                        {%endif%}
+                    <a>
                         <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
                             alt="Card image cap">
                         <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}"
@@ -74,7 +107,7 @@
                         {% if request.user.username == user.username %}
 
                         {% else %}
-                        <p class="card-text title">
+                        <p class="card-text title font-weight-bold">
                             <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
                             <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
                                 {{ b.user.username}}
@@ -84,14 +117,33 @@
                             </a>
                         </p>
                         {% endif %}
-
-                        <p class="card-text title">{{b.timestamp|naturaltime}}</p>
-                        <p class="card-text subtitleCard">Alquiler ${{b.precioalquiler}}</p>
+                        <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
+                        <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
+                        <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
                         {% if request.user.username == user.username %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="{% url 'editar_bicicleta' b.idmibicicleta %}">
+                                    <button class="btn btncat d-block mx-auto "><i class="far fa-edit"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="#}">
+                                    <button class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
 
                         {% else %}
-                        <button id=alert2 class="btn btncat d-block mx-auto"><i class="far fa-heart"></i>
-                            Añadir a favoritas</button>
+                        <a href="#">
+                            <button class="btn btncat d-block mx-auto "><i class="far fa-heart"></i>
+                                Añadir a favoritas
+                            </button>
+                        </a>
+
+
                         {% endif %}
 
                     </div>

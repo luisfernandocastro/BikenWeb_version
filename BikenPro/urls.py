@@ -34,6 +34,7 @@ urlpatterns = [
     path('profile/',views.profileUser,name='perfil'),
     path('profile/<str:username>/',views.profileUser,name='perfil'),
     path('uploadBike/' , views.uploadBike, name='uploadbike'),
+    path('editBike/<id>/' , views.editar_bicicleta, name='editar_bicicleta'),
     path('registrocorrecto/' , views.messageRegistro, name='messagereg'),
     path('subidabicicorrecta/' , views.messageUploadBike, name='messagebike'),
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),

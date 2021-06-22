@@ -11,9 +11,10 @@ nav {
   background-color: #2059BD;
 }
 
-.colorbikentext{
-  color:#2059BD;
+.colorbikentext {
+  color: #2059BD;
 }
+
 /*...........................................index..........................................................................*/
 
 .principal {
@@ -91,6 +92,7 @@ nav {
 .btncat {
   background-color: #2059BD;
   color: white;
+  border-radius: 30px !important;
 }
 
 .btn1 {
@@ -206,20 +208,29 @@ nav {
 
 @media (min-width: 75em) {
   .card-columns {
-      -webkit-column-count: 4;
-      -moz-column-count: 4;
-      column-count: 4;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
   }
 }
 
-.subtitleCard {
+.title {
+  font-size: 18px;
+}
+
+.textpreciocard {
   font-style: italic;
   text-align: end;
 }
 
 
-.title {
-  font-weight: bold;
+.textcategoriacard {
+  font-size: 17px;
+}
+
+.texttiempocard {
+  line-height: 0;
+  font-size: 14px;
 }
 
 
@@ -311,6 +322,32 @@ a .card-img-top:hover {
   background-color: #d3d3d3;
   color: #2059BD;
 }
+
+
+/* ....................................................................screen editbicicleta...................................................  */
+
+
+/* .dropzone {
+  margin-top: 5px;
+  width: 360px;
+  background-color: rgba(225, 225, 225, 0.5) !important;
+  border-radius: 5px;
+  height: 140px;
+  border: 3px dashed blue;
+  padding-top: 150px;
+}
+
+.textForDropzone {
+  pointer-events: none;
+  padding: 10px;
+  display: flex;
+  color: black;
+  margin-top: -110px;
+  z-index: 10000;
+} */
+
+
+/* ....................................................................screen editbicicleta...................................................  */
 
 /*----------------------------------------end buscar homepage-------------------------------------------*/
 
@@ -957,7 +994,7 @@ textarea::-webkit-input-placeholder {
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
 
 
-.info_user{
+.info_user {
   margin: 30px 0 30px 0;
 }
 
@@ -973,6 +1010,11 @@ textarea::-webkit-input-placeholder {
   height: 140px;
   width: 140px;
   border-radius: 100%;
+}
+
+.row .col-lg-3 .card {
+  border-radius: 30px;
+  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
 }
 
 
@@ -1057,8 +1099,3 @@ textarea::-webkit-input-placeholder {
   }
 
 }
-
-
-
-
-

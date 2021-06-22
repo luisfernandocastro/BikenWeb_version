@@ -2,7 +2,7 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}Biken || Sube tu Bicicleta{% endblock %}
+{% block title %}Biken || Editar bicicleta{% endblock %}
 
 {% block classbody %}
 
@@ -13,8 +13,8 @@
 
     {% block content %}
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container">
+        <div class="row-fluid">
             <div class="col-lg-1"></div>
             <div class="col-lg-5">
 
@@ -22,12 +22,8 @@
                 <strong>
                     <div class="mt-5"
                         style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
-                        ANUNCIA TU BICICLETA</div>
+                        Editar datos de la Bicicleta</div>
                 </strong>
-
-                <div class="mt-5" style="text-align: center;">Selecciona las características de tu bicicleta, añade una
-                    foto y
-                    establece la tarifa deseada. Una vez hecho esto, tu bici estarà disponible para ser alquilada.</div>
 
                 <hr size="1px" color="gray" />
                 <!-- {% load crispy_forms_tags %} -->
@@ -35,7 +31,7 @@
                 <form class="container mt-5" method="POST" enctype="multipart/form-data">
 
                     {% csrf_token %}
-                    <!-- {{ form | crispy}} -->
+
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="form-group">
@@ -51,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="material">Material</label>
                         {% render_field form.material class="form-control inputs_forms custom-select" type="" placeholder="Material de Bici"%}
@@ -63,9 +60,10 @@
                         <label for="precio">Precio Alquiler</label>
                         {% render_field form.precioalquiler class="form-control inputs_forms" type="" placeholder="Coloca el precio de alquiler"%}
                     </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" for="customFile">Foto</label>
-                        {% render_field form.foto class="custom-file-input inputs_forms" type="file" placeholder="Sube la foto de tu Bici"%}
+                    <div class="form-group ">
+                        <!-- {{form.foto}} -->
+                        <label class="foto" for="foto">Foto</label>
+                        {% render_field form.foto class="form-control  inputs_forms " type="file" id="foto" name="foto" placeholder="Sube la foto de tu Bici"%}
                     </div>
 
                     {% if form.errors %}
@@ -80,7 +78,7 @@
                     </ul>
                     {% endif %}
 
-                    <button type="submit" class="btn btn-primary mt-5">Subir datos</button>
+                    <button type="submit" class="btn btn-primary mt-5">Editar datos</button>
 
                 </form>
 

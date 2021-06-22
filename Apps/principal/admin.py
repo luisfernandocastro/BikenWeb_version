@@ -29,7 +29,7 @@ class PersonaAdmin(admin.ModelAdmin):
 
 @admin.register (MiBicicleta)
 class BicletasAdmin(admin.ModelAdmin):
-    list_display = ('marca','color', 'material', 'categoria','precioalquiler','foto')
+    list_display = ('idmibicicleta','marca','color', 'material', 'categoria','precioalquiler','foto')
     search_fields = ['color']
     list_editable = ['precioalquiler']
     list_filter = ['color','categoria']

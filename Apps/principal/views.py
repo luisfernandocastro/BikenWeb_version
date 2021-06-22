@@ -89,3 +89,23 @@ def profileUser(request, username=None):
         miBici = current_user.miBici.all()
         user = current_user
     return render(request,'user/profile.html',{'user': user, 'miBici':miBici})
+
+
+
+
+def editar_bicicleta(request,id):
+    bicicleta = get_object_or_404(MiBicicleta,idmibicicleta=id)
+
+    data = {
+        'form': BicicletasForm(instance=bicicleta)
+    }
+
+    if request.method == 'POST':
+        formulario = BicicletasForm(data=request.POST,instance=bicicleta, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to='perfil')
+        data['form'] = BicicletasForm(instance=bicicleta.objects.get(idmibicicleta=id))
+
+    return render(request,'bike/editar_bicicleta.html', data)
+

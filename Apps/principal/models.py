@@ -34,7 +34,7 @@ class Perfil(models.Model):
 
 
 class MiBicicleta(models.Model):
-    idmibicicleta = models.AutoField(db_column='idmibicicleta', primary_key=True,default=None) 
+    idmibicicleta = models.BigAutoField(db_column='idmibicicleta',primary_key=True, serialize=False, verbose_name='ID')
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='miBici',null=True)
     marca = models.CharField(db_column='Marca', max_length=45,default=None)  # Field name made lowercase.
     color = models.CharField(db_column='Color', max_length=50,default=None)  # Field name made lowercase.
