@@ -294,7 +294,6 @@
     <div class="container d-flex justify-content-center">
         <div class="row">
             <div class="col-lg-12">
-
                 <div class="row">
                     {% for b in bicicletas %}
                     <div class="col-lg-3 mt-3">
@@ -304,10 +303,9 @@
                                 {%else%}
                                 <a id="alert">
                                     {%endif%}
-                                    <img class="card-img-top placeholderimgup imgcat"
-                                        src="{% static 'img/gifs/loading.gif' %}" alt="Card image cap">
-                                    <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}"
-                                        alt="Card image cap"></a>
+                                    <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
+                                        alt="Card image cap">
+                                    <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
                                 <div class="card-body">
                                     <p class="card-text title">
                                         <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
@@ -322,7 +320,6 @@
                                     <p class="card-text subtitleCard">Alquiler ${{b.precioalquiler}}</p>
                                     <button id=alert2 class="btn btncat d-block mx-auto"><i class="far fa-heart"></i>
                                         Añadir a favoritas</button>
-
                                 </div>
                         </div>
                     </div>
