@@ -41,15 +41,23 @@
             <nav class="navbar navbar1">
 
                 <ul class="navbar-nav">
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link navbar2" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link navbar2" href="{% url 'login' %}">Inicia Sesión</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link navbar2" href="{% url 'registro' %}">Registrarse</a>
                     </li>
+                    {% endif %}
+
                     <li class="nav-item">
                         <a class="nav-link navbar2" href="{% url 'contacto' %}">Contacto</a>
-                    </li>                 
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link navbar2" href="{% url 'quienessomos' %}">Quienes somos</a>
                     </li>
@@ -70,28 +78,41 @@
         </div>
 
         <div class="row">
-
             <div class="col-lg-6 div-bike">
                 <img class="img-fluid bike" src='{% static "img/animations/bike.svg" %}'>
             </div>
             <div class="col-lg-6">
-                <p><span class="titulo d-block mx-auto">BIKEN</span>
-                <h4 class="subtitulo">Alquiler de bicicletas</h4>
-                </p>
-
                 <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        <p class="welcome">Bienvenido a nuestra pagina Biken , que disfrute
+                    <div class="col-lg-12">
+                        <p class="d-flex justify-content-center">
+                            <span class="titulo">BIKEN</span>
+                        <h4 class=" d-flex subtitulo justify-content-center mb-5">Alquiler de bicicletas</h4>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-12 ">
+                        {% if user.is_authenticated %}
+                        <div class="d-flex justify-content-center">
+                            <img src="{{request.user.perfil.get_image}}" class="img_user_profile_index" alt="">
+                        </div>
+                        <p class="welcome mt-2 font-weight-bold h4">Bienvenido de vuelta</p>
+                        <p class="welcome1"> {{request.user.first_name}}</p>
+                        {% else %}
+                        <p class="welcome mt-5">Bienvenido a nuestra pagina Biken , que disfrute
                             de su visita.</p>
                         <p class="welcome1">¡Esperamos su pronto regreso!</p>
+                        {% endif %}
+                        <div  class="d-flex justify-content-center">        
+                            <a href="{% url 'home' %}"><button class="btn btnindex">ENTRAR</button></a>
+                        </div>
                     </div>
-                    <div class="col-lg-2"></div>
                 </div>
-                <a href="{% url 'home' %}"><button class="btn btn1">ENTRAR</button></a>
+
+
             </div>
         </div>
-
     </div>
 
     <script src='{% static "/js/particles.min.js" %}'></script>

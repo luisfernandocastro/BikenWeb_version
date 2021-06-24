@@ -15,7 +15,7 @@ nav {
   color: #2059BD;
 }
 
-/*...........................................index..........................................................................*/
+/*...........................................Styles index..........................................................................*/
 
 .principal {
   background-size: cover;
@@ -38,16 +38,14 @@ nav {
 .titulo {
   /*---------------Titulo de la pagina index----------*/
   font-size: 160px;
-  text-align: center;
   color: #2059BD;
   font-family: perpetua;
-  margin-top: 18%;
+  margin-top: 10%;
 }
 
 .subtitulo {
   /*---------------Subtitulo de la pagina index----------*/
   font-size: 22px;
-  text-align: center;
   font-family: bold;
   margin-top: -11%;
   z-index: 2;
@@ -59,12 +57,8 @@ nav {
   text-align: center;
   position: relative;
   z-index: 2;
-  margin-top: 4%;
 }
 
-.welcome {
-  margin-top: 17%;
-}
 
 .bike {
   margin-left: 8%;
@@ -88,22 +82,20 @@ nav {
 }
 
 
-.btn1,
+.btnindex,
 .btncat {
   background-color: #2059BD;
   color: white;
   border-radius: 30px !important;
 }
 
-.btn1 {
+.btnindex {
   font-family: bold;
-  position: absolute;
-  z-index: 2;
-  margin-left: 41%;
-  margin-top: 8%;
+  position: relative;
+  z-index: 10000;
 }
 
-.btn1:hover {
+.btnindex:hover {
   background-color: white;
   border: solid 1px #2059BD;
   color: #2059BD;
@@ -114,6 +106,14 @@ nav {
   border: solid 1px #2059BD;
   color: #2059BD;
 }
+/* .................................imagen de peril del index................................ */
+.img_user_profile_index{
+  border-radius: 100%;
+  border: solid 2px #0C2247;
+  height: 100px;
+  width: 100px;
+}
+
 
 /*-----------------------------------------------cargar todas las paginas---------------------------------------*/
 
@@ -1054,9 +1054,6 @@ textarea::-webkit-input-placeholder {
     font-size: 90px;
   }
 
-  .btn1 {
-    margin-left: 37%;
-  }
 
   .div-bike {
     margin-top: 20%;
