@@ -34,11 +34,12 @@ urlpatterns = [
     path('profile/',views.profileUser,name='perfil'),
     path('profile/<str:username>/',views.profileUser,name='perfil'),
     path('uploadBike/' , views.uploadBike, name='uploadbike'),
-    path('editBike/<id>/' , views.editar_bicicleta, name='editar_bicicleta'),
+    path('editBike/<int:id>/' , views.editar_bicicleta, name='editar_bicicleta'),
     path('registrocorrecto/' , views.messageRegistro, name='messagereg'),
     path('subidabicicorrecta/' , views.messageUploadBike, name='messagebike'),
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),
-    path('contacto/' ,views. contacto, name='contacto'),
+    path('contacto/' ,views.contacto, name='contacto'),
     path('accounts/',include('django.contrib.auth.urls')),
+    path('editprofile/',views.ProfileUpdate.as_view(),name='editprofile')
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

@@ -1,3 +1,4 @@
+from re import VERBOSE
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -8,11 +9,6 @@ from django.conf import settings
 # Create your models here.
 
 class User(AbstractUser):
-    image_user = models.ImageField(upload_to='user/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de perfil')
-
-    def get_image(self):
-        if self.image_user:
-            return '{}{}'.format(MEDIA_URL,self.image_user)
-        return '{}{}'.format(STATIC_URL,'img/imgs_plus/user.png')
+    numcelular = models.BigIntegerField(db_column='numero Celular',null=True,verbose_name='Celular')
 
 

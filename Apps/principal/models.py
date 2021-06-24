@@ -9,12 +9,16 @@ from django.db import models
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.core.validators import RegexValidator
 User=get_user_model()
 
 
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
+    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True)
+    direccion = models.CharField(db_column='Direccion', max_length=50,null=True)
+    biografia = models.TextField(db_column='Biografia', max_length=150,null=True,validators=[RegexValidator(regex='^.{10}$', message='Texto muy corto', code='nomatch')]) 
     image_portada = models.ImageField(upload_to='user/banner/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de portada')
     image_user = models.ImageField(upload_to='user/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de perfil')
 
@@ -30,6 +34,9 @@ class Perfil(models.Model):
         if self.image_portada:
             return '{}{}'.format(MEDIA_URL,self.image_portada)
         return '{}{}'.format(STATIC_URL,'img/imgs_plus/banner.jpg')
+    
+    class Meta:
+        verbose_name_plural='Perfiles de usuarios'
 
 
 
@@ -42,34 +49,22 @@ class MiBicicleta(models.Model):
     timestamp=models.DateTimeField(default=timezone.now)
     categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria',default=None)  # Field name made lowercase.
     precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  # Field name made lowercase.
+    descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,validators=[RegexValidator(regex='^.{10}$', message='Texto muy corto', code='nomatch')]) 
     foto = models.ImageField(db_column='Foto', max_length=100, null=True,blank='True')  # Field name made lowercase.
 
     class Meta:
         ordering=['-timestamp']
-        verbose_name_plural='MyBicicleta'
+        verbose_name_plural='Bicicletas'
     
     def __str__(self):
         return f'{self.user.username}'
 
 
-class Bicicletas(models.Model):
-    idbicicletas = models.AutoField(db_column='idBicicletas', primary_key=True)  # Field name made lowercase.
-    marca = models.CharField(db_column='Marca', max_length=45)  # Field name made lowercase.
-    material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material')  # Field name made lowercase.
-    color = models.CharField(db_column='Color', max_length=50)  # Field name made lowercase.
-    categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria')  # Field name made lowercase.
-    precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3)  # Field name made lowercase.
-    descripcionbici = models.TextField(db_column='DescripcionBici')  # Field name made lowercase.
-    foto = models.CharField(db_column='Foto', max_length=100)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'bicicletas'
 
 
 class Catalogo(models.Model):
     idcatalogo = models.AutoField(db_column='idCatalogo', primary_key=True)  # Field name made lowercase.
-    bicicleta = models.ForeignKey(Bicicletas, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
     fechahorasubida = models.DateTimeField(db_column='fechaHoraSubida')  # Field name made lowercase.
 
     class Meta:
@@ -101,12 +96,12 @@ class Contrato(models.Model):
     observaciones = models.CharField(db_column='Observaciones', max_length=100)  # Field name made lowercase.
     tipocontrato = models.ForeignKey('Tipocontrato', models.DO_NOTHING, db_column='Tipocontrato')  # Field name made lowercase.
     persona_idpersona = models.ForeignKey('Persona', models.DO_NOTHING, db_column='Persona_idPersona')  # Field name made lowercase.
-    bicicletas_idbicicletas = models.ForeignKey(Bicicletas, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
+    bicicletas_idbicicletas = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'contrato'
-        verbose_name_plural='Contrato'
+        db_table = 'Contrato'
+        verbose_name_plural='Contratos'
 
 
 class FotoPerfiluser(models.Model):
@@ -127,19 +122,12 @@ class Materialbicicletas(models.Model):
     class Meta:
         managed = False
         db_table = 'materialbicicletas'
-        verbose_name_plural='Material'
+        verbose_name_plural='Material Bicicletas'
 
     def __str__(self):
         return self.nombre
 
 
-class Modulo(models.Model):
-    idmodulo = models.AutoField(db_column='idModulo', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'modulo'
 
 
 class Pagos(models.Model):
@@ -147,12 +135,12 @@ class Pagos(models.Model):
     fechapago = models.DateTimeField(db_column='FechaPago')  # Field name made lowercase.
     totalalquiler = models.DecimalField(db_column='TotalAlquiler', max_digits=6, decimal_places=3)  # Field name made lowercase.
     fechamora = models.DateTimeField(db_column='FechaMora', blank=True, null=True)  # Field name made lowercase.
-    contrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='Contrato')  # Field name made lowercase.
+    contrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='Tipo de Contrato')  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'foto_perfiluser'
-        verbose_name_plural='Foto perfil Usuario'
+        db_table = 'Pagos'
+        verbose_name_plural='Pagos'
 
 
 class Perfilusuario(models.Model):
@@ -160,7 +148,6 @@ class Perfilusuario(models.Model):
     nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
     descripcionrol = models.TextField(db_column='descripcionRol', blank=True, null=True)  # Field name made lowercase.
     usuario_idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='Usuario_idUsuario')  # Field name made lowercase.
-    modulo_idmodulo = models.ForeignKey(Modulo, models.DO_NOTHING, db_column='Modulo_idModulo')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -192,7 +179,6 @@ class Persona(models.Model):
 class Privilegios(models.Model):
     idprivilegios = models.AutoField(db_column='idPrivilegios', primary_key=True)  # Field name made lowercase.
     privilegio = models.IntegerField()
-    modulo_idmodulo = models.ForeignKey(Modulo, models.DO_NOTHING, db_column='Modulo_idModulo')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -201,7 +187,7 @@ class Privilegios(models.Model):
 
 class Reserva(models.Model):
     idreserva = models.AutoField(db_column='idReserva', primary_key=True)  # Field name made lowercase.
-    bicicleta = models.ForeignKey(Bicicletas, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
     disponibleen = models.TimeField(db_column='DisponibleEn', blank=True, null=True)  # Field name made lowercase.
     disponible = models.CharField(db_column='Disponible', max_length=2)  # Field name made lowercase.
 
@@ -213,7 +199,7 @@ class Reserva(models.Model):
 
 class Tiempoprestamo(models.Model):
     idtiempodisponibilidad = models.IntegerField(db_column='idTiempoDisponibilidad', primary_key=True)  # Field name made lowercase.
-    bicicletas_idbicicletas = models.ForeignKey(Bicicletas, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
+    bicicletas_idbicicletas = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
     contrato_idcontrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='Contrato_idContrato')  # Field name made lowercase.
     tiempoinicio = models.CharField(db_column='tiempoInicio', max_length=45, blank=True, null=True)  # Field name made lowercase.
 

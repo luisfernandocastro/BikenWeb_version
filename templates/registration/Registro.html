@@ -60,6 +60,10 @@
                         {% render_field form.last_name class="form-control inputs_forms" type="text" placeholder="Agrega tu apellido"%}
                     </div>
                     <div class="form-group">
+                        <label for="surname">Numero de celular</label>
+                        {% render_field form.numcelular|add_required_class:"is-required" class="form-control inputs_forms" type="text" pattern="[0-9]+" placeholder="Agrega tu número de celular"%}
+                    </div>
+                    <div class="form-group">
                         <label for="email">Correo Electronico</label>
                         {% render_field form.email class="form-control inputs_forms" type="email" placeholder="@example.com"%}
                     </div>

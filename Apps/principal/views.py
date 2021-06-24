@@ -1,4 +1,6 @@
 import django
+from django.urls import reverse_lazy
+from django.db.models import fields
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *
 from .forms import  BicicletasForm,CustomUserCreationForm
@@ -7,6 +9,8 @@ from django.contrib.auth import get_user_model, authenticate,login as auth_login
 from Apps.usuario.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic.edit import UpdateView
 user = get_user_model()
 # Create your views here.
 
@@ -92,8 +96,9 @@ def profileUser(request, username=None):
 
 
 
-
+# @method_decorator(login_required, name='dispatch')
 def editar_bicicleta(request,id):
+
     bicicleta = get_object_or_404(MiBicicleta,idmibicicleta=id)
 
     data = {
@@ -108,4 +113,19 @@ def editar_bicicleta(request,id):
         data['form'] = BicicletasForm(instance=bicicleta.objects.get(idmibicicleta=id))
 
     return render(request,'bike/editar_bicicleta.html', data)
+
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileUpdate(UpdateView):
+    template_name = 'user/editprofile.html'
+    model = Perfil
+
+    def get_object(self):
+        profile, created = Perfil.objects.get_or_create(user=self.request.user)
+        return profile
+
+    fields = ['image_user','image_portada']
+    success_url=reverse_lazy('perfil')
+
 
