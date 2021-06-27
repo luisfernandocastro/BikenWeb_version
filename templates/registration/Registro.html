@@ -8,29 +8,6 @@
 
 <body class="bgimg_registro">{% endblock %}
 
-    {% block navbar %}
-
-    <a href="{% url 'home' %}" class="nav__link ">
-        <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
-        <span class="nav__text">Inicio</span>
-    </a>
-
-    <a href="{% url 'login' %}" class="nav__link">
-        <span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
-        <span class="nav__text">Inicia Sesión</span>
-    </a>
-    <a href="{% url 'registro' %}" class="nav__link active">
-        <span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
-        <span class="nav__text">Registrarse</span>
-    </a>
-    <a href="#" class="nav__link">
-        <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
-        <span class="nav__text">Favorites</span>
-    </a>
-
-    {% endblock %}
-
-
     {% block content%}
 
     <br>
@@ -72,7 +49,7 @@
                         {% render_field form.password1 class="form-control inputs_forms" type="password" placeholder="Agrega una contraseña"%}
                     </div>
                     <div class="form-group mb-3">
-                        <label for="pass2"></label>
+                        <label for="pass2">Repite la contraseña</label>
                         {% render_field form.password2  class="form-control inputs_forms" type="password" placeholder="Repite tu contraseña"%}
                     </div>
 

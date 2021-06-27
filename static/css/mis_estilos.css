@@ -2,23 +2,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
 
 
+:root {
+  --color-dark: #111111;
+  --color-gris: #1f1f1f;
+  --color-biken: #2059BD;
+  --color-white: #ffffff;
+  --color-bikenoscuro: #0C2247;
+
+  --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  --sombra-dark: 10px 10px 8px 0px hsl(0,0,0.16);
+}
+
+body {
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+}
+
+
+/* tema dark */
+body.dark{
+  background-color: var(--color-dark);
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+}
+
+
 nav {
   font-size: 14px;
 }
 
 
 .colorbiken {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
 }
+
+
 
 .colorbikentext {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
+
+/* tema dark */
+body.dark .colorbikentext{
+  color: var(--color-white)
+}
 /*...........................................Styles index..........................................................................*/
 
 .principal {
-  background-size: cover;
+  background-image: url(../img/animations/wave.svg);
+  /* background-position-y: bottom; */
+  background-repeat: no-repeat;
+  background-position-y: 250px;
+  background-size: 200%;
   position: relative;
 }
 
@@ -38,7 +74,7 @@ nav {
 .titulo {
   /*---------------Titulo de la pagina index----------*/
   font-size: 160px;
-  color: #2059BD;
+  color: var(--color-biken);
   font-family: perpetua;
   margin-top: 10%;
 }
@@ -84,7 +120,7 @@ nav {
 
 .btnindex,
 .btncat {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
   color: white;
   border-radius: 30px !important;
 }
@@ -97,19 +133,20 @@ nav {
 
 .btnindex:hover {
   background-color: white;
-  border: solid 1px #2059BD;
-  color: #2059BD;
+  border: solid 1px var(--color-biken);
+  color: var(--color-biken);
 }
 
 .btncat:hover {
   background-color: white;
-  border: solid 1px #2059BD;
-  color: #2059BD;
+  border: solid 1px var(--color-biken);
+  color: var(--color-biken);
 }
+
 /* .................................imagen de peril del index................................ */
-.img_user_profile_index{
+.img_user_profile_index {
   border-radius: 100%;
-  border: solid 2px #0C2247;
+  border: solid 2px var(--color-bikenoscuro);
   height: 100px;
   width: 100px;
 }
@@ -197,7 +234,7 @@ nav {
 }
 
 .nav__link_user:hover {
-  background-color: #0C2247;
+  background-color: var(--color-bikenoscuro);
   color: white;
 }
 
@@ -223,21 +260,46 @@ nav {
   text-align: end;
 }
 
+/* tema dark */
+body.dark .textpreciocard{
+  color: var(--color-white);
+}
+
+
 
 .textcategoriacard {
   font-size: 17px;
 }
+
+/* tema dark */
+body.dark .textcategoriacard{
+  color: var(--color-white);
+}
+
 
 .texttiempocard {
   line-height: 0;
   font-size: 14px;
 }
 
+/* tema dark */
+body.dark .texttiempocard{
+  color: var(--color-white);
+}
+
+
 
 .card-columns .card {
   border-radius: 30px;
-  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  box-shadow: var(--sombra-light);
 }
+
+/*  tema dark */
+body.dark .card {
+  background-color: var(--color-gris);
+  box-shadow: var(--sombra-dark);
+}
+
 
 .card-columns .card:hover {
   border: solid 1px rgba(32, 89, 189, 0.5);
@@ -249,9 +311,6 @@ a .card-img-top {
   height: 20% !important;
 }
 
-a .card-img-top:hover {
-  border: solid 1px #d2e2ff;
-}
 
 .placeholderimgup {
   position: absolute;
@@ -320,7 +379,7 @@ a .card-img-top:hover {
 
 .btn-search:hover {
   background-color: #d3d3d3;
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 
@@ -367,13 +426,13 @@ a .card-img-top:hover {
 .btn3 {
   background-color: white;
   border: 1px solid white;
-  color: #2059BD;
+  color: var(--color-biken);
   margin-left: 10%;
   width: 200px;
 }
 
 .btn3:hover {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
   color: #ffffff;
 }
 
@@ -406,14 +465,14 @@ a .card-img-top:hover {
 }
 
 .page-link {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .pagination a {
   float: left;
   padding: 0 14px;
   line-height: 34px;
-  color: #2059BD;
+  color: var(--color-biken);
   text-decoration: none;
   border: 1px solid #CCCFD4;
   border-left-width: 0;
@@ -421,7 +480,7 @@ a .card-img-top:hover {
 
 .pagination a:hover,
 .pagination .active a {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
   color: #ffffff;
 }
 
@@ -505,7 +564,7 @@ a .card-img-top:hover {
 }
 
 .alerttit {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 
@@ -516,11 +575,11 @@ a .card-img-top:hover {
 }
 
 .items {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .items:hover {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
   color: #ffff;
   border: solid 1px #ffff;
 
@@ -548,7 +607,7 @@ a .card-img-top:hover {
 .item-user {
   font-size: 12px;
   background-color: #ffff;
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .item-user:hover {
@@ -573,7 +632,7 @@ a .card-img-top:hover {
 }
 
 .patners1 {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .cars {
@@ -592,7 +651,7 @@ a .card-img-top:hover {
 }
 
 .recien-admin {
-  color: #2059BD;
+  color: var(--color-biken);
   font-size: 30px;
 }
 
@@ -628,14 +687,14 @@ a .card-img-top:hover {
 }
 
 .btn-plus {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
   color: #ffff;
 }
 
 .btn-plus:hover {
   background-color: #ffff;
-  color: #2059BD;
-  border: solid 1px #2059BD;
+  color: var(--color-biken);
+  border: solid 1px var(--color-biken);
 }
 
 .title-tab {
@@ -664,12 +723,10 @@ th,
   height: 1000px;
 }
 
-.iconos-admin {
-  color: rgba(2, 89, 189, 0.4);
-}
+
 
 .card-body1 {
-  border-left: solid 3px #2059BD !important;
+  border-left: solid 3px var(--color-biken) !important;
 }
 
 .card-body2 {
@@ -681,7 +738,7 @@ th,
 }
 
 .card-body4 {
-  border-left: solid 3px #2059BD !important;
+  border-left: solid 3px var(--color-biken) !important;
 }
 
 .text-uppercase {
@@ -791,7 +848,7 @@ textarea::-webkit-input-placeholder {
 
 .title-com {
   margin-top: 10px;
-  color: #2059BD;
+  color: var(--color-biken);
   font-family: perpetua;
   font-size: 40px;
 }
@@ -840,7 +897,7 @@ textarea::-webkit-input-placeholder {
 }
 
 .btn-com:hover {
-  background-color: #2059BD;
+  background-color: var(--color-biken);
 }
 
 
@@ -849,7 +906,7 @@ textarea::-webkit-input-placeholder {
 }
 
 .contact1-com {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .contact1-com:hover {
@@ -857,7 +914,7 @@ textarea::-webkit-input-placeholder {
 }
 
 .collapse1-com {
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 
@@ -892,7 +949,12 @@ textarea::-webkit-input-placeholder {
 .carouselprincipal {
   border-bottom-left-radius: 30px;
   border-end-end-radius: 30px;
-  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  box-shadow: var(--sombra-light);
+}
+
+/* tema dark */
+body.dark .carouselprincipal{
+  box-shadow: var(--sombra-dark);
 }
 
 
@@ -902,14 +964,21 @@ textarea::-webkit-input-placeholder {
 .footerInf {
   padding: 20px;
   border-radius: 30px;
-  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  box-shadow: var(--sombra-light);
   text-align: center;
-  background-color: #0C2247;
+  background-color: var(--color-bikenoscuro);
   background-image: url(../img/iconsBiken/icono3.png);
   background-size: 20%;
   background-repeat: no-repeat;
   background-position: right;
   margin-bottom: 25px;
+}
+
+
+/* tema dark */
+body.dark .jumbotrom{
+  box-shadow: var(--sombra-dark);
+  background-color: var(--color-gris);
 }
 
 
@@ -919,7 +988,7 @@ textarea::-webkit-input-placeholder {
   font-weight: bold;
   font-size: 70px;
   font-family: 'Zeyada', cursive;
-  color: #2059BD;
+  color: var(--color-biken);
 }
 
 .text-footerCopy {
@@ -988,6 +1057,10 @@ textarea::-webkit-input-placeholder {
   height: 20%;
 }
 
+body.dark .textoquienessomos{
+  color: var(--color-white);
+}
+
 
 /*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
 
@@ -1014,22 +1087,74 @@ textarea::-webkit-input-placeholder {
 
 .row .col-lg-3 .card {
   border-radius: 30px;
-  box-shadow: 10px 10px 8px 0px hsl(0, 0%, 90%);
+  box-shadow: var(--sombra-light);
 }
 
+/* tema dark */
+body.dark .row .col-lg-3 .card {
+  box-shadow: var(--sombra-dark);
+}
+
+/* tema dark */
+body.dark .colortextcount-card , body.dark .colortextdate-card{
+  color: #84AEF7;
+}
+
+
+.iconos-admin {
+  color: rgba(2, 89, 189, 0.4);
+}
+
+/* tema dark */
+body.dark .iconos-admin{
+  color: #C4C3C0
+}
 
 
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
 
+/*------------------------------------------------------------start styles Screen UploadBike-------------------------------------------------*/
+
+.tituloUploadBike{
+
+  font-size: 28px; 
+  font-family:cursive; 
+  text-align: center; 
+  color :rgb(23, 75, 193 )
+}
+
+
+
+.subtituloUploadBike{
+  text-align: center;
+}
+
+
+/* tema dark */
+body.dark .subtituloUploadBike{
+  color: var(--color-white);
+}
+
+
+/*------------------------------------------------------------end styles Screen UploadBike--------------------------------------------------*/
 
 
 
 
-/*--------------------------------------------------------media Screen-------------------------------------------------------------------*/
+/*--------------------------------------------------------media QuerysScreens-------------------------------------------------------------------*/
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media screen and (max-width: 800px) {
 
+  /* ...............................start styles  pantalla menor a 800px en el index........................ */
+
+  .principal {
+    background-image: none;
+  }
+
+  /* ...............................end styles  pantalla menor a 800px en el index........................ */
+
+  /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
   .input-search {
     width: 60vh;
   }
@@ -1043,12 +1168,17 @@ textarea::-webkit-input-placeholder {
     margin-top: 3px;
     margin-left: 55%;
   }
+
+  /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
+
 }
 
 
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
+  /* ...............................start styles pantalla menor a 600px en el Index........................ */
   .titulo {
     margin-top: 30%;
     font-size: 90px;
@@ -1061,6 +1191,12 @@ textarea::-webkit-input-placeholder {
     filter: blur(9px);
   }
 
+
+  .bike {
+    margin-left: 0;
+    width: 100%;
+  }
+
   .icon-index {
     width: 45px;
     margin-left: -15px;
@@ -1070,14 +1206,18 @@ textarea::-webkit-input-placeholder {
     margin-right: -15px;
   }
 
+  .principal {
+    background-image: none;
+  }
+
+  /* ...............................end styles pantalla menor a 600px en el Index........................ */
+
+  /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
+
   .carouselprincipal {
     height: 200px;
   }
 
-  .welcome,
-  .welcome1 {
-    display: none;
-  }
 
   .input-search {
     width: 40vh;
@@ -1091,8 +1231,87 @@ textarea::-webkit-input-placeholder {
   .btn-search {
     top: 19%;
     margin-top: 3px;
-    margin-left: 48%;
+    margin-left: 65%;
     border-radius: 30px;
   }
 
+  /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
+
+  .nav__link_user {
+    color: var(--color-biken);
+  }
+
+  /* ...............................end styles  pantalla menor a 600px en el Homepage-barra lateral ........................ */
+
+  /* ...............................end styles  pantalla menor a 600px en el Homepage........................ */
+
+
 }
+
+
+
+
+/* ----------------------------------------------------------------modo nocturno -------------------------------------*/
+
+
+/* ...........................Styles modo nocturno de inputs de los formularios................................... */
+
+body.dark label{
+  color: #aaaaaa;
+}
+
+
+body.dark .inputs_forms{
+  background-color: var(--color-grey);
+  color: rgb(238, 238, 238);
+}
+
+body.dark .custom-select{
+  background-color: var(--color-gris);
+  color: var(--color-white);
+}
+
+
+body.dark .custom-file-label{
+  background-color: var(--color-gris);
+  color: var(--color-white);
+}
+/* ...........................end Styles modo nocturno de inputs de los formularios................................... */
+
+/* ------------------------------start styles switch(boton de cambio de tema)------------------ */
+.switch {
+  background: #4983e7;
+  border-radius: 1000px;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+
+.switch.active {
+  background: black;
+}
+
+
+.switch span {
+  display: block;
+  background: none;
+  color: orange;
+}
+
+.switch.active span{
+  color: #fff;
+
+}
+
+.icon_modnight {
+  font-size: 1.5rem;
+  margin-right: 7rem;
+  padding-top: .2rem;
+}
+
+
+/* ------------------------------end styles switch------------------ */

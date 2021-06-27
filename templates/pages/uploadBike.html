@@ -20,12 +20,11 @@
 
                 <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
                 <strong>
-                    <div class="mt-5"
-                        style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
+                    <div class="mt-5 tituloUploadBike">
                         ANUNCIA TU BICICLETA</div>
                 </strong>
 
-                <div class="mt-5" style="text-align: center;">Selecciona las características de tu bicicleta, añade una
+                <div class="mt-5 subtituloUploadBike">Selecciona las características de tu bicicleta, añade una
                     foto y
                     establece la tarifa deseada. Una vez hecho esto, tu bici estarà disponible para ser alquilada.</div>
 
@@ -64,8 +63,8 @@
                         {% render_field form.precioalquiler class="form-control inputs_forms" type="" placeholder="Coloca el precio de alquiler"%}
                     </div>
                     <div class="custom-file">
-                        <label class="custom-file-label" for="customFile">Foto</label>
-                        {% render_field form.foto class="custom-file-input inputs_forms" type="file" placeholder="Sube la foto de tu Bici"%}
+                        <label class="custom-file-label inputs_forms" for="customFile">Foto</label>
+                        {% render_field form.foto class="custom-file-input" type="file" placeholder="Sube la foto de tu Bici"%}
                     </div>
 
                     {% if form.errors %}

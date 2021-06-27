@@ -68,11 +68,6 @@
                                     data-inline="false"></span>
                                 <span class="nav__text">Salir</span>
                             </a>
-                            <a href="#" class="nav__link">
-                                <span class="iconify nav__icon " data-icon="feather:settings"
-                                    data-inline="false"></span>
-                                <span class="nav__text">Ajustes</span>
-                            </a>
                         </div>
 
                         {% else%}
@@ -97,7 +92,14 @@
                             <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
                             <span class="nav__text">Favoritas</span>
                         </a>
+
                         {% endif %}
+                        <a>
+                            <a class="switch btn" id="switch">
+                                <span><i id='icon' class="fas fa-sun icon_modnight"></i></span>
+                                <!-- <span id="texto" class="nav__text" onclick="cambiarTexto()">Modo Light</span> -->
+                            </a>
+                        </a>
                     </ul>
                 </div>
             </nav>

@@ -81,6 +81,11 @@ a {
   z-index: var(--z-fixed);
 }
 
+/* tema dark */
+body.dark .l-navbar{
+  background-color: #0C2247;
+}
+
 .nav {
   height: 100%;
   display: -webkit-box;
@@ -143,6 +148,8 @@ a {
   -webkit-transition: .5s;
   transition: .5s;
 }
+
+
 
 .nav__link {
   display: -webkit-box;

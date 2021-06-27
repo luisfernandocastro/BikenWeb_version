@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import *
-from Apps.usuario.models import User
+from .models import * # Se  importan todas las tablas del modelo de base de datos del archivo models.py 
+from Apps.usuario.models import User # Se trae el modelo usario personalizado
 
 
 admin.site.site_header="Administración Biken"
@@ -10,7 +10,6 @@ admin.site.site_title="Biken"
 class userAdmin(admin.ModelAdmin):
     list_display = ('username','first_name','last_name','numcelular','email','is_staff')
     search_fields = ['username','is_staff']
-    # list_editable = ['numcelular','correoelectronico']
     list_filter = ['username','first_name','last_name','is_staff']
     list_per_page = 10
 

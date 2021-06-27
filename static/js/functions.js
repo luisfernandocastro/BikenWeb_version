@@ -1,4 +1,4 @@
-
+//------------efecto de carga de las paginas---------------------
 $(window).on('load', function () {
 	setTimeout(function () {
 		$(".loader-page").css({ visibility: "hidden", opacity: "0" })
@@ -6,15 +6,15 @@ $(window).on('load', function () {
 });
 
 
-/////todos los inputs
-$(document).ready(function () {
-	$("input").focus(function () {
-		$(this).css("background-color", "#F1F5FC");
-	});
-	$("input").blur(function () {
-		$(this).css("background-color", "white");
-	});
-}); html:
+//--------agrega un color de fondo a todos los inputs---------------
+// $(document).ready(function () {
+// 	$("input").focus(function () {
+// 		$(this).css("background-color", "#F1F5FC");
+// 	});
+// 	$("input").blur(function () {
+// 		$(this).css("background-color", "white");
+// 	});
+// }); html:
 
 
 
@@ -27,78 +27,12 @@ $(".custom-file-input").on("change", function () {
 });
 
 
+
 $(document).ready(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
 
-$("#alertc1,#alertc2,#alertc3,#alertc4,#alertc5,#alertc6").click(function () {
-	Swal.fire({
-		title: '<span class="alerttit">Agregado</span>',
-		text: 'La bicicleta ha sido añadida al carrito de alquiler correctamente',
-		// html:
-		icon: 'success',
-		confirmButtonText: 'Ver tu carrito',
-		// footer:
-		// width:
-		padding: '2rem',
-		// background:
-		// grow:
-		//backdrop: false,
-		// timer:
-		// timerProgressBar:
-		// toast:
-		// position:
-		// allowOutsideClick:
-		// allowEscapeKey:
-		// allowEnterKey:
-		// stopKeydownPropagation:
-
-		// input:
-		// inputPlaceholder:
-		// inputValue:
-		// inputOptions:
-
-		//  customClass:
-		// 	container:
-		// 	popup:
-		// 	header:
-		// 	title:
-		// 	closeButton:
-		// 	icon:
-		// 	image:
-		// 	content:
-		// 	input:
-		// 	actions:
-		// 	confirmButton:
-		// 	cancelButton:
-		// 	footer:	
-
-		showConfirmButton: true,
-		confirmButtonColor: '#2059BD',
-		//confirmButtonAriaLabel: 
-
-		// showCancelButton:
-		// cancelButtonText:
-		// cancelButtonColor:
-		// cancelButtonAriaLabel:
-
-		buttonsStyling: true,
-		showCloseButton: true,
-		closeButtonAriaLabel: 'cerrar alerta',
-
-
-		// imageUrl:
-		// imageWidth:
-		// imageHeight:
-		// imageAlt:
-
-	}).then((result) => {
-		if (result.value) {
-			window.location.href = '#'
-		}
-	});
-});
 
 
 
@@ -113,12 +47,42 @@ $(document).ready(function () {
 
 
 
-$(document).ready(function () {
-	$('[data-toggle="tooltip"]').tooltip();
+// ------------------- Funciones para el modo nocturno----------------
+
+
+const btnswitch = document.querySelector('#switch');
+
+btnswitch.addEventListener('click', () => {
+	document.body.classList.toggle('dark');
+	btnswitch.classList.toggle('active');
+
+	// Guardar el modo nocturno en Storage
+	if (document.body.classList.contains('dark')) {
+		localStorage.setItem('dark-mode', 'true');
+	} else {
+		localStorage.setItem('dark-mode', 'false');
+	}
 });
 
+// Obtenemos el modo de estilo actual
+if (localStorage.getItem('dark-mode') === 'true') {
+	document.body.classList.add('dark');
+	btnswitch.classList.add('active');
+}else{
+	document.body.classList.remove('dark');
+	btnswitch.classList.remove('active');
+
+}
+
+
+document.getElementById('switch').addEventListener('click', function () {
+	var icon = document.getElementById('icon');
+	icon.classList.toggle('fa-sun');
+	icon.classList.toggle('fa-moon');
+})
 
 
 
 
 
+// -------------------end funciones para modo nocturno--------
