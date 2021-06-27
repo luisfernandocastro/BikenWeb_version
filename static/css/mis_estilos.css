@@ -5,6 +5,7 @@
 :root {
   --color-dark: #111111;
   --color-gris: #1f1f1f;
+  --color-grisclaro: #949494;
   --color-biken: #2059BD;
   --color-white: #ffffff;
   --color-bikenoscuro: #0C2247;
@@ -351,6 +352,8 @@ a .card-img-top {
 }
 
 .input-search {
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
   height: 55px;
   width: 80vh;
   outline: none;
@@ -358,6 +361,16 @@ a .card-img-top {
   border-radius: 30px;
   padding-left: 10px;
   text-transform: capitalize;
+}
+
+
+/* tema dark */
+body.dark .input-search{
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+  background: var(--color-gris);
+  border: solid 1px var(--color-gris);
+  color: var(--color-white);
 }
 
 .div-btn-search {
@@ -1039,6 +1052,10 @@ body.dark .jumbotrom{
   background-position-x: right;
 }
 
+body.dark.bgimg_registro{
+  background-image: url(../img/animations/bike2_dark.svg);
+}
+
 .bgimg_paginamensaje {
   background-image: url(../img/animations/bike3.svg);
   background-repeat: no-repeat;
@@ -1314,4 +1331,26 @@ body.dark .custom-file-label{
 }
 
 
-/* ------------------------------end styles switch------------------ */
+/* ------------------------------end styles switch----------------------------------------------- */
+
+/* -----------------------------start styles Barra de Scroll Personalizada -----------------------------*/
+body::-webkit-scrollbar {
+	width: 10px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--color-biken);
+	border-radius: 10px;
+	border-right: 2px solid #fff;
+}
+
+
+/* modo dark */
+body.dark::-webkit-scrollbar-thumb {
+	background: var(--color-grisclaro);
+	border-radius: 10px;
+  border-right: 2px solid var(--color-dark);
+}
+
+/* -----------------------------end styles Barra de Scroll Personalizada -----------------------------*/
