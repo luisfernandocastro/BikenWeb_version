@@ -6,7 +6,9 @@
 {% block content %}
 <div class="container">
     <div class="row ">
+        <span class="iconify iconsettings_profile" data-icon="fluent:edit-settings-24-filled" data-inline="false"></span>
         <div class="col-lg-12 d-flex justify-content-center ">
+
             <div class="banner-profile" style="
                         background: url('{{user.perfil.get_imagePortada}}') no-repeat;
                         -webkit-background-size: cover;
@@ -70,9 +72,9 @@
                                             <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-3"
                                                 style="font-size: 15px;">
                                                 {% if request.user.username == user.username%}
-                                                Eres miembro desde el
+                                                Eres parte de Biken desde el          
                                                 {%else%}
-                                                {{user.first_name}} es miembro desde el
+                                                {{user.first_name}} es parte de Biken desde el
                                                 {%endif%}
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800 colortextdate-card">
@@ -129,7 +131,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="#}">
+                                <a href="{% url 'eliminar_bicicleta' b.idmibicicleta %}">
                                     <button class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
                                     </button>
                                 </a>

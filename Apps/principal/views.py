@@ -121,6 +121,12 @@ def editar_bicicleta(request,id):
     return render(request,'bike/editar_bicicleta.html', data)
 
 
+def delete_bicicleta(request,id):
+    bicicleta = get_object_or_404(MiBicicleta,idmibicicleta=id)
+    bicicleta.delete()
+    return redirect(to="perfil")
+
+
 # metodo para actualizar o editar el perfil de un usuario registrado
 @method_decorator(login_required, name='dispatch')# Pedir al usuario iniciar sesion o registrarse para poder editar su perfil
 class ProfileUpdate(UpdateView):

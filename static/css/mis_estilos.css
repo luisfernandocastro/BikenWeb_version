@@ -152,6 +152,25 @@ body.dark .colorbikentext{
   width: 100px;
 }
 
+/* .................................styles pushbar index..................................... */
+
+.pushbar {
+  background-color: rgba(32, 89, 189, 0.7);
+}
+
+.btnclose {
+  margin-top: 1%;
+  margin-left: 85%;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.btnclose:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(32, 89, 189);
+  border-radius: 50%;
+}
+
 
 /*-----------------------------------------------cargar todas las paginas---------------------------------------*/
 
@@ -239,10 +258,10 @@ body.dark .colorbikentext{
   color: white;
 }
 
-/*........................end styles imagen perfil............................*/
+/*........................................end styles imagen perfil............................*/
 
 
-/*-------------------------start styles card catalogo--------------------------------------*/
+/*---------------------------------------start styles card catalogo---------------------------*/
 
 @media (min-width: 75em) {
   .card-columns {
@@ -291,12 +310,16 @@ body.dark .texttiempocard{
 
 
 .card-columns .card {
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
   border-radius: 30px;
   box-shadow: var(--sombra-light);
 }
 
 /*  tema dark */
 body.dark .card {
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
   background-color: var(--color-gris);
   box-shadow: var(--sombra-dark);
 }
@@ -333,15 +356,26 @@ a .card-img-top {
 }
 
 
-/*-------------------------end styles card catalogo--------------------------------------*/
+/*---------------------------------end styles card catalogo----------------------------------------*/
 
 .collapse1 {
   color: #ffffff;
   font-size: 30px;
 }
 
-/*------------------------------buscar home page-------------------------------*/
+/*--------------------------------------buscar home page-------------------------------*/
 
+
+.carouselprincipal {
+  border-bottom-left-radius: 30px;
+  border-end-end-radius: 30px;
+  box-shadow: var(--sombra-light);
+}
+
+/* tema dark */
+body.dark .carouselprincipal{
+  box-shadow: var(--sombra-dark);
+}
 
 .div_search {
   z-index: 2;
@@ -395,40 +429,51 @@ body.dark .input-search{
   color: var(--color-biken);
 }
 
+/* ............................................start styles paginacion home......................... */
 
-/* ....................................................................screen editbicicleta...................................................  */
-
-
-/* .dropzone {
-  margin-top: 5px;
-  width: 360px;
-  background-color: rgba(225, 225, 225, 0.5) !important;
-  border-radius: 5px;
-  height: 140px;
-  border: 3px dashed blue;
-  padding-top: 150px;
+.page-link {
+  color: var(--color-biken);
 }
 
-.textForDropzone {
-  pointer-events: none;
-  padding: 10px;
-  display: flex;
-  color: black;
-  margin-top: -110px;
-  z-index: 10000;
-} */
+.pagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  color: var(--color-biken);
+  text-decoration: none;
+  border: 1px solid #CCCFD4;
+  border-left-width: 0;
+}
+
+.pagination a:hover,
+.pagination .active a {
+  background-color: var(--color-biken);
+  color: #ffffff;
+}
+
+.pagination li:first-child a {
+  border-left-width: 1px;
+}
+
+/* ............................................end styles paginacion home......................... */
 
 
-/* ....................................................................screen editbicicleta...................................................  */
 
-/*----------------------------------------end buscar homepage-------------------------------------------*/
+/*---------------------------------------------------end buscar homepage-------------------------------------------*/
+
+/* ---------------------------------------------------screen editbicicleta--------------------------------------------------- */
+
+
+
+
+/* ---------------------------------------------------screen editbicicleta---------------------------------------------------  */
+
 
 
 .container1 {
   overflow: hidden;
   /*------No se sale del contenedor----*/
 }
-
 
 
 
@@ -465,44 +510,10 @@ body.dark .input-search{
 }
 
 
-.search1 {
-  margin-left: 112px;
-}
-
-.search2 {
-  margin-left: 130px;
-}
-
-.search3 {
-  margin-left: 31.2px;
-}
-
-.page-link {
-  color: var(--color-biken);
-}
-
-.pagination a {
-  float: left;
-  padding: 0 14px;
-  line-height: 34px;
-  color: var(--color-biken);
-  text-decoration: none;
-  border: 1px solid #CCCFD4;
-  border-left-width: 0;
-}
-
-.pagination a:hover,
-.pagination .active a {
-  background-color: var(--color-biken);
-  color: #ffffff;
-}
-
-.pagination li:first-child a {
-  border-left-width: 1px;
-}
 
 
-/*----------------------------------jumbotron paginas--------------------*/
+
+/*---------------------------------------jumbotron paginas--------------------------*/
 
 .sociales {
   display: flex;
@@ -536,22 +547,7 @@ body.dark .input-search{
 }
 
 
-.pushbar {
-  background-color: rgba(32, 89, 189, 0.7);
-}
 
-.btnclose {
-  margin-top: 1%;
-  margin-left: 85%;
-  color: #ffffff;
-  border-radius: 50%;
-}
-
-.btnclose:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: rgb(32, 89, 189);
-  border-radius: 50%;
-}
 
 .navbar2 {
   color: rgba(255, 255, 255);
@@ -602,9 +598,17 @@ body.dark .input-search{
   padding: 0;
 }
 
-.content-class {
-  padding: 0 10px !important;
+/* Alertas de error registro de usuarios */
+
+.texterror{
+  color: red;
 }
+
+.backgroundalert{
+  background-color: yellow;
+}
+/* end estilo alerta */
+
 
 .user-content {
   padding: 10px;
@@ -828,9 +832,15 @@ textarea::-webkit-input-placeholder {
   overflow: hidden; ------No se sale del contenedor----
 } */
 
-.container-com1 {
+
+/* ------------------------------------------start styles screen login------------------------------------------------------- */
+
+
+.container-formlogin {
   border-color: transparent;
   background-color: rgba(32, 89, 189, 0.3);
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
 
 }
 
@@ -851,6 +861,34 @@ textarea::-webkit-input-placeholder {
   transform: scale(1.4, 1.1);
 }
 
+.title-com {
+  margin-top: 10px;
+  color: var(--color-biken);
+  font-family: perpetua;
+  font-size: 40px;
+}
+
+.btn-com {
+  margin-top: 30px;
+  background-color: transparent;
+  border: solid 1px #ffff;
+}
+
+.btn-com:hover {
+  background-color: var(--color-biken);
+}
+
+
+.contenedor img {
+  position: absolute;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.contenedor img.top:hover {
+  opacity: 0;
+}
+
+/* ------------------------------------------end styles screen login------------------------------------------------------- */
 
 
 .form-com {
@@ -859,12 +897,6 @@ textarea::-webkit-input-placeholder {
   padding-top: 10px;
 }
 
-.title-com {
-  margin-top: 10px;
-  color: var(--color-biken);
-  font-family: perpetua;
-  font-size: 40px;
-}
 
 
 .title-com2 {
@@ -903,15 +935,7 @@ textarea::-webkit-input-placeholder {
   color: #84AEF7;
 }
 
-.btn-com {
-  margin-top: 30px;
-  background-color: transparent;
-  border: solid 1px #ffff;
-}
 
-.btn-com:hover {
-  background-color: var(--color-biken);
-}
 
 
 .minh-100 {
@@ -931,14 +955,6 @@ textarea::-webkit-input-placeholder {
 }
 
 
-.contenedor img {
-  position: absolute;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.contenedor img.top:hover {
-  opacity: 0;
-}
 
 
 .alerttit2 {
@@ -959,16 +975,7 @@ textarea::-webkit-input-placeholder {
 }
 
 
-.carouselprincipal {
-  border-bottom-left-radius: 30px;
-  border-end-end-radius: 30px;
-  box-shadow: var(--sombra-light);
-}
 
-/* tema dark */
-body.dark .carouselprincipal{
-  box-shadow: var(--sombra-dark);
-}
 
 
 
@@ -1081,6 +1088,21 @@ body.dark .textoquienessomos{
 
 /*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
 
+/*--------------------------------------------------------estilos pagina contacto------------------------------------------------*/
+.titulocontacto{
+  font-size: 40px; font-family:times new roman;
+  text-align: left;
+  color : rgb(10, 85, 216);
+}
+
+body.dark .textcontacto{
+  color: var(--color-white);
+}
+
+
+/*--------------------------------------------------------end styles pagina contacto--------------------------------------------*/
+
+
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
 
 
@@ -1127,6 +1149,14 @@ body.dark .iconos-admin{
   color: #C4C3C0
 }
 
+
+.iconsettings_profile{
+  position: absolute;
+  z-index: 100000;
+  font-size: 50px;
+  display: flex;
+  justify-content: right;
+}
 
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
 

@@ -35,6 +35,7 @@ urlpatterns = [
     path('editprofile/',views.ProfileUpdate.as_view(),name='editprofile'),# url de la vista de edicion de perfil de usuarios registrados
     path('uploadBike/' , views.uploadBike, name='uploadbike'),# url de la vista de  formulario de subir bicicletas por los usuarios
     path('editBike/<int:id>/' , views.editar_bicicleta, name='editar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas
+    path('deleteBike/<int:id>/' , views.delete_bicicleta, name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
     path('registrocorrecto/' , views.messageRegistro, name='messagereg'),# url de la vista de mensaje de registro exitoso
     path('subidabicicorrecta/' , views.messageUploadBike, name='messagebike'),# url de la vista de  mensaje de bicicleta subida correctamente
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),# url de la vista de  informacion respecto a Biken

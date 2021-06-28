@@ -83,6 +83,8 @@ a {
 
 /* tema dark */
 body.dark .l-navbar{
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
   background-color: #0C2247;
 }
 

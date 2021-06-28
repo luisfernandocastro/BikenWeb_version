@@ -22,7 +22,13 @@
 {% block classbody %}
 
 <body>{% endblock %}
+    
+    <!-- evita mostrar el efecto de carga si algun error en un formulario que extienda de base -->
+    {% if form.errors %}
+    {% else %}
     <div class="loader-page"></div>
+    {% endif %}
+        
     <div class="container-fluid">
         <div class="l-navbar" id="navbar">
             <nav class="nav">

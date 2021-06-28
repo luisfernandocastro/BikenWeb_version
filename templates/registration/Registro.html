@@ -54,7 +54,30 @@
                     </div>
 
                     {% if form.errors %}
-                    <ul class="text-danger font-weight-bold font-italic">
+                    {% for field in form %}
+                            {% for error in field.errors %}
+                    <script>
+                        Swal.fire({
+                            html: '</i><strong class="texterror">{{error}}</strong>',
+                            icon: 'error',
+                            width: '500px',
+                            padding: '8px',
+                            grow: false,
+                            backdrop: false,
+                            toast: true,
+                            position: 'bottom-end',
+                            allowOutsideClick: true,
+                            allowEscapeKey: true,
+                            AllowEnterkey:true,
+                            stopKeydownPropagation: false,
+                            showConfirmButton: false,
+                            showCancelButton: false,     
+                            showCloseButton:true,     
+                        });
+                    </script>
+                    {% endfor %}
+                    {% endfor %}
+                    <!-- <ul class="text-danger font-weight-bold font-italic">
                         {% for field in form %}
                             {% for error in field.errors %}
                                 <li>
@@ -62,7 +85,7 @@
                                 </li>
                             {% endfor %}
                         {% endfor %}
-                    </ul>
+                    </ul> -->
                     {% endif %}
 
                     <button type="submitj" class="btn btn-primary colorbiken ml-5 mt-4">Aceptar</button>
@@ -75,6 +98,7 @@
             </div>
         </div>
     </div>
+
 
 
 
