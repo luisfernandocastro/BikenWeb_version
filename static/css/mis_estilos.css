@@ -1369,7 +1369,7 @@ body.dark .subtituloUploadBike{
 /* ...........................Styles modo nocturno de inputs de los formularios................................... */
 
 body.dark label{
-  color: #aaaaaa;
+  color: var(--color-white);
 }
 
 
