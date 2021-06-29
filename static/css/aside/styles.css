@@ -19,7 +19,7 @@
 @media screen and (min-width: 768px) {
   :root {
     --small-font-size: 0.938rem;
-  } 
+  }
 }
 
 /*===== z index =====*/
@@ -82,7 +82,7 @@ a {
 }
 
 /* tema dark */
-body.dark .l-navbar{
+body.dark .l-navbar {
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
   background-color: #0C2247;
@@ -112,7 +112,7 @@ body.dark .l-navbar{
   align-items: center;
   margin-bottom: 2rem;
   padding: 0rem;
-  
+
 }
 
 .nav__logo-icon {
@@ -170,13 +170,13 @@ body.dark .l-navbar{
   transition: .3s;
 }
 
-  /* .............................start styles input search en la navbar........................... */
-  .nav__link-search {
-    display: none;
+/* .............................start styles input search en la navbar........................... */
+.nav__link-search {
+  display: none;
 
-  }
+}
 
-  /* .............................end styles input search en la navbar........................... */
+/* .............................end styles input search en la navbar........................... */
 
 
 .nav__link:hover {
@@ -213,9 +213,9 @@ body.dark .l-navbar{
   color: var(--first-color);
 }
 
-.activeItemProfile{
+.activeItemProfile {
   background-color: #0C2247;
-  color:red;
+  color: red;
 }
 
 /*Add padding body*/
@@ -226,7 +226,7 @@ body.dark .l-navbar{
 }
 
 
-.imgIcon{
+.imgIcon {
   height: 30px;
   width: 30px;
 }
@@ -236,16 +236,16 @@ body.dark .l-navbar{
 /*............................................mediaQuerys..................................*/
 
 @media screen and (max-width: 600px) {
-  body{
+  body {
     padding: 0rem 0 0 3rem;
-  } 
+  }
 
 
-  .l-navbar{
+  .l-navbar {
     background-color: var(--white-color);
   }
 
-  .nav__logo-text{
+  .nav__logo-text {
     color: #2559BD;
   }
 
@@ -258,52 +258,61 @@ body.dark .l-navbar{
   .nav__link {
     color: grey;
   }
-  
-  
+
+
   .nav__link:hover {
     background-color: var(--first-color);
     color: var(--white-color);
   }
-  .nav__logo-icon{
+
+  .nav__logo-icon {
     background-color: #2059BD;
     border-radius: 10px;
   }
 
+}
+
+
+@media screen and (max-width: 800px) {
 
 
   /* .............................start styles input search en la navbar........................... */
-.nav__link-search {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: .5rem;
-  margin-bottom: 1rem;
-  border-radius: .5rem;
-  -webkit-transition: .3s;
-  transition: .3s;
+  .nav__link-search {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+
+
+  .nav__icon-search {
+    font-weight: bold;
+    color: rgb(95, 95, 95);
+    font-size: 1.9rem;
+    margin-right: 1rem;
+    margin-left: .01rem;
+  }
+
+
+  .nav__icon-search :hover {
+    color: rgb(228, 228, 228);
+  }
+
+  /* .............................end styles input search en la navbar........................... */
+
 }
 
 
-.nav__icon-search {
-  font-weight: bold;
-  color: rgb(95, 95, 95);
-  font-size: 1.9rem;
-  margin-right: 1rem;
-  margin-left: .01rem;
-}
-
-
-.nav__icon-search :hover {
-  color: rgb(228, 228, 228);
-}
-/* .............................end styles input search en la navbar........................... */
-}
 
 @media screen and (max-width: 1100px) {
-  body{
+  body {
     padding: 0rem 0 0 5rem;
-  } 
+  }
 }

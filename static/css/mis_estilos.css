@@ -1373,19 +1373,11 @@ body.dark::-webkit-scrollbar-thumb {
   /* ...............................end styles  pantalla menor a 800px en el index........................ */
 
   /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
-  .input-search {
-    width: 60vh;
+
+  .div_search {
+    display:none;
   }
 
-  .div-btn-search {
-    width: 60vh;
-  }
-
-  .btn-search {
-    top: 23%;
-    margin-top: 3px;
-    margin-left: 55%;
-  }
 
   /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
 
@@ -1440,21 +1432,6 @@ body.dark::-webkit-scrollbar-thumb {
   }
 
 
-  .div_search {
-    display:none;
-  }
-
-
-  .div-btn-search {
-    width: 40vh;
-  }
-
-  .btn-search {
-    top: 19%;
-    margin-top: 3px;
-    margin-left: 65%;
-    border-radius: 30px;
-  }
 
   /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
 
