@@ -124,7 +124,7 @@ body.dark .colorbikentext{
 
 
 .btnindex,
-.btncatalogo {
+.btncatalogo,.btncat {
   background-color: var(--color-biken);
   color: white;
   border-radius: 30px !important;
@@ -135,6 +135,8 @@ body.dark .btncatalogo{
   background-color: var(--color-bikenoscuro);
   color: white;
 }
+
+
 
 .btnindex {
   font-family: bold;
@@ -155,7 +157,7 @@ body.dark .btncatalogo{
 }
 
 /* tema dark */
-body.dark .btn:hover{
+body.dark .btncatalogo:hover{
   background-color: var(--color-dark);
   border: solid 1px var(--color-dark);
   color: var(--color-white);
