@@ -904,6 +904,14 @@ textarea::-webkit-input-placeholder {
   font-size: 40px;
 }
 
+
+/* tema dark */
+body.dark .title-com {
+  color: var(--color-white);
+}
+
+
+
 .btn-com {
   margin-top: 30px;
   background-color: transparent;
@@ -1119,15 +1127,29 @@ body.dark.bgimg_registro{
 
 /*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
+.tituloquienessomos{
+  font-size: 40px; 
+  font-family:'Times New Roman', Times, serif; 
+  text-align: left; 
+  color : rgb(10, 85, 216);
+}
+
+
 .banner_qs {
   width: 60%;
   height: 20%;
 }
 
+
+/* tema dark */
 body.dark .textoquienessomos{
   color: var(--color-white);
 }
 
+
+body.dark .tituloquienessomos{
+  color: var(--color-white);
+}
 
 /*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
 
