@@ -1230,12 +1230,15 @@ body.dark .iconos-admin{
 .tituloUploadBike{
 
   font-size: 28px; 
-  font-family:cursive; 
+  font-family: 'Times New Roman', Times, serif; 
   text-align: center; 
-  color :rgb(23, 75, 193 )
+  color : var(--color-biken)
 }
 
-
+/* tema dark */
+body.dark .tituloUploadBike{
+  color: var(--color-white);
+}
 
 .subtituloUploadBike{
   text-align: center;
@@ -1248,117 +1251,10 @@ body.dark .subtituloUploadBike{
 }
 
 
-/*------------------------------------------------------------end styles Screen UploadBike--------------------------------------------------*/
+/*------------------------------------------------------------end styles Screen UploadBike------------------------------------------------*/
 
 
 
-
-/*--------------------------------------------------------media QuerysScreens-------------------------------------------------------------------*/
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media screen and (max-width: 800px) {
-
-  /* ...............................start styles  pantalla menor a 800px en el index........................ */
-
-  .principal {
-    background-image: none;
-  }
-
-  /* ...............................end styles  pantalla menor a 800px en el index........................ */
-
-  /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
-  .input-search {
-    width: 60vh;
-  }
-
-  .div-btn-search {
-    width: 60vh;
-  }
-
-  .btn-search {
-    top: 23%;
-    margin-top: 3px;
-    margin-left: 55%;
-  }
-
-  /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
-
-}
-
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-  /* ...............................start styles pantalla menor a 600px en el Index........................ */
-  .titulo {
-    margin-top: 30%;
-    font-size: 90px;
-  }
-
-
-  .div-bike {
-    margin-top: 20%;
-    position: fixed;
-    filter: blur(9px);
-  }
-
-
-  .bike {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .icon-index {
-    width: 45px;
-    margin-left: -15px;
-  }
-
-  .contact {
-    margin-right: -15px;
-  }
-
-  .principal {
-    background-image: none;
-  }
-
-  /* ...............................end styles pantalla menor a 600px en el Index........................ */
-
-  /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
-
-  .carouselprincipal {
-    height: 200px;
-  }
-
-
-  .input-search {
-    width: 40vh;
-  }
-
-
-  .div-btn-search {
-    width: 40vh;
-  }
-
-  .btn-search {
-    top: 19%;
-    margin-top: 3px;
-    margin-left: 65%;
-    border-radius: 30px;
-  }
-
-  /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
-
-  .nav__link_user {
-    color: var(--color-biken);
-  }
-
-  /* ...............................end styles  pantalla menor a 600px en el Homepage-barra lateral ........................ */
-
-  /* ...............................end styles  pantalla menor a 600px en el Homepage........................ */
-
-
-}
 
 
 
@@ -1372,13 +1268,21 @@ body.dark label{
   color: var(--color-white);
 }
 
+body.dark .input-search_nav{
+  background-color: var(--color-grisclaro);
+  border: solid 1px var(--color-grisclaro);
+}
 
 body.dark .inputs_forms{
-  background-color: var(--color-grey);
+  background-color: var(--color-gris);
   color: rgb(238, 238, 238);
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
 }
 
 body.dark .custom-select{
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
   background-color: var(--color-gris);
   color: var(--color-white);
 }
@@ -1404,7 +1308,7 @@ body.dark .custom-file-label{
 
 
 .switch.active {
-  background: black;
+  background: var(--color-dark);
 }
 
 
@@ -1449,3 +1353,119 @@ body.dark::-webkit-scrollbar-thumb {
 }
 
 /* -----------------------------end styles Barra de Scroll Personalizada -----------------------------*/
+
+
+
+
+/*--------------------------------------------------------media QuerysScreens--------------------------------------------------------*/
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 800px) {
+
+  /* ...............................start styles  pantalla menor a 800px en el index........................ */
+
+  .principal {
+    background-image: none;
+  }
+
+  /* ...............................end styles  pantalla menor a 800px en el index........................ */
+
+  /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
+  .input-search {
+    width: 60vh;
+  }
+
+  .div-btn-search {
+    width: 60vh;
+  }
+
+  .btn-search {
+    top: 23%;
+    margin-top: 3px;
+    margin-left: 55%;
+  }
+
+  /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
+
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  /* ...............................start styles pantalla menor a 600px en el Index........................ */
+  
+  
+  
+  .titulo {
+    margin-top: 30%;
+    font-size: 90px;
+  }
+
+
+  .div-bike {
+    margin-top: 20%;
+    position: fixed;
+    filter: blur(9px);
+  }
+
+
+  .bike {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .icon-index {
+    width: 45px;
+    margin-left: -15px;
+  }
+
+  .contact {
+    margin-right: -15px;
+  }
+
+  .principal {
+    background-image: none;
+  }
+
+  /* ...............................end styles pantalla menor a 600px en el Index........................ */
+
+  /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
+
+  .carouselprincipal {
+    height: 200px;
+  }
+
+
+  .div_search {
+    display:none;
+  }
+
+
+  .div-btn-search {
+    width: 40vh;
+  }
+
+  .btn-search {
+    top: 19%;
+    margin-top: 3px;
+    margin-left: 65%;
+    border-radius: 30px;
+  }
+
+  /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
+
+  .nav__link_user {
+    color: var(--color-biken);
+  }
+
+  /* ...............................end styles  pantalla menor a 600px en el Homepage-barra lateral ........................ */
+
+  /* ...............................end styles  pantalla menor a 600px en el Homepage........................ */
+
+
+}
+
+
+/*--------------------------------------------------------end media QuerysScreens----------------------------------------------------------*/

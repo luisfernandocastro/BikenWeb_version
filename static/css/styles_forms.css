@@ -1,10 +1,40 @@
 .inputs_forms {
     border-radius: 30px !important;
     border: solid 1px #2059BD !important;
+    -webkit-transition: .5s ease all;
+    transition: .5s ease all;
 }
 
 .inputcolor_form {
     padding: 1px !important;
     border: solid 1px #2059BD !important;
+    -webkit-transition: .5s ease all;
+    transition: .5s ease all;
 }
 
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .input-search_nav {
+        -webkit-transition: .5s ease all;
+        transition: .5s ease all;
+        font-size: 15px;
+        color: white;
+        background-color: #4983e7;
+        width: 120px;
+        height: 35px;
+        -webkit-transition: .5s ease all;
+        transition: .5s ease all;
+        outline: none;
+        border: solid 1px #2059BD;
+        border-radius: 5px;
+        padding-left: 10px;
+    }
+
+    .input-search_nav::placeholder {
+        color: #C8CDD0;
+    }
+}

@@ -7,7 +7,7 @@
   --first-color: #2059BD;
   --second-color: #ffffff;
   --three-color: #000000;
-  --white-color: #EDEDED;
+  --white-color: #FBFBFE;
 }
 
 /*===== Fuente y tipografia =====*/
@@ -153,6 +153,8 @@ body.dark .l-navbar{
 
 
 
+
+
 .nav__link {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -167,6 +169,14 @@ body.dark .l-navbar{
   -webkit-transition: .3s;
   transition: .3s;
 }
+
+  /* .............................start styles input search en la navbar........................... */
+  .nav__link-search {
+    display: none;
+
+  }
+
+  /* .............................end styles input search en la navbar........................... */
 
 
 .nav__link:hover {
@@ -210,7 +220,7 @@ body.dark .l-navbar{
 
 /*Add padding body*/
 .expander {
-  padding: 1rem 0 0 12rem;
+  padding: 0 0 0 11rem;
   -webkit-transition: .5s;
   transition: .5s;
 }
@@ -232,7 +242,7 @@ body.dark .l-navbar{
 
 
   .l-navbar{
-    background-color: white;
+    background-color: var(--white-color);
   }
 
   .nav__logo-text{
@@ -258,7 +268,38 @@ body.dark .l-navbar{
     background-color: #2059BD;
     border-radius: 10px;
   }
-  
+
+
+
+  /* .............................start styles input search en la navbar........................... */
+.nav__link-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .5rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+
+.nav__icon-search {
+  font-weight: bold;
+  color: rgb(95, 95, 95);
+  font-size: 1.9rem;
+  margin-right: 1rem;
+  margin-left: .01rem;
+}
+
+
+.nav__icon-search :hover {
+  color: rgb(228, 228, 228);
+}
+/* .............................end styles input search en la navbar........................... */
 }
 
 @media screen and (max-width: 1100px) {

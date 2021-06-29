@@ -35,17 +35,36 @@ $(document).ready(function () {
 
 
 
+//Buscar por filtros ---------------------------------------------------
+// $(document).ready(function () {
+// 	$("#myInput").on("keyup", function () {
+// 		var value = $(this).val().toLowerCase();
+// 		$("#myTable tr").filter(function () {
+// 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+// 		});
+// 	});
+// });
 
+
+// Buscar por filtros home-------------------------------------------------
 $(document).ready(function () {
-	$("#myInput").on("keyup", function () {
+	$("#myInputsearch").on("keyup", function () {
 		var value = $(this).val().toLowerCase();
-		$("#myTable tr").filter(function () {
+		$("#myDiv catalogo").filter(function () {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
 	});
 });
 
 
+$(document).ready(function () {
+	$("#myInputsearchhome").on("keyup", function () {
+		var value = $(this).val().toLowerCase();
+		$("#myDiv catalogo").filter(function () {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+});
 
 // ------------------- Funciones para el modo nocturno----------------
 
@@ -68,7 +87,7 @@ btnswitch.addEventListener('click', () => {
 if (localStorage.getItem('dark-mode') === 'true') {
 	document.body.classList.add('dark');
 	btnswitch.classList.add('active');
-}else{
+} else {
 	document.body.classList.remove('dark');
 	btnswitch.classList.remove('active');
 

@@ -17,12 +17,25 @@ const showMenu = (toggleId, navbarId,bodyId) =>{
 }
 showMenu('nav-toggle','navbar','body')
 
-// LINK ACTIVE COLOR
-const linkColor = document.querySelectorAll('.nav__link');   
-function colorLink(){
-    linkColor.forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-}
 
-linkColor.forEach(l => l.addEventListener('click', colorLink));
+
+// const showMenu = (togglesearchId, navbarsearchId,bodysearchId) =>{
+//     const togglesearch = document.getElementById(togglesearchId),
+//     navbarsearch = document.getElementById(navbarsearchId),
+//     bodypaddingsearch = document.getElementById(bodysearchId)
+
+//     if(togglesearch && navbarsearch){
+//         toggle.addEventListener('click', ()=>{
+//             // APARECER MENU
+//             navbarsearch.classList.toggle('show')
+//             // ROTATE TOGGLE
+//             // toggle.classList.toggle('rotate')
+//             // PADDING BODY
+//             bodypaddingsearch.classList.toggle('expander')
+//         })
+//     }
+// }
+// showMenu('nav-toggle_search','navbar','body')
+
+
 

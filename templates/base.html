@@ -21,8 +21,8 @@
 
 {% block classbody %}
 
-<body>{% endblock %}
-    
+<body id="body">{% endblock %}
+
     <!-- evita mostrar el efecto de carga si algun error en un formulario que extienda de base -->
     {% if form.errors %}
     {% else %}
@@ -54,6 +54,13 @@
                                 {%endif%}
                             </span>
                         </a>
+                        <a class="nav__link-search" id="nav-toggle_search" >
+                            <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
+                            <form class="form-inline">
+                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+                            </form>
+                        </a>
                         <a href="{% url 'home' %}"
                             class="nav__link {% if request.path|slice:':6' == '/home/'%}active{% endif%}">
                             <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
@@ -77,6 +84,12 @@
                         </div>
 
                         {% else%}
+                        <a class="nav__link-search">
+                            <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
+                            <form class="form-inline">
+                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            </form>
+                        </a>
                         <a href="{% url 'home' %}"
                             class="nav__link {% if request.path|slice:':6' == '/home/'%}active{% endif%}">
                             <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
@@ -110,9 +123,10 @@
                 </div>
             </nav>
         </div>
+        
+            {% block content %}
+            {% endblock content %}            
 
-        {% block content %}
-        {% endblock content %}            
     
         {% block footer %}
 
@@ -163,6 +177,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src='{% static "/js/functions.js" %}' type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src='{% static "/js/aside/main.js"%}'></script>
         <script src='{% static "/arch/bootstrap/js/bootstrap.js" %}' type="text/javascript"></script>
 
