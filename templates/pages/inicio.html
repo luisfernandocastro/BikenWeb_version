@@ -291,61 +291,48 @@
                     </div>
                 </div> -->
     <div class="container">
-                    <div class="card-columns mt-5">
-                        {% for b in bicicletas %}
-                        <div class="card mb-5">
-                                <a>
-                                    <img class="card-img-top placeholderimgup imgcat"
-                                        src="{% static 'img/gifs/loading.gif' %}" alt="Card image cap">
-                                    <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}"
-                                        alt="Card image cap"></a>
-                                <div class="card-body">
-                                    <p class="card-text title font-weight-bold">
-                                        <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
-                                        <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
-                                            {{ b.user.username}}
-                                            {%else%}
-                                            {{ b.user.first_name}}
-                                            {%endif%}
-                                        </a>
-                                    </p>
-                                    
-                                    <div style="border-radius: 50px;background-color:v1"></div> 
-                                    <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
-                                    <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
-                                    <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
-                                    
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 120 120">
-                                            <circle cx="40" cy="45" r="40"
-                                                    fill="{{b.color}}" />
-                                            </svg>
-                                        </div>
-                                        <div class="col-lg-10">
-                                            <button id=alert2 class="btn btncat d-block mx-auto"><i class="far fa-heart"></i>
-                                                Añadir a favoritas</button>                                            
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="card-columns mt-5">
+            {% for b in page %}
+            <div class="card mb-5">
+                <a>
+                    <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
+                        alt="Card image cap">
+                    <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
+                <div class="card-body">
+                    <p class="card-text title font-weight-bold">
+                        <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
+                        <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
+                            {{ b.user.username}}
+                            {%else%}
+                            {{ b.user.first_name}}
+                            {%endif%}
+                        </a>
+                    </p>
+
+                    <div style="border-radius: 50px;background-color:v1"></div>
+                    <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
+                    <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
+                    <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
+
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                viewBox="0 0 120 120">
+                                <circle cx="40" cy="45" r="40" fill="{{b.color}}" />
+                            </svg>
                         </div>
-                        {% endfor %}
+                        <div class="col-lg-10">
+                            <button id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
+                                Añadir a favoritas</button>
+                        </div>
                     </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="container mt-5">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
-        </ul>
-    </div>
-
-
+    {% include 'pages/components/pagination.html' %}
 
 </div>
 {% endblock %}

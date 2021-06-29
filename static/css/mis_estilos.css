@@ -3,11 +3,14 @@
 
 
 :root {
-  --color-dark: #111111;
-  --color-gris: #1f1f1f;
-  --color-grisclaro: #949494;
+
+  --color-light: #FBFBFE;
+
+  --color-dark: #192229;
+  --color-gris: #212E36;
+  --color-grisclaro: #2A3B47;
   --color-biken: #2059BD;
-  --color-white: #ffffff;
+  --color-white: #C8CDD0;
   --color-bikenoscuro: #0C2247;
 
   --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
@@ -15,6 +18,7 @@
 }
 
 body {
+  background-color: var(--color-light);
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
 }
@@ -120,10 +124,16 @@ body.dark .colorbikentext{
 
 
 .btnindex,
-.btncat {
+.btncatalogo {
   background-color: var(--color-biken);
   color: white;
   border-radius: 30px !important;
+}
+
+/* tema dark */
+body.dark .btncatalogo{
+  background-color: var(--color-bikenoscuro);
+  color: white;
 }
 
 .btnindex {
@@ -138,10 +148,17 @@ body.dark .colorbikentext{
   color: var(--color-biken);
 }
 
-.btncat:hover {
+.btncatalogo:hover {
   background-color: white;
   border: solid 1px var(--color-biken);
   color: var(--color-biken);
+}
+
+/* tema dark */
+body.dark .btn:hover{
+  background-color: var(--color-dark);
+  border: solid 1px var(--color-dark);
+  color: var(--color-white);
 }
 
 /* .................................imagen de peril del index................................ */
@@ -431,28 +448,47 @@ body.dark .input-search{
 
 /* ............................................start styles paginacion home......................... */
 
-.page-link {
-  color: var(--color-biken);
+.linkanterior{
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
 }
 
-.pagination a {
-  float: left;
-  padding: 0 14px;
-  line-height: 34px;
-  color: var(--color-biken);
-  text-decoration: none;
-  border: 1px solid #CCCFD4;
-  border-left-width: 0;
+.linksiguiente{
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
 }
 
-.pagination a:hover,
-.pagination .active a {
-  background-color: var(--color-biken);
-  color: #ffffff;
+
+/* tema dark */
+body.dark .linkanterior{
+  background-color: var(--color-gris) !important;
+  border: none;
+  color: var(--color-white);
 }
 
-.pagination li:first-child a {
-  border-left-width: 1px;
+
+body.dark .linksiguiente{
+  background-color: var(--color-gris) !important;
+  border: none;
+  color: var(--color-white);
+}
+
+body.dark .active .linkpage{
+  background-color: var(--color-bikenoscuro) !important;
+  color: var(--color-white);
+}
+
+
+body.dark  .linkpage{
+  background-color: var(--color-gris)!important;
+  border: none;
+  color: var(--color-white);
+}
+
+body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterior:hover{
+  background-color: var(--color-grisclaro)!important;
+  border: none;
+  color: var(--color-white);
 }
 
 /* ............................................end styles paginacion home......................... */
@@ -1010,6 +1046,13 @@ body.dark .jumbotrom{
   font-family: 'Zeyada', cursive;
   color: var(--color-biken);
 }
+
+
+/* tema dark */
+body.dark .text-footer{
+  color: var(--color-white);
+}
+
 
 .text-footerCopy {
   line-height: 0;

@@ -1,0 +1,56 @@
+<div class="container mt-5">
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination d-flex justify-content-center">
+
+            {% if page.has_previous %}
+            <!-- Haga clic en la pestaña a para saltar al enlace anterior? -->
+            <li class="page-item "><a href="?list={{page.previous_page_number}}"  aria-label="Previous" class="page-link linkanterior">
+                Anterior
+                <!-- <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>                     -->
+            </a></li>
+            {% else %}
+            <li class="disabled page-item "><a href="#"  aria-label="Previus" class="page-link linkanterior">
+                Anterior
+                <!-- <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span> -->
+            </a></li>
+            {% endif%}
+
+
+            {% for count in paginator.page_range %}
+            <!-- count es el número en el bucle, page.number es el número de página de una página  -->
+            {% if count == page.number %}
+            <li class="page-item active"><a href="?list={{count}}"  class="page-link linkpage">{{count}}</a></li>
+            {% else %}
+            <li class="page-item"><a href="?list={{count}}" class="page-link linkpage">{{count}}</a></li>
+            {% endif%}
+
+            <!-- Se ve igual, de hecho, si el número circulado es igual al número de página, -->
+            <!-- Actualmente se encuentra en esa página y luego se representa mediante class = active. El cuadro del número de página es azul -->
+            {% endfor%}
+
+            {% if page.has_next %}
+            <li class="page-item ">
+                <a href="?index={{ page.next_page_number}}" class="page-link linksiguiente"  aria-label="Next">
+                    Siguiente
+                    <!-- <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span> -->
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled ">
+                <a href="#" class="page-link linksiguiente">
+                    Siguiente
+                    <!-- <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span> -->
+                </a>
+            </li>
+            {% endif %}
+
+
+        </li>
+        </ul>
+    </nav>
+</div>
