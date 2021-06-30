@@ -290,8 +290,19 @@ body.dark .btncatalogo:hover{
   }
 }
 
-.title {
+.textnamecard {
   font-size: 18px;
+}
+
+
+/* tema dark */
+body.dark .textnamecard a{
+  color: var(--color-light);
+}
+
+
+body.dark .textnamecard a:hover{
+  color: var(--color-white);
 }
 
 .textpreciocard {
@@ -303,7 +314,6 @@ body.dark .btncatalogo:hover{
 body.dark .textpreciocard{
   color: var(--color-white);
 }
-
 
 
 .textcategoriacard {
@@ -418,6 +428,12 @@ body.dark .carouselprincipal{
 
 
 /* tema dark */
+body.dark .input-search::placeholder{
+  color: var(--color-white);
+}
+
+
+/* tema dark */
 body.dark .input-search{
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
@@ -443,9 +459,23 @@ body.dark .input-search{
   border-radius: 30px;
 }
 
+
+/* tema dark */
+body.dark .btn-search{
+  background-color: var(--color-grisclaro);
+}
+
+
 .btn-search:hover {
   background-color: #d3d3d3;
   color: var(--color-biken);
+}
+
+
+/* tema dark */
+body.dark .btn-search:hover{
+  background-color: var(--color-white);
+  color: var(--color-grisclaro);
 }
 
 /* ............................................start styles paginacion home......................... */
@@ -499,12 +529,12 @@ body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterio
 
 /*---------------------------------------------------end buscar homepage-------------------------------------------*/
 
-/* ---------------------------------------------------screen editbicicleta--------------------------------------------------- */
+/* ---------------------------------------------------start screen editbicicleta--------------------------------------------------- */
 
 
 
 
-/* ---------------------------------------------------screen editbicicleta---------------------------------------------------  */
+/* ---------------------------------------------------end screen editbicicleta---------------------------------------------------  */
 
 
 
@@ -580,9 +610,7 @@ body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterio
 
 
 
-.anim {
-  margin-top: 25%;
-}
+
 
 
 
@@ -1124,6 +1152,10 @@ body.dark.bgimg_registro{
 }
 
 
+.anim_pagequinenesomos {
+  margin-top: 25%;
+}
+
 
 /*-----------------------------------------end styles Fondos de las paginas --------------------------------------------------------*/
 
@@ -1141,6 +1173,13 @@ body.dark.bgimg_registro{
   width: 60%;
   height: 20%;
 }
+
+
+/* tema dark */
+body.dark .banner_qs{
+  display: none;
+}
+
 
 
 /* tema dark */
@@ -1308,9 +1347,19 @@ body.dark .custom-file-label{
   outline: none;
 }
 
+.switch:hover{
+  background: #6395eb;
+}
+
 
 .switch.active {
   background: var(--color-dark);
+}
+
+
+/* tema dark */
+body.dark .switch.active:hover {
+  background: var(--color-gris);
 }
 
 
@@ -1448,3 +1497,9 @@ body.dark::-webkit-scrollbar-thumb {
 
 
 /*--------------------------------------------------------end media QuerysScreens----------------------------------------------------------*/
+
+
+.modal-fade{
+  position: absolute;
+  z-index: 100000;
+}

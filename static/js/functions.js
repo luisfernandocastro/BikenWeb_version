@@ -27,23 +27,12 @@ $(".custom-file-input").on("change", function () {
 });
 
 
-
+// Muestra los mensajes al pasar el mause por un objeto
 $(document).ready(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
 
-
-
-//Buscar por filtros ---------------------------------------------------
-// $(document).ready(function () {
-// 	$("#myInput").on("keyup", function () {
-// 		var value = $(this).val().toLowerCase();
-// 		$("#myTable tr").filter(function () {
-// 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-// 		});
-// 	});
-// });
 
 
 // Buscar por filtros home-------------------------------------------------
@@ -93,7 +82,7 @@ if (localStorage.getItem('dark-mode') === 'true') {
 
 }
 
-
+//funcion para cambiar de icono al dar click
 document.getElementById('switch').addEventListener('click', function () {
 	var icon = document.getElementById('icon');
 	icon.classList.toggle('fa-sun');

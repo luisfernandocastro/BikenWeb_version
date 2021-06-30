@@ -295,12 +295,12 @@
             {% for b in page %}
             <catalogo>
                 <div class="card mb-5">
-                    <a>
+                    <a href="#">
                         <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
                             alt="Card image cap">
                         <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
                     <div class="card-body">
-                        <p class="card-text title font-weight-bold">
+                        <p class="card-text textnamecard font-weight-bold">
                             <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
                             <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
                                 {{ b.user.username}}
@@ -317,6 +317,7 @@
     
                         <div class="row">
                             <div class="col-lg-2">
+                                <!-- circulo de color de la bicicleta de la card  -->
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                     viewBox="0 0 120 120">
                                     <circle cx="40" cy="45" r="40" fill="{{b.color}}" />
@@ -324,7 +325,7 @@
                             </div>
                             <div class="col-lg-10">
                                 <button id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
-                                    Añadir a favoritas</button>
+                                    Añadir a favoritas</button>                                
                             </div>
                         </div>
                     </div>
@@ -334,7 +335,9 @@
         </div>
     </div>
 
+
     {% include 'pages/components/pagination.html' %}
+
 
 </div>
 {% endblock %}
