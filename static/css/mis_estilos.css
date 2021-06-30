@@ -282,13 +282,13 @@ body.dark .btncatalogo:hover{
 
 /*---------------------------------------start styles card catalogo---------------------------*/
 
-@media (min-width: 75em) {
+/* @media (min-width: 75em) {
   .card-columns {
     -webkit-column-count: 4;
     -moz-column-count: 4;
     column-count: 4;
   }
-}
+} */
 
 .textnamecard {
   font-size: 18px;
@@ -525,6 +525,38 @@ body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterio
 
 /* ............................................end styles paginacion home......................... */
 
+/* ............................................start styles ventanas modals home......................... */
+
+.modal-content{
+  background-color: var(--color-white) !important;
+  border-radius: 30px;
+}
+
+/* tema dark */
+body.dark .modal-content{
+  background-color: var(--color-dark) !important;
+}
+
+
+.modal-header{
+  border: none;
+}
+
+
+.modal-footer{
+  border: none;
+}
+
+/* tema dark */
+body.dark .modal-header h5{
+  color: var(--color-white);
+}
+
+/* tema dark */
+body.dark .modal-header button span{
+  color: var(--color-white);
+}
+/* ............................................end styles ventanas modals home......................... */
 
 
 /*---------------------------------------------------end buscar homepage-------------------------------------------*/
@@ -1152,6 +1184,14 @@ body.dark.bgimg_registro{
 }
 
 
+.bgimg_editBike {
+  background-image: url(../img/animations/bikeindex.svg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position-x: right;
+}
+
+
 .anim_pagequinenesomos {
   margin-top: 25%;
 }
@@ -1162,9 +1202,9 @@ body.dark.bgimg_registro{
 /*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
 .tituloquienessomos{
-  font-size: 40px; 
-  font-family:'Times New Roman', Times, serif; 
-  text-align: left; 
+  font-size: 40px;
+  font-family:'Times New Roman', Times, serif;
+  text-align: left;
   color : rgb(10, 85, 216);
 }
 
@@ -1256,12 +1296,26 @@ body.dark .iconos-admin{
 }
 
 
+
 .iconsettings_profile{
+  height: 40px;
+  width: 40px;
+  margin-left:90%;
+  margin-top: 5%;
+  padding: 8px;
+  background-color: var(--color-light);
+  color: var(--color-biken);
+  border-radius: 100%;
+  border: solid 1px var(--color-biken);
   position: absolute;
-  z-index: 100000;
-  font-size: 50px;
-  display: flex;
-  justify-content: right;
+  font-size: 30px;
+}
+
+
+.iconsettings_profile:hover{
+  background-color: var(--color-biken);
+  color: var(--color-light);
+  border: solid 1px var(--color-biken);
 }
 
 /*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
@@ -1270,9 +1324,9 @@ body.dark .iconos-admin{
 
 .tituloUploadBike{
 
-  font-size: 28px; 
-  font-family: 'Times New Roman', Times, serif; 
-  text-align: center; 
+  font-size: 28px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
   color : var(--color-biken)
 }
 
@@ -1430,6 +1484,17 @@ body.dark::-webkit-scrollbar-thumb {
 
   /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
 
+
+  /* ...............................start styles  pantalla menor a 800px en el perfilpage........................ */
+
+  .iconsettings_profile{
+    margin-left:85%;
+  }
+
+
+
+  /* ...............................end styles  pantalla menor a 800px en el perfilpage........................ */
+
 }
 
 
@@ -1438,9 +1503,9 @@ body.dark::-webkit-scrollbar-thumb {
 @media only screen and (max-width: 600px) {
 
   /* ...............................start styles pantalla menor a 600px en el Index........................ */
-  
-  
-  
+
+
+
   .titulo {
     margin-top: 30%;
     font-size: 90px;
@@ -1497,9 +1562,3 @@ body.dark::-webkit-scrollbar-thumb {
 
 
 /*--------------------------------------------------------end media QuerysScreens----------------------------------------------------------*/
-
-
-.modal-fade{
-  position: absolute;
-  z-index: 100000;
-}

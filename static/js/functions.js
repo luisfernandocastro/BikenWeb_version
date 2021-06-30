@@ -94,3 +94,6 @@ document.getElementById('switch').addEventListener('click', function () {
 
 
 // -------------------end funciones para modo nocturno--------
+
+
+

@@ -1,4 +1,6 @@
-from django import forms 
+from django import forms
+from django.forms import fields, widgets
+from django.forms.fields import EmailField 
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model# importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
@@ -10,7 +12,7 @@ User = get_user_model()# Usar el modelo de Usuario personalizdo
 class BicicletasForm(forms.ModelForm):
     class Meta:
         model = MiBicicleta # modelo usado para generar el formulario
-        fields = ('marca','color','material','categoria','precioalquiler','foto') # campos que seran mostrados en la vista
+        fields = ('marca','color','material','categoria','precioalquiler','descripcionbici','foto') # campos que seran mostrados en la vista
         # fields = '__all__'
         #fields = ('apellidos',) 
 
@@ -37,3 +39,24 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
 
         return user
+
+
+
+# class UpdateProfile(forms)
+
+
+class ChangeEmailForm(forms.ModelForm):
+
+    email = forms.EmailField(required=True,max_length=250, help_text='Requerido como maximo 250 carácteres como máximo y debe ser un email válido.')
+
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+    def  clean_email(self):
+        email=self.cleaned_data.get('email')
+        if 'email' in self.changed_data:
+            if User.objects.filter(email=email).exists():
+                raise forms.validationError(u'El email ya esta registrado,prueba con otro.') 
+        return email

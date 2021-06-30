@@ -1,8 +1,9 @@
+from django import forms
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import BicicletasForm, CustomUserCreationForm
+from .forms import BicicletasForm, CustomUserCreationForm,ChangeEmailForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
@@ -93,7 +94,7 @@ def uploadBike(request):
             return redirect('messagebike')
     else:
         form = BicicletasForm()
-    return render(request, 'pages/uploadBike.html', {'form': form})
+    return render(request, 'bike/uploadBike.html', {'form': form})
 
 
 # metodo para mostrar la vista de perfil del usuario logueado o de los demas usuarios registrados
@@ -149,7 +150,7 @@ class ProfileUpdate(UpdateView):
         return profile
 
     # campos a mostrar del formulario de edicion de perfil
-    fields = ['image_user', 'image_portada']
+    fields = ['telefono','direccion','biografia','image_user', 'image_portada']
     success_url = reverse_lazy('perfil')
 
 
@@ -181,3 +182,19 @@ def home(request):
 
         # number representa el contenido de una página, el paginator representa el contenido de todas las páginas
     return render(request, 'pages/inicio.html', {'page': number, 'paginator': paginator})
+
+
+
+@method_decorator(login_required,name='dispatch')
+class EmailUpdate(UpdateView):
+    template_name='user/edit_email.html'
+    form_class= ChangeEmailForm
+    success_url = reverse_lazy('perfil')
+
+    def get_object(self):
+        return self.request.user
+
+    def get_form(self, form_class=None):
+        form = super(EmailUpdate,self).get_form()
+        form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control-file mt-3','placeholder':'Email'})
+        return form

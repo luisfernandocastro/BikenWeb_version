@@ -291,11 +291,12 @@
                     </div>
                 </div> -->
     <div class="container" id="myDiv">
-        <div class="card-columns mt-5">
+
+        <div class="card-columns mt-5 mr-5 ml-5">
             {% for b in page %}
             <catalogo>
                 <div class="card mb-5">
-                    <a href="#">
+                    <a href="#" data-toggle="modal" data-target="#modalBici">
                         <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
                             alt="Card image cap">
                         <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
@@ -333,10 +334,13 @@
             </catalogo>
             {% endfor %}
         </div>
+        
+        {% include 'pages/components/modal.html' %}
     </div>
 
 
     {% include 'pages/components/pagination.html' %}
+    
 
 
 </div>

@@ -17,8 +17,8 @@ User=get_user_model()
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
     telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True)
-    direccion = models.CharField(db_column='Direccion', max_length=50,null=True)
-    biografia = models.TextField(db_column='Biografia', max_length=150,null=True,validators=[RegexValidator(regex='^.{10}$', message='Texto muy corto', code='nomatch')]) 
+    direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
+    biografia = models.TextField(db_column='Biografia', max_length=150,null=True,blank=True) 
     image_portada = models.ImageField(upload_to='user/banner/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de portada')
     image_user = models.ImageField(upload_to='user/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de perfil')
 
@@ -49,7 +49,7 @@ class MiBicicleta(models.Model):
     timestamp=models.DateTimeField(default=timezone.now)
     categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria',default=None)  # Field name made lowercase.
     precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  # Field name made lowercase.
-    descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,validators=[RegexValidator(regex='^.{10}$', message='Texto muy corto', code='nomatch')]) 
+    descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,blank=True) 
     foto = models.ImageField(db_column='Foto', max_length=100, null=True,blank='True')  # Field name made lowercase.
 
     class Meta:

@@ -7,7 +7,7 @@ const showMenu = (toggleId, navbarId,bodyId) =>{
     if(toggle && navbar){
         toggle.addEventListener('click', ()=>{
             // APARECER MENU
-            navbar.classList.toggle('show')
+            navbar.classList.toggle('shownav')
             // ROTATE TOGGLE
             toggle.classList.toggle('rotate')
             // PADDING BODY

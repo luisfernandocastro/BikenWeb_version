@@ -3,11 +3,22 @@
 {% load static %}
 {% load humanize %}
 
+
 {% block content %}
 <div class="container">
     <div class="row ">
-        <span class="iconify iconsettings_profile" data-icon="fluent:edit-settings-24-filled" data-inline="false"></span>
         <div class="col-lg-12 d-flex justify-content-center ">
+
+
+            {% if request.user.username == user.username %}
+            <!-- icono de configuracion  e edicion de perfil  -->
+            <a href="{% url 'editprofile' %}">
+                <span class="iconify iconsettings_profile " data-icon="fluent:edit-settings-24-filled"
+                    data-inline="false"></span>
+            </a>
+            <!-- ----------- -->
+            {% endif %}
+
 
             <div class="banner-profile" style="
                         background: url('{{user.perfil.get_imagePortada}}') no-repeat;
@@ -54,7 +65,8 @@
                                                 Bicicletas subidas de {{user.first_name}}
                                                 {%endif%}
                                             </div>
-                                            <div class="h2 mb-0  font-weight-bold text-gray-800 colortextcount-card">{{user.miBici.count}}
+                                            <div class="h2 mb-0  font-weight-bold text-gray-800 colortextcount-card">
+                                                {{user.miBici.count}}
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -72,7 +84,7 @@
                                             <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-3"
                                                 style="font-size: 15px;">
                                                 {% if request.user.username == user.username%}
-                                                Eres parte de Biken desde el          
+                                                Eres parte de Biken desde el
                                                 {%else%}
                                                 {{user.first_name}} es parte de Biken desde el
                                                 {%endif%}
@@ -95,60 +107,59 @@
     </div>
 
 
-    <div class="row" >
+    <div class="row">
         {% for b in miBici %}
         <div class="col-lg-3 mt-3">
             <div class="card">
-                    <a>
-                        <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
-                            alt="Card image cap">
-                        <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}"
-                            alt="Card image cap"></a>
-                    <div class="card-body">
+                <a>
+                    <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
+                        alt="Card image cap">
+                    <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
+                <div class="card-body">
 
-                        {% if request.user.username == user.username %}
+                    {% if request.user.username == user.username %}
 
-                        {% else %}
-                        <p class="card-text title font-weight-bold">
-                            <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
-                            <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
-                                {{ b.user.username}}
-                                {%else%}
-                                {{ b.user.first_name}}
-                                {%endif%}
-                            </a>
-                        </p>
-                        {% endif %}
-                        <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
-                        <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
-                        <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
-                        {% if request.user.username == user.username %}
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <a href="{% url 'editar_bicicleta' b.idmibicicleta %}">
-                                    <button class="btn btncat d-block mx-auto "><i class="far fa-edit"></i>
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="col-lg-6">
-                                <a href="{% url 'eliminar_bicicleta' b.idmibicicleta %}">
-                                    <button class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-
-                        {% else %}
-                        <a href="#">
-                            <button class="btn btncat d-block mx-auto "><i class="far fa-heart"></i>
-                                Añadir a favoritas
-                            </button>
+                    {% else %}
+                    <p class="card-text title font-weight-bold">
+                        <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
+                        <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
+                            {{ b.user.username}}
+                            {%else%}
+                            {{ b.user.first_name}}
+                            {%endif%}
                         </a>
-
-
-                        {% endif %}
-
+                    </p>
+                    {% endif %}
+                    <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
+                    <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
+                    <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
+                    {% if request.user.username == user.username %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="{% url 'editar_bicicleta' b.idmibicicleta %}">
+                                <button class="btn btncat d-block mx-auto "><i class="far fa-edit"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="{% url 'eliminar_bicicleta' b.idmibicicleta %}">
+                                <button class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
+                                </button>
+                            </a>
+                        </div>
                     </div>
+
+                    {% else %}
+                    <a href="#">
+                        <button class="btn btncat d-block mx-auto "><i class="far fa-heart"></i>
+                            Añadir a favoritas
+                        </button>
+                    </a>
+
+
+                    {% endif %}
+
+                </div>
             </div>
         </div>
         {% endfor %}
