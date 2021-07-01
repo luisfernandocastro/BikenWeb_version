@@ -3,7 +3,7 @@ from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import BicicletasForm, CustomUserCreationForm,ChangeEmailForm
+from .forms import BicicletasForm, CustomUserCreationForm,ChangeEmailForm,UpdateUserForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
@@ -198,3 +198,20 @@ class EmailUpdate(UpdateView):
         form = super(EmailUpdate,self).get_form()
         form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control-file mt-3','placeholder':'Email'})
         return form
+
+
+
+
+@method_decorator(login_required,name='dispatch')
+class UserUpdate(UpdateView):
+    template_name='user/update_user.html'
+    form_class= UpdateUserForm
+    success_url = reverse_lazy('perfil')
+
+    def get_object(self):
+        return self.request.user
+
+    # def get_form(self, form_class=None):
+    #     form = super(EmailUpdate,self).get_form()
+    #     form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control-file mt-3','placeholder':'Email'})
+    #     return form

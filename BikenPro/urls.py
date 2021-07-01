@@ -34,6 +34,7 @@ urlpatterns = [
     path('profile/<str:username>/',views.profileUser,name='perfil'),# url de perfiles de usuarios con parametro de username
     path('profile/settings/editprofile/',views.ProfileUpdate.as_view(),name='editprofile'),# url de la vista de edicion de perfil de usuarios registrados
     path('profile/settings/editemail',views.EmailUpdate.as_view(),name='editemail'),# url de la vista de edicion de email de usuarios registrados
+    path('profile/settings/edituser',views.UserUpdate.as_view(),name='edituser'),
     path('uploadBike/' , views.uploadBike, name='uploadbike'),# url de la vista de  formulario de subir bicicletas por los usuarios
     path('editBike/<int:id>/' , views.editar_bicicleta, name='editar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas
     path('deleteBike/<int:id>/' , views.delete_bicicleta, name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    

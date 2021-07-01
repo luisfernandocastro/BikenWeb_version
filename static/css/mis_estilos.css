@@ -282,13 +282,15 @@ body.dark .btncatalogo:hover{
 
 /*---------------------------------------start styles card catalogo---------------------------*/
 
-/* @media (min-width: 75em) {
+@media (max-width: 900px) {
   .card-columns {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
   }
-} */
+}
+
+
 
 .textnamecard {
   font-size: 18px;
@@ -308,6 +310,7 @@ body.dark .textnamecard a:hover{
 .textpreciocard {
   font-style: italic;
   text-align: end;
+  font-size: 17px;
 }
 
 /* tema dark */
@@ -317,7 +320,7 @@ body.dark .textpreciocard{
 
 
 .textcategoriacard {
-  font-size: 17px;
+  font-size: 19px;
 }
 
 /* tema dark */
@@ -328,7 +331,7 @@ body.dark .textcategoriacard{
 
 .texttiempocard {
   line-height: 0;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* tema dark */
@@ -1374,6 +1377,14 @@ body.dark .inputs_forms{
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
 }
+
+body.dark .inputs_forms_number{
+  background-color: var(--color-gris);
+  color: rgb(238, 238, 238);
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+}
+
 
 body.dark .custom-select{
   -webkit-transition: .5s ease all;

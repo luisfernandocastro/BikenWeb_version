@@ -1,0 +1,25 @@
+{% if form.errors %}
+{% for field in form %}
+        {% for error in field.errors %}
+<script>
+    Swal.fire({
+        html: '</i><strong class="texterror">{{error}}</strong>',
+        icon: 'error',
+        width: '500px',
+        padding: '8px',
+        grow: false,
+        backdrop: false,
+        toast: true,
+        position: 'bottom-end',
+        allowOutsideClick: true,
+        allowEscapeKey: true,
+        AllowEnterkey:true,
+        stopKeydownPropagation: false,
+        showConfirmButton: false,
+        showCancelButton: false,     
+        showCloseButton:true,     
+    });
+</script>
+{% endfor %}
+{% endfor %}
+{%endif%}

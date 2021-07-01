@@ -10,9 +10,12 @@ User = get_user_model()# Usar el modelo de Usuario personalizdo
 
 # formulario para  subir bicicletas 
 class BicicletasForm(forms.ModelForm):
+    foto = forms.ImageField(help_text='La imagen tiene que tener un formato valido, (preferible:jpg,png))')
+
+
     class Meta:
         model = MiBicicleta # modelo usado para generar el formulario
-        fields = ('marca','color','material','categoria','precioalquiler','descripcionbici','foto') # campos que seran mostrados en la vista
+        fields = ('marca','color','material','categoria','precioalquiler','valortiempohoras','valortiempomin','descripcionbici','foto') # campos que seran mostrados en la vista
         # fields = '__all__'
         #fields = ('apellidos',) 
 
@@ -40,9 +43,35 @@ class CustomUserCreationForm(UserCreationForm):
 
         return user
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'El email ya esta registrado , pueba con otro.')
+        return email
 
 
 # class UpdateProfile(forms)
+class UpdateUserForm(forms.ModelForm):
+
+    username = forms.CharField()
+    first_name= forms.CharField()
+    last_name = forms.CharField()
+    numcelular= forms.IntegerField()
+
+    class Meta:
+        model = User
+        fields = ['username','first_name','last_name','numcelular']
+
+    
+    def  clean_username(self):
+        username=self.cleaned_data.get('username')
+        if 'username' in self.changed_data:
+            if User.objects.filter(username=username).exists():
+                raise forms.validationError(u'Este username ya esta registrado,prueba con otro.') 
+        return username
+
+    
+
 
 
 class ChangeEmailForm(forms.ModelForm):

@@ -8,15 +8,15 @@
 from django.db import models
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
+from django.core.validators import RegexValidator,MinLengthValidator
 from django.utils import timezone
-from django.core.validators import RegexValidator
 User=get_user_model()
 
 
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
-    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True)
+    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True, validators=[MinLengthValidator(7)])
     direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
     biografia = models.TextField(db_column='Biografia', max_length=150,null=True,blank=True) 
     image_portada = models.ImageField(upload_to='user/banner/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de portada')
@@ -46,11 +46,13 @@ class MiBicicleta(models.Model):
     marca = models.CharField(db_column='Marca', max_length=45,default=None)  # Field name made lowercase.
     color = models.CharField(db_column='Color', max_length=50,default=None)  # Field name made lowercase.
     material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material',default=None)  # Field name made lowercase.
-    timestamp=models.DateTimeField(default=timezone.now)
+    timestamp=models.DateTimeField(db_column='Fecha de subida',default=timezone.now)
     categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria',default=None)  # Field name made lowercase.
     precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  # Field name made lowercase.
+    valortiempohoras= models.IntegerField(db_column='Horas de alquiler',null=True,blank=True,default=0)
+    valortiempomin= models.IntegerField(db_column='Minutos de alquiler',null=True,blank=True,default=0)
     descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,blank=True) 
-    foto = models.ImageField(db_column='Foto', max_length=100, null=True,blank='True')  # Field name made lowercase.
+    foto = models.ImageField(db_column='Foto', max_length=100, null=True)  # Field name made lowercase.
 
     class Meta:
         ordering=['-timestamp']

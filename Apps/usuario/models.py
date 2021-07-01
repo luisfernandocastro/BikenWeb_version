@@ -1,5 +1,6 @@
 from re import VERBOSE
 from BikenPro.settings import MEDIA_URL, STATIC_URL
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
@@ -9,6 +10,7 @@ from django.conf import settings
 # Create your models here.
 
 class User(AbstractUser):
-    numcelular = models.BigIntegerField(db_column='numero Celular',null=True,verbose_name='Celular')
+    numcelular = models.CharField(db_column='numero Celular',null=True,verbose_name='Celular', max_length=10, validators=[MinLengthValidator(10)])
+
 
 

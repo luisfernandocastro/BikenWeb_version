@@ -52,6 +52,9 @@
             <div class="col-lg-12 mt-5">
                 <div class="container-fluid">
                     <div class="row">
+
+                        {% if user.miBici.count > 0 %}
+
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body card-body4">
@@ -76,6 +79,9 @@
                                 </div>
                             </div>
                         </div>
+                        {% else %}
+
+                        {%endif%}
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body card-body3">
@@ -84,9 +90,28 @@
                                             <div class="text-xs font-weight-bold colorbikentext text-uppercase mb-3"
                                                 style="font-size: 15px;">
                                                 {% if request.user.username == user.username%}
-                                                Eres parte de Biken desde el
+
+                                                        {% if user.date_joined|length > 3 %}
+                                                        Eres parte de Biken desde el
+
+                                                        {% else %}
+
+                                                        Eres parte de Biken desde
+                                                        {% endif %}
+
+                                
                                                 {%else%}
-                                                {{user.first_name}} es parte de Biken desde el
+
+
+                                                        {% if user.date_joined|length > 3 %}
+                                                        {{user.first_name}} es parte de Biken desde el
+
+                                                        {% else %}
+
+                                                        {{user.first_name}} es parte de Biken desde el
+                                                        {% endif %}
+
+                                                
                                                 {%endif%}
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800 colortextdate-card">
@@ -151,7 +176,7 @@
 
                     {% else %}
                     <a href="#">
-                        <button class="btn btncat d-block mx-auto "><i class="far fa-heart"></i>
+                        <button class="btn btncatalogo d-block mx-auto "><i class="far fa-heart"></i>
                             Añadir a favoritas
                         </button>
                     </a>
