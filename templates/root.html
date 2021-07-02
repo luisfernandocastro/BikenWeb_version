@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='{% static "/arch/bootstrap/css/bootstrap.css" %}' rel="stylesheet" type="text/css" />
+    <link href='{% static "/css/normalize.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "/css/all.css" %}' rel="stylesheet" type="text/css" />
+    <link href='{% static "/css/mis_estilos.css"%}' rel="stylesheet" type="text/css">
+    <link href='{% static "css/styles_forms.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "/css/aside/styles.css" %}' rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src='{% static "/arch/jquery-3.5.0.js" %}' type="text/javascript"></script>
+    <link href='{% static "/img/iconsBiken/icono.png"%}' rel="shortcut icon" />
+    <title>{% block title%}{% endblock %}</title>
+</head>
+
+{% block classbody %}
+
+<body id="body">{% endblock %}
+
+    <!-- evita mostrar el efecto de carga si algun error en un formulario que extienda de base -->
+    {% if form.errors %}
+    {% else %}
+    <div class="loader-page"></div>
+    {% endif %}
+        
+    <div class="container-fluid">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <a href="{% url 'index' %}" class="nav__logo">
+                        <img src='{% static "img/iconsBiken/IconBiken_Django.svg" %}' alt="" class="nav__logo-icon"
+                            height="46" width="46">
+                        <span class="nav__logo-text">Biken</span>
+                    </a>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <span class="iconify" data-icon="dashicons:arrow-right-alt2" data-inline="false"></span>
+                    </div>
+                    <ul class="nav__list">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'perfil' request.user.username %}" class="nav__link_user">
+                            <img class="img_perfilUser" src="{{request.user.perfil.get_image}}" alt="">
+                            <span class="nav__text">
+                                {%if request.user.first_name == '' %}
+                                {{request.user.username}}
+                                {%else%}
+                                {{request.user.first_name}}
+                                {%endif%}
+                            </span>
+                        </a>
+                        <a class="nav__link-search" id="nav-toggle_search" >
+                            <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
+                            <form class="form-inline">
+                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            </form>
+                        </a>
+                        <a href="{% url 'home' %}"
+                            class="nav__link {% if request.path|slice:':6' == '/home/'%}active{% endif%}">
+                            <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
+                            <span class="nav__text">Inicio</span>
+                        </a>
+                        <a href="{% url 'uploadbike' %}"
+                            class="nav__link  {% if request.path|slice:':12' == '/uploadBike/'%}active{% endif%}">
+                            <span class="iconify nav__icon" data-icon="si-glyph:bicycle-3" data-inline="false"></span>
+                            <span class="nav__text">Sube tu Bici</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
+                            <span class="nav__text">Favorites</span>
+                        </a>
+                        <div class="spacer">
+                            <a href="{% url 'logout' %}" class="nav__link ">
+                                <span class="iconify nav__icon " data-icon="ri:logout-circle-line"
+                                    data-inline="false"></span>
+                                <span class="nav__text">Salir</span>
+                            </a>
+                        </div>
+
+                        {% else%}
+                        <a class="nav__link-search">
+                            <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
+                            <form class="form-inline">
+                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            </form>
+                        </a>
+                        <a href="{% url 'home' %}"
+                            class="nav__link {% if request.path|slice:':6' == '/home/'%}active{% endif%}">
+                            <span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
+                            <span class="nav__text">Inicio</span>
+                        </a>
+                        <a href="{% url 'login' %}"
+                            class="nav__link {% if request.path|slice:':16' == '/accounts/login/'%}active{% endif%}">
+                            <span class="iconify nav__icon" data-icon="ant-design:login-outlined"
+                                data-inline="false"></span>
+                            <span class="nav__text">Inicia Sesión</span>
+                        </a>
+                        <a href="{% url 'registro' %}"
+                            class="nav__link {% if request.path|slice:':10' == '/registro/'%}active{% endif%}">
+                            <span class="iconify nav__icon" data-icon="ant-design:user-add-outlined"
+                                data-inline="false"></span>
+                            <span class="nav__text">Registrarse</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
+                            <span class="nav__text">Favoritas</span>
+                        </a>
+
+                        {% endif %}
+                        <a>
+                            <a class="switch btn" id="switch">
+                                <span><i id='icon' class="fas fa-sun icon_modnight"></i></span>
+                                <!-- <span id="texto" class="nav__text" onclick="cambiarTexto()">Modo Light</span> -->
+                            </a>
+                        </a>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+            {% block content %}
+            {% endblock content %}            
+
+    
+        {% block footer %}
+
+        <div class="jumbotrom col-lg-12 mt-5 text-light footerInf ">
+            <div class="row">
+                <div class="col-lg-2">
+                    <p class="text-footer d-flex justify-content-center">B
+                        <i class="punt">.</i>
+                    </p>
+                    <p class="text-footerCopy">&copy; Biken-2021</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="titlefooter">Empresa</p>
+                    <a href="{% url 'quienessomos' %}">
+                        <p class="subtitlefooter">Sobre nosotros</p>
+                    </a>
+                    <p class="subtitlefooter">Carreras</p>
+                    <a href="{% url 'contacto' %}">
+                        <p class="subtitlefooter">Contactenos</p>
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <p class="titlefooter">Más información</p>
+                    <p class="subtitlefooter">Términos & Condiciones</p>
+                    <p class="subtitlefooter">Politica y Privacidad</p>
+                </div>
+                <div class="col-lg-4">
+                    <p class="titlefooter">Siganos</p>
+                    <div class="d-flex justify-content-left">
+                        <a href="#"><span class="iconify iconfooter" data-icon="akar-icons:facebook-fill"
+                                data-inline="false"></span></a>
+                        <a href="#"><span class="iconify iconfooter ml-2" data-icon="ant-design:twitter-circle-filled"
+                                data-inline="false"></span></a>
+                        <a href="#"><span class="iconify iconfooter ml-2" data-icon="entypo-social:youtube-with-circle"
+                                data-inline="false"></span></a>
+                        <a href="#"><span class="iconify iconfooter ml-2" data-icon="entypo-social:linkedin-with-circle"
+                                data-inline="false"></span></a>
+                        <a href="#"><span class="iconify iconfooter ml-2" data-icon="entypo-social:instagram-with-circle"
+                                data-inline="false"></span></a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        {% endblock %}
+    </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src='{% static "/js/functions.js" %}' type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src='{% static "/js/aside/main.js"%}'></script>
+        <script src='{% static "/arch/bootstrap/js/bootstrap.js" %}' type="text/javascript"></script>
+        
+        {% block script %}
+            
+        {% endblock script %}
+            
+</body>
+
+</html>

@@ -10,7 +10,9 @@ from django.conf import settings
 # Create your models here.
 
 class User(AbstractUser):
+    email = models.EmailField('correo Electronico',unique=True)
     numcelular = models.CharField(db_column='numero Celular',null=True,verbose_name='Celular', max_length=10, validators=[MinLengthValidator(10)])
 
 
-
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']

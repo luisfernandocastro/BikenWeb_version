@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'root.html' %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -54,16 +54,6 @@
                     </div>
 
                     {% include 'pages/components/messages_forms.html' %}
-                    <!-- <ul class="text-danger font-weight-bold font-italic">
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>
-                                    {{ error }}
-                                </li>
-                            {% endfor %}
-                        {% endfor %}
-                    </ul> -->
-                    <!-- {% endif %} -->
 
                     <button type="submitj" class="btn btn-primary colorbiken ml-5 mt-4">Aceptar</button>
                     <button type="reset" class="btn btn-secondary ml-5 mt-4">Limpiar</button>

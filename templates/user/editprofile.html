@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'root.html' %}
 
 {% load static %}
 
@@ -19,6 +19,7 @@
                     <button type="submit" class="btn btn-primary">Actualizar</button>
                 </form>
             </div>
+            <a href="{% url 'password_change' %}">cambiar  contraseña</a>
         </div>
         <div class="col-lg-7">
         </div>

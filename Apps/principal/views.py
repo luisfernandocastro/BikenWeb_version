@@ -62,7 +62,7 @@ def registro(request):
             formulario.save()  # Guardado de datos
             # Si  los datos ingresados son correctos el usuario queda logueado al momento
             user = authenticate(
-                username=formulario.cleaned_data['username'], password=formulario.cleaned_data['password1'])
+                email=formulario.cleaned_data['email'], password=formulario.cleaned_data['password1'])
             auth_login(request, user)
             messages.success(request, "Te ha registrado correctamente")
             # redireccion de los datos validados correctamente a la ventana de exito
