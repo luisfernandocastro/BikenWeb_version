@@ -1,0 +1,44 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}
+configuracion
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mt-5">
+
+            <span class="title_settings font-weight-bold d-flex justify-content-center mt-5">CONFIGURACIONES DE USUARIO</span>
+            <a href="{% url 'editprofile' %}">
+                <div class="optionsconfig">
+                    <span class="iconify icons_optionsconfig" data-icon="ant-design:profile-outlined" data-inline="false"></span><span>Editar perfil</span>
+                </div>
+            </a>
+
+            <a href="{% url 'edituser' %}">
+                <div class="optionsconfig">
+                    <span class="iconify icons_optionsconfig" data-icon="la:user-edit" data-inline="false"></span><span>Cambiar informacion de Usuario</span>
+                </div>
+            </a>
+            <a href="{% url 'editemail' %}">
+                <div class="optionsconfig">
+                    <span class="iconify icons_optionsconfig" data-icon="entypo:email" data-inline="false"></span><span>Cambiar correo Eléctronico</span>
+                </div>
+            </a>
+            <a href="{% url 'password_change' %}">
+                <div class="optionsconfig">
+                    <span class="iconify icons_optionsconfig" data-icon="wpf:password1" data-inline="false"></span><span>Cambiar contraseña</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <img class="img_settings" src="{% static 'img/animations/anim_settings.svg' %}" alt="">
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,11 +1,11 @@
 {% extends 'root.html' %}
 
 {% load static %}
-
+{% load widget_tweaks %}
 
 {% block classbody %}
 
-<body class="bgimg_editBike" id="body">{% endblock %}
+<body id="body">{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -15,13 +15,40 @@
             <div class="">
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{form|crispy}}
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <!-- {{form|crispy}} -->
+
+                    <div class="form-group">
+                        <label for="user">Teléfono</label>
+                        {% render_field form.telefono class="form-control inputs_forms" type="number" placeholder="teléfono"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        {% render_field form.direccion class="form-control inputs_forms" type="text" placeholder="dirección"%}
+                    </div>
+                    <div class="form-group">
+                        <label for="user">Biografía</label>
+                        {% render_field form.biografia class="form-control inputs_forms" type="text" placeholder="teléfono"%}
+                    </div>
+
+                    <div class="custom-file">
+                        <label class="custom-file-label inputs_forms" for="customFile">Imagen de perfil</label>
+                        {% render_field form.image_user class="custom-file-input" type="file" placeholder=""%}
+                    </div>
+
+                    <div class="custom-file mt-4">
+                        <label class="custom-file-label inputs_forms" for="customFile">Imagen de Portada</label>
+                        {% render_field form.image_portada class="custom-file-input" type="file" placeholder=""%}
+                    </div>
+
+                    <button type="submit" class="btn d-block mx-auto btnindex mt-5">Actualizar</button>
+
                 </form>
+
+                {% include 'pages/components/messages_forms.html' %}
             </div>
-            <a href="{% url 'password_change' %}">cambiar  contraseña</a>
         </div>
         <div class="col-lg-7">
+            <img src="{% static 'img/animations/anim_editprofile.svg' %}" alt="">
         </div>
 
     </div>

@@ -1,19 +1,29 @@
 {% extends 'root.html' %}
-
-
+{% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {{form}}
-        
-                    <button type="submit" class="btn btn-primary">Actuaizar</button>
-                </form>
+            <div class="col-lg-5 mt-5 ">
+                <div class="form-email">
+                    <form action="" method="POST" class="">
+                        {% csrf_token %}
+                        <!-- {{form}} -->
+                        <div class="form-group">
+                            <label for="user">Correo Electrónico</label>
+                            {% render_field form.email class="form-control inputs_forms" type="email" placeholder="Email"%}
+                        </div>
+            
+                        <button type="submit" class="btn btnindex d-block mx-auto mt-5">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <img src="{% static 'img/animations/anim_email.svg' %}" alt="">
             </div>
         </div>
     </div>
+    {% include 'pages/components/messages_forms.html' %}
 {% endblock content %}
     

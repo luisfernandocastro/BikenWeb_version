@@ -151,7 +151,7 @@ class ProfileUpdate(UpdateView):
 
     # campos a mostrar del formulario de edicion de perfil
     fields = ['telefono','direccion','biografia','image_user', 'image_portada']
-    success_url = reverse_lazy('perfil')
+    success_url = reverse_lazy('settings')
 
 
 
@@ -189,7 +189,7 @@ def home(request):
 class EmailUpdate(UpdateView):
     template_name='user/edit_email.html'
     form_class= ChangeEmailForm
-    success_url = reverse_lazy('perfil')
+    success_url = reverse_lazy('settings')
 
     def get_object(self):
         return self.request.user
@@ -200,18 +200,16 @@ class EmailUpdate(UpdateView):
         return form
 
 
-
-
-@method_decorator(login_required,name='dispatch')
+@method_decorator(login_required,name='dispatch') 
 class UserUpdate(UpdateView):
-    template_name='user/update_user.html'
-    form_class= UpdateUserForm
-    success_url = reverse_lazy('perfil')
+    template_name = 'user/update_user.html'
+    form_class = UpdateUserForm
+    success_url = reverse_lazy('settings')
 
     def get_object(self):
         return self.request.user
 
-    # def get_form(self, form_class=None):
-    #     form = super(EmailUpdate,self).get_form()
-    #     form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control-file mt-3','placeholder':'Email'})
-    #     return form
+
+@login_required
+def settings(request):
+    return render(request,'user/settingsuser.html')

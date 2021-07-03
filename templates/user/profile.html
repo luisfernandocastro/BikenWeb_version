@@ -12,7 +12,7 @@
 
             {% if request.user.username == user.username %}
             <!-- icono de configuracion  e edicion de perfil  -->
-            <a href="{% url 'editprofile' %}">
+            <a href="{% url 'settings' %}">
                 <span class="iconify iconsettings_profile " data-icon="fluent:edit-settings-24-filled"
                     data-inline="false"></span>
             </a>
@@ -91,20 +91,20 @@
                                                 style="font-size: 15px;">
                                                 {% if request.user.username == user.username%}
 
-                                                        {% if user.date_joined|length > 3 %}
+                                                        {% if user.date_joined|length > 6 %}
                                                         Eres parte de Biken desde el
 
                                                         {% else %}
 
-                                                        Eres parte de Biken desde
+                                                        Eres parte de Biken desde 
                                                         {% endif %}
 
                                 
                                                 {%else%}
 
 
-                                                        {% if user.date_joined|length > 3 %}
-                                                        {{user.first_name}} es parte de Biken desde el
+                                                        {% if user.date_joined|length > 6 %}
+                                                        {{user.first_name}} es parte de Biken desde 
 
                                                         {% else %}
 

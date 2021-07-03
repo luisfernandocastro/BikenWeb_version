@@ -50,27 +50,25 @@ class CustomUserCreationForm(UserCreationForm):
         return email
 
 
-# class UpdateProfile(forms)
+
+#
 class UpdateUserForm(forms.ModelForm):
 
-    username = forms.CharField()
-    first_name= forms.CharField()
-    last_name = forms.CharField()
-    numcelular= forms.IntegerField()
+    username = forms.CharField(required=False)
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    numcelular = forms.IntegerField(required=False)
 
     class Meta:
         model = User
         fields = ['username','first_name','last_name','numcelular']
 
-    
-    def  clean_username(self):
-        username=self.cleaned_data.get('username')
-        if 'username' in self.changed_data:
-            if User.objects.filter(username=username).exists():
-                raise forms.validationError(u'Este username ya esta registrado,prueba con otro.') 
-        return username
-
-    
+    # def  clean_username(self):
+    #     username=self.cleaned_data.get('username')
+    #     if 'username' in self.changed_data:
+    #         if User.objects.filter(username=username).exists():
+    #             raise forms.validationError(u'El username ya esta registrado,prueba con otro.') 
+    #     return username    
 
 
 
@@ -83,9 +81,16 @@ class ChangeEmailForm(forms.ModelForm):
         model = User
         fields = ['email']
 
-    def  clean_email(self):
-        email=self.cleaned_data.get('email')
-        if 'email' in self.changed_data:
-            if User.objects.filter(email=email).exists():
-                raise forms.validationError(u'El email ya esta registrado,prueba con otro.') 
+    # def  clean_email(self):
+    #     email=self.cleaned_data.get('email')
+    #     if 'email' in self.changed_data:
+    #         if User.objects.filter(email=email).exists():
+    #             raise forms.validationError(u'El email ya esta registrado,prueba con otro.') 
+    #     return email
+
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'El email ya esta registrado , pueba con otro.')
         return email
