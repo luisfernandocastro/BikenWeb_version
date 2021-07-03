@@ -1,6 +1,6 @@
 {% extends 'root.html' %}
 {% load static %}
-
+{% load widget_tweaks %}
 {% block title%}Biken || Login{% endblock %}
 
 {% block classbody %}
@@ -51,18 +51,22 @@
 
 						{% csrf_token %}
 						{{form | crispy}}
-<!-- 						<div class="form-group">
-							<input type="email" name="usuario" id="usr" class="form-control"
-								placeholder="juankm@example.com" required>
+
+						<!-- <div class="form-group">
+							<label for="names">Correo Electronico</label>
+							{% render_field form.username class="form-control inputs_forms" type="email" placeholder="Email"%}
 						</div>
-						<br>
+
 						<div class="form-group">
-							<input type="password" name="Password" id="pwd" class="form-control" placeholder="*********"
-								required>
+							<label for="names">Contraseña</label>
+							{% render_field form.password class="form-control inputs_forms" type="password" placeholder="Contraseña"%}
 						</div> -->
+
+
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary d-block mx-auto btn-com btn-block">Ingresar</button>
 						</div>
+
 					</form>
 					<div>
 						<h3 class="text-center title-com2 title-com3"><small>¿No tienes una cuenta? <a
@@ -74,14 +78,13 @@
 			</div>
 		</div>
 	</div>
-</div>
+	{% include 'pages/components/messages_forms.html' %}
 </div>
 {% endblock %}
 {% block footer %}
 
 <div></div>
 {% endblock %}
-
 
 
 
