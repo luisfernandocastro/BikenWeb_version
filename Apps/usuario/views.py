@@ -1,15 +1,20 @@
 
 # Elementos necesarios para mostrar la vista de login generada por Django
 from django import forms
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login as auth_login
+from django.views.generic.edit import FormView
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import redirect, render
 from Apps.principal.models import Perfil  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm
+from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm,LoginForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate,logout ,login as auth_login
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
 from django.contrib.auth import get_user_model
 # decorador para solicitar el login de un usuario para ver una vista no permitida sin loguearse
@@ -23,11 +28,35 @@ from django.shortcuts import render
 
 User = get_user_model()
 
+
+
 # -----------------------------------------login----------------------------------------------
 
-# metodo para el form de inicio Sesion,dado por Django
-def login(request):
-    return render(request, 'registration/login.html')
+# # metodo para el form de inicio Sesion,dado por Django
+# def login(request):
+#     return render(request, 'registration/login.html')
+
+class Login(FormView):
+    template_name = 'registration/login.html'
+    form_class = LoginForm
+    success_url = reverse_lazy('home')
+
+    @method_decorator(csrf_protect)
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return super(Login,self).dispatch(request, *args, **kwargs)
+    
+    def form_valid(self,form):
+        auth_login(self.request,form.get_user())
+        return super(Login,self).form_valid(form)
+
+def logoutUser(request):
+    logout(request)
+    return HttpResponseRedirect('/home')
+
 
 
 def registro(request):

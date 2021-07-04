@@ -1,4 +1,6 @@
 from django import forms
+from django.db.models import query
+
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *  # se traen todas las tablas del modelo de base de datos
@@ -12,12 +14,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 # Actualiaciones  o ediciones de datos que se encuentran en la base de datos generadas por Django
-from django.views.generic.edit import UpdateView
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.db.models import Q
 
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
 
@@ -111,8 +112,19 @@ def delete_bicicleta(request, id):
 # metodo para mostrar la vista de home y mostrar bicicletas en catalogo
 def home(request):
 
-    # Se trae todos las bicicletas registradas en modelo de base de datod MIBicicleta
+
+    queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.all()
+    if queryset :
+        bicicletas = MiBicicleta.objects.filter(
+            Q(user__last_name__icontains = queryset) | 
+            Q(user__first_name__icontains = queryset) | 
+            Q(precioalquiler__icontains = queryset) | 
+            Q(categoria__nombre__icontains= queryset)
+        ).distinct()
+
+    # Se trae todos las bicicletas registradas en modelo de base de datod MIBicicleta
+    # bicicletas = MiBicicleta.objects.filter()
     # Valor 1: Número de todos los datos actuales
     # Valor 2: cuántos datos se muestran por página
     # Valor 3: cuando la última página tiene menos de n datos, combine los datos en la página anterior

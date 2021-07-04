@@ -1,9 +1,19 @@
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model# importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib.auth import get_user_model
+from django.forms.widgets import Widget# importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
 User = get_user_model()# Usar el modelo de Usuario personalizsdo 
 
+
+
+
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args,**kwargs):
+        super (LoginForm,self).__init__(*args,**kwargs)
+        self.fields['username']
+        self.fields['password']
 
 
 # Creacion del formulario para el registro de usuarios en Biken usando el modelo personalizado

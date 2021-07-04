@@ -50,17 +50,21 @@
 					<form action='' method="POST">
 
 						{% csrf_token %}
-						{{form | crispy}}
+						<!-- {{form | crispy}} -->
+						{% include 'pages/components/messages_form_login.html' %}
 
-						<!-- <div class="form-group">
+
+						<div class="form-group">
 							<label for="names">Correo Electronico</label>
+							<!-- {{form.username}} -->
 							{% render_field form.username class="form-control inputs_forms" type="email" placeholder="Email"%}
 						</div>
 
 						<div class="form-group">
 							<label for="names">Contraseña</label>
+							<!-- {{form.password}} -->
 							{% render_field form.password class="form-control inputs_forms" type="password" placeholder="Contraseña"%}
-						</div> -->
+						</div>
 
 
 						<div class="form-group">
@@ -78,7 +82,6 @@
 			</div>
 		</div>
 	</div>
-	{% include 'pages/components/messages_forms.html' %}
 </div>
 {% endblock %}
 {% block footer %}

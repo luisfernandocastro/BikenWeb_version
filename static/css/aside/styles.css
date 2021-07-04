@@ -294,7 +294,7 @@ body.dark .l-navbar {
 
   .nav__icon-search {
     font-weight: bold;
-    color: rgb(95, 95, 95);
+    color: var(--white-color);
     font-size: 1.9rem;
     margin-right: 1rem;
     margin-left: .01rem;

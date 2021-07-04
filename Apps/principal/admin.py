@@ -8,7 +8,7 @@ admin.site.site_title="Biken"
 
 @admin.register (User)
 class userAdmin(admin.ModelAdmin):
-    list_display = ('username','first_name','last_name','numcelular','email','is_staff')
+    list_display = ('username','first_name','last_name','numcelular','email','is_staff','is_active')
     search_fields = ['username','is_staff']
     list_filter = ['username','first_name','last_name','is_staff']
     list_per_page = 10

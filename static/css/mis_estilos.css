@@ -282,14 +282,11 @@ body.dark .btncatalogo:hover{
 
 /*---------------------------------------start styles card catalogo---------------------------*/
 
-@media (max-width: 900px) {
-  .card-columns {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-  }
-}
 
+.card-columns {
+  margin-left:  25px;
+  margin-right: 25px;
+} 
 
 
 .textnamecard {
@@ -1475,6 +1472,20 @@ body.dark::-webkit-scrollbar-thumb {
 
 /*--------------------------------------------------------media QuerysScreens--------------------------------------------------------*/
 
+
+
+@media screen and (max-width:1000px){
+
+  /* mediaquerys del home hasta 900px */
+  .card-columns {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  } 
+}
+/* end styles */
+
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media screen and (max-width: 800px) {
 
@@ -1512,6 +1523,7 @@ body.dark::-webkit-scrollbar-thumb {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
 
   /* ...............................start styles pantalla menor a 600px en el Index........................ */
 
@@ -1556,6 +1568,13 @@ body.dark::-webkit-scrollbar-thumb {
     height: 200px;
   }
 
+
+  .card-columns {
+    margin: auto;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+  } 
 
 
   /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */

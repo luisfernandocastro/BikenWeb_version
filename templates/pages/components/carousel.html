@@ -1,13 +1,14 @@
 <div class="row">
 
     <div class="col-lg-12">
-        <div class="">
-            <form class="form-inline position-absolute div_search" action="#">
-                <input class="input-search" type="text" placeholder="Buscar" id="myInputsearchhome">
-                <div class="div-btn-search">
+        <div>
+            <form class="form-inline position-absolute div_search" method="get">
+                <input class="input-search" type="text" placeholder="Buscar" name="Buscar" value="{{request.GET.Buscar}}">
+
+                <span class="div-btn-search">
                     <button class="btn btn-search colorbiken" type="submit"><i class="fa fa-search"></i>
                     </button>
-                </div>
+                <span>
 
             </form>
         </div>

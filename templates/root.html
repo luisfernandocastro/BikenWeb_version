@@ -55,8 +55,8 @@
                         </a>
                         <a class="nav__link-search" id="nav-toggle_search" >
                             <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
-                            <form class="form-inline">
-                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            <form class="form-inline" method="GET">
+                            <input class=" input-search_nav" type="text" placeholder="Buscar" name="Buscar" value="{{request.GET.Buscar}}">
                             </form>
                         </a>
                         <a href="{% url 'home' %}"
@@ -82,10 +82,10 @@
                         </div>
 
                         {% else%}
-                        <a class="nav__link-search">
+                        <a class="nav__link-search" id="nav-toggle_search" >
                             <span class="iconify nav__icon-search" data-icon="majesticons:search-line" data-inline="false"></span>
-                            <form class="form-inline">
-                            <input class=" input-search_nav" type="search" placeholder="Search" aria-label="Search" id="myInputsearch">
+                            <form class="form-inline" method="GET">
+                            <input class=" input-search_nav" type="text" placeholder="Buscar" name="Buscar" value="{{request.GET.Buscar}}">
                             </form>
                         </a>
                         <a href="{% url 'home' %}"

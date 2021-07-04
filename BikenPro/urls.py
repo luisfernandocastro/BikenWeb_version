@@ -22,4 +22,6 @@ urlpatterns = [
     path('contacto/' ,views.contacto, name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
     path('', include('Apps.usuario.urls')),
+    # path('accounts/',include('django.contrib.auth.urls')),# url mostrada como complemento para el login y registro generados por Django
+
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 

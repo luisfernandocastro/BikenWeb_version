@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
 
 
