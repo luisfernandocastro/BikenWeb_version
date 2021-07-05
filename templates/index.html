@@ -27,7 +27,7 @@
             </a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link contact" href="#" data-pushbar-target="pushbar-menu">
+                    <a class="nav-link icon-burger_index" href="#" data-pushbar-target="pushbar-menu">
                         <i class="fas fa-bars"></i>
                     </a>
                 </li>
@@ -38,38 +38,38 @@
             <div class="btn-cerrar">
                 <button class="btn btnclose" data-pushbar-close><i class="fas fa-times"></i></button>
             </div>
-            <nav class="navbar navbar1">
+            <nav class="navbar navbarindex">
 
                 <ul class="navbar-nav">
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link navbar2" href="{% url 'logout' %}">Cerrar Sesión</a>
+                        <a class="nav-link items_navbarindex" href="{% url 'logout' %}">Cerrar Sesión</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link navbar2" href="{% url 'login' %}">Inicia Sesión</a>
+                        <a class="nav-link items_navbarindex" href="{% url 'login' %}">Inicia Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar2" href="{% url 'registro' %}">Registrarse</a>
+                        <a class="nav-link items_navbarindex" href="{% url 'registro' %}">Registrarse</a>
                     </li>
                     {% endif %}
 
                     <li class="nav-item">
-                        <a class="nav-link navbar2" href="{% url 'contacto' %}">Contacto</a>
+                        <a class="nav-link items_navbarindex" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar2" href="{% url 'quienessomos' %}">Quienes somos</a>
+                        <a class="nav-link items_navbarindex" href="{% url 'quienessomos' %}">Quienes somos</a>
                     </li>
                     <br>
                     <li class="nav-item">
                         <p class="nav-link" href="#">Nuestras redes Sociales</p>
-                        <div class="sociales sociales1 col-2">
-                            <a href="#" class="facebook"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="fab fa-youtube"></i></a>
-                            <a href="https://github.com/cyborglf" class="facebook"><i class="fab fa-github"></i></a>
-                            <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="facebook"><i class="fab fa-instagram"></i></a>
+                        <div class="sociales icons-sociales_navbarindex col-2">
+                            <a href="#" class="items_icons-sociales"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="items_icons-sociales"><i class="fab fa-youtube"></i></a>
+                            <a href="https://github.com/cyborglf" class="items_icons-sociales"><i class="fab fa-github"></i></a>
+                            <a href="#" class="items_icons-sociales"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="items_icons-sociales"><i class="fab fa-instagram"></i></a>
                         </div>
                     </li>
                 </ul>

@@ -16,9 +16,7 @@
             <catalogo>
                 <div class="card mb-5">
                     <a href="#">
-                        <img class="card-img-top placeholderimgup imgcat" src="{% static 'img/gifs/loading.gif' %}"
-                            alt="Card image cap">
-                        <img class="card-img-top imgcat placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
+                        <img class="card-img-top imgcatalogo placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
                     <div class="card-body">
                         <p class="card-text textnamecard font-weight-bold">
                             <img src="{{b.user.perfil.get_image}}" alt="" class="imgperfil_post">
@@ -67,7 +65,7 @@
 <script>
     $("#alert,#alert3,#alert5,#alert7,#alert9,#alert11").click(function () {
         Swal.fire({
-            title: '<span class="alerttit">No has iniciado Sesión</span>',
+            title: '<span class="title_alert">No has iniciado Sesión</span>',
             text: 'Inicia Sesión para continuar con el alquiler',
             showConfirmButton: true,
             confirmButtonColor: '#2059BD',
@@ -84,7 +82,7 @@
 
     $("#alert2,#alert4,#alert6,#alert8,#alert10,#alert12").click(function () {
         Swal.fire({
-            title: '<span class="alerttit">No has iniciado Sesión</span>',
+            title: '<span class="title_alert">No has iniciado Sesión</span>',
             text: 'Inicia Sesión para continuar con el alquiler',
             icon: 'info',
             confirmButtonText: 'Ok',

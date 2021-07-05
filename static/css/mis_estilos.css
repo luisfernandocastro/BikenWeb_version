@@ -15,7 +15,14 @@
 
   --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
   --sombra-dark: 10px 10px 8px 0px hsl(0,0,0.16);
+
+/* ---fuentes--- */
+
+  --fuente-roman: 'Times New Roman', Times, serif;
+
 }
+
+
 
 body {
   background-color: var(--color-light);
@@ -40,7 +47,6 @@ nav {
 .colorbiken {
   background-color: var(--color-biken);
 }
-
 
 
 .colorbikentext {
@@ -107,21 +113,60 @@ body.dark .colorbikentext{
   position: fixed;
 }
 
-.contact {
+.icon-burger_index {
   position: relative;
   z-index: 2;
   margin-right: 15px;
   font-size: 23px;
 }
 
-.contact1 {
-  color: rgb(255, 255, 255);
-}
-
-.contact1:hover {
-  color: #000000;
-}
-
+  /* ionos de redes sociales de la barra lateral */
+  .sociales {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .sociales a {
+    font-size: 20px;
+    color: white;
+  }
+  
+  .sociales a:hover {
+    color: #000000;
+  }
+  
+  
+  /* ----------------- */
+  
+  /* estilos de la barra lateral index */
+  
+  
+  .navbarindex {
+    margin-top: 30%;
+    padding: 15%;
+  }
+  
+  .items_navbarindex {
+    color: rgba(255, 255, 255);
+    margin-top: 15%;
+  }
+  
+  .items_navbarindex:hover {
+    color: rgb(0, 0, 0);
+  }
+  
+  
+  .icons-sociales_navbarindex {
+    margin-left: 35%;
+    padding: 10%;
+  }
+  
+  .items_icons-sociales {
+    padding: 5px;
+  }
+  
+  /* .......... */
+  
 
 .btnindex,
 .btncatalogo,.btncat {
@@ -186,12 +231,12 @@ body.dark .btncatalogo:hover{
 
 .btnclose:hover {
   background-color: rgba(255, 255, 255, 0.5);
-  color: rgb(32, 89, 189);
+  color: var(--color-biken);
   border-radius: 50%;
 }
 
 
-/*-----------------------------------------------cargar todas las paginas---------------------------------------*/
+/*-----------------------------------------------start styles cargar todas las paginas---------------------------------------*/
 
 .loader-page {
   position: fixed;
@@ -245,6 +290,10 @@ body.dark .btncatalogo:hover{
   transform: rotate(0deg);
 }
 
+
+/*------------------------------------------- end styles cargar todas las paginas---------------------------------------------------*/
+
+
 /*------------------------------------------------------ home page-----------------------------------------------------------*/
 
 
@@ -252,11 +301,17 @@ body.dark .btncatalogo:hover{
 /*..................Estilos de la imagen de perfil de los usuarios...........*/
 
 .img_perfilUser {
-  background-color: red;
+  background-color: var(--color-biken);
   border-radius: 30px;
   margin: 5px;
   width: 43px;
   height: 40px;
+}
+
+
+/* tema dark */
+body.dark .img_perfilUser{
+  background-color: var(--color-bikenoscuro);
 }
 
 .nav__link_user {
@@ -275,6 +330,11 @@ body.dark .btncatalogo:hover{
 .nav__link_user:hover {
   background-color: var(--color-bikenoscuro);
   color: white;
+}
+
+/* tema dark */
+body.dark .nav__link_user:hover{
+  background-color: #213d6e;
 }
 
 /*........................................end styles imagen perfil............................*/
@@ -365,11 +425,6 @@ a .card-img-top {
 }
 
 
-.placeholderimgup {
-  position: absolute;
-}
-
-
 .placeholderimgdown {
   position: relative;
 }
@@ -380,19 +435,16 @@ a .card-img-top {
   width: 35px !important;
 }
 
-.imgcat {
+.imgcatalogo {
   width: 100%;
 }
 
 
 /*---------------------------------end styles card catalogo----------------------------------------*/
 
-.collapse1 {
-  color: #ffffff;
-  font-size: 30px;
-}
 
-/*--------------------------------------buscar home page-------------------------------*/
+
+/*-------------------------------------start styles buscar home page-------------------------------*/
 
 
 .carouselprincipal {
@@ -401,10 +453,12 @@ a .card-img-top {
   box-shadow: var(--sombra-light);
 }
 
+
 /* tema dark */
 body.dark .carouselprincipal{
   box-shadow: var(--sombra-dark);
 }
+
 
 .div_search {
   z-index: 2;
@@ -478,7 +532,10 @@ body.dark .btn-search:hover{
   color: var(--color-grisclaro);
 }
 
-/* ............................................start styles paginacion home......................... */
+/*-------------------------------------end styles buscar home page-------------------------------*/
+
+
+/* ...........................................start styles paginacion home......................... */
 
 .linkanterior{
   border-top-left-radius: 20px !important;
@@ -538,17 +595,16 @@ body.dark .modal-content{
 }
 
 
-.modal-header{
+.modal-header, .modal-footer{
   border: none;
 }
 
-
-.modal-footer{
-  border: none;
+.modal-content{
+  padding: 15px;
 }
 
 /* tema dark */
-body.dark .modal-header h5{
+body.dark .modal-body h5{
   color: var(--color-white);
 }
 
@@ -561,6 +617,7 @@ body.dark .modal-header button span{
 
 /*---------------------------------------------------end buscar homepage-------------------------------------------*/
 
+
 /* ---------------------------------------------------start screen editbicicleta--------------------------------------------------- */
 
 
@@ -570,131 +627,30 @@ body.dark .modal-header button span{
 
 
 
-.container1 {
-  overflow: hidden;
-  /*------No se sale del contenedor----*/
-}
-
-
-
-.notifi {
-  margin-left: 10px;
-}
-
-.btn3 {
-  background-color: white;
-  border: 1px solid white;
-  color: var(--color-biken);
-  margin-left: 10%;
-  width: 200px;
-}
-
-.btn3:hover {
-  background-color: var(--color-biken);
-  color: #ffffff;
-}
-
-.titulo1 {
-  font-weight: 500;
-}
-
-.filtro {
-  width: 230px;
-  margin-left: 10%;
-  color: #000000;
-}
-
-.flow {
-  overflow: auto;
-  height: 250px;
-}
-
 
 
 
 
 /*---------------------------------------jumbotron paginas--------------------------*/
 
-.sociales {
-  display: flex;
-  justify-content: space-around;
-}
-
-.sociales a {
-  font-size: 20px;
-  color: white;
-}
-
-.logo {
-  margin-bottom: 6px;
-  width: 28px;
-  height: 28px;
-}
-
-.logo:hover {
-  background-color: red;
-  border-radius: 50%;
-}
-
-.sociales a:hover {
-  color: #000000;
-}
 
 
 
 
 
+/* alertas -sweat alert */
 
 
 
-.navbar2 {
-  color: rgba(255, 255, 255);
-  margin-top: 15%;
-}
-
-.navbar2:hover {
-  color: rgb(0, 0, 0);
-}
-
-.navbar1 {
-  margin-top: 30%;
-  padding: 15%;
-}
-
-.sociales1 {
-  margin-left: 35%;
-  padding: 10%;
-}
-
-.facebook {
-  padding: 5px;
-}
-
-.alerttit {
+.title_alert {
   color: var(--color-biken);
 }
 
 
+/* ----------- */
 
 
-.dropleft {
-  color: white;
-}
 
-.items {
-  color: var(--color-biken);
-}
-
-.items:hover {
-  background-color: var(--color-biken);
-  color: #ffff;
-  border: solid 1px #ffff;
-
-}
-
-.menuser {
-  padding: 0;
-}
 
 /* Alertas de error registro de usuarios */
 
@@ -708,12 +664,26 @@ body.dark .modal-header button span{
 /* end estilo alerta */
 
 
+
+/* ventana estadisticas */
 .user-content {
   padding: 10px;
   width: 190px;
   margin-top: 13%;
   margin-right: 10px;
 }
+/* ----------- */
+
+
+/* ----------------------------ventana contrato y estadisticas----------------------------------*/
+
+.bg-nav1 {
+  background-image: url(../img/svg/bg-com2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 10%;
+}
+
 
 .bg-menuuser {
   background-color: #ffff;
@@ -730,62 +700,17 @@ body.dark .modal-header button span{
   background: #F1F1F1;
 }
 
-
-.icon2 {
+.icon2 {/* iconos del menu de cerrar sesion*/
   padding-right: 10px;
   color: rgba(2, 89, 189, 0.4);
   font-size: 17px;
 }
 
 
-.iconf {
-  margin-left: 2px;
-}
-
-.patners {
-  font-size: 15px;
-}
-
-.patners1 {
-  color: var(--color-biken);
-}
-
-.cars {
-  font-size: 15px;
-  margin-top: 1px;
-}
-
-.cars:hover {
-  color: #518DF6;
-}
-
 .title-manager {
   font-size: 30px;
   color: #ffffff;
   font-family: perpetua;
-}
-
-.recien-admin {
-  color: var(--color-biken);
-  font-size: 30px;
-}
-
-.persona {
-  background-color: rgba(32, 89, 189, 0.6);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.persona:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.bike-admin {
-  width: 350px;
-  height: 250px;
-  margin-left: 20%;
 }
 
 .nav-admin {
@@ -801,31 +726,11 @@ body.dark .modal-header button span{
   color: #ffffff;
 }
 
-.btn-plus {
-  background-color: var(--color-biken);
-  color: #ffff;
-}
-
-.btn-plus:hover {
-  background-color: #ffff;
-  color: var(--color-biken);
-  border: solid 1px var(--color-biken);
-}
-
 .title-tab {
   margin-top: 90px;
   color: rgb(32, 89, 189);
 }
 
-.tabla {
-  overflow: auto;
-  height: 500px;
-}
-
-th,
-.num {
-  color: rgb(32, 89, 189);
-}
 
 .persona-reg {
   background-color: rgba(32, 89, 189, 0.6);
@@ -833,12 +738,6 @@ th,
   height: 30px;
   border-radius: 50%;
 }
-
-.card-managerl {
-  height: 1000px;
-}
-
-
 
 .card-body1 {
   border-left: solid 3px var(--color-biken) !important;
@@ -856,16 +755,16 @@ th,
   border-left: solid 3px var(--color-biken) !important;
 }
 
-.text-uppercase {
-  font-size: 10px;
-}
-
 .card-body-1 {
   height: 343px;
 }
 
 .card-body-2 {
   height: 350px;
+}
+
+.card-body-3 {
+  height: 330px;
 }
 
 .chart-area {
@@ -876,13 +775,10 @@ th,
   height: 250px;
 }
 
+
 .bgnav-admin {
   background-color: rgba(2, 89, 189, 0.8);
   font-size: 14px;
-}
-
-.actived {
-  color: #ffffff;
 }
 
 .mt-box {
@@ -894,19 +790,15 @@ th,
   margin-top: 170px;
 }
 
-.icons-nav-admin {
-  font-size: 20px;
-}
 
-.card-body-3 {
-  height: 330px;
-}
+/* -----------------------------------------end ventana estadisticas----------------------------------------------- */
 
-.alerttit1 {
-  font-family: perpetua;
-  color: rgb(2, 89, 189);
-  font-size: 40px;
-}
+
+
+
+
+
+/* styles inputs  */
 
 input::-webkit-input-placeholder {
   font-style: italic;
@@ -917,21 +809,29 @@ textarea::-webkit-input-placeholder {
   font-style: italic;
   font-size: 14px;
 }
+/* ------------ */
 
-
-.placeholder1 {
-  font-style: italic;
-  font-size: 14px;
-  color: gray;
-}
-
-
-/* .container-com {
-  overflow: hidden; ------No se sale del contenedor----
-} */
 
 
 /* ------------------------------------------start styles screen login------------------------------------------------------- */
+
+.img-bg_login {
+  background-image: url(../img/imgs_login/bg-com2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.img-bg_login::before {
+  content: '';
+  background: inherit;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  filter: blur(6px);
+  transform: scale(1.4, 1.1);
+}
+
 
 
 .container-formlogin {
@@ -942,82 +842,76 @@ textarea::-webkit-input-placeholder {
 
 }
 
-.bg-comunity {
-  background-image: url(../img/imgs_login/bg-com2.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-
-.bg-comunity::before {
-  content: '';
-  background: inherit;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  filter: blur(6px);
-  transform: scale(1.4, 1.1);
-}
-
-.title-com {
-  margin-top: 10px;
-  color: var(--color-biken);
-  font-family: perpetua;
-  font-size: 40px;
-}
-
-
-/* tema dark */
-body.dark .title-com {
-  color: var(--color-white);
-}
-
-
-
-.btn-com {
-  margin-top: 30px;
-  background-color: transparent;
-  border: solid 1px #ffff;
-}
-
-.btn-com:hover {
-  background-color: var(--color-biken);
-}
-
-
-.contenedor img {
-  position: absolute;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.contenedor img.top:hover {
-  opacity: 0;
-}
-
-/* ------------------------------------------end styles screen login------------------------------------------------------- */
-
-
-.form-com {
+.form-login {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 10px;
 }
 
 
+.text-title_login {
+  margin-top: 10px;
+  color: var(--color-biken);
+  font-family: perpetua;
+  font-size: 40px;
+}
 
-.title-com2 {
-  color: rgb(255, 255, 255);
-  font-size: 15px;
+/* tema dark */
+body.dark .text-title_login {
+  color: var(--color-white);
 }
 
 
-.img-comunity {
+
+.text-noaccount_login {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-style: italic;
+  margin-top: 50px;
+}
+
+
+.text-register_login {
+  color: #00FBFF;
+}
+
+
+.text-register_login:hover {
+  text-decoration: none;
+  color: #84AEF7;
+}
+
+
+
+
+.btn_login {
+  margin-top: 30px;
+  background-color: transparent;
+  border: solid 1px #ffff;
+}
+
+.btn_login:hover {
+  background-color: var(--color-biken);
+}
+
+
+.contenedorimgs img {
+  position: absolute;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.contenedorimgs img.top:hover {
+  opacity: 0;
+}
+
+
+.img_login {
   width: 100%;
   height: auto;
 }
 
 @supports(object-fit: cover) {
-  .img-comunity {
+  .img_login {
     height: 100%;
     object-fit: cover;
     object-position: center center;
@@ -1026,61 +920,12 @@ body.dark .title-com {
 }
 
 
-.title-com3 {
-  font-style: italic;
-  margin-top: 50px;
-}
-
-.hyper-com {
-  color: #00FBFF;
-}
-
-
-.hyper-com:hover {
-  text-decoration: none;
-  color: #84AEF7;
-}
-
-
-
-
 .minh-100 {
   height: 92.8vh;
 }
 
-.contact1-com {
-  color: var(--color-biken);
-}
 
-.contact1-com:hover {
-  color: #84AEF7;
-}
-
-.collapse1-com {
-  color: var(--color-biken);
-}
-
-
-
-
-.alerttit2 {
-  font-size: 14px;
-  font-style: italic;
-}
-
-.bg-nav1 {
-  background-image: url(../img/svg/bg-com2.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 10%;
-}
-
-
-.text-registro {
-  font-size: 14px;
-}
-
-
+/* ------------------------------------------end styles screen login------------------------------------------------------- */
 
 
 
@@ -1203,7 +1048,7 @@ body.dark.bgimg_registro{
 
 .tituloquienessomos{
   font-size: 40px;
-  font-family:'Times New Roman', Times, serif;
+  font-family:var(--fuente-roman);
   text-align: left;
   color : rgb(10, 85, 216);
 }
@@ -1236,7 +1081,8 @@ body.dark .tituloquienessomos{
 
 /*--------------------------------------------------------estilos pagina contacto------------------------------------------------*/
 .titulocontacto{
-  font-size: 40px; font-family:times new roman;
+  font-size: 40px;
+  font-family:var(--fuente-roman);
   text-align: left;
   color : rgb(10, 85, 216);
 }
@@ -1318,14 +1164,14 @@ body.dark .iconos-admin{
   border: solid 1px var(--color-biken);
 }
 
-/*------------------------------------------------------------start styles Screen Profile--------------------------------------------------*/
+/*------------------------------------------------------------end  styles Screen Profile--------------------------------------------------*/
 
 /*------------------------------------------------------------start styles Screen UploadBike-------------------------------------------------*/
 
 .tituloUploadBike{
 
   font-size: 28px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--fuente-roman);
   text-align: center;
   color : var(--color-biken)
 }
@@ -1564,6 +1410,12 @@ body.dark::-webkit-scrollbar-thumb {
 
   /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
 
+
+
+
+
+
+
   .carouselprincipal {
     height: 200px;
   }
@@ -1634,7 +1486,7 @@ body.dark .optionsconfig:hover{
 .title_settings{
   color: var(--color-biken);
   font-size: 30px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--fuente-roman);
 }
 
 /* tema dark */

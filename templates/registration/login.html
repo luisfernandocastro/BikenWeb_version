@@ -5,7 +5,7 @@
 
 {% block classbody %}
 
-<body class="bg-comunity container-com"></body>{% endblock %}
+<body class="img-bg_login"></body>{% endblock %}
 
 {% block navbar %}
 
@@ -37,13 +37,13 @@
 		<div class="card container-formlogin ">
 
 			<div class="row">
-				<div class="col-lg-6 contenedor">
-					<img class="img-fluid img-comunity" src='{% static "img/imgs_login/bg-com6.jpg" %}' alt="">
-					<img class="img-fluid img-comunity top" src='{% static "img/imgs_login/bg-com.jpeg" %}' alt="">
+				<div class="col-lg-6 contenedorimgs">
+					<img class="img-fluid img_login" src='{% static "img/imgs_login/bg-com6.jpg" %}' alt="">
+					<img class="img-fluid img_login top" src='{% static "img/imgs_login/bg-com.jpeg" %}' alt="">
 				</div>
-				<div class="col-lg-6 form-com">
+				<div class="col-lg-6 form-login">
 					<div>
-						<h3 class="text-center title-com"> <strong>BIKEN</strong></h3>
+						<h3 class="text-center text-title_login"> <strong>BIKEN</strong></h3>
 					</div>
 					<br>
 					{% load crispy_forms_tags %}
@@ -68,13 +68,13 @@
 
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary d-block mx-auto btn-com btn-block">Ingresar</button>
+							<button type="submit" class="btn btn-primary d-block mx-auto btn_login btn-block">Ingresar</button>
 						</div>
 
 					</form>
 					<div>
-						<h3 class="text-center title-com2 title-com3"><small>¿No tienes una cuenta? <a
-									href="{% url 'registro' %}" class="hyper-com">Registrate</a> y se parte de
+						<h3 class="text-center text-noaccount_login "><small>¿No tienes una cuenta? <a
+									href="{% url 'registro' %}" class="text-register_login">Registrate</a> y se parte de
 								la
 								comunidad Biken</small></h3>
 					</div>

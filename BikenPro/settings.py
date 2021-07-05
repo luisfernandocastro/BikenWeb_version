@@ -46,7 +46,6 @@ else:
 INSTALLED_APPS = [
     'jet.dashboard',
     'jet',
-    #'colorfield',
     #'admin_interface',
     #'admin_black.apps.AdminBlackConfig',
     'django.contrib.humanize',
@@ -58,9 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.principal.apps.PrincipalConfig',
     'Apps.usuario.apps.UsuarioConfig',
-    'colorfield',
     'crispy_forms',
-    'widget_tweaks',
+    'widget_tweaks', 
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

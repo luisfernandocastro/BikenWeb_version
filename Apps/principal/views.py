@@ -69,7 +69,7 @@ def uploadBike(request):
             bici = form.save(commit=False)
             bici.user = current_user
             bici.save()
-            messages.success(request, "Inicia sesión para poder continúar")
+            messages.success(request, "Bicicleta subida correctamente")
             return redirect('messagebike')
     else:
         form = BicicletasForm()
