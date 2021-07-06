@@ -15,13 +15,14 @@ urlpatterns = [
     path('home/',views.home,name ='home'), # url de la vista del  inicio de la pogina y catalogo del sitio
     path('uploadBike/' , views.uploadBike, name='uploadbike'),# url de la vista de  formulario de subir bicicletas por los usuarios
     path('editBike/<int:id>/' , views.editar_bicicleta, name='editar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas
-    path('deleteBike/<int:id>/' , views.delete_bicicleta, name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
+    path('deleteBike/<int:pk>/' , views.Delete_bicicleta.as_view(), name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
     path('registrocorrecto/' , views.messageRegistro, name='messagereg'),# url de la vista de mensaje de registro exitoso
     path('subidabicicorrecta/' , views.messageUploadBike, name='messagebike'),# url de la vista de  mensaje de bicicleta subida correctamente
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),# url de la vista de  informacion respecto a Biken
     path('contacto/' ,views.contacto, name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
     path('', include('Apps.usuario.urls')),
-    # path('accounts/',include('django.contrib.auth.urls')),# url mostrada como complemento para el login y registro generados por Django
+    # path('', include('django.contrib.auth.urls'))# url mostrada como complemento para las autenticaciones generados por Django
+    # path('accounts/',include('django.contrib.auth.urls')),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 

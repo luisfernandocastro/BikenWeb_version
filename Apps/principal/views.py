@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import query
-
+from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import *  # se traen todas las tablas del modelo de base de datos
@@ -100,12 +100,16 @@ def editar_bicicleta(request, id):
     return render(request, 'bike/editar_bicicleta.html', data)
 
 
-def delete_bicicleta(request, id):
-    bicicleta = get_object_or_404(MiBicicleta, idmibicicleta=id)
-    bicicleta.delete()
-    return redirect(to="perfil")
+# def delete_bicicleta(request, id):
+#     bicicleta = get_object_or_404(MiBicicleta, idmibicicleta=id)
+#     bicicleta.delete()
+#     return redirect(to="perfil")
 
 
+class Delete_bicicleta(DeleteView):
+    model = MiBicicleta
+    template_name = 'pages/components/modal_deleteBike.html'
+    success_url = reverse_lazy('perfil')
 
 
 

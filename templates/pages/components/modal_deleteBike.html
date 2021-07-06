@@ -1,0 +1,21 @@
+
+<!-- Modal -->
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <form action="{% url 'eliminar_bicicleta' object.pk %}" method="post">
+            {% csrf_token %}
+            <div class="modal-body">
+                <span class="iconify text-danger d-block mx-auto h-25 w-25 mb-3 iconmodal_deletebike" data-icon="carbon:warning"
+                    data-inline="false"></span>
+                <h5>{{user.first_name|capfirst}} ,Seguro que quieres eliminar esta
+                    Bicicleta?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Cancelar</button>
+                <button type="submit" name="button" class="btn btn-danger font-weight-bold">Si,Eliminar</button>
+            </div>
+        </form>
+
+    </div>
+</div>

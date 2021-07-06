@@ -1,6 +1,7 @@
 
 # Elementos necesarios para mostrar la vista de login generada por Django
 from django import forms
+
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.views.generic.edit import FormView
@@ -15,8 +16,10 @@ from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm,LoginFo
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
 from django.contrib.auth import authenticate,logout ,login as auth_login
+from django.contrib.auth.forms import PasswordChangeForm
+
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model,update_session_auth_hash
 # decorador para solicitar el login de un usuario para ver una vista no permitida sin loguearse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -159,3 +162,18 @@ class EmailUpdate(UpdateView):
         form.fields['email'].widget = forms.EmailInput(
             attrs={'class': 'form-control-file mt-3', 'placeholder': 'Email'})
         return form
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user,request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request,user)
+            messages.success(request,'Tu contraseña a sido cambiada correctamente!!')
+            return redirect('settings')
+        else:
+            messages.error(request,'Por favor corrija los errores')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request,'user/change_password.html',{'form':form})

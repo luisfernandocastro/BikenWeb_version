@@ -178,8 +178,8 @@
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <a href="{% url 'eliminar_bicicleta' b.idmibicicleta%}" data-toggle="modal" data-target="#modalBici">
-                            <!-- <a href="#"> -->
+                            <!-- <a href="{% url 'eliminar_bicicleta' b.idmibicicleta%}" data-toggle="modal" data-target="#modalBici"> -->
+                            <a href="#" onclick="abrir_modal('{% url 'eliminar_bicicleta' b.idmibicicleta%}')">
                                 <button type="button" class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
                                 </button>
                             </a>
@@ -198,39 +198,25 @@
                     {% endif %}
 
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalBici" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title text-danger font-weight-bold" id="exampleModalLabel">Eliminar
-                                    </h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h5 class="">{{user.first_name | capfirst }},Seguro que quieres eliminar esta
-                                        Bicicleta?{{b.idmibicicleta}}</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Cancelar</button>
-                                    <a href="{% url 'eliminar_bicicleta' b.idmibicicleta%}">
-                                        <button type="button" class="btn btn-danger">Si,Eliminar</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="modal fade" id="modalBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+                    </div>
+            
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<script>
+    var $ = jQuery.noConflict();
+    function abrir_modal(url){
+        $('#modalBici').load(url,function(){
+            $(this).modal('show');
+        });
+    }
+</script>
 
 
 {% endblock content %}

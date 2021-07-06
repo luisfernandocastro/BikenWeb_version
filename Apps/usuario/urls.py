@@ -15,7 +15,7 @@ urlpatterns = [
     path('profile/settings/editprofile/',views.ProfileUpdate.as_view(),name='editprofile'),# url de la vista de edicion de perfil de usuarios registrados
     path('profile/settings/editemail',views.EmailUpdate.as_view(),name='editemail'),# url de la vista de edicion de email de usuarios registrados
     path('profile/settings/edituser',views.UserUpdate.as_view(),name='edituser'),
-    # path('accounts/',include('django.contrib.auth.urls')),# url mostrada como complemento para el login y registro generados por Django
+    path('change_password',views.change_password,name='cambiar_password')
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
 
