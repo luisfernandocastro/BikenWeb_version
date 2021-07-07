@@ -41,7 +41,14 @@
                         {% render_field form.numcelular class="form-control inputs_forms" type="numer" placeholder="celular"%}
                     </div>
 
-                    <button class="btn btnindex d-block mx-auto mt-5" type="submit">Actualizar</button>
+                    <div class="row d-flex justify-content-center mt-5">
+                        <div class="co-lg-6 mr-5">
+                            <a class="btn btn-secondary btn_biken_cancel" href="{% url 'settings' %}">Cancelar</a>
+                        </div>
+                        <div class="co-lg-6">                            
+                            <button type="submit" class="btn btn_biken_success">Actualizar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

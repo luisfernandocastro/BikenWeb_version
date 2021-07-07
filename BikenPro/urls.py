@@ -21,8 +21,9 @@ urlpatterns = [
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),# url de la vista de  informacion respecto a Biken
     path('contacto/' ,views.contacto, name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
+    path('descripcion/<int:pk>/',views.Descripcionbike.as_view(),name="descripcionbike"),
     path('', include('Apps.usuario.urls')),
-    # path('', include('django.contrib.auth.urls'))# url mostrada como complemento para las autenticaciones generados por Django
+    path('', include('django.contrib.auth.urls'))# url mostrada como complemento para las autenticaciones generados por Django
     # path('accounts/',include('django.contrib.auth.urls')),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 

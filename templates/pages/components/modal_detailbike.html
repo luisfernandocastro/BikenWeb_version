@@ -1,0 +1,43 @@
+<!-- Modal -->
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content modal-content-home">
+        <div class="modal-body modal-body-home">
+            <div class="d-flex justify-content-center">
+                <img src="{{object.user.perfil.get_image}}" alt="" class="imguser_detailbike position-absolute">
+            </div>
+            <img src="{{object.foto.url}}" alt="" class="img-fluid imgbike_detailbike position-relative">
+
+
+            {%if request.user.username == object.user.username%}
+            <h5 class="mt-3 font-weight-bold text-center" id="exampleModalLongTitle">Datalles de tu Bicicleta</h5>
+            {% else %}
+            <h5 class="mt-3 font-weight-bold text-center" id="exampleModalLongTitle">Datalles de la Bicicleta de
+                {{object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}</h5>
+            {%endif%}
+
+            {% if object.descripcionbici != none %}
+            <h6 class="ml-3 mt-4"><strong>Descripción:</strong> {{object.descripcionbici}}</h6>
+
+            {% else %}
+            {% endif %}
+
+            <h6 class="ml-3 mt-4"><strong><i class="fas fa-dollar-sign"></i>  Precio de alquiler:</strong> {{object.precioalquiler}} por {{object.valortiempohoras}} horas
+                {% if object.valortiempomin == 00 %}
+                {% else %}
+                y {{object.valortiempomin}} minutos
+                {% endif %}
+            </h6>
+            <h6 class="ml-3 mt-4"><strong><i class="fas fa-filter"></i> Categoria:</strong> {{object.categoria}}</h6>
+            <h6 class="ml-3 mt-4"><strong><i class="fas fa-poll-h"></i> Marca:</strong> {{object.marca}}</h6>
+            <h6 class="ml-3 mt-4"><strong><i class="far fa-clock"></i> Fecha de subida:</strong> {{object.timestamp}}</h6>
+
+
+        </div>
+        <div class="modal-footer modal-footer-home">
+            <button type="button" class="btn btn-secondary btn_biken_cancel font-weight-bold" data-dismiss="modal">Ok</button>
+            <button type="submit" name="button" class="btn btn_biken_success font-weight-bold">Comenzar con el
+                alquiler</button>
+        </div>
+    </div>
+</div>

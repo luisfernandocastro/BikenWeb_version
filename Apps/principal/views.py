@@ -3,6 +3,7 @@ from django.db.models import query
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic.detail import DetailView
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
 from .forms import BicicletasForm
@@ -160,3 +161,6 @@ def settings(request):
     return render(request, 'user/settingsuser.html')
 
 
+class Descripcionbike(DetailView):
+    model = MiBicicleta
+    template_name = 'pages/components/modal_detailbike.html'

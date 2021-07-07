@@ -48,12 +48,12 @@
 					<br>
 					{% load crispy_forms_tags %}
 					<form action='' method="POST">
-
+						<input type="hidden" name="next" value="{{next}}">
 						{% csrf_token %}
 						<!-- {{form | crispy}} -->
 						{% include 'pages/components/messages_form_login.html' %}
-
-
+						
+						
 						<div class="form-group">
 							<label for="names">Correo Electronico</label>
 							<!-- {{form.username}} -->

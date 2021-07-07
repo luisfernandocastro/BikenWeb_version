@@ -60,6 +60,38 @@
                         <label for="precio">Precio Alquiler</label>
                         {% render_field form.precioalquiler class="form-control inputs_forms" type="" placeholder="Coloca el precio de alquiler"%}
                     </div>
+                    <div class="form-group">
+                        <label for="precio">Tiempo de alquiler</label>
+                        <div class="row ">
+
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    {% render_field form.valortiempohoras class="form-control inputs_forms_number" type="number" min="01" max="23" placeholder="00" %}
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">horas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    {% render_field form.valortiempomin class="form-control inputs_forms_number" type="number" min="0" max="59" placeholder="00" %}
+                                    <div class="input-group-append ">
+                                        <span class="input-group-text" id="basic-addon2">minutos</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="helptext_input-number font-italic">
+                                <span>Elija las horas que corresponden al precio de alquiler de su bicicleta (Ejemplo : $xx.xxx por 5 horas)</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Descripción</label>
+                        {% render_field form.descripcionbici class="form-control inputs_forms" type="" placeholder="Agrega una descripción de tu Bici"%}
+                    </div>
                     <div class="form-group ">
                         <!-- {{form.foto}} -->
                         <label class="foto" for="foto">Foto</label>

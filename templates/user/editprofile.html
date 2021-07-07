@@ -46,8 +46,15 @@
                         <label class="custom-file-label inputs_forms" for="customFile">Imagen de Portada</label>
                         {% render_field form.image_portada class="custom-file-input" type="file" placeholder=""%}
                     </div>
-
-                    <button type="submit" class="btn d-block mx-auto btnindex mt-5">Actualizar</button>
+                    
+                    <div class="row d-flex justify-content-center mt-5">
+                        <div class="co-lg-6 mr-5">
+                            <a class="btn btn-secondary btn_biken_cancel" href="{% url 'settings' %}">Cancelar</a>
+                        </div>
+                        <div class="co-lg-6">                            
+                            <button type="submit" class="btn btn_biken_success">Guardar cambios</button>
+                        </div>
+                    </div>
 
                 </form>
 

@@ -198,7 +198,7 @@
                     {% endif %}
 
 
-                    <div class="modal fade" id="modalBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modaldeleteBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                     </div>
             
@@ -212,7 +212,7 @@
 <script>
     var $ = jQuery.noConflict();
     function abrir_modal(url){
-        $('#modalBici').load(url,function(){
+        $('#modaldeleteBici').load(url,function(){
             $(this).modal('show');
         });
     }

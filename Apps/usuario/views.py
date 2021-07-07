@@ -16,7 +16,7 @@ from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm,LoginFo
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
 from django.contrib.auth import authenticate,logout ,login as auth_login
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
 from django.contrib.auth import get_user_model,update_session_auth_hash
@@ -28,6 +28,10 @@ from django.views.generic.edit import UpdateView
 
 from django.shortcuts import render
 
+from django.conf import settings as setting
+from django.contrib.auth.views import LoginView
+
+
 
 User = get_user_model()
 
@@ -35,30 +39,21 @@ User = get_user_model()
 
 # -----------------------------------------login----------------------------------------------
 
-# # metodo para el form de inicio Sesion,dado por Django
-# def login(request):
-#     return render(request, 'registration/login.html')
+#creacion de la clase de login con el loginview 
 
-class Login(FormView):
+class Login(LoginView):
     template_name = 'registration/login.html'
-    form_class = LoginForm
-    success_url = reverse_lazy('home')
 
-    @method_decorator(csrf_protect)
-    @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            return super(Login,self).dispatch(request, *args, **kwargs)
-    
-    def form_valid(self,form):
-        auth_login(self.request,form.get_user())
-        return super(Login,self).form_valid(form)
+        if request.user.is_authenticated: # evita que el usuario logueado ingrese a la vista login  
+            return redirect(setting.LOGIN_REDIRECT_URL)
+        return super().dispatch(request, *args, **kwargs)
 
-def logoutUser(request):
-    logout(request)
-    return HttpResponseRedirect('/home')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Iniciar sesión'
+        return context
+
 
 
 
@@ -164,6 +159,8 @@ class EmailUpdate(UpdateView):
         return form
 
 
+
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user,request.POST)
@@ -177,3 +174,49 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request,'user/change_password.html',{'form':form})
+
+
+
+
+
+    # # metodo para el form de inicio Sesion,dado por Django
+# def login(request):
+#     return render(request, 'registration/login.html')
+
+# class Login(FormView):
+#     template_name = 'registration/login.html'
+#     form_class = AuthenticationForm
+#     success_url = reverse_lazy('home')
+
+
+#     @method_decorator(csrf_protect)
+#     @method_decorator(never_cache)
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return HttpResponseRedirect(self.get_success_url())
+#         else:
+#             return super(Login,self).dispatch(request, *args, **kwargs)
+    
+#     def form_valid(self,form):
+#         auth_login(self.request,form.get_user())
+#         return super(Login,self).form_valid(form)
+
+# def logoutUser(request):
+#     logout(request)
+#     return HttpResponseRedirect('/home')
+
+
+# class Login(FormView):
+#     template_name = 'registration/login.html'
+#     form_class = AuthenticationForm
+#     success_url = reverse_lazy('home')
+
+#     def dispatch(self,request,*args,**kwargs):
+#         if request.user.is_authenticated:
+#             return HttpResponseRedirect(self.success_url)
+#         else:
+#             return super(Login,self).dispatch(request, *args, **kwargs)
+    
+#     def form_valid(self,form):
+#         auth_login(self.request,form.get_user())
+#         return HttpResponseRedirect(self.success_url)

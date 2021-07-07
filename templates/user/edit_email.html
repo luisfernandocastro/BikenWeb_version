@@ -22,7 +22,14 @@
                             {% render_field form.email class="form-control inputs_forms" type="email" placeholder="Email"%}
                         </div>
             
-                        <button type="submit" class="btn btnindex d-block mx-auto mt-5">Actualizar</button>
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="co-lg-6 mr-5">
+                                <a class="btn btn-secondary btn_biken_cancel" href="{% url 'settings' %}">Cancelar</a>
+                            </div>
+                            <div class="co-lg-6">                            
+                                <button type="submit" class="btn btn_biken_success">Actualizar</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

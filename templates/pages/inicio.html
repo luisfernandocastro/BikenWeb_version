@@ -15,7 +15,7 @@
             {% for b in page %}
             <catalogo>
                 <div class="card mb-5">
-                    <a href="#">
+                    <a href="#" onclick="abrir_detailmodal('{% url 'descripcionbike' b.idmibicicleta %}')">
                         <img class="card-img-top imgcatalogo placeholderimgdown" src="{{b.foto.url}}" alt="Card image cap"></a>
                     <div class="card-body">
                         <p class="card-text textnamecard font-weight-bold">
@@ -56,10 +56,24 @@
 
 
     {% include 'pages/components/pagination.html' %}
-    
+
+    <div class="modal fade" id="modaldetailBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    </div>
 
 
 </div>
+
+
+<script>
+    var $ = jQuery.noConflict();
+    function abrir_detailmodal(url){
+        $('#modaldetailBici').load(url,function(){
+            $(this).modal('show');
+        });
+    }
+</script>
+
 {% endblock %}
 
 <script>

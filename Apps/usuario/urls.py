@@ -8,7 +8,7 @@ from Apps.usuario import views # se traen los metodos hechos para mostrar las vi
 urlpatterns = [
     # user
     path('accounts/login/',views.Login.as_view(),name='login'),# url de la vista del login de usuarios registrados en Biken
-    path('logout/',views.logoutUser,name='logout'),
+    # path('logout/',views.logoutUser,name='logout'),
     path('registro/',views.registro, name='registro'),# url de la vista del  registro de usuarios para hacer parte de Biken
     path('profile/',views.profileUser,name='perfil'),# url de la vista de  perfil de usuarios registrados
     path('profile/<str:username>/',views.profileUser,name='perfil'),# url de perfiles de usuarios con parametro de username

@@ -6,12 +6,15 @@
 
   --color-light: #FBFBFE;
 
+  --color-grisnormal : rgb(161, 161, 161);
+  --color-grisnormal_hover : rgb(90, 90, 90);
   --color-dark: #192229;
   --color-gris: #212E36;
   --color-grisclaro: #2A3B47;
   --color-biken: #2059BD;
-  --color-white: #C8CDD0;
+  --color-bikenclaro: #4b84e6;
   --color-bikenoscuro: #0C2247;
+  --color-white: #C8CDD0;
 
   --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
   --sombra-dark: 10px 10px 8px 0px hsl(0,0,0.16);
@@ -22,6 +25,44 @@
 
 }
 
+
+/* ..........start styles boton success de la mayoria de las  ventanas ..................... */
+
+.btn_biken_success{
+  background-color: var(--color-biken);
+  color: var(--color-light);
+  border-radius: 30px !important;  
+}
+
+.btn_biken_success:hover{
+  color: var(--color-biken);
+  background-color: var(--color-light);
+  border: 1px solid var(--color-biken);
+}
+
+
+/* tema dark */
+body.dark .btn_biken_success{
+  background-color: var(--color-bikenclaro);
+  color: var(--color-white);
+}
+
+/* tema dark */
+body.dark .btn_biken_success:hover{
+  background-color: var(--color-bikenoscuro);
+  border: 1px solid var(--color-bikenoscuro);
+
+}
+
+/* ..........end styles boton success de la mayoria de las  ventanas ..................... */
+
+
+/* ..........start styles boton cancel de la mayoria de las  ventanas ..................... */
+
+.btn_biken_cancel{
+  border-radius: 30px !important;  
+}
+/* ..........end styles boton cancel de la mayoria de las  ventanas ..................... */
 
 
 body {
@@ -582,32 +623,32 @@ body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterio
 
 /* ............................................end styles paginacion home......................... */
 
-/* ............................................start styles ventanas modals home......................... */
+/* ............................................start styles ventanas modals  perfil......................... */
 
-.modal-content{
+.modal-content-profile{
   padding: 15px;
   background-color: var(--color-white) !important;
   border-radius: 30px;
 }
 
 /* tema dark */
-body.dark .modal-content{
+body.dark .modal-content-profile{
   background-color: var(--color-dark) !important;
 }
 
 
-.modal-header, .modal-footer{
+.modal-header-profile, .modal-footer-profile{
   border: none;
 }
 
 
 /* tema dark */
-body.dark .modal-body h5{
+body.dark .modal-body-profile h5{
   color: var(--color-white);
 }
 
 /* tema dark */
-body.dark .modal-header button span{
+body.dark .modal-header-profile button span{
   color: var(--color-white);
 }
 
@@ -618,8 +659,66 @@ body.dark .modal-header button span{
 }
 
 
-/* ............................................end styles ventanas modals home......................... */
 
+/* ............................................end styles ventanas modals perfil......................... */
+
+
+/* ............................................start styles ventanas modals home......................... */
+
+.imgbike_detailbike{
+  height: 300px;
+  width: 500px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.imguser_detailbike{
+  z-index: 1000;
+  height: 150px;
+  width: 150px;
+  margin-top: 20%;
+  border-radius: 1000px;
+}
+
+.modal-content-home, .modal-body-home{
+  padding: 0 !important;
+}
+
+.modal-content-home{
+  border-radius: 30px;
+  background-color: var(--color-light);
+}
+
+/* tema dark */
+body.dark .modal-content-home{
+  background-color: var(--color-dark);
+} 
+
+
+.modal-content-home h5{
+  color: var(--color-biken);
+}
+
+/* tema dark */
+body.dark .modal-content-home h5{
+  color: var(--color-bikenclaro);
+}
+
+
+.modal-content-home h6{
+  color: var(--color-dark);
+}
+
+/* tema dark */
+body.dark .modal-content-home h6{
+  color: var(--color-white);
+}
+
+
+.modal-footer-home{
+  border: none;
+}
+/* ............................................end styles ventanas modals home......................... */
 
 /*---------------------------------------------------end buscar homepage-------------------------------------------*/
 
@@ -1298,6 +1397,30 @@ body.dark .switch.active:hover {
 /* ------------------------------end styles switch----------------------------------------------- */
 
 /* -----------------------------start styles Barra de Scroll Personalizada -----------------------------*/
+
+/* .......................start scroll modal...................... */
+.modal::-webkit-scrollbar {
+	width: 10px;
+  background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+	background: var(--color-biken);
+	border-radius: 10px;
+	border-right: 2px solid rgb(156, 156, 156);
+}
+
+
+/* modo dark */
+body.dark .modal::-webkit-scrollbar-thumb {
+	background: var(--color-grisclaro);
+	border-radius: 10px;
+  border-right: 2px solid var(--color-dark);
+}
+
+/*............................. end scroll modal.......................  */
+
+
 body::-webkit-scrollbar {
 	width: 10px;
   background: transparent;
@@ -1466,9 +1589,13 @@ body.dark::-webkit-scrollbar-thumb {
 
 
 .icons_optionsconfig{
-  color: var(--color-light);
+  color: grey;
   font-size: 25px;
   margin-right: 15px;
+}
+
+body.dark .icons_optionsconfig{
+  color: var(--color-white);
 }
 
 /* tema dark */
@@ -1525,6 +1652,14 @@ body.dark .title_settings{
   color: red;
 }
 
+.helptext_changepass{
+  font-size: 13px;
+}
+
+/* tema dark */
+body.dark .helptext_changepass{
+  color: var(--color-white);
+}
 
 
 
