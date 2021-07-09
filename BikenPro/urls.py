@@ -10,10 +10,12 @@ from Apps.principal import views # se traen los metodos hechos para mostrar las 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')), # url para el admin con el diseño de la libreria de jet_django
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    # path('managementBiken/login/', views.LoginAdmin.as_view()),
     path('managementBiken/', admin.site.urls), 
     path('',views.index,name ='index'),# url de la vista index del sitio web
     path('home/',views.home,name ='home'), # url de la vista del  inicio de la pogina y catalogo del sitio
+    path('home/filter/urbanas/',views.bikeurbanas,name="bicicletasurbanas"),
+    path('home/filter/ruta/',views.bikeruta,name="bicicletasruta"),
+    path('home/filter/todoterreno/',views.biketodoterreno,name="bicicletastodoterreno"),
     path('uploadBike/' , views.uploadBike, name='uploadbike'),# url de la vista de  formulario de subir bicicletas por los usuarios
     path('editBike/<int:id>/' , views.editar_bicicleta, name='editar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas
     path('deleteBike/<int:pk>/' , views.Delete_bicicleta.as_view(), name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
@@ -24,7 +26,8 @@ urlpatterns = [
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
     path('descripcion/<int:pk>/',views.Descripcionbike.as_view(),name="descripcionbike"),
     path('', include('Apps.usuario.urls')),
-    # path('', include('django.contrib.auth.urls'))# url mostrada como complemento para las autenticaciones generados por Django
-    # path('accounts/',include('django.contrib.auth.urls')),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
+
+    # path('', include('django.contrib.auth.urls'))# url mostrada como complemento para las autenticaciones generados por Django
+    # path('accounts/',include('django.contrib.auth.urls')),

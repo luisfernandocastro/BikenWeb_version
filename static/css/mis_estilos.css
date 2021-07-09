@@ -19,6 +19,7 @@
   --color-bikenoscuro: #0C2247;
   --color-bgcard: #f3f4f7;
   --color-white: #C8CDD0;
+  --color-orange: rgb(204, 133, 1);
 
   --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
   --sombra-dark: 10px 10px 8px 0px hsl(0, 0, 0.16);
@@ -29,6 +30,24 @@
 
 }
 
+/* colores generales de biken */
+
+.colorbiken {
+  background-color: var(--color-biken);
+}
+
+
+.colorbikentext {
+  color: var(--color-biken);
+}
+
+
+/* tema dark */
+body.dark .colorbikentext {
+  color: var(--color-white)
+}
+
+/* end colores generales */
 
 
 /* animate css */
@@ -106,20 +125,7 @@ nav {
 }
 
 
-.colorbiken {
-  background-color: var(--color-biken);
-}
 
-
-.colorbikentext {
-  color: var(--color-biken);
-}
-
-
-/* tema dark */
-body.dark .colorbikentext {
-  color: var(--color-white)
-}
 
 /*...........................................Styles index..........................................................................*/
 
@@ -657,6 +663,39 @@ body.dark .linkanterior:hover {
 }
 
 /* ............................................end styles paginacion home......................... */
+
+/* ............................................start styles busqueda no encontrada home......................... */
+
+.div-noresultados_search{
+  margin-top: 20px;
+  padding-top: 20px;
+  height: 500px;
+}
+
+.img_nosearch{
+  height: 450px;
+  width: 450px;
+}
+
+body.dark .text-nosearch{
+  color: var(--color-bikenclaro);
+}
+
+
+/* ............................................end styles busqueda no encontrada home......................... */
+
+/* ............................................start styles filtros de busqueda home......................... */
+
+.active-filter-home{
+  background-color: var(--color-light);
+  color:  var(--color-orange);
+  border-color: var(--color-orange);
+  font-weight: bold;
+}
+
+/* ............................................end styles filtros de busqueda home......................... */
+
+
 
 /* ............................................start styles ventanas modals  perfil......................... */
 
@@ -1617,6 +1656,7 @@ body.dark .helptext_changepass {
 }
 
 .div_iconobiken_loginadmin {
+  padding: 0 10px 10px 10px;
   background-color: var(--color-light);
   width: 170px;
   height: 140px;
@@ -1625,8 +1665,8 @@ body.dark .helptext_changepass {
 }
 
 .iconobiken_loginadmin {
-  width: 150px;
-  height: 120px;
+  width: auto;
+  height: auto;
 }
 
 .btn_biken_success_loginadmin {

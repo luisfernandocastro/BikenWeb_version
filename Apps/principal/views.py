@@ -170,3 +170,53 @@ class Descripcionbike(DetailView):
     template_name = 'pages/components/modal_detailbike.html'
 
 
+def bikeurbanas(request):
+
+    queryset = request.GET.get("Buscar")
+    bicicletas = MiBicicleta.objects.filter(
+        categoria = Categoria.objects.get(nombre = 'Urbana')
+    )
+    if queryset :
+        bicicletas = MiBicicleta.objects.filter(
+            Q(user__last_name__icontains = queryset) | 
+            Q(user__first_name__icontains = queryset) | 
+            Q(precioalquiler__icontains = queryset) | 
+            Q(categoria__nombre__icontains= queryset)
+        ).distinct()
+
+    return render(request ,'bike/filtros_categorias/bike_urbanas.html',{'page': bicicletas})
+
+
+def bikeruta(request):
+
+    queryset = request.GET.get("Buscar")
+    bicicletas = MiBicicleta.objects.filter(
+        categoria = Categoria.objects.get(nombre = 'Ruta')
+    )
+    if queryset :
+        bicicletas = MiBicicleta.objects.filter(
+            Q(user__last_name__icontains = queryset) | 
+            Q(user__first_name__icontains = queryset) | 
+            Q(precioalquiler__icontains = queryset) | 
+            Q(categoria__nombre__icontains= queryset)
+        ).distinct()
+
+    return render(request ,'bike/filtros_categorias/bike_ruta.html',{'page': bicicletas})
+
+
+def biketodoterreno(request):
+
+    queryset = request.GET.get("Buscar")
+    bicicletas = MiBicicleta.objects.filter(
+        categoria = Categoria.objects.get(nombre = 'Todo terreno')
+    )
+    if queryset :
+        bicicletas = MiBicicleta.objects.filter(
+            Q(user__last_name__icontains = queryset) | 
+            Q(user__first_name__icontains = queryset) | 
+            Q(precioalquiler__icontains = queryset) | 
+            Q(categoria__nombre__icontains= queryset)
+        ).distinct()
+
+    return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
+
