@@ -137,7 +137,7 @@ class Pagos(models.Model):
     fechapago = models.DateTimeField(db_column='FechaPago')  # Field name made lowercase.
     totalalquiler = models.DecimalField(db_column='TotalAlquiler', max_digits=6, decimal_places=3)  # Field name made lowercase.
     fechamora = models.DateTimeField(db_column='FechaMora', blank=True, null=True)  # Field name made lowercase.
-    contrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='Tipo de Contrato')  # Field name made lowercase.
+    contrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='contrato')  # Field name made lowercase.
 
     class Meta:
         managed = False

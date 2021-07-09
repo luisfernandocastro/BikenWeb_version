@@ -60,6 +60,7 @@ $(document).ready(function () {
 
 const btnswitch = document.querySelector('#switch');
 
+
 btnswitch.addEventListener('click', () => {
 	document.body.classList.toggle('dark');
 	btnswitch.classList.toggle('active');
@@ -72,6 +73,7 @@ btnswitch.addEventListener('click', () => {
 	}
 });
 
+
 // Obtenemos el modo de estilo actual
 if (localStorage.getItem('dark-mode') === 'true') {
 	document.body.classList.add('dark');
@@ -82,15 +84,15 @@ if (localStorage.getItem('dark-mode') === 'true') {
 
 }
 
+
+
+
 //funcion para cambiar de icono al dar click
 document.getElementById('switch').addEventListener('click', function () {
 	var icon = document.getElementById('icon');
 	icon.classList.toggle('fa-sun');
 	icon.classList.toggle('fa-moon');
 })
-
-
-
 
 
 // -------------------end funciones para modo nocturno--------

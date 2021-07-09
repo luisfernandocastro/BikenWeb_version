@@ -1,0 +1,294 @@
+/* start variables  */
+:root {
+
+    --color-light: #FBFBFE;
+
+    --color-grisnormal: rgb(161, 161, 161);
+    --color-grisnormal_hover: rgb(90, 90, 90);
+    --color-dark: #161D29;
+    --color-gris: #273142;
+    --color-grisclaro: #303C4F;
+    --color-biken: #2059BD;
+    --color-bikenclaro: #4b84e6;
+    --color-bikenoscuro: #0C2247;
+    --color-bgcard: #f3f4f7;
+    --color-white: #C8CDD0;
+
+    /* --- sombras--  */
+    --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
+    --sombra-dark: 10px 10px 8px 0px hsl(0, 0, 0.16);
+
+    /* ---fuentes--- */
+
+    --fuente-roman: 'Times New Roman', Times, serif;
+
+}
+
+/* end variables  */
+
+
+
+/*  media Querys de todas las pantallas del sitio web Biken */
+
+/*--------------------------------------------------------media QuerysScreens--------------------------------------------------------*/
+
+
+
+@media screen and (max-width:1000px) {
+
+    /* ...............................start styles pantalla menor a 600px en el Index........................ */
+    .principal {
+        background-image: none;
+    }
+
+    /* ...............................end  styles pantalla menor a 600px en el Index........................ */
+
+
+
+
+    /* mediaquerys del home hasta 900px */
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+
+
+    /* ...............................start styles  pantalla menor a 600px en el screen login admin........................ */
+
+    .anim_login_admin {
+        display: none;
+    }
+
+
+
+    body.body_login {
+        background-color: var(--color-bgcard);
+        background-image: none;
+    }
+
+    /* ...............................end styles  pantalla menor a 600px en el screen login admin........................ */
+}
+
+/* end styles  pantalla maxima 1000px*/
+
+
+
+@media screen and (max-width: 800px) {
+
+    /* ...............................start styles  pantalla menor a 800px en el index........................ */
+
+
+
+
+    /* ...............................end styles  pantalla menor a 800px en el index........................ */
+
+    /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
+
+    .div_search {
+        display: none;
+    }
+
+
+    /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
+
+
+    /* ...............................start styles  pantalla menor a 800px en el perfilpage........................ */
+
+    .iconsettings_profile {
+        margin-left: 85%;
+    }
+
+
+
+    /* ...............................end styles  pantalla menor a 800px en el perfilpage........................ */
+
+
+    /* ...............................start styles  pantalla menor a8600px en el screen login admin........................ */
+
+    .anim_login_admin {
+        display: none;
+    }
+
+
+
+    body.body_login {
+        background-color: var(--color-bgcard);
+        background-image: none;
+    }
+
+    /* ...............................end styles  pantalla menor a 800px en el screen login admin........................ */
+
+    /* ...............................start styles  pantalla menor a 800px en el screen quienes somos........................ */
+    .div-anim_quienessomos {
+        display: none;
+    }
+
+    /* ...............................end styles  pantalla menor a 800px en el screen quienes somos........................ */
+
+
+
+    /* ...............................start styles  pantalla menor a 800px en el contacto........................ */
+
+    .div-anim_contacto {
+        display: none;
+    }
+
+    /* ...............................end styles  pantalla menor a 800px en el contacto........................ */
+
+
+
+    /* ...............................start styles  pantalla menor a 800px en el edit profile........................ */
+
+    .div-anim_editprofile {
+        display: none;
+    }
+
+    /* ...............................end styles  pantalla menor a 800px en el editpofile........................ */
+
+
+
+    /* ...............................start styles  pantalla menor a 800px en el settings user........................ */
+
+    .div-anim_settingsuser {
+        display: none;
+    }
+
+    /* ...............................start styles  pantalla menor a 800px en el settings user........................ */
+
+
+
+    /* ...............................start styles  pantalla menor a 800px en el update info register user........................ */
+    .div-anim_updateuser {
+        display: none;
+    }
+
+    /* ...............................start styles  pantalla menor a 800px en el update info register user........................ */
+
+
+
+}
+
+
+/* end styles  pantalla maxima 800px*/
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+
+    /* ...............................start styles pantalla menor a 600px en el Index........................ */
+
+
+
+    .titulo {
+        margin-top: 30%;
+        font-size: 90px;
+    }
+
+
+    .div-bike {
+        margin-top: 20%;
+        position: fixed;
+        filter: blur(9px);
+    }
+
+
+    /* imagen de la bicicleta del index */
+    .bike {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .icon-index {
+        width: 45px;
+        margin-left: -15px;
+    }
+
+    .contact {
+        margin-right: -15px;
+    }
+
+
+    /* ...............................end styles pantalla menor a 600px en el Index........................ */
+
+    /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
+
+
+
+
+
+
+
+    .carouselprincipal {
+        height: 200px;
+    }
+
+
+    .card-columns {
+        margin: auto;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+
+
+    /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
+
+    .nav__link_user {
+        color: var(--color-biken);
+    }
+
+    /* ...............................end styles  pantalla menor a 600px en el Homepage-barra lateral ........................ */
+
+    /* ...............................end styles  pantalla menor a 600px en el Homepage........................ */
+
+    /* ...............................start styles  pantalla menor a 600px en el screen login admin........................ */
+
+    .anim_login_admin {
+        display: none;
+    }
+
+
+
+    body.body_login {
+        background-color: var(--color-dark);
+        color: var(--color-white);
+    }
+
+
+    body .div-form_loginadmin {
+        background-color: var(--color-gris);
+        box-shadow: var(--sombra-dark);
+    }
+
+
+    body .div_iconobiken_loginadmin {
+        background-color: var(--color-light);
+        box-shadow: var(--sombra-dark);
+    }
+
+
+
+    /* ...............................end styles  pantalla menor a 600px en el screen login admin........................ */
+
+
+
+
+
+
+
+
+}
+
+/* end styles  pantalla maxima 600px*/
+
+
+/*--------------------------------------------------------end media QuerysScreens----------------------------------------------------------*/
+
+
+
+
+
+

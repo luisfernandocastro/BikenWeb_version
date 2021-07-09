@@ -6,35 +6,55 @@
 
   --color-light: #FBFBFE;
 
-  --color-grisnormal : rgb(161, 161, 161);
-  --color-grisnormal_hover : rgb(90, 90, 90);
-  --color-dark: #192229;
-  --color-gris: #212E36;
-  --color-grisclaro: #2A3B47;
+  --color-grisnormal: rgb(161, 161, 161);
+  --color-grisnormal_hover: rgb(90, 90, 90);
+  /* --color-dark: #192229; */
+  --color-dark: #161D29;
+  /* --color-gris: #212E36; */
+  --color-gris: #273142;
+  /* --color-grisclaro: #2A3B47; */
+  --color-grisclaro: #303C4F;
   --color-biken: #2059BD;
   --color-bikenclaro: #4b84e6;
   --color-bikenoscuro: #0C2247;
+  --color-bgcard: #f3f4f7;
   --color-white: #C8CDD0;
 
   --sombra-light: 10px 10px 8px 0px hsl(0, 0%, 90%);
-  --sombra-dark: 10px 10px 8px 0px hsl(0,0,0.16);
+  --sombra-dark: 10px 10px 8px 0px hsl(0, 0, 0.16);
 
-/* ---fuentes--- */
+  /* ---fuentes--- */
 
   --fuente-roman: 'Times New Roman', Times, serif;
 
 }
 
 
-/* ..........start styles boton success de la mayoria de las  ventanas ..................... */
 
-.btn_biken_success{
-  background-color: var(--color-biken);
-  color: var(--color-light);
-  border-radius: 30px !important;  
+/* animate css */
+.icon_biken {
+  animation: pulse;
+  animation-duration: 2s;
 }
 
-.btn_biken_success:hover{
+/* animate css icono biken*/
+.icon_biken-home:hover {
+  animation: tada;
+  animation-duration: 4s;
+}
+
+
+
+
+/* ..........start styles boton success de la mayoria de las  ventanas ..................... */
+
+.btn_biken_success {
+  background-color: var(--color-biken);
+  color: var(--color-light);
+  border-radius: 30px !important;
+}
+
+.btn_biken_success:hover {
   color: var(--color-biken);
   background-color: var(--color-light);
   border: 1px solid var(--color-biken);
@@ -42,13 +62,13 @@
 
 
 /* tema dark */
-body.dark .btn_biken_success{
+body.dark .btn_biken_success {
   background-color: var(--color-bikenclaro);
   color: var(--color-white);
 }
 
 /* tema dark */
-body.dark .btn_biken_success:hover{
+body.dark .btn_biken_success:hover {
   background-color: var(--color-bikenoscuro);
   border: 1px solid var(--color-bikenoscuro);
 
@@ -59,9 +79,10 @@ body.dark .btn_biken_success:hover{
 
 /* ..........start styles boton cancel de la mayoria de las  ventanas ..................... */
 
-.btn_biken_cancel{
-  border-radius: 30px !important;  
+.btn_biken_cancel {
+  border-radius: 30px !important;
 }
+
 /* ..........end styles boton cancel de la mayoria de las  ventanas ..................... */
 
 
@@ -73,7 +94,7 @@ body {
 
 
 /* tema dark */
-body.dark{
+body.dark {
   background-color: var(--color-dark);
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
@@ -96,9 +117,10 @@ nav {
 
 
 /* tema dark */
-body.dark .colorbikentext{
+body.dark .colorbikentext {
   color: var(--color-white)
 }
+
 /*...........................................Styles index..........................................................................*/
 
 .principal {
@@ -119,8 +141,11 @@ body.dark .colorbikentext{
   z-index: 1;
 }
 
+
+
 .icon-index {
   width: 75px;
+  ;
 }
 
 .titulo {
@@ -161,63 +186,64 @@ body.dark .colorbikentext{
   font-size: 23px;
 }
 
-  /* ionos de redes sociales de la barra lateral */
-  .sociales {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .sociales a {
-    font-size: 20px;
-    color: white;
-  }
-  
-  .sociales a:hover {
-    color: #000000;
-  }
-  
-  
-  /* ----------------- */
-  
-  /* estilos de la barra lateral index */
-  
-  
-  .navbarindex {
-    margin-top: 30%;
-    padding: 15%;
-  }
-  
-  .items_navbarindex {
-    color: rgba(255, 255, 255);
-    margin-top: 15%;
-  }
-  
-  .items_navbarindex:hover {
-    color: rgb(0, 0, 0);
-  }
-  
-  
-  .icons-sociales_navbarindex {
-    margin-left: 35%;
-    padding: 10%;
-  }
-  
-  .items_icons-sociales {
-    padding: 5px;
-  }
-  
-  /* .......... */
-  
+/* ionos de redes sociales de la barra lateral */
+.sociales {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sociales a {
+  font-size: 20px;
+  color: white;
+}
+
+.sociales a:hover {
+  color: #000000;
+}
+
+
+/* ----------------- */
+
+/* estilos de la barra lateral index */
+
+
+.navbarindex {
+  margin-top: 30%;
+  padding: 15%;
+}
+
+.items_navbarindex {
+  color: rgba(255, 255, 255);
+  margin-top: 15%;
+}
+
+.items_navbarindex:hover {
+  color: rgb(0, 0, 0);
+}
+
+
+.icons-sociales_navbarindex {
+  margin-left: 35%;
+  padding: 10%;
+}
+
+.items_icons-sociales {
+  padding: 5px;
+}
+
+/* .......... */
+
 
 .btnindex,
-.btncatalogo,.btncat {
+.btncatalogo,
+.btncat {
   background-color: var(--color-biken);
   color: white;
   border-radius: 30px !important;
 }
 
 /* tema dark */
-body.dark .btncatalogo{
+body.dark .btncatalogo {
   background-color: var(--color-bikenoscuro);
   color: white;
 }
@@ -243,7 +269,7 @@ body.dark .btncatalogo{
 }
 
 /* tema dark */
-body.dark .btncatalogo:hover{
+body.dark .btncatalogo:hover {
   background-color: var(--color-dark);
   border: solid 1px var(--color-dark);
   color: var(--color-white);
@@ -351,7 +377,7 @@ body.dark .btncatalogo:hover{
 
 
 /* tema dark */
-body.dark .img_perfilUser{
+body.dark .img_perfilUser {
   background-color: var(--color-bikenoscuro);
 }
 
@@ -374,7 +400,7 @@ body.dark .img_perfilUser{
 }
 
 /* tema dark */
-body.dark .nav__link_user:hover{
+body.dark .nav__link_user:hover {
   background-color: #213d6e;
 }
 
@@ -385,9 +411,9 @@ body.dark .nav__link_user:hover{
 
 
 .card-columns {
-  margin-left:  25px;
+  margin-left: 25px;
   margin-right: 25px;
-} 
+}
 
 
 .textnamecard {
@@ -396,12 +422,12 @@ body.dark .nav__link_user:hover{
 
 
 /* tema dark */
-body.dark .textnamecard a{
+body.dark .textnamecard a {
   color: var(--color-light);
 }
 
 
-body.dark .textnamecard a:hover{
+body.dark .textnamecard a:hover {
   color: var(--color-white);
 }
 
@@ -412,7 +438,7 @@ body.dark .textnamecard a:hover{
 }
 
 /* tema dark */
-body.dark .textpreciocard{
+body.dark .textpreciocard {
   color: var(--color-white);
 }
 
@@ -422,7 +448,7 @@ body.dark .textpreciocard{
 }
 
 /* tema dark */
-body.dark .textcategoriacard{
+body.dark .textcategoriacard {
   color: var(--color-white);
 }
 
@@ -433,13 +459,15 @@ body.dark .textcategoriacard{
 }
 
 /* tema dark */
-body.dark .texttiempocard{
+body.dark .texttiempocard {
   color: var(--color-white);
 }
 
 
 
 .card-columns .card {
+  background-color: var(--color-bgcard);
+  border: none;
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
   border-radius: 30px;
@@ -454,6 +482,11 @@ body.dark .card {
   box-shadow: var(--sombra-dark);
 }
 
+
+.col-lg-3 .card {
+  border: none;
+  background-color: var(--color-bgcard);
+}
 
 .card-columns .card:hover {
   border: solid 1px rgba(32, 89, 189, 0.5);
@@ -496,7 +529,7 @@ a .card-img-top {
 
 
 /* tema dark */
-body.dark .carouselprincipal{
+body.dark .carouselprincipal {
   box-shadow: var(--sombra-dark);
 }
 
@@ -523,13 +556,13 @@ body.dark .carouselprincipal{
 
 
 /* tema dark */
-body.dark .input-search::placeholder{
+body.dark .input-search::placeholder {
   color: var(--color-white);
 }
 
 
 /* tema dark */
-body.dark .input-search{
+body.dark .input-search {
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
   background: var(--color-gris);
@@ -556,7 +589,7 @@ body.dark .input-search{
 
 
 /* tema dark */
-body.dark .btn-search{
+body.dark .btn-search {
   background-color: var(--color-grisclaro);
 }
 
@@ -568,7 +601,7 @@ body.dark .btn-search{
 
 
 /* tema dark */
-body.dark .btn-search:hover{
+body.dark .btn-search:hover {
   background-color: var(--color-white);
   color: var(--color-grisclaro);
 }
@@ -578,45 +611,47 @@ body.dark .btn-search:hover{
 
 /* ...........................................start styles paginacion home......................... */
 
-.linkanterior{
+.linkanterior {
   border-top-left-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
 
-.linksiguiente{
+.linksiguiente {
   border-top-right-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
 }
 
 
 /* tema dark */
-body.dark .linkanterior{
+body.dark .linkanterior {
   background-color: var(--color-gris) !important;
   border: none;
   color: var(--color-white);
 }
 
 
-body.dark .linksiguiente{
+body.dark .linksiguiente {
   background-color: var(--color-gris) !important;
   border: none;
   color: var(--color-white);
 }
 
-body.dark .active .linkpage{
+body.dark .active .linkpage {
   background-color: var(--color-bikenoscuro) !important;
   color: var(--color-white);
 }
 
 
-body.dark  .linkpage{
-  background-color: var(--color-gris)!important;
+body.dark .linkpage {
+  background-color: var(--color-gris) !important;
   border: none;
   color: var(--color-white);
 }
 
-body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterior:hover{
-  background-color: var(--color-grisclaro)!important;
+body.dark .linkpage:hover,
+body.dark .linksiguiente:hover,
+body.dark .linkanterior:hover {
+  background-color: var(--color-grisclaro) !important;
   border: none;
   color: var(--color-white);
 }
@@ -625,36 +660,37 @@ body.dark  .linkpage:hover,body.dark .linksiguiente:hover,body.dark .linkanterio
 
 /* ............................................start styles ventanas modals  perfil......................... */
 
-.modal-content-profile{
+.modal-content-profile {
   padding: 15px;
   background-color: var(--color-white) !important;
   border-radius: 30px;
 }
 
 /* tema dark */
-body.dark .modal-content-profile{
+body.dark .modal-content-profile {
   background-color: var(--color-dark) !important;
 }
 
 
-.modal-header-profile, .modal-footer-profile{
+.modal-header-profile,
+.modal-footer-profile {
   border: none;
 }
 
 
 /* tema dark */
-body.dark .modal-body-profile h5{
+body.dark .modal-body-profile h5 {
   color: var(--color-white);
 }
 
 /* tema dark */
-body.dark .modal-header-profile button span{
+body.dark .modal-header-profile button span {
   color: var(--color-white);
 }
 
 
-.iconmodal_deletebike{
-  animation: heartBeat ;
+.iconmodal_deletebike {
+  animation: heartBeat;
   animation-duration: 2s;
 }
 
@@ -665,14 +701,14 @@ body.dark .modal-header-profile button span{
 
 /* ............................................start styles ventanas modals home......................... */
 
-.imgbike_detailbike{
+.imgbike_detailbike {
   height: 300px;
   width: 500px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }
 
-.imguser_detailbike{
+.imguser_detailbike {
   z-index: 1000;
   height: 150px;
   width: 150px;
@@ -680,44 +716,46 @@ body.dark .modal-header-profile button span{
   border-radius: 1000px;
 }
 
-.modal-content-home, .modal-body-home{
+.modal-content-home,
+.modal-body-home {
   padding: 0 !important;
 }
 
-.modal-content-home{
+.modal-content-home {
   border-radius: 30px;
   background-color: var(--color-light);
 }
 
 /* tema dark */
-body.dark .modal-content-home{
+body.dark .modal-content-home {
   background-color: var(--color-dark);
-} 
+}
 
 
-.modal-content-home h5{
+.modal-content-home h5 {
   color: var(--color-biken);
 }
 
 /* tema dark */
-body.dark .modal-content-home h5{
+body.dark .modal-content-home h5 {
   color: var(--color-bikenclaro);
 }
 
 
-.modal-content-home h6{
+.modal-content-home h6 {
   color: var(--color-dark);
 }
 
 /* tema dark */
-body.dark .modal-content-home h6{
+body.dark .modal-content-home h6 {
   color: var(--color-white);
 }
 
 
-.modal-footer-home{
+.modal-footer-home {
   border: none;
 }
+
 /* ............................................end styles ventanas modals home......................... */
 
 /*---------------------------------------------------end buscar homepage-------------------------------------------*/
@@ -759,13 +797,14 @@ body.dark .modal-content-home h6{
 
 /* Alertas de error registro de usuarios */
 
-.texterror{
+.texterror {
   color: red;
 }
 
-.backgroundalert{
+.backgroundalert {
   background-color: yellow;
 }
+
 /* end estilo alerta */
 
 
@@ -777,6 +816,7 @@ body.dark .modal-content-home h6{
   margin-top: 13%;
   margin-right: 10px;
 }
+
 /* ----------- */
 
 
@@ -805,7 +845,8 @@ body.dark .modal-content-home h6{
   background: #F1F1F1;
 }
 
-.icon2 {/* iconos del menu de cerrar sesion*/
+.icon2 {
+  /* iconos del menu de cerrar sesion*/
   padding-right: 10px;
   color: rgba(2, 89, 189, 0.4);
   font-size: 17px;
@@ -914,6 +955,7 @@ textarea::-webkit-input-placeholder {
   font-style: italic;
   font-size: 14px;
 }
+
 /* ------------ */
 
 
@@ -1052,7 +1094,7 @@ body.dark .text-title_login {
 
 
 /* tema dark */
-body.dark .jumbotrom{
+body.dark .jumbotrom {
   box-shadow: var(--sombra-dark);
   background-color: var(--color-gris);
 }
@@ -1069,7 +1111,7 @@ body.dark .jumbotrom{
 
 
 /* tema dark */
-body.dark .text-footer{
+body.dark .text-footer {
   color: var(--color-white);
 }
 
@@ -1122,7 +1164,7 @@ body.dark .text-footer{
   background-position-x: right;
 }
 
-body.dark.bgimg_registro{
+body.dark.bgimg_registro {
   background-image: url(../img/animations/bike2_dark.svg);
 }
 
@@ -1151,11 +1193,11 @@ body.dark.bgimg_registro{
 
 /*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
-.tituloquienessomos{
+.tituloquienessomos {
   font-size: 40px;
-  font-family:var(--fuente-roman);
+  font-family: var(--fuente-roman);
   text-align: left;
-  color : rgb(10, 85, 216);
+  color: rgb(10, 85, 216);
 }
 
 
@@ -1166,33 +1208,33 @@ body.dark.bgimg_registro{
 
 
 /* tema dark */
-body.dark .banner_qs{
+body.dark .banner_qs {
   display: none;
 }
 
 
 
 /* tema dark */
-body.dark .textoquienessomos{
+body.dark .textoquienessomos {
   color: var(--color-white);
 }
 
 
-body.dark .tituloquienessomos{
+body.dark .tituloquienessomos {
   color: var(--color-white);
 }
 
 /*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
 
 /*--------------------------------------------------------estilos pagina contacto------------------------------------------------*/
-.titulocontacto{
+.titulocontacto {
   font-size: 40px;
-  font-family:var(--fuente-roman);
+  font-family: var(--fuente-roman);
   text-align: left;
-  color : rgb(10, 85, 216);
+  color: rgb(10, 85, 216);
 }
 
-body.dark .textcontacto{
+body.dark .textcontacto {
   color: var(--color-white);
 }
 
@@ -1232,7 +1274,8 @@ body.dark .row .col-lg-3 .card {
 }
 
 /* tema dark */
-body.dark .colortextcount-card , body.dark .colortextdate-card{
+body.dark .colortextcount-card,
+body.dark .colortextdate-card {
   color: #84AEF7;
 }
 
@@ -1242,16 +1285,16 @@ body.dark .colortextcount-card , body.dark .colortextdate-card{
 }
 
 /* tema dark */
-body.dark .iconos-admin{
+body.dark .iconos-admin {
   color: #C4C3C0
 }
 
 
 
-.iconsettings_profile{
+.iconsettings_profile {
   height: 40px;
   width: 40px;
-  margin-left:90%;
+  margin-left: 90%;
   margin-top: 5%;
   padding: 8px;
   background-color: var(--color-light);
@@ -1263,7 +1306,7 @@ body.dark .iconos-admin{
 }
 
 
-.iconsettings_profile:hover{
+.iconsettings_profile:hover {
   background-color: var(--color-biken);
   color: var(--color-light);
   border: solid 1px var(--color-biken);
@@ -1273,26 +1316,26 @@ body.dark .iconos-admin{
 
 /*------------------------------------------------------------start styles Screen UploadBike-------------------------------------------------*/
 
-.tituloUploadBike{
+.tituloUploadBike {
 
   font-size: 28px;
   font-family: var(--fuente-roman);
   text-align: center;
-  color : var(--color-biken)
+  color: var(--color-biken)
 }
 
 /* tema dark */
-body.dark .tituloUploadBike{
+body.dark .tituloUploadBike {
   color: var(--color-white);
 }
 
-.subtituloUploadBike{
+.subtituloUploadBike {
   text-align: center;
 }
 
 
 /* tema dark */
-body.dark .subtituloUploadBike{
+body.dark .subtituloUploadBike {
   color: var(--color-white);
 }
 
@@ -1310,23 +1353,23 @@ body.dark .subtituloUploadBike{
 
 /* ...........................Styles modo nocturno de inputs de los formularios................................... */
 
-body.dark label{
+body.dark label {
   color: var(--color-white);
 }
 
-body.dark .input-search_nav{
+body.dark .input-search_nav {
   background-color: var(--color-grisclaro);
   border: solid 1px var(--color-grisclaro);
 }
 
-body.dark .inputs_forms{
+body.dark .inputs_forms {
   background-color: var(--color-gris);
   color: rgb(238, 238, 238);
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
 }
 
-body.dark .inputs_forms_number{
+body.dark .inputs_forms_number {
   background-color: var(--color-gris);
   color: rgb(238, 238, 238);
   -webkit-transition: .5s ease all;
@@ -1334,7 +1377,7 @@ body.dark .inputs_forms_number{
 }
 
 
-body.dark .custom-select{
+body.dark .custom-select {
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
   background-color: var(--color-gris);
@@ -1342,10 +1385,11 @@ body.dark .custom-select{
 }
 
 
-body.dark .custom-file-label{
+body.dark .custom-file-label {
   background-color: var(--color-gris);
   color: var(--color-white);
 }
+
 /* ...........................end Styles modo nocturno de inputs de los formularios................................... */
 
 /* ------------------------------start styles switch(boton de cambio de tema)------------------ */
@@ -1360,7 +1404,7 @@ body.dark .custom-file-label{
   outline: none;
 }
 
-.switch:hover{
+.switch:hover {
   background: #6395eb;
 }
 
@@ -1382,7 +1426,7 @@ body.dark .switch.active:hover {
   color: orange;
 }
 
-.switch.active span{
+.switch.active span {
   color: #fff;
 
 }
@@ -1400,21 +1444,21 @@ body.dark .switch.active:hover {
 
 /* .......................start scroll modal...................... */
 .modal::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
   background: transparent;
 }
 
 .modal::-webkit-scrollbar-thumb {
-	background: var(--color-biken);
-	border-radius: 10px;
-	border-right: 2px solid rgb(156, 156, 156);
+  background: var(--color-biken);
+  border-radius: 10px;
+  border-right: 2px solid rgb(156, 156, 156);
 }
 
 
 /* modo dark */
 body.dark .modal::-webkit-scrollbar-thumb {
-	background: var(--color-grisclaro);
-	border-radius: 10px;
+  background: var(--color-grisclaro);
+  border-radius: 10px;
   border-right: 2px solid var(--color-dark);
 }
 
@@ -1422,21 +1466,21 @@ body.dark .modal::-webkit-scrollbar-thumb {
 
 
 body::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
   background: transparent;
 }
 
 body::-webkit-scrollbar-thumb {
-	background: var(--color-biken);
-	border-radius: 10px;
-	border-right: 2px solid #fff;
+  background: var(--color-biken);
+  border-radius: 10px;
+  border-right: 2px solid #fff;
 }
 
 
 /* modo dark */
 body.dark::-webkit-scrollbar-thumb {
-	background: var(--color-grisclaro);
-	border-radius: 10px;
+  background: var(--color-grisclaro);
+  border-radius: 10px;
   border-right: 2px solid var(--color-dark);
 }
 
@@ -1445,139 +1489,10 @@ body.dark::-webkit-scrollbar-thumb {
 
 
 
-/*--------------------------------------------------------media QuerysScreens--------------------------------------------------------*/
-
-
-
-@media screen and (max-width:1000px){
-
-  /* mediaquerys del home hasta 900px */
-  .card-columns {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-  } 
-}
-/* end styles */
-
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media screen and (max-width: 800px) {
-
-  /* ...............................start styles  pantalla menor a 800px en el index........................ */
-
-  .principal {
-    background-image: none;
-  }
-
-  /* ...............................end styles  pantalla menor a 800px en el index........................ */
-
-  /* ...............................start styles  pantalla menor a 800px en el Homepage........................ */
-
-  .div_search {
-    display:none;
-  }
-
-
-  /* ...............................end styles  pantalla menor a 800px en el Homepage........................ */
-
-
-  /* ...............................start styles  pantalla menor a 800px en el perfilpage........................ */
-
-  .iconsettings_profile{
-    margin-left:85%;
-  }
-
-
-
-  /* ...............................end styles  pantalla menor a 800px en el perfilpage........................ */
-
-}
-
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-
-  /* ...............................start styles pantalla menor a 600px en el Index........................ */
-
-
-
-  .titulo {
-    margin-top: 30%;
-    font-size: 90px;
-  }
-
-
-  .div-bike {
-    margin-top: 20%;
-    position: fixed;
-    filter: blur(9px);
-  }
-
-
-  .bike {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .icon-index {
-    width: 45px;
-    margin-left: -15px;
-  }
-
-  .contact {
-    margin-right: -15px;
-  }
-
-  .principal {
-    background-image: none;
-  }
-
-  /* ...............................end styles pantalla menor a 600px en el Index........................ */
-
-  /* ...............................start styles  pantalla menor a 600px en el Homepage........................ */
-
-
-
-
-
-
-
-  .carouselprincipal {
-    height: 200px;
-  }
-
-
-  .card-columns {
-    margin: auto;
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1;
-  } 
-
-
-  /* ...............................start styles  pantalla menor a 600px en el Homepage-barra lateral........................ */
-
-  .nav__link_user {
-    color: var(--color-biken);
-  }
-
-  /* ...............................end styles  pantalla menor a 600px en el Homepage-barra lateral ........................ */
-
-  /* ...............................end styles  pantalla menor a 600px en el Homepage........................ */
-
-
-}
-
-
-/*--------------------------------------------------------end media QuerysScreens----------------------------------------------------------*/
-
 
 /* ------------------------start styles screeen settings user----------- */
 
-.optionsconfig{
+.optionsconfig {
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: 35px;
@@ -1588,47 +1503,47 @@ body.dark::-webkit-scrollbar-thumb {
 }
 
 
-.icons_optionsconfig{
+.icons_optionsconfig {
   color: grey;
   font-size: 25px;
   margin-right: 15px;
 }
 
-body.dark .icons_optionsconfig{
+body.dark .icons_optionsconfig {
   color: var(--color-white);
 }
 
 /* tema dark */
-body.dark .optionsconfig{
+body.dark .optionsconfig {
   border-color: var(--color-grisclaro);
   color: var(--color-white)
 }
 
 
-.optionsconfig:hover{
+.optionsconfig:hover {
   background-color: var(--color-biken);
   color: var(--color-white);
 }
 
 
 /* tema dark */
-body.dark .optionsconfig:hover{
+body.dark .optionsconfig:hover {
   background-color: var(--color-bikenoscuro);
 }
 
-.title_settings{
+.title_settings {
   color: var(--color-biken);
   font-size: 30px;
   font-family: var(--fuente-roman);
 }
 
 /* tema dark */
-body.dark .title_settings{
+body.dark .title_settings {
   color: var(--color-white);
 }
 
 
-.img_settings{
+.img_settings {
   margin-left: 10%;
   margin-top: 10%;
   height: 90%;
@@ -1639,28 +1554,111 @@ body.dark .title_settings{
 
 /* ------------------------start styles screeen change email----------- */
 
-.form-email{
+.form-email {
   margin-top: 50%;
 }
+
 /* ------------------------end styles screeen change email----------- */
 
 
 
 /* ------------------------start styles screeen change password----------- */
 
-.text_error-changepass{
+.text_error-changepass {
   color: red;
 }
 
-.helptext_changepass{
+.helptext_changepass {
   font-size: 13px;
 }
 
 /* tema dark */
-body.dark .helptext_changepass{
+body.dark .helptext_changepass {
   color: var(--color-white);
 }
 
 
 
 /* ------------------------end styles screeen change password----------- */
+
+/* -----------------------------start styles screeen Login Admin--------------------------------------- */
+
+.container-principal_login {
+  background-image: url(../img/animations/waveloginAdmin2.svg);
+  background-repeat: no-repeat;
+  background-position-y: -120px;
+}
+
+.body_login {
+  background-color: var(--color-bgcard);
+  background-image: url(../img/animations/waveloginAdmin.svg);
+  background-repeat: no-repeat;
+  background-position-y: 550px;
+  background-size: 100%;
+}
+
+
+.container-form {
+  margin-top: 15%;
+}
+
+
+.div-form_loginadmin {
+  background-color: var(--color-light);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--sombra-light);
+}
+
+.anim_login_admin {
+  margin-top: 10%;
+  margin-left: 50px;
+  height: 100%;
+}
+
+.div_iconobiken_loginadmin {
+  background-color: var(--color-light);
+  width: 170px;
+  height: 140px;
+  box-shadow: var(--sombra-light);
+  border-radius: 20px;
+}
+
+.iconobiken_loginadmin {
+  width: 150px;
+  height: 120px;
+}
+
+.btn_biken_success_loginadmin {
+  background-color: #D3D7DF;
+  border-radius: 10px;
+  color: var(--color-bikenoscuro);
+  margin-top: 30px;
+}
+
+
+.btn_biken_success_loginadmin:hover {
+  background-color: var(--color-bikenoscuro);
+  color: #D3D7DF;
+}
+
+
+.textsweet-alert_loginadmin {
+  color: var(--color-white);
+}
+
+
+.alert {
+  padding: 0;
+  border-radius: 10px;
+}
+
+.text-alert-error_loginadmin {
+  font-size: 14px;
+  margin: 10px;
+}
+
+
+
+
+/* -----------------------------end styles screeen Login Admin-------------------------------------- */

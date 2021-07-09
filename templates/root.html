@@ -10,6 +10,7 @@
     <link href='{% static "/css/normalize.css" %}' rel="stylesheet" type="text/css">
     <link href='{% static "/css/all.css" %}' rel="stylesheet" type="text/css" />
     <link href='{% static "/css/mis_estilos.css"%}' rel="stylesheet" type="text/css">
+    <link href='{% static "/css/mediaQuerys/mediaquery.css"%}' rel="stylesheet" type="text/css">
     <link href='{% static "css/styles_forms.css" %}' rel="stylesheet" type="text/css">
     <link href='{% static "/css/aside/styles.css" %}' rel="stylesheet">
     <link src='{% static "/arch/jquery/jquery.confirm.min.css" %}' type="text/css">
@@ -22,8 +23,13 @@
 
 {% block classbody %}
 
-<body id="body">{% endblock %}
+<body id="body">
+    
+{% endblock %}
 
+    
+{% block navbar %}
+        
     <!-- evita mostrar el efecto de carga si algun error en un formulario que extienda de base -->
     {% if form.errors %}
     {% else %}
@@ -37,11 +43,10 @@
             <nav class="nav">
                 <div>
                     <a href="{% url 'index' %}" class="nav__logo">
-                        <img src='{% static "img/iconsBiken/IconBiken_Django.svg" %}' alt="" class="nav__logo-icon"
+                        <img src='{% static "img/iconsBiken/IconBiken_Django.svg" %}' alt="" class="nav__logo-icon icon_biken-home"
                             height="46" width="46">
                         <span class="nav__logo-text">Biken</span>
                     </a>
-
                     <div class="nav__toggle" id="nav-toggle">
                         <span class="iconify" data-icon="dashicons:arrow-right-alt2" data-inline="false"></span>
                     </div>
@@ -115,6 +120,18 @@
                         </a>
 
                         {% endif %}
+
+
+                        
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'admin:index' %}" class="nav__link">
+                            <span class="nav__icon iconify" data-icon="eos-icons:admin-outlined" data-inline="false"></span>
+                            <span class="nav__text">Admin Biken</span>
+                        </a>    
+                        {% else %}                        
+                        {% endif %}
+                            
+
                         <a>
                             <a class="switch btn" id="switch">
                                 <span><i id='icon' class="fas fa-sun icon_modnight"></i></span>
@@ -125,10 +142,12 @@
                 </div>
             </nav>
         </div>
-        
-            {% block content %}
 
-            {% endblock content %}            
+        {% endblock navbar %}
+        
+        {% block content %}
+
+        {% endblock content %}            
 
     
         {% block footer %}

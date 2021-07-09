@@ -7,28 +7,6 @@
 
 <body class="img-bg_login"></body>{% endblock %}
 
-{% block navbar %}
-
-<a href="{% url 'home' %}" class="nav__link ">
-	<span class="iconify nav__icon" data-icon="ion:grid-outline" data-inline="false"></span>
-	<span class="nav__text">Inicio</span>
-</a>
-
-<a href="{% url 'login' %}" class="nav__link active">
-	<span class="iconify nav__icon" data-icon="ant-design:login-outlined" data-inline="false"></span>
-	<span class="nav__text">Inicia Sesión</span>
-</a>
-<a href="{% url 'registro' %}" class="nav__link ">
-	<span class="iconify nav__icon" data-icon="ant-design:user-add-outlined" data-inline="false"></span>
-	<span class="nav__text">Registrarse</span>
-</a>
-<a href="#" class="nav__link">
-	<span class="iconify nav__icon" data-icon="carbon:favorite" data-inline="false"></span>
-	<span class="nav__text">Favorites</span>
-</a>
-
-{% endblock %}
-
 
 {% block content %}
 <div class="row align-items-center justify-content-center minh-100">

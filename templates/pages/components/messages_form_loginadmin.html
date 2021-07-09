@@ -1,0 +1,24 @@
+
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+
+            <script>
+                Swal.fire({
+                    html: '<strong class="textsweet-alert_loginadmin">{{error}}</strong>',
+                    icon: 'error',
+                    width: '500px',
+                    padding: '8px',
+                    background: '#0C2247',
+                    grow: false,
+                    toast: true,
+                    position: 'bottom-end',
+                    allowEscapeKey: true,
+                    stopKeydownPropagation: false,
+                    showConfirmButton: false,
+                    showCancelButton: false,     
+                    showCloseButton:true,     
+                });
+            </script>
+    {% endfor %}
+{%endif%}

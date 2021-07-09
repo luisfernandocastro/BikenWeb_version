@@ -1,0 +1,80 @@
+{% extends 'admin/baselogin_admin.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+
+{% block content %}
+
+
+<div class="row">
+
+	<div class="col-lg-6">
+		
+		<div class="container-form">
+			<div class="div_iconobiken_loginadmin d-block mx-auto mb-3 icon_biken">
+				<img class="iconobiken_loginadmin img-fluid d-block mx-auto" src="{% static 'img/iconsBiken/icono.png' %}" alt="">
+			</div>
+
+			<div class="div-form_loginadmin">
+
+				
+				{% if user.is_authenticated %}
+				<div class="alert alert-danger" role="alert" >
+					<p class="text-alert-error_loginadmin text-justify">
+						<button type="button" class="close ml-2" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						Estás autenticado como <strong>{{username}}</strong>, pero no estás autorizado a
+						acceder a esta página. ¿Le gustaría iniciar sesión en una cuenta diferente?
+					</p>
+				</div>
+				{%endif%}
+
+				<form action="{{ app_path }}" method="post" id="login-form">
+					{% csrf_token %}
+		
+					{{ form.username.errors }}
+					<div class="form-group">
+						<label for="user">{{ form.username.label_tag }}</label>
+						{% render_field form.username class="form-control inputs_forms_loginadmin" type="email" placeholder="Usuario"%}
+					</div>
+		
+					{{ form.password.errors }}
+					<div class="form-group">
+						<label for="user">{{ form.password.label_tag }}</label>
+						{% render_field form.password class="form-control inputs_forms_loginadmin" type="password" placeholder="Usuario"%}
+					</div>
+		
+		
+					{% url 'admin_password_reset' as password_reset_url %}
+					{% if password_reset_url %}
+					<div class="password-reset-link">
+						<a href="{{ password_reset_url }}">'¿Olvidaste tu contraseña o nombre de usuario?'</a>
+					</div>
+					{% endif %}
+					<button type="submit" class="btn btn-block btn_biken_success_loginadmin">Iniciar sesión</button>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<img src="{% static 'img/animations/anim_login-admin.svg' %}" alt="" class="anim_login_admin img-fluid">
+	</div>
+
+</div>
+
+{% include 'pages/components/messages_form_loginadmin.html' %}
+
+
+
+{% endblock content %}
+
+
+
+
+
+

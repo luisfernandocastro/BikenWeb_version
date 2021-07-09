@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Configuraciones || Usuario
+Configuraciones || {{request.user.first_name |capfirst}} {{request.user.last_name|capfirst}}
 {% endblock title %}
 
 
@@ -36,7 +36,7 @@ Configuraciones || Usuario
                 </div>
             </a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 div-anim_settingsuser">
             <img class="img_settings" src="{% static 'img/animations/anim_settings.svg' %}" alt="">
         </div>
     </div>

@@ -21,6 +21,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
 
+from django.conf import settings as setting
+from django.contrib.auth.views import LoginView
+
+
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
 
 
@@ -164,3 +168,5 @@ def settings(request):
 class Descripcionbike(DetailView):
     model = MiBicicleta
     template_name = 'pages/components/modal_detailbike.html'
+
+

@@ -1,0 +1,63 @@
+/*  estilos del fondo del admin */
+.dashboard,
+.menu-pinned {
+    background-image: url(../../img/animations/anim_login-admin.svg);
+    background-repeat: no-repeat;
+    background-position-y: 200px;
+    background-position-x: 900px;
+    background-size: 50%;
+}
+
+#site_name a{
+    color: #C8CDD0 !important;
+}
+
+
+#site_name a:hover{
+    color: #1ccaca !important;
+}
+
+
+.scrollable {
+    background-color: #2C3A52;
+    /*color de la parte superior de la barra lateral de navegacion(donde se encuentra el icono biken en el admin)*/
+}
+
+
+#branding {
+    background-color: #0C2247;
+    /*color biken oscuro , ocupa toda la barra lateral de navegacion*/
+}
+
+.contrast {
+    background-color: #2C3A52 !important;
+    /* color de las cabeceras de los artilugios*/
+
+}
+
+
+/* color del boton agregar artilugio admin */
+.add-dashboard-link {
+    background-color: #2C3A52;
+    color: white;
+}
+
+.sidebar-dependent {
+    color: white;
+    background-color: #2C3A52 !important;
+}
+
+
+.sidebar-popup-title{
+    color: #1ccaca !important;
+}
+
+.sidebar-popup-list-item-link {
+    color: #C8CDD0 !important;
+}
+
+
+.sidebar-popup-list-item-link:hover {
+    background-color: #0C2247 !important;
+    color: #C8CDD0 !important;
+}

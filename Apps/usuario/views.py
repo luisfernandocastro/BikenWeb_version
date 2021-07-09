@@ -4,6 +4,7 @@ from django import forms
 
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login as auth_login
+from django.views.generic.base import RedirectView
 from django.views.generic.edit import FormView
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
@@ -57,11 +58,27 @@ class Login(LoginView):
 
 
 
+class Logout(RedirectView):
+    pattern_name = 'home'
+
+    def dispatch(self, request, *args, **kwargs):
+        logout(request)
+        return super().dispatch(request, *args, **kwargs)
+
+
+# def logoutUser(request):
+#     logout(request)
+#     return HttpResponseRedirect('/home')
+
+
 def registro(request):
     data = {
         # Formulario personalizado  que se trae desde el forms.py
         'form': CustomUserCreationForm()
     }
+    if request.user.is_authenticated:
+        return redirect(setting.LOGIN_REDIRECT_URL)
+
     if request.method == 'POST':
         # request.FILES ,necesario para subir imagenes
         formulario = CustomUserCreationForm(

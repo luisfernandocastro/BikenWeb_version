@@ -190,6 +190,11 @@ body.dark .l-navbar {
   margin-left: .2rem;
 }
 
+.nav__icon:hover {
+  animation: pulse;
+  animation-duration: 2s;
+}
+
 .nav__text {
   font-weight: 700;
 }
@@ -270,6 +275,10 @@ body.dark .l-navbar {
     border-radius: 10px;
   }
 
+  .nav__icon-search {
+    color: red ;
+  }
+
 }
 
 
@@ -294,7 +303,7 @@ body.dark .l-navbar {
 
   .nav__icon-search {
     font-weight: bold;
-    color: var(--white-color);
+    color: orange;
     font-size: 1.9rem;
     margin-right: 1rem;
     margin-left: .01rem;
