@@ -6,7 +6,7 @@
 }
 
 
-.inputs_forms_loginadmin{
+.inputs_forms_loginadmin {
     border-radius: 10px !important;
     border: solid 1px #0C2247 !important;
     background-color: #FBFBFE;
@@ -14,11 +14,11 @@
 
 
 .form-control:focus {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(32, 89, 189 , 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(32, 89, 189, 0.6);
 }
 
 .form-control:focus {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(32, 89, 189 , 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(32, 89, 189, 0.6);
 }
 
 
@@ -29,43 +29,43 @@
     transition: .5s ease all;
 }
 
-.inputs_forms_number{
+.inputs_forms_number {
     border-bottom-left-radius: 30px !important;
-    border-top-left-radius:  30px;
-    border-top:  solid 1px #2059BD !important;
+    border-top-left-radius: 30px;
+    border-top: solid 1px #2059BD !important;
     border-bottom: solid 1px #2059BD !important;
     border-left: solid 1px #2059BD !important;
-    border-right:none;
+    border-right: none;
     -webkit-transition: .5s ease all;
     transition: .5s ease all;
 }
 
 
-.input-group-text{
+.input-group-text {
     /* background-color: #2059BD; */
     border-bottom-right-radius: 30px !important;
-    border-top-right-radius:  30px;
-    border-top:  solid 1px #2059BD !important;
+    border-top-right-radius: 30px;
+    border-top: solid 1px #2059BD !important;
     border-bottom: solid 1px #2059BD !important;
     border-right: solid 1px #2059BD !important;
     border-left: none;
 }
 
 /* tema dark */
-body.dark .input-group-text{
+body.dark .input-group-text {
     background-color: #2A3B47;
     color: #C8CDD0;
 }
 
 
-.helptext_input-number{
+.helptext_input-number {
     font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 
-body.dark .helptext_input-number{
+body.dark .helptext_input-number {
     color: #C8CDD0;
 }
 
@@ -91,4 +91,11 @@ body.dark .helptext_input-number{
     .input-search_nav::placeholder {
         color: #C8CDD0;
     }
+}
+
+
+
+
+.form-check-input{
+    background-color: red !important;
 }

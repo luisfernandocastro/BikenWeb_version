@@ -12,7 +12,6 @@
 
 /*===== Fuente y tipografia =====*/
 :root {
-  --body-font: 'Quicksand', sans-serif;
   --small-font-size: 0.875rem;
 }
 
@@ -43,8 +42,6 @@ body {
   /* position: relative; */
   margin: 0;
   padding: 0rem 0 0 0rem;
-  font-family: var(--body-font);
-  /*background-color: var(--white-color);*/
   -webkit-transition: .5s;
   transition: .5s;
 }

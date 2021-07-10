@@ -27,6 +27,7 @@
   /* ---fuentes--- */
 
   --fuente-roman: 'Times New Roman', Times, serif;
+  --body-font: 'Quicksand', sans-serif;
 
 }
 
@@ -48,6 +49,29 @@ body.dark .colorbikentext {
 }
 
 /* end colores generales */
+
+
+
+
+/* estilos de los titulos de las paginas */
+
+.titulopage {
+  font-size: 28px;
+  font-family: var(--fuente-roman);
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-biken)
+}
+
+/* tema dark */
+body.dark .titulopage {
+  color: var(--color-white);
+}
+
+/* end estilos titulos de las paginas */
+
+
+
 
 
 /* animate css */
@@ -106,6 +130,7 @@ body.dark .btn_biken_success:hover {
 
 
 body {
+  font-family: var(--body-font);
   background-color: var(--color-light);
   -webkit-transition: .5s ease all;
   transition: .5s ease all;
@@ -1232,12 +1257,6 @@ body.dark.bgimg_registro {
 
 /*--------------------------------------------------------estilos pagina quienes somos------------------------------------------------*/
 
-.tituloquienessomos {
-  font-size: 40px;
-  font-family: var(--fuente-roman);
-  text-align: left;
-  color: rgb(10, 85, 216);
-}
 
 
 .banner_qs {
@@ -1259,19 +1278,10 @@ body.dark .textoquienessomos {
 }
 
 
-body.dark .tituloquienessomos {
-  color: var(--color-white);
-}
 
 /*--------------------------------------------------------end styles pagina quienes somos--------------------------------------------*/
 
 /*--------------------------------------------------------estilos pagina contacto------------------------------------------------*/
-.titulocontacto {
-  font-size: 40px;
-  font-family: var(--fuente-roman);
-  text-align: left;
-  color: rgb(10, 85, 216);
-}
 
 body.dark .textcontacto {
   color: var(--color-white);
@@ -1355,18 +1365,7 @@ body.dark .iconos-admin {
 
 /*------------------------------------------------------------start styles Screen UploadBike-------------------------------------------------*/
 
-.tituloUploadBike {
 
-  font-size: 28px;
-  font-family: var(--fuente-roman);
-  text-align: center;
-  color: var(--color-biken)
-}
-
-/* tema dark */
-body.dark .tituloUploadBike {
-  color: var(--color-white);
-}
 
 .subtituloUploadBike {
   text-align: center;
@@ -1570,17 +1569,9 @@ body.dark .optionsconfig:hover {
   background-color: var(--color-bikenoscuro);
 }
 
-.title_settings {
-  color: var(--color-biken);
-  font-size: 30px;
-  font-family: var(--fuente-roman);
-}
+
 
 /* tema dark */
-body.dark .title_settings {
-  color: var(--color-white);
-}
-
 
 .img_settings {
   margin-left: 10%;

@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from django import db
 from django.db import models
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
@@ -42,7 +43,8 @@ class Perfil(models.Model):
 
 class MiBicicleta(models.Model):
     idmibicicleta = models.BigAutoField(db_column='idmibicicleta',primary_key=True, serialize=False, verbose_name='ID')
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='miBici',null=True)
+    user=models.ForeignKey(User,db_column='Propietario', on_delete=models.CASCADE,related_name='miBici',null=True)
+    disponible = models.BooleanField(db_column='Disponible',default=True)
     marca = models.CharField(db_column='Marca', max_length=45,default=None)  # Field name made lowercase.
     color = models.CharField(db_column='Color', max_length=50,default=None)  # Field name made lowercase.
     material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material',default=None)  # Field name made lowercase.

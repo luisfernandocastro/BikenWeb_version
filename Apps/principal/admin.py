@@ -19,7 +19,7 @@ class userAdmin(admin.ModelAdmin):
 
 @admin.register (MiBicicleta)
 class BicletasAdmin(admin.ModelAdmin):
-    list_display = ('idmibicicleta','marca','color', 'material', 'categoria','precioalquiler','timestamp','foto','valortiempohoras','valortiempomin')
+    list_display = ('user','idmibicicleta','marca','color', 'material', 'categoria','precioalquiler','timestamp','foto','valortiempohoras','valortiempomin','disponible')
     search_fields = ['color']
     list_editable = ['precioalquiler','valortiempohoras']
     list_filter = ['color','categoria']

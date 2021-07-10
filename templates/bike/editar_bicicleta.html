@@ -20,9 +20,9 @@
 
                 <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
                 <strong>
-                    <div class="mt-5"
-                        style="font-size: 28px; font-family:cursive; text-align: center; color :rgb(23, 75, 193 )">
-                        Editar datos de la Bicicleta</div>
+                    <div class="mt-5 titulopage">
+                        Editar datos de la Bicicleta
+                    </div>
                 </strong>
 
                 <hr size="1px" color="gray" />
@@ -92,6 +92,22 @@
                         <label for="precio">Descripción</label>
                         {% render_field form.descripcionbici class="form-control inputs_forms" type="" placeholder="Agrega una descripción de tu Bici"%}
                     </div>
+
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            {% render_field form.disponible class="custom-control-input btn_biken_success" name='box1' type="checkbox" id="check1"%}
+                            <label class="custom-control-label" for="check1"> 
+                                
+                                {% if object.disponible == True %}
+                                <strong class="text-success">Bicicleta disponible para ser alquilada</strong>    
+                                {% else %}
+                                <strong class="text-danger">Bicicleta no disponible para ser alquilada</strong> 
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group ">
                         <!-- {{form.foto}} -->
                         <label class="foto" for="foto">Foto</label>

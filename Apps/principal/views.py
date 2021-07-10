@@ -4,6 +4,7 @@ from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
 from .forms import BicicletasForm
@@ -84,31 +85,34 @@ def uploadBike(request):
 
 
 
-# metodo para editar o actualizar una bicicleta subida por el usuario loguedo
-def editar_bicicleta(request, id):
+# -------metodo para editar o actualizar una bicicleta subida por el usuario loguedo
 
-    bicicleta = get_object_or_404(MiBicicleta, idmibicicleta=id)
+class Editar_bicicleta(UpdateView):
+    model = MiBicicleta
+    form_class = BicicletasForm
+    template_name = 'bike/editar_bicicleta.html'
+    success_url = reverse_lazy('perfil')
 
-    data = {
-        'form': BicicletasForm(instance=bicicleta)
-    }
+# def editar_bicicleta(request, id):
 
-    if request.method == 'POST':
-        formulario = BicicletasForm(
-            data=request.POST, instance=bicicleta, files=request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            return redirect(to='perfil')
-        data['form'] = BicicletasForm(
-            instance=bicicleta.objects.get(idmibicicleta=id))
-
-    return render(request, 'bike/editar_bicicleta.html', data)
-
-
-# def delete_bicicleta(request, id):
 #     bicicleta = get_object_or_404(MiBicicleta, idmibicicleta=id)
-#     bicicleta.delete()
-#     return redirect(to="perfil")
+
+#     data = {
+#         'form': BicicletasForm(instance=bicicleta)
+#     }
+
+#     if request.method == 'POST':
+#         formulario = BicicletasForm(
+#             data=request.POST, instance=bicicleta, files=request.FILES)
+#         if formulario.is_valid():
+#             formulario.save()
+#             return redirect(to='perfil')
+#         data['form'] = BicicletasForm(
+#             instance=bicicleta.objects.get(idmibicicleta=id))
+
+#     return render(request, 'bike/editar_bicicleta.html', data)
+
+
 
 
 class Delete_bicicleta(DeleteView):
@@ -219,4 +223,24 @@ def biketodoterreno(request):
         ).distinct()
 
     return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
+
+
+
+
+def bikedisponibles(request):
+
+    queryset = request.GET.get("Buscar")
+    bicicletas = MiBicicleta.objects.filter(
+        disponible = True
+    )
+    if queryset :
+        bicicletas = MiBicicleta.objects.filter(
+            Q(user__last_name__icontains = queryset) | 
+            Q(user__first_name__icontains = queryset) | 
+            Q(precioalquiler__icontains = queryset) | 
+            Q(categoria__nombre__icontains= queryset)
+        ).distinct()
+
+    return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
+
 

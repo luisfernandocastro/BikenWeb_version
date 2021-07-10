@@ -10,6 +10,7 @@
     {% include 'pages/components/carousel.html' %}
 
     <div class="filter-home d-flex justify-content-center mt-5"> 
+        <a href="{% url 'bicicletasdisponibles' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':21' == '/home/filter/urbanas/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="healthicons:city" data-inline="false"></span> Bicicletas Disponibles</a>
         <a href="{% url 'bicicletasurbanas' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':21' == '/home/filter/urbanas/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="healthicons:city" data-inline="false"></span> Bicicletas urbanas</a>
         <a href="{% url 'bicicletasruta' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':18' == '/home/filter/ruta/'%}active-filter-home{% endif%}"><i class="fas fa-road"></i> Bicicletas ruta</a>
         <a href="{% url 'bicicletastodoterreno' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/todoterreno/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="ic:outline-terrain" data-inline="false"></span> Bicicletas todo Terreno</a>
@@ -32,7 +33,7 @@
                             <a href="{% url 'perfil' b.user.username %}">{%if b.user.first_name == '' %}
                                 {{ b.user.username}}
                                 {%else%}
-                                {{ b.user.first_name}} {{b.user.last_name}}
+                                {{ b.user.first_name|capfirst}} {{b.user.last_name|capfirst}}
                                 {%endif%}
                             </a>
                         </p>
@@ -40,8 +41,16 @@
                         <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
                         <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
                         <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong><i > {{b.valortiempohoras}} hora{{b.valortiempohoras|pluralize}}</i></p>
+                        <p class="card-text">
+                            
+                            {% if b.disponible == True %}
+                                <i class="text-success font-weight-bold"> Disponible </i>
+                            {% else %}
+                                <i class="text-danger font-weight-bold"> No esta disponible </i>
+                            {% endif %}
+                                
+                        </p>
     
-                        <!-- {{ num_messages }} message{{ num_messages|pluralize } -->
                         <div class="row">
                             <div class="col-lg-2">
                                 <!-- circulo de color de la bicicleta de la card  -->

@@ -100,7 +100,7 @@
                             <img src="{{request.user.perfil.get_image}}" class="img_user_profile_index" alt="">
                         </div>
                         <p class="welcome mt-2 font-weight-bold h4">Bienvenido de vuelta</p>
-                        <p class="welcome1"> {{request.user.first_name}}</p>
+                        <p class="welcome1"> {{request.user.first_name|capfirst}} {{request.user.last_name|capfirst}}</p>
                         {% else %}
                         <p class="welcome mt-5">Bienvenido a nuestra pagina Biken , que disfrute
                             de su visita.</p>
