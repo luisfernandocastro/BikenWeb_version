@@ -31,9 +31,11 @@
             <!-- ----------- -->
             {% endif %}
 
-
-            <div class="banner-profile" style="
-                        background: url('{{user.perfil.get_imagePortada}}') no-repeat;
+                <!-- estilos del banner (portada del perfil de los usuarios) -->
+                <style>
+                    .banner-profile{
+                        transition: .5s ease all;
+                        background: linear-gradient(to bottom,rgb(251, 251, 254,0) 50%, rgba(251, 251, 254,1.5) ), url('{{user.perfil.get_imagePortada}}') no-repeat;
                         -webkit-background-size: cover;
                         -moz-background-size: cover;
                         -o-background-size: cover;
@@ -42,22 +44,47 @@
                         background-position-y: top;
                         background-size: 100% 100%;
                         height: 100%;
-                        width: 100%;">
-                <div class="info_user">
-                    <div class="container-fluid  d-flex justify-content-center">
-                        <img src="{{user.perfil.get_image}}" class="img_user_profile">
-                    </div>
-                    <div
-                        class="container-fluid name_user_profile d-flex justify-content-center text-light text-capitalize mb-3">
-                        <h1>{{user.first_name}} {{user.last_name}}<br></h1>
-                    </div>
-                    <div class="container-fluid  d-flex justify-content-center">
-                        <h1 class="username_user_profile">@{{user.username}}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        width: 100%;       
+                    }
+
+
+                    body.dark .banner-profile{
+                        transition: .5s ease all;
+                        background: linear-gradient(to bottom,rgba(22, 29, 41,0) 10%, rgba(22, 29, 41,1.5) ), url('{{user.perfil.get_imagePortada}}') no-repeat;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        border-bottom-right-radius: 30px;
+                        border-bottom-left-radius: 30px;
+                        background-position-y: top;
+                        background-size: 100% 100%;
+                        height: 100%;
+                        width: 100%; 
+                    }
+
+                </style>
+                <!-- end estilos banner -->
+
+
+                <div class="banner-profile">
+    
+                    <div class="info_user">
+                            <div class="container-fluid  d-flex justify-content-center">
+                                <img src="{{user.perfil.get_image}}" class="img_user_profile">
+                            </div>
+                            <div
+                                class="container-fluid name_user_profile d-flex justify-content-center text-capitalize mt-2 mb-3">
+                                <h1>{{user.first_name}} {{user.last_name}}<br></h1>
+                            </div>
+                            <div class="container-fluid  d-flex justify-content-center">
+                                <h1 class="username_user_profile">@{{user.username}}</h1>
+                            </div>
+                    </div><!-- end info_user -->
+
+                </div><!-- end banner pefil -->
+
+        </div> <!-- end col-lg-12 -->
+    </div> <!-- end row -->
 
     <div class="container-fluid ">
         <div class="row">
@@ -140,9 +167,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
+        </div> <!-- end row -->
+    </div> <!-- end Container fluid -->
 
     <div class="row">
         {% for b in miBici %}
@@ -169,18 +195,29 @@
                     <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{b.categoria}}</p>
                     <p class="card-text texttiempocard">{{b.timestamp|naturaltime}}</p>
                     <p class="card-text textpreciocard">Alquiler <strong>${{b.precioalquiler}}</strong></p>
+
+                    <p class="card-text">
+                            
+                        {% if b.disponible == True %}
+                            <i class="text-success font-weight-bold"> Disponible </i>
+                        {% else %}
+                            <i class="text-danger font-weight-bold"> No esta disponible </i>
+                        {% endif %}
+                            
+                    </p>
+
                     {% if request.user.username == user.username %}
                     <div class="row">
                         <div class="col-lg-6">
-                            <a href="{% url 'editar_bicicleta' b.idmibicicleta %}">
-                                <button class="btn btncat d-block mx-auto "><i class="far fa-edit"></i>
+                            <a href="{% url 'editar_bicicleta' b.idmibicicleta%}">
+                                <button class="btn btncatalogo d-block mx-auto btneditarbike"  data-toggle="tooltip" data-placement="bottom" title="Editar Bicicleta"><i class="far fa-edit"></i>
                                 </button>
                             </a>
                         </div>
                         <div class="col-lg-6">
                             <!-- <a href="{% url 'eliminar_bicicleta' b.idmibicicleta%}" data-toggle="modal" data-target="#modalBici"> -->
                             <a href="#" onclick="abrir_modal('{% url 'eliminar_bicicleta' b.idmibicicleta%}')">
-                                <button type="button" class="btn btn-danger d-block mx-auto "><i class="far fa-trash-alt"></i>
+                                <button type="button" class="btn btn-danger d-block mx-auto btneliminarbike"  data-toggle="tooltip" data-placement="bottom" title="Eiminar bicicleta"><i class="far fa-trash-alt"></i>
                                 </button>
                             </a>
 
@@ -204,10 +241,13 @@
             
                 </div>
             </div>
-        </div>
+        </div> <!-- end col-lg-3 -->
         {% endfor %}
-    </div>
-</div>
+    </div> <!-- end row -->
+</div> <!-- end container principal -->
+
+{% include 'pages/components/messages/messages_form_editbike.html' %}
+
 
 <script>
     var $ = jQuery.noConflict();

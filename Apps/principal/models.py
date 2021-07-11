@@ -14,14 +14,34 @@ from django.utils import timezone
 User=get_user_model()
 
 
+
+
+# (Funciones en las que se reemplazara la imagen anterior, optimizando espacio)------->
+
+# imagenes de perfil subidas por los usuarios
+def custom_upload_to_profile(instance, filename):
+    old_instance = Perfil.objects.get(pk=instance.pk)
+    old_instance.image_user.delete()
+    return 'user/profile/' + filename
+
+
+# imagenes de portada subidas por los usuarios
+def custom_upload_to_banner(instance, filename):
+    old_instance = Perfil.objects.get(pk=instance.pk)
+    old_instance.image_portada.delete()
+    return 'user/banner/' + filename
+
+# ----------------------------------------------------------------------------------->
+
+
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
     telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True, validators=[MinLengthValidator(7)])
     direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
     biografia = models.TextField(db_column='Biografia', max_length=150,null=True,blank=True) 
-    image_portada = models.ImageField(upload_to='user/banner/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de portada')
-    image_user = models.ImageField(upload_to='user/%Y/%m/%d',null=True,blank=True,verbose_name='Imagen de perfil')
+    image_portada = models.ImageField(upload_to='custom_upload_to_banner',null=True,blank=True,verbose_name='Imagen de portada')
+    image_user = models.ImageField(upload_to='custom_upload_to_profile',null=True,blank=True,verbose_name='Imagen de perfil')
 
     def __str__(self):
         return f'Perfil de {self.user.username}'

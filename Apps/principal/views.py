@@ -1,4 +1,5 @@
 from django import forms
+import django
 from django.db.models import query
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
@@ -7,23 +8,23 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import BicicletasForm
+from .forms import BicicletasForm,EditBicicletaForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
 from django.contrib.auth import get_user_model
 # decorador para solicitar el login de un usuario para ver una vista no permitida sin loguearse
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 # Actualiaciones  o ediciones de datos que se encuentran en la base de datos generadas por Django
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
+from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.conf import settings as setting
-from django.contrib.auth.views import LoginView
 
 
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
@@ -87,11 +88,20 @@ def uploadBike(request):
 
 # -------metodo para editar o actualizar una bicicleta subida por el usuario loguedo
 
-class Editar_bicicleta(UpdateView):
+class Editar_bicicleta(SuccessMessageMixin,LoginRequiredMixin, UpdateView):
     model = MiBicicleta
-    form_class = BicicletasForm
+    form_class = EditBicicletaForm
     template_name = 'bike/editar_bicicleta.html'
     success_url = reverse_lazy('perfil')
+    success_message='Los datos de tu bicicleta han sido cambiados correctamente!!'
+
+# class Editar_bicicleta(SuccessMessageMixin,UpdateView):
+#     model = MiBicicleta
+#     form_class = BicicletasForm
+#     template_name = 'bike/editar_bicicleta.html'
+#     success_url = reverse_lazy('perfil')
+
+
 
 # def editar_bicicleta(request, id):
 

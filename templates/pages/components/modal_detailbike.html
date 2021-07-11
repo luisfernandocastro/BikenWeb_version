@@ -16,13 +16,16 @@
                 {{object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}</h5>
             {%endif%}
 
-            {% if object.descripcionbici != none %}
+            {% if object.descripcionbici == " " %} 
             <h6 class="ml-3 mt-4"><strong>Descripción:</strong> {{object.descripcionbici}}</h6>
 
             {% else %}
             {% endif %}
 
-            <h6 class="ml-3 mt-4"><strong><i class="fas fa-dollar-sign"></i>  Precio de alquiler:</strong> {{object.precioalquiler}} por {{object.valortiempohoras}} horas
+            <h6 class="ml-3 mt-4"><strong><i class="fas fa-dollar-sign"></i>  Precio de alquiler:</strong> 
+                
+                {{object.precioalquiler}} por {{b.valortiempohoras}} hora{{b.valortiempohoras|pluralize}}
+                
                 {% if object.valortiempomin == 00 %}
                 {% else %}
                 y {{object.valortiempomin}} minutos

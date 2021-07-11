@@ -552,6 +552,8 @@ a .card-img-top {
 /*-------------------------------------start styles buscar home page-------------------------------*/
 
 
+
+
 .carouselprincipal {
   border-bottom-left-radius: 30px;
   border-end-end-radius: 30px;
@@ -711,11 +713,16 @@ body.dark .text-nosearch{
 
 /* ............................................start styles filtros de busqueda home......................... */
 
-.active-filter-home{
+.active-filter-home, .active-filter-home:hover{
   background-color: var(--color-light);
   color:  var(--color-orange);
   border-color: var(--color-orange);
   font-weight: bold;
+}
+
+body.dark .active-filter-home, body.dark .active-filter-home:hover{
+  background-color: var(--color-grisclaro);
+  border-color: var(--color-white);
 }
 
 /* ............................................end styles filtros de busqueda home......................... */
@@ -1298,11 +1305,31 @@ body.dark .textcontacto {
   margin: 30px 0 30px 0;
 }
 
+
+.name_user_profile{
+  color: #000;
+}
+
+
+/* tema dark */
+body.dark .name_user_profile{
+  color: var(--color-light);
+}
+
+
 .username_user_profile {
   line-height: 0;
   font-size: 20px;
-  color: white;
+  color: #000;
 }
+
+
+/* tema dark */
+body.dark .username_user_profile{
+  color: var(--color-light);
+}
+
+
 
 
 .img_user_profile {
@@ -1693,3 +1720,4 @@ body.dark .helptext_changepass {
 
 
 /* -----------------------------end styles screeen Login Admin-------------------------------------- */
+

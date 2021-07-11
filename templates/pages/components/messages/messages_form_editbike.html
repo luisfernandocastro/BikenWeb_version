@@ -1,0 +1,27 @@
+{% if messages %}
+{% for m in messages %}
+<script>
+    Swal.fire({
+        "title": '<span class="title_alert">Excelente!!</span>',
+        "text": "{{m}}",
+        "position": "left",
+        "icon": "success",
+        "confirmButtonText": 'Ok',
+        "confirmButtonColor": '#2059BD',
+        "allowOutsideClick": false,
+        "allowEscapeKey": false,
+        "allowEnterKey": false,
+        "stopKeydownPropagation": false,
+
+        "customClass":{
+            "container": 'container-alert_editbike',
+        }
+
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = "{% url 'perfil' %}"
+        }
+    });
+</script>
+{% endfor %}
+{% endif %}

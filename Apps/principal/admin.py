@@ -6,11 +6,14 @@ from Apps.usuario.models import User # Se trae el modelo usario personalizado
 admin.site.site_header="Administración Biken"
 admin.site.site_title="Biken"
 
+
+
 @admin.register (User)
 class userAdmin(admin.ModelAdmin):
     list_display = ('username','first_name','last_name','numcelular','email','is_staff','is_active')
-    search_fields = ['username','is_staff']
-    list_filter = ['username','first_name','last_name','is_staff']
+    search_fields = ['last_name','first_name']
+    list_editable = ['is_active']
+    list_filter = ['is_active']
     list_per_page = 10
 
     pass
@@ -20,9 +23,9 @@ class userAdmin(admin.ModelAdmin):
 @admin.register (MiBicicleta)
 class BicletasAdmin(admin.ModelAdmin):
     list_display = ('user','idmibicicleta','marca','color', 'material', 'categoria','precioalquiler','timestamp','foto','valortiempohoras','valortiempomin','disponible')
-    search_fields = ['color']
+    search_fields = ['user__first_name__icontains','idmibicicleta','marca', 'material__nombre__icontains', 'categoria__nombre__icontains','precioalquiler','timestamp','valortiempohoras','disponible']
     list_editable = ['precioalquiler','valortiempohoras']
-    list_filter = ['color','categoria']
+    list_filter = ['marca','categoria','material','disponible']
     list_per_page = 10
 
     pass
@@ -100,9 +103,4 @@ class TiempoprestamoAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     pass
-
-
-
-
-
 

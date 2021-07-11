@@ -4,12 +4,14 @@ from django.contrib import admin
 from Apps.principal.models import Perfil
 
 
+
 @admin.register(Perfil)
 class TiempoprestamoAdmin(admin.ModelAdmin):
     list_display = ('user','telefono','direccion','biografia')
-    search_fields=['user']
-    list_filter=['user']
+    search_fields=['user','direccion']
+    list_filter=['user','direccion']
     list_per_page=10
+
     pass
 
 

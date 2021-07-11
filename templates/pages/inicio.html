@@ -10,11 +10,26 @@
     {% include 'pages/components/carousel.html' %}
 
     <div class="filter-home d-flex justify-content-center mt-5"> 
-        <a href="{% url 'bicicletasdisponibles' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':21' == '/home/filter/urbanas/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="healthicons:city" data-inline="false"></span> Bicicletas Disponibles</a>
-        <a href="{% url 'bicicletasurbanas' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':21' == '/home/filter/urbanas/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="healthicons:city" data-inline="false"></span> Bicicletas urbanas</a>
-        <a href="{% url 'bicicletasruta' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':18' == '/home/filter/ruta/'%}active-filter-home{% endif%}"><i class="fas fa-road"></i> Bicicletas ruta</a>
-        <a href="{% url 'bicicletastodoterreno' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/todoterreno/'%}active-filter-home{% endif%}"><span class="iconify" data-icon="ic:outline-terrain" data-inline="false"></span> Bicicletas todo Terreno</a>
-        <a href="{% url 'home' %}" class="btn btn_biken_success ml-4"><span class="iconify" data-icon="ic:baseline-all-inclusive" data-inline="false"></span> Todas</a>
+        <a href="{% url 'bicicletasdisponibles' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/disponibles/'%}active-filter-home{% endif%}">
+            <i class="far fa-check-circle"></i> 
+            Bicicletas Disponibles
+        </a>
+        <a href="{% url 'bicicletasurbanas' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':21' == '/home/filter/urbanas/'%}active-filter-home{% endif%}">
+            <span class="iconify" data-icon="healthicons:city" data-inline="false"></span>
+            Bicicletas urbanas
+        </a>
+        <a href="{% url 'bicicletasruta' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':18' == '/home/filter/ruta/'%}active-filter-home{% endif%}">
+            <i class="fas fa-road"></i>
+            Bicicletas ruta
+        </a>
+        <a href="{% url 'bicicletastodoterreno' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/todoterreno/'%}active-filter-home{% endif%}">
+            <span class="iconify" data-icon="ic:outline-terrain" data-inline="false"></span>
+            Bicicletas todo Terreno
+        </a>
+        <a href="{% url 'home' %}" class="btn btn_biken_success ml-4">
+            <span class="iconify" data-icon="ic:baseline-all-inclusive" data-inline="false"></span>
+            Todas
+        </a>
     </div>
     
     <div class="container" id="myDiv">

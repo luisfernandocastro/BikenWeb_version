@@ -3,21 +3,17 @@
 from django import forms
 
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, logout,login as auth_login
 from django.views.generic.base import RedirectView
-from django.views.generic.edit import FormView
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import redirect, render
 from Apps.principal.models import Perfil  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm,LoginForm
+from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
-from django.contrib.auth import authenticate,logout ,login as auth_login
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import  PasswordChangeForm
 
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
 from django.contrib.auth import get_user_model,update_session_auth_hash
@@ -89,7 +85,7 @@ def registro(request):
             user = authenticate(
                 email=formulario.cleaned_data['email'], password=formulario.cleaned_data['password1'])
             auth_login(request, user)
-            messages.success(request, "Te ha registrado correctamente")
+            messages.success(request, "Te has registrado correctamente")
             # redireccion de los datos validados correctamente a la ventana de exito
             return redirect(to='messagereg')
         data['form'] = formulario
