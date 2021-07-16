@@ -1,15 +1,10 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django import db
 from django.db import models
+from django.db.models.fields.related import OneToOneField
+from django.urls.base import reverse
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
-from django.core.validators import RegexValidator,MinLengthValidator
+from django.core.validators import MinLengthValidator
 from django.utils import timezone
 User=get_user_model()
 
@@ -59,6 +54,12 @@ class Perfil(models.Model):
     class Meta:
         verbose_name_plural='Perfiles de usuarios'
 
+
+# opcionesCategorias=[
+#     [0,'Todo terreno'],
+#     [1,'Urbana'],
+#     [2,'Ruta']
+# ]
 
 
 class MiBicicleta(models.Model):
@@ -111,21 +112,44 @@ class Categoria(models.Model):
         return self.nombre
 
 
+
+
+
 class Contrato(models.Model):
     idcontrato = models.AutoField(db_column='idContrato', primary_key=True)  # Field name made lowercase.
-    cantidadbicicletas = models.IntegerField(db_column='CantidadBicicletas')  # Field name made lowercase.
-    fechainicio = models.DateField(db_column='FechaInicio')  # Field name made lowercase.
-    fechafin = models.DateField(db_column='FechaFin')  # Field name made lowercase.
+    fechainicio=models.DateTimeField(db_column='fechainicio',default=None)
+    fechafin=models.DateTimeField(db_column='fechafin',default=None)
     tiempo = models.TimeField(db_column='Tiempo')  # Field name made lowercase.
-    observaciones = models.CharField(db_column='Observaciones', max_length=100)  # Field name made lowercase.
     tipocontrato = models.ForeignKey('Tipocontrato', models.DO_NOTHING, db_column='Tipocontrato')  # Field name made lowercase.
-    persona_idpersona = models.ForeignKey('Persona', models.DO_NOTHING, db_column='Persona_idPersona')  # Field name made lowercase.
-    bicicletas_idbicicletas = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
+    usuario = models.ForeignKey(User, models.DO_NOTHING, db_column='usuario')  # Field name made lowercase.
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'Contrato'
         verbose_name_plural='Contratos'
+
+
+
+# opcionesContrato=[
+#     [0,'Contrato arrendador'],
+#     [1,'contrato Arrendamiento'],
+# ]
+
+class ContratoBicicleta(models.Model):
+    fechainicio=models.DateTimeField(db_column='fechainicio',default=None)
+    fechafin=models.DateTimeField(db_column='fechafin',default=None)
+    tiempo = models.TimeField(db_column='Tiempo')  # Field name made lowercase.
+    tipocontrato = models.ForeignKey('Tipocontrato', models.DO_NOTHING, db_column='Tipocontrato')  # Field name made lowercase.
+    usuario = models.ForeignKey(User, models.DO_NOTHING, db_column='usuario')  # Field name made lowercase.
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
+
+    class Meta:
+        verbose_name_plural='Contratos'
+    
+    def get_absolute_url(self):
+        return reverse('home', args=[self.id])
+
 
 
 class FotoPerfiluser(models.Model):
@@ -234,7 +258,7 @@ class Tiempoprestamo(models.Model):
 
 
 class Tipocontrato(models.Model):
-    idtipocontrato = models.IntegerField(db_column='idTipocontrato', primary_key=True)  # Field name made lowercase.
+    idtipocontrato = models.AutoField(db_column='idTipocontrato', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
     descripcion = models.CharField(db_column='Descripcion', max_length=45, blank=True, null=True)  # Field name made lowercase.
 

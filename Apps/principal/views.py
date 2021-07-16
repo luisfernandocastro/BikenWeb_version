@@ -1,14 +1,17 @@
+from typing import Reversible
 from django import forms
 import django
 from django.db.models import query
+from django.http.response import HttpResponseForbidden
+from django.urls.base import reverse
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView, FormMixin, FormView, UpdateView
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import BicicletasForm,EditBicicletaForm
+from .forms import BicicletasForm,EditBicicletaForm,ContratoBicicletaForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
@@ -28,6 +31,7 @@ from django.conf import settings as setting
 
 
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
+
 
 
 # metodo para mostrar la vista del index del sitio web
@@ -253,4 +257,40 @@ def bikedisponibles(request):
 
     return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
 
+
+
+# class ContratoBicicleta(CreateView):
+#     template_name = 'pages/contrato.html'
+#     model = Contrato
+#     form_class = ContratoBicicletaForm
+#     success_url = reverse_lazy('home')
+
+
+# class DetailBikeContrato(DetailView):
+#     model = MiBicicleta
+#     template_name = 'pages/contrato.html'
+
+# class Contrato(CreateView, DetailView):
+#     template_name = 'pages/contrato.html'
+#     model = Contrato
+#     form_class = ContratoBicicletaForm
+#     success_url = reverse_lazy('home')
+
+class ContratoBicicletaView(CreateView,DetailView):
+    model =MiBicicleta
+    form_class = ContratoBicicletaForm
+    template_name = 'pages/contrato.html'
+    success_url = reverse_lazy('home')
+
+# class ContratoBicicletadetailView(DetailView):
+#     model = MiBicicleta
+#     template_name = 'pages/contrato.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ContratoBicicleta, self).get_context_data(**kwargs)
+    #     context['form'] = self.get_form()
+    #     return context
+
+    # def post(self, request, *args, **kwargs):
+    #     return CreateView.post(self, request, *args, **kwargs)
 

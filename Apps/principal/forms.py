@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import fields
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
 
 
@@ -28,6 +29,13 @@ class EditBicicletaForm(forms.ModelForm):
         # fields = '__all__'
         #fields = ('apellidos',) 
 
+
+
+class ContratoBicicletaForm(forms.ModelForm):
+
+    class Meta:
+        model=  ContratoBicicleta
+        fields = '__all__'
 
 
 

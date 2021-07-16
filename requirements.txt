@@ -3,6 +3,7 @@ pillow
 django-3-jet
 django-crispy-forms
 django-widget-tweaks
+djangorestframework
 
 
 

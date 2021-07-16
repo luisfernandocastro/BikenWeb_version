@@ -60,10 +60,18 @@ INSTALLED_APPS = [
     'Apps.usuario.apps.UsuarioConfig',
     'crispy_forms',
     'widget_tweaks', 
+    'rest_framework',
 
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+REST_FRAMEWORK = {
+}
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

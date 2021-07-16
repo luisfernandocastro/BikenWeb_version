@@ -7,6 +7,8 @@ from django.conf import settings
 from Apps.principal import views # se traen los metodos hechos para mostrar las vistas en el archivo views.py
 
 
+
+
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')), # url para el admin con el diseño de la libreria de jet_django
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
@@ -26,7 +28,10 @@ urlpatterns = [
     path('contacto/' ,views.contacto, name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
     path('descripcion/<int:pk>/',views.Descripcionbike.as_view(),name="descripcionbike"),
+    path('contrato/<int:pk>',views.ContratoBicicletaView.as_view(),name="contratobike"),
+    # path('contrato/<int:pk>/',views.ContratoBicicletadetailView.as_view(),name="descripcioncontratobike"),
     path('', include('Apps.usuario.urls')),
+    path('',include('Apps.principal.urls')),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
 

@@ -60,9 +60,9 @@ class MaterialbicicletasAdmin(admin.ModelAdmin):
 
 
 
-@admin.register (Contrato)
+@admin.register (ContratoBicicleta)
 class ContratoAdmin(admin.ModelAdmin):
-    list_display = ('cantidadbicicletas','fechainicio', 'fechafin', 'tiempo', 'observaciones','tipocontrato','persona_idpersona','bicicletas_idbicicletas')
+    list_display = ('fechainicio', 'fechafin', 'tiempo','tipocontrato','usuario','bicicleta')
     search_fields = ['fechainicio','fechafin']
     # list_editable = ['fechainicio']
     list_filter = ['fechainicio','fechafin']
@@ -103,4 +103,3 @@ class TiempoprestamoAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     pass
-

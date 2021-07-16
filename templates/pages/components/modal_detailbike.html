@@ -39,8 +39,14 @@
         </div>
         <div class="modal-footer modal-footer-home">
             <button type="button" class="btn btn-secondary btn_biken_cancel font-weight-bold" data-dismiss="modal">Ok</button>
-            <button type="submit" name="button" class="btn btn_biken_success font-weight-bold">Comenzar con el
-                alquiler</button>
+            <a href="{% url 'contratobike'%}">                
+                {% if request.user.username == object.user.username %}
+                {% else %}
+                <button type="submit" name="button" class="btn btn_biken_success font-weight-bold">Comenzar con el
+                    alquiler
+                </button>           
+                {% endif %}
+            </a>
         </div>
     </div>
 </div>
