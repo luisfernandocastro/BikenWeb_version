@@ -35,7 +35,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class ContratoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Contrato
+        model = ContratoBicicleta
         fields = '__all__'
 
 

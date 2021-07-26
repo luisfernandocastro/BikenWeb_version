@@ -1,0 +1,38 @@
+[class*="col-"] {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(D1CBCB);
+}
+
+
+
+.img-ruedas{
+	margin-bottom: 5%;
+}
+
+
+.container-flex{
+	height: 940px;
+}
+
+.content-class{
+  padding: 0 10px !important;
+}
+
+[scope*="col"]{
+
+	font-family:all;
+	font-size: 16px;
+    color:rgb(3, 110, 211 );
+
+}
+
+[scope*="row"]{
+
+	color:rgb(3, 110, 211  );
+}
+
+.tabla{
+  overflow: auto;
+  height: 500px;
+}

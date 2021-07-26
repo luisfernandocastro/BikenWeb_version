@@ -1,0 +1,94 @@
+/*  estilos del fondo del admin */
+
+
+/* variables de colores  */
+:root {
+    --color-gris: #C8CDD0;
+    --color-blueclaro: #1CCACA;
+    --color-primary: #0C2247;
+    --color-secondary: #2C3A52;
+}
+
+/* estlos de fondo del sitio admin */
+.dashboard,
+.menu-pinned {
+    background-image: url(../../img/animations/anim_login-admin.svg);
+    background-repeat: no-repeat;
+    background-position-y: 200px;
+    background-position-x: 900px;
+    background-size: 50%;
+}
+
+
+/* nombre del sitio en admin (administracion biken) */
+#site_name a {
+    color: var(--color-gris) !important;
+}
+
+/* estilo al pasar el mause sobre el nombre del sitio */
+#site_name a:hover,
+/* estilos del titulo de los items del submenu extendible */
+.sidebar-popup-title {
+    color: var(--color-blueclaro) !important;
+}
+
+
+
+/* class scrollable : ocupa toda la barra lateral de navegacion */
+/* class submit-row .default : boton de cambiar contraseña en el admin */
+.scrollable, submit-row .default:hover {
+    /*color biken oscuro*/
+    background-color: var(--color-secondary);
+}
+
+
+/*id branding : color de la parte superior de la barra lateral de navegacion(donde se encuentra el icono biken en el admin)*/
+/* class sortable : Cabeceras de las tablas de los modelos biken y otros */
+#branding,
+.sortable {
+    background-color: var(--color-primary);
+}
+
+
+/* class contrast : color de las cabeceras de los artilugios*/
+.contrast {
+    background-color: var(--color-secondary) !important;
+
+}
+
+
+/* color del boton agregar artilugio admin */
+.add-dashboard-link,
+.sidebar-dependent {
+    background-color: var(--color-secondary) !important;
+    color: white;
+}
+
+
+
+/* estilos de los items del submenu extendible  */
+.sidebar-popup-list-item-link {
+    color: var(--color-gris) !important;
+}
+
+
+/* estilos al pasar el mause de los items del submenu extendible  */
+.sidebar-popup-list-item-link:hover {
+    background-color: var(--color-primary) !important;
+    color: var(--color-gris) !important;
+}
+
+
+
+/* class submit-row .default : boton de cambiar contraseña en el admin */
+.submit-row .default {
+    background-color: var(--color-primary) !important;
+    cursor: pointer;
+}
+
+
+/* estilos al pasar el mausse sobre el boton de cambiar contraseña en el admin */
+.submit-row .default:hover {
+    background-color: var(--color-secondary) !important;
+}
+

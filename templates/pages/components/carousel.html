@@ -1,6 +1,8 @@
 <div class="row">
 
     <div class="col-lg-12">
+        
+        {% if page %}
         <div>
             <form class="form-inline position-absolute div_search" method="get">
                 <input class="input-search" type="text" placeholder="Buscar" name="Buscar" value="{{request.GET.Buscar}}">
@@ -11,7 +13,10 @@
                 <span>
 
             </form>
-        </div>
+        </div>            
+        {% else %}
+            
+        {% endif %}
         <div class="poition-absolute carousel-degradient">
 
         </div>

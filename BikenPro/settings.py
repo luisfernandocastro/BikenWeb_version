@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-zdrnz*o9v-duv82bvv!xd&qalgvs62v_-#79b^$d==w#2p-%91
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.101.9', 'localhost', '127.0.0.1','Biken'
+]
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
     'Apps.usuario.apps.UsuarioConfig',
     'crispy_forms',
     'widget_tweaks', 
+    'import_export',
     'rest_framework',
 
 ]
@@ -84,6 +87,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'BikenPro.urls'
+
 
 TEMPLATES = [
     {
@@ -156,6 +160,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 

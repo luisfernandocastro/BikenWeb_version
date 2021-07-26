@@ -31,7 +31,7 @@ class ProfileViewset(viewsets.ModelViewSet):
 
 
 class ContratoViewset(viewsets.ModelViewSet):
-    queryset = Contrato.objects.all()
+    queryset = ContratoBicicleta.objects.all()
     serializer_class = ContratoSerializer
 
 

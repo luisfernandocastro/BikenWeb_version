@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            font-size: 14px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .container-text {
+            border-bottom: solid 1px #2059bd;
+            margin: 10px 25px 0 0;
+        }
+
+        hr {
+            size: 2px;
+            color: red;
+        }
+
+        .div_icon_biken {
+            width: 100%;
+            height: 100%;
+            margin-left: 600px;
+        }
+
+        .icon_biken {
+            width: 100px;
+            height: 90px;
+        }
+
+        center{
+            margin-left: 15px;
+        }
+
+        body{
+            padding-left:20px;
+            padding-right: 20px;
+        }
+
+        .title{
+            font-size: 16px;
+            color:#2059BD;
+        }
+    </style>
+
+
+
+        <div class="div_icon_biken">
+            <img src="{{ icon }}" alt="" class="icon_biken">
+            <center><strong>BIKEN</strong></center>
+    
+        </div>
+    
+        <div>
+            <strong style="font-size: 25px;color: #2059BD;">Contrato de Arrendamiento Biken</strong>
+    
+        </div>
+    
+    
+        <hr size="1px" color="gray" />
+    
+    
+        <p>
+        <div style="font-size: 15px;font-weight: bold;">Popayán-Cauca</div>
+        <div style="font-size: 13px;">{{contrato.fechainicio}}</div>
+        </p>
+    
+    
+    
+        <hr size="1px" color="gray" />
+    
+        <strong class="title">Datos del Arrendatario</strong><br><br>
+    
+        <table>
+            <tr>
+                <td>
+                    <strong>Tipo de Documento:</strong>
+                    <br>
+    
+                    {% if contrato.tipodocumento == 0 %}
+                    <div class="container-text">
+                        Cédula de Ciudadania
+                    </div>
+                    {% else %}
+                    <div class="container-text">
+                        Carnet de Extranjeria
+                    </div>
+                    {% endif %}
+                </td>
+                <td>
+                    <strong>Número de Documento:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.numerodocumento}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <strong>Nombres y Apellidos:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.user.first_name}} {{contrato.user.last_name}} <br>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <strong>Dirección:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.direccion}} <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <strong>Número de celular:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.user.numcelular}} <br>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <strong>Correo Electrónico:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.user.email}} <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    
+        <hr size="1px" color="gray" />
+    
+        <strong class="title">Objeto del contrato</strong><br><br>
+    
+        <table>
+            <tr>
+                <td>
+                    <strong>Bicicleta de:</strong><br>
+                    <div class="container-text">
+                        {{contrato.bicicleta.user.first_name}} {{contrato.bicicleta.user.last_name}}
+                    </div>
+                </td>
+                <td>
+                    <strong>Marca:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.bicicleta.marca}} <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <strong>Material:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.bicicleta.material}}<br>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <strong>Categoria:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.bicicleta.categoria}} <br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    
+        <table>
+            <tr>
+                <td>
+                    <br>
+                    <strong>Hora Inicio:</strong> <br>
+                    <div class="container-text">
+                        {{contrato.horainicio}}
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <strong>Hora Fin:</strong><br>
+                    <div class="container-text">
+                        {{contrato.horafin}}
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <strong>Precio Alquiler:</strong> <br>
+                    <div class="container-text">
+                        ${{contrato.bicicleta.precioalquiler}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    
+        <hr size="1px" color="gray" />
+    
+        <br>
+    
+        <strong>
+            <div style="font-size: 18px; font-family: serif; text-align: center; color : rgb(38, 83, 186 )">OBSERVACIONES
+            </div>
+        </strong>
+        <p style="text-align: justify">Para asegurar que la
+            bicicleta se utiliza correctamente y para garantizar que cada usuario se comporta de manera responsable, y
+            tiene la mejor experiencia posible, usted <strong>{{contrato.user.first_name}} {{contrato.user.last_name}}</strong> (arrendatario) está de acuerdo en:
+            <br>
+            <br>
+            • Ser responsable del cuidado y devolución de la bicicleta. Las bicicletas serán inspeccionadas al momento de
+            su entrega. Han de ser devueltas en el mismo estado que al ser alquiladas, haciéndose cargo el usuario de
+            cualquier desperfecto ocasionado. En caso de robo o pérdida del material, el usuario tendrá la obligación de
+            abonar el importe del material sustraído.
+            <br>
+            <br>
+            • El usuario conoce y se compromete a respetar las leyes y normas de tráfico y es responsable de todo daño
+            causado como consecuencia de cualquier accidente durante el uso de la bicicleta.
+            <br>
+            <br>
+            • BIKEN no se hace responsable de ningún tipo de reclamaciones. El usuario está obligado en todo momento
+            a candar correctamente la bicicleta. Para evitar robos es recomendable candarla siempre del cuadro y rueda en
+            lugares fijos.
+            <br>
+            <br>
+    
+            • No se efectuará reembolso por devolución antes de la hora estipulada en el contrato.
+            <br>
+            <br>
+            • El retraso en la devolución de la/s bicicleta/s supondrá el abono de la tarifa correspondida
+            <br>
+            <br>
+        </p>
+    
+        <hr size="1px" color="gray" />
+    
+        <strong>
+            <div style="font-size: 18px; font-family: serif; text-align: center; color : rgb(38, 83, 186 )"> TÉRMINOS Y
+                CONDICIONES ESPECÍFICAS DEL CONTRATO
+            </div>
+        </strong>
+    
+        <p style="text-align: justify;">
+    
+    
+            1.- El presente arrendamiento tendrá una duración de 3 días. <br>
+            Desde el <strong>{{contrato.fechainicio}}</strong> hasta el <strong>{{contrato.fechafin}}</strong>
+            <br>
+            2.- Las bicicletas se recogerán y entregarán en el horario establecido que va desde las 08:00 horas a las 19:00
+            horas todos los
+            días de la semana. <br>
+    
+            El incumplimiento de la hora de entrega ocasionará un cargo adicional al cliente de 5mil pesos por hora de
+            retraso. De
+            no realizar la entrega en el día estipulado en el contrato, el cargo adicional ocasionado, será 10mil pesos. Al
+            no realizar la
+            entrega, el arrendador podrá tomar posesión inmediata la bicicleta en el lugar donde se encuentre, sin tener
+            derecho a
+            reclamación alguna por parte del arrendatario. <br>
+    
+            3.- La franja horaria de alquiler queda comprendida:
+            Día completo: 08:00 a 19:00 horas. <br>
+    
+            4.- El material se devolverá completo y en el mismo estado en el que se le entregó al cliente. El coste por
+            reparación o
+            reposición de la bicicleta y/o del material correrá a cargo del cliente. El cliente deberá informar al
+            arrendador, de los daños
+            ocasionados en dicho material o del mal funcionamiento del mismo.
+            El cliente esta obligado a tener buen cuidado y tomar todas las precauciones necesarias para proteger las
+            bicicletas y el
+            equipo alquilado de daños, perdida o robo. De producirse cualquiera de las mencionadas situaciones durante el
+            periodo de
+            alquiler, el cliente asumirá de manera inmediata la totalidad de los costes de reposición ocasionados a precio
+            de tarifa o de
+            mercado según el arrendador disponga o no de la pieza a reponer.
+            Al final del periodo de alquiler el arrendador, determinará las condiciones de entrega del material alquilado y
+            valorará dado el
+            caso, las pérdidas o daños ocasionados. El cliente está obligado en todo momento a fijar correctamente con el
+            candado y
+            cadena de seguridad la bicicleta cuando no las tenga a la vista (pasar el candado por el cuadro, sillín y
+            ruedas y atar la
+            bicicleta aun poste fijado al suelo o bici parking). <br>
+    
+            5.- El arrendatario <strong>{{contrato.user.first_name}} {{contrato.user.last_name}}</strong> declara estar en
+            perfectas condiciones de salud, ser capaz de manejar una bicicleta y poseer
+            el control
+            necesario de la bicicleta. <br>
+    
+            6.- En caso de pérdida o robo de la bicicleta, el arrendador perderá todo el derecho a la fianza,
+            debiendo comunicar
+            de inmediato tal circunstancia. Además, deberá proceder a indemnizar al arrendatario con la cantidad acordada
+            entre ambos y
+            fijada por escrita. <br>
+    
+            7.- El alquiler de bicicleta no incluye seguro de daños propios, por lo que el arrendatario es responsable de
+            todos los daños de
+            material o personales que pueda sufrir. El alquiler se realiza con la cobertura del correspondiente seguro
+            que cubre
+            todos los daños causados por origen del alquiler a terceros, personas o bienes. Es responsabilidad del cliente y
+            de su/s
+            acompañante/s respetar las normas de tráfico Colombianas en la ciudad de Popayán y conducir con cuidado y
+            respetar a los peatones. <br>
+    
+            8.- Los datos facilitados por el cliente, serán utilizados exclusivamente para la correcta prestación del
+            servicio contratado,
+            pudiendo solicitar, de acuerdo con la ley, su acceso, rectificación, cancelación u oposición mediante
+            comunicación por
+            cualquier medio al arrendador. Este contrato se rige por la ley Colombiana.
+        </p>
+
+
+
+
+</body>
+
+</html>

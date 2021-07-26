@@ -4,6 +4,8 @@ django-3-jet
 django-crispy-forms
 django-widget-tweaks
 djangorestframework
+django-import-export
+xhtml2pdf
 
 
 

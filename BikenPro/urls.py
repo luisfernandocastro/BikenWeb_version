@@ -28,8 +28,14 @@ urlpatterns = [
     path('contacto/' ,views.contacto, name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados
     path('descripcion/<int:pk>/',views.Descripcionbike.as_view(),name="descripcionbike"),
+    # path('contrato/',views.ContratoBicicleta.as_view(),name="contratobicicleta"),
     path('contrato/<int:pk>',views.ContratoBicicletaView.as_view(),name="contratobike"),
     # path('contrato/<int:pk>/',views.ContratoBicicletadetailView.as_view(),name="descripcioncontratobike"),
+    
+    path('contrato/pdf/<int:pk>/',views.ContratoPdf.as_view(),name='contratopdf'),
+
+    path('downloadcontrato/',views.downloadpdf,name='downloadcontrato'),
+
     path('', include('Apps.usuario.urls')),
     path('',include('Apps.principal.urls')),
 

@@ -1,12 +1,16 @@
 from typing import Reversible
 from django import forms
 import django
+from django import http
+from django.contrib.messages import views
 from django.db.models import query
-from django.http.response import HttpResponseForbidden
+from django.http.response import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
 from django.urls.base import reverse
+from django.urls.conf import path
 from django.views.generic import DeleteView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormMixin, FormView, UpdateView
 from .models import *  # se traen todas las tablas del modelo de base de datos
@@ -21,14 +25,22 @@ from django.contrib.auth.decorators import login_required
 # Actualiaciones  o ediciones de datos que se encuentran en la base de datos generadas por Django
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.conf import settings as setting
+#importaciones pdf------------
 
+import os
+from django.http import HttpResponse
+from django.conf.global_settings import STATIC_ROOT,STATIC_URL,MEDIA_ROOT,MEDIA_URL
+from django.conf import settings
+from django.template import Context, context
+from django.template.loader import get_template 
+from xhtml2pdf import pisa
+
+# end importaciones pdf-------
 
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
 
@@ -276,11 +288,43 @@ def bikedisponibles(request):
 #     form_class = ContratoBicicletaForm
 #     success_url = reverse_lazy('home')
 
-class ContratoBicicletaView(CreateView,DetailView):
-    model =MiBicicleta
-    form_class = ContratoBicicletaForm
+
+
+#--------------------------------------------------------
+
+class ContratoBicicletaView(LoginRequiredMixin,CreateView,DetailView):
+    model = MiBicicleta
+    form_class =ContratoBicicletaForm
     template_name = 'pages/contrato.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('contratobike')
+
+
+    def form_valid(self, form):
+        current_user = get_object_or_404(User, pk=self.request.user.pk)
+        current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
+
+        # current_bici = get_object_or_404(MiBicicleta, pk=self.request.object.pk)
+        bici = form.save(commit=False)
+        bici.user = current_user
+        bici.bicicleta = current_bici
+        bici.save()
+        messages.success(self.request, "Contrato correcto")
+        return redirect('downloadcontrato')
+
+
+    
+# -------------------------------------------------------
+
+    # success_url = reverse_lazy('home')
+
+    # def form_valid(self, form):
+    #     print ('happening2')
+    #     MiBicicleta.disponible=False
+    #     return http.HttpResponse("form ism valid.. this is just an HttpResponse object")
+
+    # def form_invalid(self, form):
+    #     print ("form is invalid")
+    #     return http.HttpResponse("form is invalid.. this is just an HttpResponse object")
 
 # class ContratoBicicletadetailView(DetailView):
 #     model = MiBicicleta
@@ -294,3 +338,103 @@ class ContratoBicicletaView(CreateView,DetailView):
     # def post(self, request, *args, **kwargs):
     #     return CreateView.post(self, request, *args, **kwargs)
 
+
+
+# @login_required
+# def contratoBicicleta(request):
+#     current_user = get_object_or_404(User, pk=request.user.pk)
+#     # current_bici = get_object_or_404(MiBicicleta,idmibicicleta = object.idmibicicleta)
+#     if request.method == 'POST':
+#         # request.FILES ,necesario para subir imagenes
+#         form = ContratoBicicletaForm(request.POST, files=request.FILES)
+#         if form.is_valid():
+#             bici = form.save(commit=False)
+#             bici.user = current_user
+#             # bici.bicicleta = current_bici
+#             bici.save()
+#             messages.success(request, "Contrato correcto")
+#             return redirect('home')
+#     else:
+#         form = ContratoBicicletaForm()
+#     return render(request, 'pages/contrato.html', {'form': form})
+
+
+# -------------------*-------------*-----------------------*-------------*-
+
+
+
+
+# class ContratoBicicleta(LoginRequiredMixin,DetailView):
+#     model=ContratoBicicleta
+#     succes_url=reverse_lazy('home')
+
+#     def post(self,request,*args,**kwargs):
+#         if request.is_ajax():
+#             bicicleta = MiBicicleta.objects.filter(id=request.POST.get('bicicleta')).first()
+#             user = request.user.objects.filter(id=request.POST.get('user')).first()
+#             if bicicleta and user:
+#                 nuevo_contrato= self.model(
+#                     bicicleta=bicicleta,
+#                     user=user
+#                 )
+#                 nuevo_contrato.save()
+#                 mensaje = f'(self.model.__name__) registrada correctamente'
+#                 error = 'No hay error'
+#                 response=JsonResponse({'mensaje':mensaje,'error':error,'url':self.success_url})
+#                 response.status_code=201
+#                 return response
+#         return redirect('home')
+
+
+
+class ContratoPdf(View):
+
+    def link_callback(self, uri, rel):
+
+        # use short variable names
+        sUrl = STATIC_URL  # Typically /static/
+        sRoot = STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = MEDIA_URL  # Typically /static/media/
+        mRoot = MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+
+    def get(self,request,*args,**kwargs):
+        # try:
+        template = get_template('contrato/contratopdf.html')
+        context={
+            'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']),
+            'icon': 'static/img/iconsBiken/icono.png'
+            }
+        html=template.render(context)
+        response = HttpResponse(content_type='application/pdf')
+        # response['Content-Disposition']='attachment;filename="report.pdf"'
+        pisaStatus =pisa.CreatePDF(
+            html,dest=response,
+            link_callback=self.link_callback,
+        )
+        if pisaStatus.err:
+            return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return response
+        # except:
+        #     pass
+        # return HttpResponseRedirect(reverse_lazy('home'))
+
+
+def downloadpdf(request):
+    contrato = ContratoBicicleta.objects.last()
+    return render(request,'contrato/download_contrato.html',{'contrato':contrato})

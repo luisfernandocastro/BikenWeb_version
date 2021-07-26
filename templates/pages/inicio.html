@@ -7,7 +7,11 @@
 {% block content %}
 
 <div class="container-fluid">
+    
     {% include 'pages/components/carousel.html' %}
+    
+    
+    {% if page %}
 
     <div class="filter-home d-flex justify-content-center mt-5"> 
         <a href="{% url 'bicicletasdisponibles' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/disponibles/'%}active-filter-home{% endif%}">
@@ -31,6 +35,7 @@
             Todas
         </a>
     </div>
+
     
     <div class="container" id="myDiv">
 
@@ -101,7 +106,13 @@
         {% include 'pages/components/pagination.html' %}
     </div>
 
-
+    {% else %}
+    <!-- LO que se muestra cuando no hay bicicletas subidas -->
+    <div class="div-noresultados_search">
+        <h1 class="text-center mt-5 d-flex justify-content-center text-nosearch">Upps!! No hay bicicletas subidas por el momento</h1>
+        <img src="{% static 'img/animations/anim_nosearch.svg' %}" alt="" class="img_nosearch img-fluid d-block mx-auto">              
+    </div>
+    {% endif %}
 
     <div class="modal fade" id="modaldetailBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
