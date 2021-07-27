@@ -6,8 +6,16 @@
 
 
 {% block content %}
+
+
 <div class="container">
   <div class="row">
+
+    {% if request.user.username == object.user.username %}
+    {% include 'pages/components/modal_mibicicleta.html' %}
+    
+    {% else %}
+
     <div class="col-lg-6">
 
       <img src="{% static 'img/imgs_plus/portacon.png' %}" height="110px" width="250px">
@@ -58,7 +66,6 @@
         </div>
 
         <button class="btn btn_biken_success" type="submit">Continúar</button>
-
 
       </form>
 
@@ -111,12 +118,14 @@
       </div>
 
     </div>
+    {% endif %}
+
   </div>
+
 </div>
 
 
 
-</script>
 
 
 {% endblock content %}

@@ -296,21 +296,17 @@ class ContratoBicicletaView(LoginRequiredMixin,CreateView,DetailView):
     model = MiBicicleta
     form_class =ContratoBicicletaForm
     template_name = 'pages/contrato.html'
-    success_url = reverse_lazy('contratobike')
 
 
     def form_valid(self, form):
         current_user = get_object_or_404(User, pk=self.request.user.pk)
         current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
 
-        # current_bici = get_object_or_404(MiBicicleta, pk=self.request.object.pk)
         bici = form.save(commit=False)
         bici.user = current_user
         bici.bicicleta = current_bici
         bici.save()
-        messages.success(self.request, "Contrato correcto")
         return redirect('downloadcontrato')
-
 
     
 # -------------------------------------------------------
@@ -387,7 +383,7 @@ class ContratoBicicletaView(LoginRequiredMixin,CreateView,DetailView):
 
 
 
-class ContratoPdf(View):
+class ContratoPdf(LoginRequiredMixin,View):
 
     def link_callback(self, uri, rel):
 
@@ -414,27 +410,28 @@ class ContratoPdf(View):
 
 
     def get(self,request,*args,**kwargs):
-        # try:
-        template = get_template('contrato/contratopdf.html')
-        context={
-            'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']),
-            'icon': 'static/img/iconsBiken/icono.png'
-            }
-        html=template.render(context)
-        response = HttpResponse(content_type='application/pdf')
-        # response['Content-Disposition']='attachment;filename="report.pdf"'
-        pisaStatus =pisa.CreatePDF(
-            html,dest=response,
-            link_callback=self.link_callback,
-        )
-        if pisaStatus.err:
-            return HttpResponse('We had some errors <pre>' + html + '</pre>')
-        return response
-        # except:
-        #     pass
-        # return HttpResponseRedirect(reverse_lazy('home'))
+        try:
+            template = get_template('contrato/contratopdf.html')
+            context={
+                'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']),
+                'icon': 'static/img/iconsBiken/icono.png'
+                }
+            html=template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition']='attachment;filename="contratoBiken.pdf"'
+            pisaStatus =pisa.CreatePDF(
+                html,dest=response,
+                link_callback=self.link_callback,
+            )
+            if pisaStatus.err:
+                return HttpResponse('Tienes algunos errores <pre>' + html + '</pre>')
+            return response
+        except:
+            pass
+        return HttpResponseRedirect(reverse_lazy('home'))
 
 
+@login_required
 def downloadpdf(request):
     contrato = ContratoBicicleta.objects.last()
     return render(request,'contrato/download_contrato.html',{'contrato':contrato})

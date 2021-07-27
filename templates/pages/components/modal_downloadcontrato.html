@@ -1,0 +1,12 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-profile">
+            <div class="modal-body modal-body-profile">
+                <span class="iconify text-primary d-block mx-auto h-25 w-25 mb-3 iconmodal_deletebike" data-icon="akar-icons:circle-check" data-inline="false"></span>
+                <h4 class="font-weight-bold">Contrato creado correctamente!!</h4>
+                <h5>Por favor descarga tu contrato</h5>
+            </div>
+            <div class="modal-footer modal-footer-profile">
+                <a href="{% url 'contratopdf' contrato.id %}" type="button" name="button" class="btn btn-primary font-weight-bold">Descargar</a>
+            </div>
+    </div>
+</div>

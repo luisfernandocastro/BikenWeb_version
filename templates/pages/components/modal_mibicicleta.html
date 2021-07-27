@@ -1,0 +1,15 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-profile">
+            <div class="modal-body modal-body-profile">
+                <span class="iconify text-primary d-block mx-auto h-25 w-25 mb-3 iconmodal_deletebike"
+                    data-icon="carbon:warning" data-inline="false"></span>
+                <h5>Al parecer esta es tu bicicleta</h5>
+                <div class="d-flex justify-content-center">
+                    <img src="{{object.foto.url}}" alt="" class="img-fluid img-modal_mibicicleta">
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-profile">
+                <a href="{% url 'home' %}" type="button" name="button" class="btn btn-primary font-weight-bold">Ok,volver</a>
+            </div>
+    </div>
+</div>

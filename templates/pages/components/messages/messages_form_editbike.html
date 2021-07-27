@@ -17,11 +17,7 @@
             "container": 'container-alert_editbike',
         }
 
-    }).then((result) => {
-        if (result.value) {
-            window.location.href = "{% url 'perfil' %}"
-        }
-    });
+    })
 </script>
 {% endfor %}
 {% endif %}

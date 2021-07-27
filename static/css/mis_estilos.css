@@ -749,7 +749,7 @@ body.dark .modal-content-profile {
 
 
 /* tema dark */
-body.dark .modal-body-profile h5 {
+body.dark .modal-body-profile h5,body.dark .modal-body-profile h4 {
   color: var(--color-white);
 }
 
@@ -1716,7 +1716,17 @@ body.dark .helptext_changepass {
 }
 
 
-
-
 /* -----------------------------end styles screeen Login Admin-------------------------------------- */
+
+
+
+/* -----------------------------start styles screen contrato-------------------------------------- */
+.img-modal_mibicicleta{
+  border-radius:1000%;
+  height: 150px;
+  width: 150px;
+
+}
+
+/* -----------------------------end styles screen contrato-------------------------------------- */
 
