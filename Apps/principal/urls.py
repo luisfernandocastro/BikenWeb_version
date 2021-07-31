@@ -1,15 +1,17 @@
 from rest_framework import routers, urlpatterns
 from Apps.principal import viewset
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 
-router.register('api/bicicletas',viewset.BicicletaViewset)
-router.register('api/usuarios',viewset.UsersViewset,basename='User')
-router.register('api/perfiles',viewset.ProfileViewset)
-router.register('api/contratos',viewset.ContratoViewset)
-router.register('api/categoriabike',viewset.CategoriaBikeViewset)
-router.register('api/materialbike',viewset.MaterialBikeViewset)
-router.register('api/registro',viewset.RegisterViewset)
+router.register('bicicletas',viewset.BicicletaViewset)
+router.register('usuarios',viewset.UsersViewset,basename='User')
+router.register('perfiles',viewset.ProfileViewset)
+router.register('contratos',viewset.ContratoViewset)
+router.register('categoriabike',viewset.CategoriaBikeViewset)
+router.register('materialbike',viewset.MaterialBikeViewset)
+router.register('registro',viewset.RegisterViewset)
+
+router.register('catalogo',viewset.CatalogoViewset)
 
 
 urlpatterns= router.urls

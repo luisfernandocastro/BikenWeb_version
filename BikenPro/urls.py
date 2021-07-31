@@ -6,6 +6,11 @@ from django.urls import path
 from django.conf import settings
 from Apps.principal import views # se traen los metodos hechos para mostrar las vistas en el archivo views.py
 
+from Apps.principal.urls import router
+# from rest_framework import routers
+
+# router = routers.DefaultRouter()
+
 
 
 
@@ -37,7 +42,8 @@ urlpatterns = [
     path('downloadcontrato/',views.downloadpdf,name='downloadcontrato'),
 
     path('', include('Apps.usuario.urls')),
-    path('',include('Apps.principal.urls')),
+    path('api/',include(router.urls)),
+
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
 

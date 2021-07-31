@@ -14,6 +14,7 @@ class BicicletaSerializer(serializers.ModelSerializer):
     class Meta:
         model = MiBicicleta
         fields = '__all__'
+        depth = 3
 
 
 
@@ -55,3 +56,10 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username','email','password']
+
+
+class CatalogoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CatalogoBicicleta
+        fields = '__all__'
+        depth=3

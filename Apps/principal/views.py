@@ -153,6 +153,7 @@ def home(request):
 
 
     queryset = request.GET.get("Buscar")
+    contrato = ContratoBicicleta.objects.all()
     bicicletas = MiBicicleta.objects.all()
     if queryset :
         bicicletas = MiBicicleta.objects.filter(

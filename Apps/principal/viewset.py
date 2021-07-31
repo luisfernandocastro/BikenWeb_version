@@ -1,5 +1,5 @@
 from django.db.models import query
-from rest_framework import viewsets
+from rest_framework import generics, viewsets
 from django.contrib.auth.models import User
 
 from .serializer import *
@@ -46,3 +46,6 @@ class MaterialBikeViewset(viewsets.ModelViewSet):
 
 
 
+class CatalogoViewset(viewsets.ModelViewSet):
+    queryset=CatalogoBicicleta.objects.all()
+    serializer_class= CatalogoSerializer

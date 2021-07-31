@@ -174,7 +174,7 @@
         {% for b in miBici %}
         <div class="col-lg-3 mt-3">
             <div class="card">
-                <a>
+                <a  href="#" onclick="abrir_detailmodal('{% url 'descripcionbike' b.idmibicicleta %}')">
                     <img class="card-img-top imgcatalogo placeholderimgdown" src="{{b.foto.url}}"
                         alt="Card image cap"></a>
                 <div class="card-body">
@@ -225,9 +225,9 @@
                     </div>
 
                     {% else %}
-                    <a href="#">
+                    <a href="{% url 'contratobike' b.idmibicicleta %}">
                         <button class="btn btncatalogo d-block mx-auto "><i class="far fa-heart"></i>
-                            Añadir a favoritas
+                            Alquilar esta Bici
                         </button>
                     </a>
 
@@ -238,6 +238,10 @@
                     <div class="modal fade" id="modaldeleteBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                     </div>
+
+                    <div class="modal fade" id="modaldetailBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    </div>    
             
                 </div>
             </div>
@@ -256,6 +260,14 @@
             $(this).modal('show');
         });
     }
+
+    var $ = jQuery.noConflict();
+    function abrir_detailmodal(url){
+        $('#modaldetailBici').load(url,function(){
+            $(this).modal('show');
+        });
+    }
+
 </script>
 
 

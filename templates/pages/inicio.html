@@ -79,10 +79,29 @@
                                     <circle cx="60" cy="45" r="40" fill="{{b.color}}" />
                                 </svg>
                             </div>
+                            
+                            {% if request.user.username == b.user.username %}
                             <div class="col-lg-10">
-                                <button id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
-                                    Añadir a favoritas</button>                                
+                                
+                                <a href="{% url 'editar_bicicleta' b.idmibicicleta %}"  id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
+                                    Editar tu Bici</a>                                
+                                </div>
+                            {% else%}
+                                
+                            {% if b.disponible == True %}
+                            
+                            <div class="col-lg-10">
+
+                                <a href="{% url 'contratobike' b.idmibicicleta %}"  id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
+                                    Alquilar esta Bici</a>                                
                             </div>
+                            {% else %}
+
+                                
+                            {% endif %}
+                                
+                            {% endif %}
+                                
                         </div>
                     </div>
                 </div>

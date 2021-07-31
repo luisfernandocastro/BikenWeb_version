@@ -154,8 +154,6 @@ class ContratoBicicleta(models.Model):
 
 
 
-
-
 class FotoPerfiluser(models.Model):
     idfotouser = models.AutoField(db_column='idfotoUser', primary_key=True)  # Field name made lowercase.
     foto = models.CharField(max_length=100)
@@ -280,3 +278,14 @@ class Usuario(models.Model):
     class Meta:
         managed = False
         db_table = 'usuario'
+
+
+class CatalogoBicicleta(models.Model):
+    bicicleta = models.JSONField()  # Field name made lowercase.
+    name=models.CharField(db_column='Nombre',max_length=50)
+
+    class Meta:
+        verbose_name_plural='Catalogo'
+
+
+

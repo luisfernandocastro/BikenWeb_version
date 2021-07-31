@@ -116,3 +116,8 @@ class TiempoprestamoAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     pass
+
+
+@admin.register(CatalogoBicicleta)
+class CatalogoAdmin(admin.ModelAdmin):
+    list_display=('bicicleta','name')
