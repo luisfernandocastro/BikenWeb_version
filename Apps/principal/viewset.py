@@ -13,8 +13,6 @@ class RegisterViewset(viewsets.ModelViewSet):
     serializer_class = RegisterSerializer
 
 
-    
-
 class BicicletaViewset(viewsets.ModelViewSet):
     queryset = MiBicicleta.objects.all()
     serializer_class = BicicletaSerializer

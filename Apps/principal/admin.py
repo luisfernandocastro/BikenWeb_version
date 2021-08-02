@@ -99,7 +99,7 @@ class ReservaAdmin(admin.ModelAdmin):
 
 @admin.register (Tipocontrato)
 class TipocontratoAdmin(admin.ModelAdmin):
-    list_display = ('idtipocontrato','nombre','descripcion')
+    list_display = ('nombre','descripcion')
     search_fields = ['nombre']
     # list_editable = ['nombre']
     list_filter = ['nombre']

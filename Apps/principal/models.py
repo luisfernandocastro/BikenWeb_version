@@ -260,13 +260,14 @@ class Tiempoprestamo(models.Model):
 
 
 class Tipocontrato(models.Model):
-    idtipocontrato = models.AutoField(db_column='idTipocontrato', primary_key=True)  # Field name made lowercase.
+    idtipocontrato = models.AutoField(db_column='idtipocontrato', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
     descripcion = models.CharField(db_column='Descripcion', max_length=45, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'tipocontrato'
+        verbose_name_plural='Tipo contrato'
+        managed = False
 
 
 class Usuario(models.Model):
