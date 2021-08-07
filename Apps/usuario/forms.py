@@ -20,12 +20,12 @@ class LoginForm(AuthenticationForm):
         self.fields['password']
 
 
-# Creacion del formulario para el registro de usuarios en Biken usando el modelo personalizado
-# de usuario(User) 
 validatorFirst_name = RegexValidator("/^[a-zA-ZÀ-ÿ\s]{1,40}$/","El nombre no puede contener números, ni caracteres especiales")
 validatorLast_name = RegexValidator("/^[a-zA-ZÀ-ÿ\s]{1,40}$/","El Apellido no puede contener números, ni caracteres especiales")
 validatornumcelular = RegexValidator("/^\d{7,10}$/","Inserte un número de celular válido")
 
+# Creacion del formulario para el registro de usuarios en Biken usando el modelo personalizado
+# de usuario(User) 
 class CustomUserCreationForm(UserCreationForm):
     first_name= forms.CharField(required = True,validators=[validatorFirst_name])
     last_name = forms.CharField(required = True,validators=[validatorLast_name])
