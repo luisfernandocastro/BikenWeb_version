@@ -32,9 +32,9 @@ def custom_upload_to_banner(instance, filename):
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
-    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True, validators=[MinLengthValidator(7)])
+    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True)
     direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
-    biografia = models.TextField(db_column='Biografia', max_length=150,null=True,blank=True) 
+    estado = models.CharField(db_column='Biografia', max_length=80,null=True,blank=True) 
     image_portada = models.ImageField(upload_to='custom_upload_to_banner',null=True,blank=True,verbose_name='Imagen de portada')
     image_user = models.ImageField(upload_to='custom_upload_to_profile',null=True,blank=True,verbose_name='Imagen de perfil')
 

@@ -7,9 +7,9 @@ from django.contrib.auth import authenticate, logout,login as auth_login
 from django.views.generic.base import RedirectView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import redirect, render
-from Apps.principal.models import Perfil  # se traen todas las tablas del modelo de base de datos
+from Apps.principal.models import ContratoBicicleta, Perfil  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import CustomUserCreationForm,UpdateUserForm,ChangeEmailForm
+from .forms import CustomUserCreationForm, EditProfileForm,UpdateUserForm,ChangeEmailForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # Elementos necesarios para mostrar la vista de login generada por Django
@@ -95,20 +95,6 @@ def registro(request):
 
 
 
-    # metodo para mostrar la vista de perfil del usuario logueado o de los demas usuarios registrados
-@login_required  # Pedir al usuario iniciar sesion o registrarse para poder ver los perfiles de los usuarios registrados
-def profileUser(request, username=None):
-    current_user = request.user
-    if username and username != current_user.username:
-        user = User.objects.get(username=username)
-        miBici = user.miBici.all()  # Se muestran las bicicletas subidas por los demas usuarios
-    else:
-        # Se muestran las bicicletas subidas por el  usuario logueado
-        miBici = current_user.miBici.all()
-        user = current_user
-    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici})
-
-
 
 @method_decorator(login_required, name='dispatch')
 class UserUpdate(UpdateView):
@@ -126,13 +112,17 @@ class UserUpdate(UpdateView):
 def profileUser(request, username=None):
     current_user = request.user
     if username and username != current_user.username:
+        numcontratos = None
+        contratoUser =  None
         user = User.objects.get(username=username)
         miBici = user.miBici.all()  # Se muestran las bicicletas subidas por los demas usuarios
     else:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+        contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
         # Se muestran las bicicletas subidas por el  usuario logueado
         miBici = current_user.miBici.all()
         user = current_user
-    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici})
+    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'numcontratos':numcontratos,'contratoUser':contratoUser})
 
 
 
@@ -142,15 +132,13 @@ def profileUser(request, username=None):
 class ProfileUpdate(UpdateView):
     template_name = 'user/editprofile.html'
     model = Perfil  # modelo utilizado para traer los datos a ser editados
+    success_url = reverse_lazy('settings')
+    form_class= EditProfileForm
 
     def get_object(self):
         profile, created = Perfil.objects.get_or_create(user=self.request.user)
         return profile
 
-    # campos a mostrar del formulario de edicion de perfil
-    fields = ['telefono', 'direccion',
-        'biografia', 'image_user', 'image_portada']
-    success_url = reverse_lazy('settings')
 
 
 

@@ -10,9 +10,6 @@
     
     {% include 'pages/components/carousel.html' %}
     
-    
-    {% if page %}
-
     <div class="filter-home d-flex justify-content-center mt-5"> 
         <a href="{% url 'bicicletasdisponibles' %}" class="btn btn_biken_success ml-4 {% if request.path|slice:':25' == '/home/filter/disponibles/'%}active-filter-home{% endif%}">
             <i class="far fa-check-circle"></i> 
@@ -109,29 +106,22 @@
             {% endfor %}
             
         </div>
-        
-        {% else %}
-        
-            
-        <div class="div-noresultados_search">
-            <h1 class="text-center mt-5 d-flex justify-content-center text-nosearch">No se han encontrado resultados para esta búsqueda:</h1>
-            <h1 class="text-center font-weight-bold colorbikentext mt-3 d-flex justify-content-center  font-weight-bold">{{request.GET.Buscar}}</h1>  
-            <img src="{% static 'img/animations/anim_nosearch.svg' %}" alt="" class="img_nosearch img-fluid d-block mx-auto">              
-        </div>
 
+        {% else %}
+            
+            <div class="div-noresultados_search">
+                <h1 class="text-center mt-5 d-flex justify-content-center text-nosearch">No se han encontrado resultados para esta búsqueda:</h1>
+                <h1 class="text-center font-weight-bold colorbikentext mt-3 d-flex justify-content-center  font-weight-bold">{{request.GET.Buscar}}</h1>  
+                <img src="{% static 'img/animations/anim_nosearch.svg' %}" alt="" class="img_nosearch img-fluid d-block mx-auto">              
+            </div>
             
         {% endif %}
         
         {% include 'pages/components/pagination.html' %}
     </div>
 
-    {% else %}
-    <!-- LO que se muestra cuando no hay bicicletas subidas -->
-    <div class="div-noresultados_search">
-        <h1 class="text-center mt-5 d-flex justify-content-center text-nosearch">Ups! No hay bicicletas subidas por el momento</h1>
-        <img src="{% static 'img/animations/anim_nosearch.svg' %}" alt="" class="img_nosearch img-fluid d-block mx-auto">              
-    </div>
-    {% endif %}
+
+
 
     <div class="modal fade" id="modaldetailBici" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -151,43 +141,3 @@
 </script>
 
 {% endblock %}
-
-<script>
-    $("#alert,#alert3,#alert5,#alert7,#alert9,#alert11").click(function () {
-        Swal.fire({
-            title: '<span class="title_alert">No has iniciado Sesión</span>',
-            text: 'Inicia Sesión para continuar con el alquiler',
-            showConfirmButton: true,
-            confirmButtonColor: '#2059BD',
-            buttonsStyling: true,
-            showCloseButton: true,
-            closeButtonAriaLabel: 'cerrar alerta',
-        }).then((result) => {
-            if (result.value) {
-                window.location.href = "{% url 'login' %}"
-            }
-        });
-    });
-
-
-    $("#alert2,#alert4,#alert6,#alert8,#alert10,#alert12").click(function () {
-        Swal.fire({
-            title: '<span class="title_alert">No has iniciado Sesión</span>',
-            text: 'Inicia Sesión para continuar con el alquiler',
-            icon: 'info',
-            confirmButtonText: 'Ok',
-            confirmButtonColor: '#2059BD',
-            padding: '2rem',
-            showConfirmButton: true,
-            buttonsStyling: true,
-            showCloseButton: true,
-            closeButtonAriaLabel: 'cerrar alerta',
-
-        }).then((result) => {
-            if (result.value) {
-                window.location.href = "{% url 'login' %}"
-            }
-        });
-    });
-
-</script>

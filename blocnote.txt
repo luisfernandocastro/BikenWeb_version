@@ -1,29 +1,15 @@
-{% extends 'root.html' %}
-{% load static %}
-{% load widget_tweaks %}
+    <!-- {% else %}   -->
+
+            <!-- LO que se muestra cuando no hay bicicletas subidas -->
+            <!-- <div class="div-noresultados_search"> -->
+                <!-- <h1 class="text-center mt-5 d-flex justify-content-center text-nosearch">Ups! No hay bicicletas subidas por el momento</h1> -->
+                <!-- <img src="{% static 'img/animations/anim_nosearch.svg' %}" alt="" class="img_nosearch img-fluid d-block mx-auto">               -->
+            <!-- </div> -->
+
+    <!-- {% endif %} -->
 
 
-
-{% block title%}Biken || Registro{% endblock %}
-{% block classbody %}
-
-<body class="bgimg_registro" id="body">{% endblock %}
-
-    {% block content%}
-
-    <br>
-    <div class="container mt-5">
-
-        <div class="row">
-
-            {% load crispy_forms_tags %}
-            <div class="col-lg-4">
-                <form method="POST" enctype="multipart/form-data" class="formulario" id="formulario">
-                    {% csrf_token %}
-                    <div class="p-2 mb-3 colorbiken text-white text-center" style="border-radius: 30px;">REGISTRO</div>
-
-                    
-                    <!-- <input type="email" class="form-control" placeholder="Enter email" id="email"> -->
+    ----------------------------------------------------------------------------------------------------------------------------
 
 
                     <!-- form grupo nombre de usuario -->
@@ -111,25 +97,3 @@
                         </div>
                         <p class="formulario__input-error">Las contraseñas no coinciden</p>
                     </div>
-
-
-
-                    {% include 'pages/components/messages/messages_forms.html' %}
-
-                    <button type="submit" class="btn btn_biken_success colorbiken ml-5 mt-4">Aceptar</button>
-                    <button type="reset" class="btn btn-secondary btn_biken_cancel ml-5 mt-4" >Limpiar</button>
-
-                </form>
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <!--   <img src='{% static "/img/svg/bike2.svg" %}'> -->
-            </div>
-        </div>
-    </div>
-
-
-    {% endblock %}
-

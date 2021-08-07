@@ -298,6 +298,10 @@ class ContratoBicicletaView(LoginRequiredMixin,CreateView,DetailView):
     form_class =ContratoBicicletaForm
     template_name = 'pages/contrato.html'
 
+    # def get(self,request,*args,**kwargs):
+    #     if self.get_object().disponible == True:
+    #         return render(request,self.template_name,{'object':self.get_object()})
+    #     return redirect('home')
 
     def form_valid(self, form):
         current_user = get_object_or_404(User, pk=self.request.user.pk)
@@ -432,7 +436,60 @@ class ContratoPdf(LoginRequiredMixin,View):
         return HttpResponseRedirect(reverse_lazy('home'))
 
 
+class ContratoPdftoProfile(LoginRequiredMixin,View):
+
+    def link_callback(self, uri, rel):
+
+        # use short variable names
+        sUrl = STATIC_URL  # Typically /static/
+        sRoot = STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = MEDIA_URL  # Typically /static/media/
+        mRoot = MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+
+    def get(self,request,*args,**kwargs):
+        try:
+            template = get_template('contrato/contratopdf.html')
+            context={
+                'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']),
+                'icon': 'static/img/iconsBiken/icono.png'
+                }
+            html=template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            # response['Content-Disposition']='attachment;filename="contratoBiken.pdf"'
+            pisaStatus =pisa.CreatePDF(
+                html,dest=response,
+                link_callback=self.link_callback,
+            )
+            if pisaStatus.err:
+                return HttpResponse('Tienes algunos errores <pre>' + html + '</pre>')
+            return response
+        except:
+            pass
+        return HttpResponseRedirect(reverse_lazy('home'))
+
+
 @login_required
 def downloadpdf(request):
     contrato = ContratoBicicleta.objects.last()
     return render(request,'contrato/download_contrato.html',{'contrato':contrato})
+
+@login_required
+def listContratos(request):
+    contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
+    return render(request,'pages/components/modal_contratos.html',{'contratoUser':contratoUser})

@@ -38,8 +38,12 @@ urlpatterns = [
     # path('contrato/<int:pk>/',views.ContratoBicicletadetailView.as_view(),name="descripcioncontratobike"),
     
     path('contrato/pdf/<int:pk>/',views.ContratoPdf.as_view(),name='contratopdf'),
+    path('viewcontrato/pdf/<int:pk>/',views.ContratoPdftoProfile.as_view(),name='viewcontratopdf'),
 
     path('downloadcontrato/',views.downloadpdf,name='downloadcontrato'),
+    
+    path('listadocontratos/',views.listContratos,name='listadocontratos'),
+
 
     path('', include('Apps.usuario.urls')),
     path('api/',include(router.urls)),

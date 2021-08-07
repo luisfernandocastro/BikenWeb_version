@@ -1,0 +1,30 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content modal-content-home">
+        <div class="modal-body modal-body-home">
+
+            <div class="card-columns contratos mt-3">
+                {% for contrato in contratoUser %}
+                <a href="{% url 'viewcontratopdf' contrato.id %}">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <i class="fas fa-file-pdf d-flex justify-content-center profile-iconpdf"></i>
+                                </div>
+                                <div class="col-lg-10 colorblack">
+                                    <strong>Alquilada a:</strong> {{contrato.user.first_name}} {{contrato.user.last_name}} <br>
+                                    <strong>Fecha: </strong> {{contrato.fechainicio}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-home">
+            <button type="button" class="btn btn-secondary btn_biken_cancel font-weight-bold"
+                data-dismiss="modal">Ok</button>
+        </div>
+    </div>
+</div>

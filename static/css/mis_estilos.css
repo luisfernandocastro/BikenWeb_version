@@ -37,6 +37,9 @@
   background-color: var(--color-biken);
 }
 
+.colorblack{
+  color: var(--color-dark);
+}
 
 .colorbikentext {
   color: var(--color-biken);
@@ -44,7 +47,7 @@
 
 
 /* tema dark */
-body.dark .colorbikentext {
+body.dark .colorbikentext,body.dark .colorblack {
   color: var(--color-white)
 }
 
@@ -95,6 +98,11 @@ body.dark .titulopage {
   background-color: var(--color-biken);
   color: var(--color-light);
   border-radius: 30px !important;
+}
+
+.btn_biken_success-hide {
+  display: none;
+  background-color: red;
 }
 
 .btn_biken_success:hover {
@@ -446,6 +454,14 @@ body.dark .nav__link_user:hover {
 }
 
 
+.card-columns.contratos {
+  margin-left: 25px;
+  margin-right: 25px;
+  column-count: 1;
+}
+
+
+
 .textnamecard {
   font-size: 18px;
 }
@@ -518,7 +534,7 @@ body.dark .card {
   background-color: var(--color-bgcard);
 }
 
-.card-columns .card:hover {
+.card-columns catalogo .card:hover {
   border: solid 1px rgba(32, 89, 189, 0.5);
 }
 
@@ -1386,6 +1402,12 @@ body.dark .iconos-admin {
   color: var(--color-light);
   border: solid 1px var(--color-biken);
 }
+
+
+.profile-iconpdf{
+  font-size: 45px;
+}
+
 
 /*------------------------------------------------------------end  styles Screen Profile--------------------------------------------------*/
 

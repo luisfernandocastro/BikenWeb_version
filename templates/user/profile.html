@@ -73,7 +73,7 @@
                                 <img src="{{user.perfil.get_image}}" class="img_user_profile">
                             </div>
                             <div
-                                class="container-fluid name_user_profile d-flex justify-content-center text-capitalize mt-2 mb-3">
+                                class="container-fluid name_user_profile d-flex justify-content-center text-capitalize mt-3 mb-3">
                                 <h1>{{user.first_name}} {{user.last_name}}<br></h1>
                             </div>
                             <div class="container-fluid  d-flex justify-content-center">
@@ -91,6 +91,40 @@
             <div class="col-lg-12 mt-5">
                 <div class="container-fluid">
                     <div class="row">
+
+                        {% if numcontratos > 0 %}
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100">
+                                <div class="card-body card-body2">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold colorbikentext text-uppercase"
+                                                style="font-size: 15px;">
+                                                {% if request.user.username == user.username%}
+                                                Mis Bicicletas Alquiladas
+                                                {%else%}
+                                                Bicicletas subidas de {{user.first_name}}
+                                                {%endif%}
+                                            </div>
+                                            <div class="h2 mb-0 font-weight-bold text-gray-800 colortextcount-card">
+                                                {{numcontratos}}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-file-contract fa-3x iconos-admin pt-3"></i>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <a href="#" onclick="abrir_contratosmodal('{% url 'listadocontratos' %}')">Ver contratos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        {%endif%}
 
                         {% if user.miBici.count > 0 %}
 
@@ -119,8 +153,8 @@
                             </div>
                         </div>
                         {% else %}
-
                         {%endif%}
+
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body card-body3">
@@ -170,6 +204,11 @@
         </div> <!-- end row -->
     </div> <!-- end Container fluid -->
 
+
+    <div class="modal fade" id="modalcontratos" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    </div>    
+
     <div class="row">
         {% for b in miBici %}
         <div class="col-lg-3 mt-3">
@@ -217,7 +256,7 @@
                         <div class="col-lg-6">
                             <!-- <a href="{% url 'eliminar_bicicleta' b.idmibicicleta%}" data-toggle="modal" data-target="#modalBici"> -->
                             <a href="#" onclick="abrir_modal('{% url 'eliminar_bicicleta' b.idmibicicleta%}')">
-                                <button type="button" class="btn btn-danger d-block mx-auto btneliminarbike"  data-toggle="tooltip" data-placement="bottom" title="Eiminar bicicleta"><i class="far fa-trash-alt"></i>
+                                <button type="button" class="btn btn-danger d-block mx-auto btneliminarbike"  data-toggle="tooltip" data-placement="bottom" title="Eliminar bicicleta"><i class="far fa-trash-alt"></i>
                                 </button>
                             </a>
 
@@ -264,6 +303,13 @@
     var $ = jQuery.noConflict();
     function abrir_detailmodal(url){
         $('#modaldetailBici').load(url,function(){
+            $(this).modal('show');
+        });
+    }
+
+    var $ = jQuery.noConflict();
+    function abrir_contratosmodal(url){
+        $('#modalcontratos').load(url,function(){
             $(this).modal('show');
         });
     }
