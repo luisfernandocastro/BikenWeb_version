@@ -3,7 +3,7 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
-	username: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+	username: /^[a-zA-Z0-9\_\@\.\+]{4,16}$/, // Letras, numeros, guion y guion_bajo
 	first_name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	last_name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	numcelular: /^\d{10,10}$/, // 7 a 10 numeros.
@@ -11,7 +11,7 @@ const expresiones = {
 	password1: /^.{8,100}$/ // 8 a 12 digitos.
 }
 
-
+	
 const campos = {
 	username: false,
 	first_name: false,
