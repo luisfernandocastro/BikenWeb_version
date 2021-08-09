@@ -112,17 +112,19 @@ class UserUpdate(UpdateView):
 def profileUser(request, username=None):
     current_user = request.user
     if username and username != current_user.username:
+        timesalquiler = None
         numcontratos = None
         contratoUser =  None
         user = User.objects.get(username=username)
         miBici = user.miBici.all()  # Se muestran las bicicletas subidas por los demas usuarios
     else:
+        timesalquiler = ContratoBicicleta.objects.filter(user=request.user).count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
         contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
         # Se muestran las bicicletas subidas por el  usuario logueado
         miBici = current_user.miBici.all()
         user = current_user
-    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'numcontratos':numcontratos,'contratoUser':contratoUser})
+    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'timesalquiler':timesalquiler,'numcontratos':numcontratos,'contratoUser':contratoUser})
 
 
 

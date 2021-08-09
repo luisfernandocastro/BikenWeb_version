@@ -28,3 +28,4 @@ def create_profile(sender,instance,created, **kwargs):
 def change_disponible(sender, instance, **kwargs):
     instance.bicicleta.disponible = False # Puedes ser True o False
     instance.bicicleta.save()
+

@@ -403,7 +403,13 @@ body.dark .btncatalogo:hover {
 
 /* .....................start styles notificacion............................... */
 
-
+.div_numcontratos{
+  background-color: red !important; 
+  height: 19px;
+  padding: 0 5px 5px 5px;
+  border-radius:1000px;
+  z-index: 2;
+}
 
 
 /* .....................end styles notificacion................................ */
