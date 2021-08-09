@@ -155,6 +155,30 @@ def home(request):
     queryset = request.GET.get("Buscar")
     contrato = ContratoBicicleta.objects.all()
     bicicletas = MiBicicleta.objects.all()
+    
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+        if queryset :
+            bicicletas = MiBicicleta.objects.filter(
+                Q(user__last_name__icontains = queryset) | 
+                Q(user__first_name__icontains = queryset) | 
+                Q(precioalquiler__icontains = queryset) | 
+                Q(categoria__nombre__icontains= queryset)
+            ).distinct()
+
+        paginator = Paginator(bicicletas, 12, 3)
+        try:
+            num = request.GET.get('list', '1')
+            number = paginator.page(num)
+
+        except PageNotAnInteger:
+            number = paginator.page(1)
+
+        except EmptyPage:
+            number = paginator.page(paginator.num_pages)
+        return render(request,'pages/inicio.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
             Q(user__last_name__icontains = queryset) | 
@@ -201,12 +225,39 @@ class Descripcionbike(DetailView):
     template_name = 'pages/components/modal_detailbike.html'
 
 
+# filtro de  bicicletas Urbanas-------------------
+
 def bikeurbanas(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
         categoria = Categoria.objects.get(nombre = 'Urbana')
     )
+
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+        if queryset :
+            bicicletas = MiBicicleta.objects.filter(
+                Q(user__last_name__icontains = queryset) | 
+                Q(user__first_name__icontains = queryset) | 
+                Q(precioalquiler__icontains = queryset) | 
+                Q(categoria__nombre__icontains= queryset)
+            ).distinct()
+
+        paginator = Paginator(bicicletas, 12, 3)
+        try:
+            num = request.GET.get('list', '1')
+            number = paginator.page(num)
+
+        except PageNotAnInteger:
+            number = paginator.page(1)
+
+        except EmptyPage:
+            number = paginator.page(paginator.num_pages)
+        return render(request,'bike/filtros_categorias/bike_urbanas.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+
+    
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
             Q(user__last_name__icontains = queryset) | 
@@ -218,12 +269,40 @@ def bikeurbanas(request):
     return render(request ,'bike/filtros_categorias/bike_urbanas.html',{'page': bicicletas})
 
 
+# filtro de  bicicletas de Ruta -------------------
+
 def bikeruta(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
         categoria = Categoria.objects.get(nombre = 'Ruta')
     )
+
+
+
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+        if queryset :
+            bicicletas = MiBicicleta.objects.filter(
+                Q(user__last_name__icontains = queryset) | 
+                Q(user__first_name__icontains = queryset) | 
+                Q(precioalquiler__icontains = queryset) | 
+                Q(categoria__nombre__icontains= queryset)
+            ).distinct()
+
+        paginator = Paginator(bicicletas, 12, 3)
+        try:
+            num = request.GET.get('list', '1')
+            number = paginator.page(num)
+
+        except PageNotAnInteger:
+            number = paginator.page(1)
+
+        except EmptyPage:
+            number = paginator.page(paginator.num_pages)
+        return render(request,'bike/filtros_categorias/bike_ruta.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+    
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
             Q(user__last_name__icontains = queryset) | 
@@ -235,12 +314,39 @@ def bikeruta(request):
     return render(request ,'bike/filtros_categorias/bike_ruta.html',{'page': bicicletas})
 
 
+# filtro de  bicicletas de Todo terreno -------------------
+
 def biketodoterreno(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
         categoria = Categoria.objects.get(nombre = 'Todo terreno')
     )
+
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+        if queryset :
+            bicicletas = MiBicicleta.objects.filter(
+                Q(user__last_name__icontains = queryset) | 
+                Q(user__first_name__icontains = queryset) | 
+                Q(precioalquiler__icontains = queryset) | 
+                Q(categoria__nombre__icontains= queryset)
+            ).distinct()
+
+        paginator = Paginator(bicicletas, 12, 3)
+        try:
+            num = request.GET.get('list', '1')
+            number = paginator.page(num)
+
+        except PageNotAnInteger:
+            number = paginator.page(1)
+
+        except EmptyPage:
+            number = paginator.page(paginator.num_pages)
+        return render(request,'bike/filtros_categorias/bike_todoterreno.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+
+
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
             Q(user__last_name__icontains = queryset) | 
@@ -252,7 +358,7 @@ def biketodoterreno(request):
     return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
 
 
-
+# filto de bicicletas disponibles
 
 def bikedisponibles(request):
 
@@ -260,6 +366,31 @@ def bikedisponibles(request):
     bicicletas = MiBicicleta.objects.filter(
         disponible = True
     )
+
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+        if queryset :
+            bicicletas = MiBicicleta.objects.filter(
+                Q(user__last_name__icontains = queryset) | 
+                Q(user__first_name__icontains = queryset) | 
+                Q(precioalquiler__icontains = queryset) | 
+                Q(categoria__nombre__icontains= queryset)
+            ).distinct()
+
+        paginator = Paginator(bicicletas, 12, 3)
+        try:
+            num = request.GET.get('list', '1')
+            number = paginator.page(num)
+
+        except PageNotAnInteger:
+            number = paginator.page(1)
+
+        except EmptyPage:
+            number = paginator.page(paginator.num_pages)
+        return render(request,'bike/filtros_categorias/bike_disponibles.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+
+
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
             Q(user__last_name__icontains = queryset) | 
@@ -268,7 +399,7 @@ def bikedisponibles(request):
             Q(categoria__nombre__icontains= queryset)
         ).distinct()
 
-    return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
+    return render(request ,'bike/filtros_categorias/bike_disponibles.html',{'page': bicicletas})
 
 
 
@@ -493,3 +624,9 @@ def downloadpdf(request):
 def listContratos(request):
     contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
     return render(request,'pages/components/modal_contratos.html',{'contratoUser':contratoUser})
+
+
+
+# def notify(request):
+#     numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+#     return render(request,'pages/',{'numcontratos':numcontratos})

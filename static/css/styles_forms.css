@@ -95,7 +95,7 @@ body.dark .helptext_input-number {
 
 
 
-.form-check-input{
+.form-check-input {
     background-color: red !important;
 }
 
@@ -103,46 +103,58 @@ body.dark .helptext_input-number {
 /* validaciones --------------------*/
 
 .formulario__input-error {
-	font-size: 12px;
-	margin-bottom: 0;
-	display: none;
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
 }
 
 .formulario__input-error-activo {
-	display: block;
+    color: rgb(218, 2, 2);
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.formulario__grupo-correcto .formulario__validacion-estado {
-	color: #1ed12d;
-	opacity: 1;
-}
 
 .formulario__grupo-incorrecto .formulario__label {
-	color: #bb2929;
+    color: rgb(218, 2, 2);
 }
 
 /* ------------------------------------- */
 
 
-.formulario__grupo-terminos, 
+.formulario__grupo-terminos,
 .formulario__mensaje,
 .formulario__grupo-btn-enviar {
-	grid-column: span 2;
+    grid-column: span 2;
 }
 
 .formulario__mensaje {
-	height: 45px;
-	line-height: 45px;
-	background: #F66060;
-	padding: 0 15px;
-	border-radius: 3px;
-	display: none;
+    height: 45px;
+    line-height: 45px;
+    background: #F66060;
+    padding: 0 15px;
+    border-radius: 3px;
+    display: none;
 }
 
 .formulario__mensaje-activo {
-	display: block;
+    display: block;
 }
 
 .formulario__mensaje p {
-	margin: 0;
+    margin: 0;
+}
+
+.input__error {
+    color: #d60000;
+    border: solid 1px #c70606 !important;
+    -webkit-transition: .5s ease all;
+    transition: .5s ease all;
+}
+
+
+.input__error:focus {
+    color: #8f0000;
+    box-shadow: inset 0 1px 1px rgba(231, 6, 6, 0.075), 0 0 8px rgba(224, 15, 8, 0.6);
 }

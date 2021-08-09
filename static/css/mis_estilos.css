@@ -401,9 +401,15 @@ body.dark .btncatalogo:hover {
 
 /*------------------------------------------------------ home page-----------------------------------------------------------*/
 
+/* .....................start styles notificacion............................... */
 
 
-/*..................Estilos de la imagen de perfil de los usuarios...........*/
+
+
+/* .....................end styles notificacion................................ */
+/* ..................................................... */
+
+/*..................start styles imagen de perfil de los usuarios...........*/
 
 .img_perfilUser {
   background-color: var(--color-biken);
