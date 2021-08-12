@@ -4,7 +4,7 @@ from django.db.models.fields.related import OneToOneField
 from django.urls.base import reverse
 from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinLengthValidator, RegexValidator
 from django.utils import timezone
 User=get_user_model()
 
@@ -32,13 +32,13 @@ def custom_upload_to_banner(instance, filename):
     
 class Perfil(models.Model):
     user=  models.OneToOneField(User,on_delete=models.CASCADE)
-    telefono = models.BigIntegerField(db_column='Telefono',null=True,blank=True)
+    telefono = models.CharField(db_column='Telefono',null=True,blank=True, max_length=7,validators=[MinLengthValidator(7)])
     direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
     estado = models.CharField(db_column='Biografia', max_length=80,null=True,blank=True) 
     image_portada = models.ImageField(upload_to='custom_upload_to_banner',null=True,blank=True,verbose_name='Imagen de portada')
     image_user = models.ImageField(upload_to='custom_upload_to_profile',null=True,blank=True,verbose_name='Imagen de perfil')
 
-    def __str__(self):
+    def __str__(self):  
         return f'Perfil de {self.user.username}'
 
     def get_image(self):
@@ -61,6 +61,8 @@ class Perfil(models.Model):
 #     [2,'Ruta']
 # ]
 
+validatorDescription = RegexValidator(r"^[a-zA-ZÀ-ÿ0-9\s]{1,40}$","La descripcion de tu Bici no puede contener caracteres especiales")
+
 
 class MiBicicleta(models.Model):
     idmibicicleta = models.BigAutoField(db_column='idmibicicleta',primary_key=True, serialize=False, verbose_name='ID')
@@ -74,7 +76,7 @@ class MiBicicleta(models.Model):
     precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  # Field name made lowercase.
     valortiempohoras= models.IntegerField(db_column='Horas de alquiler',null=True,blank=True,default=0)
     valortiempomin= models.IntegerField(db_column='Minutos de alquiler',null=True,blank=True,default=0)
-    descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,blank=True) 
+    descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,blank=True,validators=[validatorDescription]) 
     foto = models.ImageField(db_column='Foto', max_length=100, null=True)  # Field name made lowercase.
     estado = models.BooleanField(db_column='estado',default=True)
 

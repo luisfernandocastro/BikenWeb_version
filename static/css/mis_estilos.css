@@ -412,6 +412,15 @@ body.dark .btncatalogo:hover {
 }
 
 
+.msg_notify{
+  color: var(--color-grisclaro);
+  
+}
+
+body.dark .msg_notify{
+  color: var(--color-white);
+}
+
 /* .....................end styles notificacion................................ */
 /* ..................................................... */
 
@@ -1655,7 +1664,10 @@ body.dark .optionsconfig:hover {
 /* ------------------------start styles screeen change password----------- */
 
 .text_error-changepass {
-  color: red;
+  color: rgb(218, 2, 2);
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .helptext_changepass {

@@ -170,7 +170,6 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request,user)
-            messages.success(request,'Tu contraseña a sido cambiada correctamente!!')
             return redirect('settings')
         else:
             messages.error(request,'Por favor corrija los errores')

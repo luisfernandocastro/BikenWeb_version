@@ -1,10 +1,11 @@
+{% load static %}
 <div class="modal-dialog" role="document">
     <div class="modal-content modal-content-home">
         <div class="modal-body modal-body-home">
 
             <div class="card-columns contratos mt-3">
                 
-                {% if contratoUse %}
+                {% if contratoUser %}
                     {% for contrato in contratoUser %}
                     <a href="{% url 'viewcontratopdf' contrato.id %}">
                         <div class="card mb-4">
@@ -23,7 +24,13 @@
                     </a>
                     {% endfor %} 
                 {% else %}
-                    No tienes contratos nuevos
+
+                <!-- <img src="{% static '/img/animations/anim2.svg' %}"> -->
+                    <img src="{% static '/img/animations/anim_notlfy.svg' %}" class="img-fluid"> 
+                    
+                    <strong class="msg_notify d-flex justify-content-center font-weight-bold h4">
+                        No tienes contratos nuevos  
+                    </strong>
                 {% endif %}
                     
 

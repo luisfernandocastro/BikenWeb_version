@@ -6,7 +6,6 @@ from .models import * # Traer las tablas del modelo de base de datos en el archi
 
 
 # validators
-
 validatorLetters= RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El campo de marca solo puede contener letras")
 validatornum= RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El campo de marca solo puede contener letras")
 

@@ -45,7 +45,7 @@
                         <div class="formulario__grupo-input">
                             {% render_field form.first_name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu nombre" name="first_name" id="first_name" %}
                         </div>
-                        <p class="formulario__input-error">El nombre solo puede contener letras</p>
+                        <p class="formulario__input-error">El nombre debe ser mayor a 3 caractéres y solo puede contener letras</p>
                     </div>
 
                     <!-- form grupo apellidos -->
@@ -55,7 +55,7 @@
                         <div class="formulario__grupo-input">
                             {% render_field form.last_name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu Apellido" name="last_name" id="last_name" %}
                         </div>
-                        <p class="formulario__input-error">El Apellido solo puede contener letras</p>
+                        <p class="formulario__input-error">El apellido debe ser mayor a 3 caractéres y solo puede contener letras</p>
                     </div>
                 
 
@@ -113,9 +113,6 @@
                     <button type="reset" class="btn btn-secondary btn_biken_cancel ml-5 mt-4" >Limpiar</button>
 
                 </form>
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-                </div>
             </div>
             <div class="col-lg-8">
             </div>
@@ -124,4 +121,10 @@
 
 
     {% endblock %}
+
+    
+    {% block script %}
+        <script src='{% static "/js/validations/formularioregistro.js" %}' type="text/javascript"></script>
+    {% endblock script %}
+        
 

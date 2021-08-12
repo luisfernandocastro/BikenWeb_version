@@ -23,10 +23,12 @@ class LoginForm(AuthenticationForm):
 
 
 
-validatorletters = RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","Agrega solo letras")
+validatorEstado = RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","Agregue solo letras en el campo de estado")
 validatorFirst_name = RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El nombre no puede contener números, ni caracteres especiales")
 validatorLast_name = RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El Apellido no puede contener números, ni caracteres especiales")
-validatornumcelular = RegexValidator("/^\d{7,10}$/","Inserte un número de celular válido")
+validatornumcelular = RegexValidator(r"^\d{10,10}$","Inserte un número de celular válido")
+validatornumtelefono =  RegexValidator(r"^\d{7,7}$","Inserte un número de teléfono válido")
+validatordireccion= RegexValidator(r"^[a-zA-Z0-9\s\_\#\-]{10,100}$", "Inserte una dirección válida") 
 
 # Creacion del formulario para el registro de usuarios en Biken usando el modelo personalizado
 # de usuario(User) 
@@ -59,14 +61,14 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 
-    def clean_numcelular(self):
-        numcelular = self.cleaned_data.get('numcelular')
+    # def clean_numcelular(self):
+    #     numcelular = self.cleaned_data.get('numcelular')
     
     
-        if not numcelular.isdigit():
-            raise forms.ValidationError(u'El numero de celular solo puede contener numeros')
+    #     if not numcelular.isdigit():
+    #         raise forms.ValidationError(u'El numero de celular solo puede contener numeros')
 
-        return numcelular
+    #     return numcelular
 
 
 
@@ -75,7 +77,7 @@ class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(required=True)
     first_name = forms.CharField(required=False,validators=[validatorFirst_name])
     last_name = forms.CharField(required=False,validators=[validatorLast_name])
-    numcelular = forms.IntegerField(required=False)
+    numcelular = forms.IntegerField(required=False,validators=[validatornumcelular])
 
     class Meta:
         model = User
@@ -94,18 +96,8 @@ class UpdateUserForm(forms.ModelForm):
 
 
 
-    def clean_numcelular(self):
-        numcelular = self.cleaned_data.get('numcelular')
-    
-        if not numcelular.isdigit():
-            raise forms.ValidationError(u'El numero de celular solo puede contener numeros')
-
-        return numcelular
-
-
 
 class ChangeEmailForm(forms.ModelForm):
-    estado = forms.CharField(validators=[validatorletters])
 
     email = forms.EmailField(required=True,max_length=250, help_text='Requerido como maximo 250 carácteres como máximo y debe ser un email válido.')
 
@@ -122,16 +114,12 @@ class ChangeEmailForm(forms.ModelForm):
 
 
 class EditProfileForm(forms.ModelForm):
+    estado = forms.CharField(required=False,validators=[validatorEstado])
+    telefono = forms.CharField(validators=[validatornumtelefono])    
+    direccion = forms.CharField(required=False, validators=[validatordireccion])
+
     class Meta:
         model= Perfil
         fields = ['telefono', 'direccion','estado', 'image_user', 'image_portada']
 
 
-    def clean_telefono(self):
-        telefono = self.cleaned_data.get('telefono')
-    
-        if not telefono.isdigit():
-            raise forms.ValidationError(u'El telefono solo puede contener números')
-    
-        return telefono
-    
