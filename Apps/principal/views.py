@@ -1,21 +1,19 @@
 from typing import Reversible
 from django import forms
 import django
-from django import http
-from django.contrib.messages import views
-from django.db.models import query
-from django.http.response import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, JsonResponse
-from django.urls.base import reverse
-from django.urls.conf import path
-from django.views.generic import DeleteView
+from django.core.mail.message import EmailMultiAlternatives
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.template import context
+from django.template.context import RequestContext
+from django.views.generic import DeleteView ,TemplateView
 from django.urls import reverse_lazy  # redireccion de funciones
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic.base import View
+from django.shortcuts import get_object_or_404, redirect, render # importacions a usar en las vistas basadas en funciones
+from django.views.generic.base import TemplateResponseMixin, View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, FormMixin, FormView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import *  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
-from .forms import BicicletasForm,EditBicicletaForm,ContratoBicicletaForm
+from .forms import BicicletasForm, ContactoForm,EditBicicletaForm,ContratoBicicletaForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
 from django.contrib import messages
 # importacion del modelo usuario personalizado para ser utilizado en vez del que viene por defecto
@@ -25,22 +23,25 @@ from django.contrib.auth.decorators import login_required
 # Actualiaciones  o ediciones de datos que se encuentran en la base de datos generadas por Django
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.decorators import method_decorator
-from django.shortcuts import render
 from django.db.models import Q
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin # mensajes a mostrar en las vistas basadas en clases
+from django.contrib.auth.mixins import LoginRequiredMixin # Mixin para solicitar el logueo de usuario para ver la vista( vistas basadas en clases)
 
-#importaciones pdf------------
+
+from django.core.mail import EmailMessage
+# start importaciones pdf------------
 
 import os
 from django.http import HttpResponse
 from django.conf.global_settings import STATIC_ROOT,STATIC_URL,MEDIA_ROOT,MEDIA_URL
 from django.conf import settings
-from django.template import Context, context
-from django.template.loader import get_template 
-from xhtml2pdf import pisa
+from django.template import Context
+from django.template.loader import get_template, render_to_string 
+from xhtml2pdf import pisa 
 
-# end importaciones pdf-------
+# end importaciones pdf------------
+
+from hashlib import sha1
 
 user = get_user_model()  # Usar el modelo de Usuario personalizdo
 
@@ -67,15 +68,6 @@ def messageUploadBike(request):
 def quienesSomos(request):
     return render(request, 'pages/quienessomos.html')
 
-# metodo para mostrar la vista de contacto con Biken al usuario,
-
-
-def contacto(request):
-    return render(request, 'pages/Contacto.html')
-
-# metodo para mostrar el formulario de registro al usuario
-
-
 
 
 
@@ -87,14 +79,14 @@ def uploadBike(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
         # request.FILES ,necesario para subir imagenes
-        form = BicicletasForm(request.POST, files=request.FILES)
-        if form.is_valid():
-            bici = form.save(commit=False)
-            bici.user = current_user
-            bici.save()
-            messages.success(request, "Bicicleta subida correctamente")
-            return redirect('messagebike')
-    else:
+        form = BicicletasForm(request.POST, files=request.FILES) # FILES sube la imagen seleccionada a la base de datos
+        if form.is_valid(): # se valida si el formulario es correcto
+            bici = form.save(commit=False) # necesario para traer datos de otras instancias
+            bici.user = current_user # Le asigno al campo de usuario(user) la pk del usuario logueado 
+            bici.save() # se guarda el formulario
+            messages.success(request, "Bicicleta subida correctamente") # mensaje a mostrar si la bicicleta se subio correctamente
+            return redirect('messagebike') # si el formulario es almacenado se muestra la ventana con el mensaje de exito [messages.success]
+    else:# si el formulario no es por metodo POST se muestra el formulario vacio al hacer submit
         form = BicicletasForm()
     return render(request, 'bike/uploadBike.html', {'form': form})
 
@@ -102,49 +94,36 @@ def uploadBike(request):
 
 
 
-# -------metodo para editar o actualizar una bicicleta subida por el usuario loguedo
+# Metodo para editar o actualizar una bicicleta subida por el usuario loguedo
 
 class Editar_bicicleta(SuccessMessageMixin,LoginRequiredMixin, UpdateView):
-    model = MiBicicleta
-    form_class = EditBicicletaForm
-    template_name = 'bike/editar_bicicleta.html'
-    success_url = reverse_lazy('perfil')
-    success_message='Los datos de tu bicicleta han sido cambiados correctamente!!'
-
-# class Editar_bicicleta(SuccessMessageMixin,UpdateView):
-#     model = MiBicicleta
-#     form_class = BicicletasForm
-#     template_name = 'bike/editar_bicicleta.html'
-#     success_url = reverse_lazy('perfil')
-
-
-
-# def editar_bicicleta(request, id):
-
-#     bicicleta = get_object_or_404(MiBicicleta, idmibicicleta=id)
-
-#     data = {
-#         'form': BicicletasForm(instance=bicicleta)
-#     }
-
-#     if request.method == 'POST':
-#         formulario = BicicletasForm(
-#             data=request.POST, instance=bicicleta, files=request.FILES)
-#         if formulario.is_valid():
-#             formulario.save()
-#             return redirect(to='perfil')
-#         data['form'] = BicicletasForm(
-#             instance=bicicleta.objects.get(idmibicicleta=id))
-
-#     return render(request, 'bike/editar_bicicleta.html', data)
+    model = MiBicicleta # Modelo a usar 
+    form_class = EditBicicletaForm # formulario a usar de forms.py
+    template_name = 'bike/editar_bicicleta.html' # plantilla html a usar 
+    success_url = reverse_lazy('perfil') # Si es correcto se regresa al perfil del usuario
+    success_message='Los datos de tu bicicleta han sido cambiados correctamente!!' # Mensaje a mostrar si el post fue correcto
 
 
 
 
+#----clase para eliminar la bicicleta del usuario
 class Delete_bicicleta(DeleteView):
-    model = MiBicicleta
+    model = MiBicicleta # modelo de bicicletas
     template_name = 'pages/components/modal_deleteBike.html'
-    success_url = reverse_lazy('perfil')
+    success_url = reverse_lazy('perfil') # Despues de eliminar regresa al muro del perfil
+
+
+
+# def delete_bicicleta(request,id):
+#     bicicleta = MiBicicleta.objects.get(idmibicicleta=id)
+
+#     if  bicicleta.disponible == True:
+#         bicicleta.disponible = False
+#         return redirect('perfil')
+#     else:
+#         return HttpResponse("Esta bicicleta no existe")
+
+#     return render(request,)
 
 
 
@@ -156,17 +135,20 @@ def home(request):
     contrato = ContratoBicicleta.objects.all()
     bicicletas = MiBicicleta.objects.all()
     
+    # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
-        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos
 
+        # Barra de busqueda para el usuario logueado
         if queryset :
             bicicletas = MiBicicleta.objects.filter(
-                Q(user__last_name__icontains = queryset) | 
-                Q(user__first_name__icontains = queryset) | 
-                Q(precioalquiler__icontains = queryset) | 
-                Q(categoria__nombre__icontains= queryset)
+                Q(user__last_name__icontains = queryset) | # Busqueda por apellido
+                Q(user__first_name__icontains = queryset) | # Busqueda por nombre
+                Q(precioalquiler__icontains = queryset) | # Busqueda por precio de alquiler
+                Q(categoria__nombre__icontains= queryset) # Busqueda por categoria
             ).distinct()
 
+        # Paginacion del catalogo
         paginator = Paginator(bicicletas, 12, 3)
         try:
             num = request.GET.get('list', '1')
@@ -214,15 +196,15 @@ def home(request):
 
 
 
-
+# Funcion  para mostrar el template de menu de configuraciones del usuario
 @login_required
 def settings(request):
     return render(request, 'user/settingsuser.html')
 
-
+# Detalles de una biciclta al dar click sobre la imagen de la bici
 class Descripcionbike(DetailView):
-    model = MiBicicleta
-    template_name = 'pages/components/modal_detailbike.html'
+    model = MiBicicleta 
+    template_name = 'pages/components/modal_detailbike.html' # modal 
 
 
 # filtro de  bicicletas Urbanas-------------------
@@ -233,16 +215,16 @@ def bikeurbanas(request):
     bicicletas = MiBicicleta.objects.filter(
         categoria = Categoria.objects.get(nombre = 'Urbana')
     )
-
+    # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
-        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos
 
         if queryset :
             bicicletas = MiBicicleta.objects.filter(
-                Q(user__last_name__icontains = queryset) | 
-                Q(user__first_name__icontains = queryset) | 
-                Q(precioalquiler__icontains = queryset) | 
-                Q(categoria__nombre__icontains= queryset)
+                Q(user__last_name__icontains = queryset) | # Busqueda por nombre
+                Q(user__first_name__icontains = queryset) | # Busqueda por apellido
+                Q(precioalquiler__icontains = queryset) | # Busqueda por precio de alquiler
+                Q(categoria__nombre__icontains= queryset) # Busqueda por categoria
             ).distinct()
 
         paginator = Paginator(bicicletas, 12, 3)
@@ -285,10 +267,10 @@ def bikeruta(request):
 
         if queryset :
             bicicletas = MiBicicleta.objects.filter(
-                Q(user__last_name__icontains = queryset) | 
-                Q(user__first_name__icontains = queryset) | 
-                Q(precioalquiler__icontains = queryset) | 
-                Q(categoria__nombre__icontains= queryset)
+                Q(user__last_name__icontains = queryset) | # Busqueda por apellido
+                Q(user__first_name__icontains = queryset) | # Busqueda por nombre
+                Q(precioalquiler__icontains = queryset) | # Busqueda por precio
+                Q(categoria__nombre__icontains= queryset) # busqueda por categoria
             ).distinct()
 
         paginator = Paginator(bicicletas, 12, 3)
@@ -322,16 +304,16 @@ def biketodoterreno(request):
     bicicletas = MiBicicleta.objects.filter(
         categoria = Categoria.objects.get(nombre = 'Todo terreno')
     )
-
+    # 
     if request.user.is_authenticated:
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
 
         if queryset :
             bicicletas = MiBicicleta.objects.filter(
-                Q(user__last_name__icontains = queryset) | 
-                Q(user__first_name__icontains = queryset) | 
-                Q(precioalquiler__icontains = queryset) | 
-                Q(categoria__nombre__icontains= queryset)
+                Q(user__last_name__icontains = queryset) | # Busqueda por nombre
+                Q(user__first_name__icontains = queryset) | # Busqueda por apellido
+                Q(precioalquiler__icontains = queryset) | # Busqueda por precio
+                Q(categoria__nombre__icontains= queryset) # Busqueda por categoria
             ).distinct()
 
         paginator = Paginator(bicicletas, 12, 3)
@@ -372,10 +354,10 @@ def bikedisponibles(request):
 
         if queryset :
             bicicletas = MiBicicleta.objects.filter(
-                Q(user__last_name__icontains = queryset) | 
-                Q(user__first_name__icontains = queryset) | 
-                Q(precioalquiler__icontains = queryset) | 
-                Q(categoria__nombre__icontains= queryset)
+                Q(user__last_name__icontains = queryset) | # Busqueda por nombre
+                Q(user__first_name__icontains = queryset) | # Busqueda por apellido
+                Q(precioalquiler__icontains = queryset) | # Busqueda por precio de aquiler
+                Q(categoria__nombre__icontains= queryset) # Busqueda por categoria
             ).distinct()
 
         paginator = Paginator(bicicletas, 12, 3)
@@ -403,170 +385,108 @@ def bikedisponibles(request):
 
 
 
-# class ContratoBicicleta(CreateView):
-#     template_name = 'pages/contrato.html'
-#     model = Contrato
-#     form_class = ContratoBicicletaForm
-#     success_url = reverse_lazy('home')
-
-
-# class DetailBikeContrato(DetailView):
-#     model = MiBicicleta
-#     template_name = 'pages/contrato.html'
-
-# class Contrato(CreateView, DetailView):
-#     template_name = 'pages/contrato.html'
-#     model = Contrato
-#     form_class = ContratoBicicletaForm
-#     success_url = reverse_lazy('home')
-
-
 
 #--------------------------------------------------------
 
-class ContratoBicicletaView(LoginRequiredMixin,CreateView,DetailView):
-    model = MiBicicleta
-    form_class =ContratoBicicletaForm
-    template_name = 'pages/contrato.html'
-
-    # def get(self,request,*args,**kwargs):
-    #     if self.get_object().disponible == True:
-    #         return render(request,self.template_name,{'object':self.get_object()})
-    #     return redirect('home')
-
-    def form_valid(self, form):
-        current_user = get_object_or_404(User, pk=self.request.user.pk)
-        current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
-
-        bici = form.save(commit=False)
-        bici.user = current_user
-        bici.bicicleta = current_bici
-        bici.save()
-        return redirect('downloadcontrato')
-
-    
-# -------------------------------------------------------
-
-    # success_url = reverse_lazy('home')
-
-    # def form_valid(self, form):
-    #     print ('happening2')
-    #     MiBicicleta.disponible=False
-    #     return http.HttpResponse("form ism valid.. this is just an HttpResponse object")
-
-    # def form_invalid(self, form):
-    #     print ("form is invalid")
-    #     return http.HttpResponse("form is invalid.. this is just an HttpResponse object")
-
-# class ContratoBicicletadetailView(DetailView):
+# Formulario de contrato de una bicicleta
+# class ContratoBicicletaView(LoginRequiredMixin,DetailView,CreateView):
 #     model = MiBicicleta
+#     form_class =ContratoBicicletaForm # Formulario creado en forms.py
 #     template_name = 'pages/contrato.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(ContratoBicicleta, self).get_context_data(**kwargs)
-    #     context['form'] = self.get_form()
-    #     return context
 
-    # def post(self, request, *args, **kwargs):
-    #     return CreateView.post(self, request, *args, **kwargs)
+#     def form_valid(self, form):
+#         current_user = get_object_or_404(User, pk=self.request.user.pk) # Guarda en el modelo contrato la llave pimaria del usuario logueado(auntenticado)
+#         current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first() # Guarda en el modelo contrato la llave primaria de la biciclta seleccionada
+#         bici = form.save(commit=False) # Necesario para traer la instancias del modelo user y mibicicleta
+#         bici.user = current_user # lleno el campo de user(arrendatario) automaticamente para que se almacena en la tabla  
+#         bici.bicicleta = current_bici # lleno el campo con la pk de la bicicleta seleccionada automaticamente y se guarda en la tabla
+#         bici.save() # Se guarda el formulario
+#         return redirect('downloadcontrato') # Si el fmulario es correcto se pasa a descargar el contrato    
 
-
-
-# @login_required
-# def contratoBicicleta(request):
-#     current_user = get_object_or_404(User, pk=request.user.pk)
-#     # current_bici = get_object_or_404(MiBicicleta,idmibicicleta = object.idmibicicleta)
-#     if request.method == 'POST':
-#         # request.FILES ,necesario para subir imagenes
-#         form = ContratoBicicletaForm(request.POST, files=request.FILES)
-#         if form.is_valid():
-#             bici = form.save(commit=False)
-#             bici.user = current_user
-#             # bici.bicicleta = current_bici
-#             bici.save()
-#             messages.success(request, "Contrato correcto")
-#             return redirect('home')
-#     else:
-#         form = ContratoBicicletaForm()
-#     return render(request, 'pages/contrato.html', {'form': form})
-
-
-# -------------------*-------------*-----------------------*-------------*-
-
-
-
-
-# class ContratoBicicleta(LoginRequiredMixin,DetailView):
-#     model=ContratoBicicleta
-#     succes_url=reverse_lazy('home')
-
-#     def post(self,request,*args,**kwargs):
-#         if request.is_ajax():
-#             bicicleta = MiBicicleta.objects.filter(id=request.POST.get('bicicleta')).first()
-#             user = request.user.objects.filter(id=request.POST.get('user')).first()
-#             if bicicleta and user:
-#                 nuevo_contrato= self.model(
-#                     bicicleta=bicicleta,
-#                     user=user
-#                 )
-#                 nuevo_contrato.save()
-#                 mensaje = f'(self.model.__name__) registrada correctamente'
-#                 error = 'No hay error'
-#                 response=JsonResponse({'mensaje':mensaje,'error':error,'url':self.success_url})
-#                 response.status_code=201
-#                 return response
+#     def get(self,request,*args,**kwargs):
+#         if self.get_object().disponible == True:
+#             return render(request,self.template_name,{'object':self.get_object()})
 #         return redirect('home')
 
+# -----------------------------------------------------------------------------------------------
+
+class ContratoBicicletaView(CreateView):
+    model: MiBicicleta
+    form_class = ContratoBicicletaForm # Formulario creado en forms.py
+    template_name ='pages/contrato.html'
+
+    def form_valid(self, form):
+        current_user = get_object_or_404(User, pk=self.request.user.pk) # Guarda en el modelo contrato la llave pimaria del usuario logueado(auntenticado)
+        current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first() # Guarda en el modelo contrato la llave primaria de la biciclta seleccionada
+        bici = form.save(commit=False) # Necesario para traer la instancias del modelo user y mibicicleta
+        bici.user = current_user # lleno el campo de user(arrendatario) automaticamente para que se almacena en la tabla  
+        bici.bicicleta = current_bici # lleno el campo con la pk de la bicicleta seleccionada automaticamente y se guarda en la tabla
+        bici.save() # Se guarda el formulario
+        return redirect('downloadcontrato') # Si el formulario es correcto se pasa a descargar el contrato    
+
+    def get_context_data(self, **kwargs):
+        kwargs['object'] = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
+        return super(ContratoBicicletaView, self).get_context_data(**kwargs)
+
+# ---------------------------------------------------------------------------------------------
 
 
+
+# Descargar contrato en formato pdf
 class ContratoPdf(LoginRequiredMixin,View):
 
+    # funcion para mostrar imagenes en el pdf
     def link_callback(self, uri, rel):
 
-        # use short variable names
-        sUrl = STATIC_URL  # Typically /static/
-        sRoot = STATIC_ROOT  # Typically /home/userX/project_static/
-        mUrl = MEDIA_URL  # Typically /static/media/
-        mRoot = MEDIA_ROOT  # Typically /home/userX/project_static/media/
+        # variables de archivos usados
+        sUrl = STATIC_URL  # archivos estaticos
+        sRoot = STATIC_ROOT  
+        mUrl = MEDIA_URL  # archivos de la carpeta media
+        mRoot = MEDIA_ROOT  
 
-        # convert URIs to absolute system paths
+        # convertir URLS en rutas absolutas del sistema
         if uri.startswith(mUrl):
             path = os.path.join(mRoot, uri.replace(mUrl, ""))
         elif uri.startswith(sUrl):
             path = os.path.join(sRoot, uri.replace(sUrl, ""))
         else:
-            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+            return uri  
 
-        # make sure that file exists
+        # Se asegura que archivo a mostrar exista
         if not os.path.isfile(path):
             raise Exception(
                 'media URI must start with %s or %s' % (sUrl, mUrl)
             )
         return path
 
-
+    # funcio para mostrar y personalizar la vista del pdf
     def get(self,request,*args,**kwargs):
         try:
+            # Template donde se va a mostrar el pde
             template = get_template('contrato/contratopdf.html')
             context={
-                'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']),
-                'icon': 'static/img/iconsBiken/icono.png'
+                # diccionario de variables para usar en el template
+                'contrato': ContratoBicicleta.objects.get(pk=self.kwargs['pk']), # llave primaria del contrato creado  
+                'icon': 'static/img/iconsBiken/icono.png' # imagen del icono biken a mostrar en la plantilla del pdf
                 }
-            html=template.render(context)
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition']='attachment;filename="contratoBiken.pdf"'
+            html=template.render(context) # Codigo html creado
+            response = HttpResponse(content_type='application/pdf') # del codigo html a formato pdf
+            response['Content-Disposition']='attachment;filename="contratoBiken.pdf"' # Descarga el contrato de una vez, si se quita esta linea se visualiza el pdf al instante para despues ser descargado
             pisaStatus =pisa.CreatePDF(
-                html,dest=response,
-                link_callback=self.link_callback,
+                html,dest=response, # se trae la construccion del html
+                link_callback=self.link_callback, # se trae la funcion de archivos de imagenes para ser mostrados
             )
+            # Si hay algun error en la creacion del html muestro un mensaje de error en pantalla
             if pisaStatus.err:
                 return HttpResponse('Tienes algunos errores <pre>' + html + '</pre>')
             return response
         except:
             pass
+        # con el try catch su hay un error al mostrar el  se redirecciona a la ventana de inicio principal
         return HttpResponseRedirect(reverse_lazy('home'))
 
-
+# Vista de contratos en formato pdf 
 class ContratoPdftoProfile(LoginRequiredMixin,View):
 
     def link_callback(self, uri, rel):
@@ -615,11 +535,14 @@ class ContratoPdftoProfile(LoginRequiredMixin,View):
         return HttpResponseRedirect(reverse_lazy('home'))
 
 
+# funcion para descargar el contrato despues de ser validado el contrato
 @login_required
 def downloadpdf(request):
-    contrato = ContratoBicicleta.objects.last()
+    contrato = ContratoBicicleta.objects.last() # Traigo el ultimo contrato creado
     return render(request,'contrato/download_contrato.html',{'contrato':contrato})
 
+
+# funcion para ver la lista de contratos en el perfil o en el icono de  notificaciones 
 @login_required
 def listContratos(request):
     contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
@@ -627,6 +550,53 @@ def listContratos(request):
 
 
 
-# def notify(request):
-#     numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
-#     return render(request,'pages/',{'numcontratos':numcontratos})
+# metodo para mostrar la vista de contacto con Biken al usuario
+class Contacto(TemplateView):
+    template_name = 'pages/contacto.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['form'] = ContactoForm()
+
+        return context
+
+    def post(self,request,*args,**kwargs):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        mensaje =request.POST.get('mensaje')
+
+        body = render_to_string(
+            'email/email_content.html',{
+                'name':name,
+                'email':email,
+                'message':mensaje,
+            },
+        )
+
+        email_message = EmailMessage(
+            subject='Mensaje de usuario',
+            body=body,
+            from_email=email,
+            to=['contactbiken@gmail.com'],
+        )
+
+        email_message.content_subtype = 'html'
+        email_message.send()
+
+        print("Nombre")
+        print(name)
+        print('-------------------')
+        print("Correo Electronico")
+        print(email)
+        print('-------------------')
+        print("mensaje")
+        print(mensaje)
+
+        return redirect('contacto')
+
+
+# class Contacto(CreateView):
+#     model = Contacto
+#     template_name = 'pages/contacto.html'
+#     form_class = ContactoForm
+#     success_url = reverse_lazy('home')

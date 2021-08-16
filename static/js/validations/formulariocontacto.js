@@ -1,41 +1,40 @@
 
-const formulario = document.getElementById('formulariouploadbike')
-const inputs = document.querySelectorAll('#formulariouploadbike input')
-const textarea = document.querySelectorAll('#formulariouploadbike textarea')
+const formulario = document.getElementById('formulariocontacto')
+const inputs = document.querySelectorAll('#formulariocontacto input')
+const textarea = document.querySelectorAll('#formulariocontacto textarea')
 
 const expresiones = {
-	marca: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
-	descripcionbici: /^[0-9a-zA-ZÀ-ÿ\s]{1,200}$/,
-	precioalquiler: /^[0-9][0-9]?\.[0-9]{3}$/
-
-	
+	name: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+	mensaje: /^[0-9a-zA-ZÀ-ÿ\s]{1,200}$/,
+	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 }
 
 	
 const campos = {
-	marca: false,
-	descripcionbici: false,
-	precioalquiler: false
+	name: false,
+	mensaje: false,
+	email: false
 }
 
 const validarFormulario = (e) => {
 	switch (e.target.name) {
-		case "marca":
-			validarCampo(expresiones.marca, e.target, 'marca');
+		case "name":
+			validarCampo(expresiones.name, e.target, 'name');
 		break;
-		case "precioalquiler":
-			validarCampo(expresiones.precioalquiler, e.target, 'precioalquiler');
+		case "email":
+			validarCampo(expresiones.email, e.target, 'email');
 		break;
 	}
 }
 
 const validarTextarea = (e) => {
 	switch (e.target.name) {
-		case "descripcionbici":
-			validarCampoTextarea(expresiones.descripcionbici, e.target, 'descripcionbici');
+		case "mensaje":
+			validarCampoTextarea(expresiones.mensaje, e.target, 'mensaje');
 		break;
 	}
 }
+
 
 const validarCampo = (expresion, input, campo) => {
 	if(expresion.test(input.value)){
@@ -47,7 +46,7 @@ const validarCampo = (expresion, input, campo) => {
 		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
 		campos[campo] = false;
 	}
-}
+}	
 
 const validarCampoTextarea = (expresion, textarea, campo) => {
 	if(expresion.test(textarea.value)){
@@ -62,6 +61,7 @@ const validarCampoTextarea = (expresion, textarea, campo) => {
 }
 
 
+
 inputs.forEach((input) => {
     input.addEventListener('keyup', validarFormulario);
     input.addEventListener('blur', validarFormulario);
@@ -72,3 +72,4 @@ textarea.forEach((textarea) => {
     textarea.addEventListener('keyup', validarTextarea);
     textarea.addEventListener('blur', validarTextarea);
 });
+

@@ -12,111 +12,172 @@
   <div class="row">
 
     {% if request.user.username == object.user.username %}
-    {% include 'pages/components/modal_mibicicleta.html' %}
-    
+
+
+      {% include 'pages/components/modal_mibicicleta.html' %}
+      
+        
     {% else %}
 
-    <div class="col-lg-6">
+      {% if object.disponible == False %}
 
-      <!-- <img src="{% static 'img/imgs_plus/portacon.png' %}" height="110px" width="250px"> -->
-      <br>
-      <br>
-      <strong>
-        <div style="font-size: 24px; font-family:cursive; text-align: center; color :rgb(38, 83, 186 )">CONTRATO DE
-          ARRENDAMIENTO
-        </div>
-      </strong>
-      <br>
+        <p>no esta disponible esta bici</p>
 
+    
+        {% else %}
+    
+      
 
+      <div class="col-lg-6">
 
-      {%load crispy_forms_tags%}
-
-      <form action="#" method="post">
-        {% csrf_token %}
-        <!-- {{form|crispy}} -->
-
-        <fieldset disabled>
-          <div class="form-group">
-            <label for="disabledTextInput">Bicicleta de </label>
-            <input type="text" id="disabledTextInput" class="form-control inputs_forms" placeholder="{{object.user.first_name}} {{object.user.last_name}}">
+        <!-- <img src="{% static 'img/imgs_plus/portacon.png' %}" height="110px" width="250px"> -->
+        <br>
+        <br>
+        <strong>
+          <div style="font-size: 24px; font-family:cursive; text-align: center; color :rgb(38, 83, 186 )">CONTRATO DE
+            ARRENDAMIENTO
           </div>
-        </fieldset>
+        </strong>
+        <br>
 
-          <div class="form-group">
-              <label for="email">Tipo de Documento de Identidad</label>
-              {% render_field form.tipodocumento class="form-control inputs_forms" type="select" placeholder="@example.com"%}
-          </div>
-          <div class="form-group">
-              <label for="email">Número de documento</label>
-              {% render_field form.numerodocumento class="form-control inputs_forms" type="" placeholder="Num de documento"%}
-          </div>
-          <div class="form-group">
-              <label for="email">Dirección</label>
-              {% render_field form.direccion class="form-control inputs_forms" type="" placeholder="Dirección"%}
-          </div>
-          <div class="form-group">
-              <label for="email">Hora inicio</label>
-              {% render_field form.horainicio class="form-control inputs_forms" type="time"%}
-          </div>
-          <div class="form-group">
-            <label for="email">Hora Fin</label>
-            {% render_field form.horafin class="form-control inputs_forms" type="time"%}
-        </div>
 
-        <button class="btn btn_biken_success" type="submit">Continúar</button>
 
-      </form>
+        <!-- {%load crispy_forms_tags%} -->
 
-  
-    </div>
+        <form action="#" method="post" id="formulariocontrato">
+          {% csrf_token %}
+          <!-- {{form}} -->
 
-    <div class="col-lg-6 mt-5" >
-
-      <div class="card mb-5 sticky-top">
-        <a href="#">
-            <img class="card-img-top imgcatalogo placeholderimgdown" src="{{object.foto.url}}" alt="Card image cap"></a>
-        <div class="card-body">
-            <p class="card-text textnamecard font-weight-bold">
-                <img src="{{object.user.perfil.get_image}}" alt="" class="imgperfil_post">
-                <a href="#">{%if object.user.first_name == '' %}
-                    {{ object.username}}
-                    {%else%}
-                    {{ object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}
-                    {%endif%}
-                </a>
-            </p>
-
-            <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{object.categoria}}</p>
-            <p class="card-text texttiempocard">{{object.timestamp|naturaltime}}</p>
-            <p class="card-text textpreciocard">Alquiler <strong>${{object.precioalquiler}}</strong><i > {{object.valortiempohoras}} hora{{object.valortiempohoras|pluralize}}</i></p>
-            <p class="card-text">
-                
-                {% if object.disponible == True %}
-                    <i class="text-success font-weight-bold"> Disponible </i>
-                {% else %}
-                    <i class="text-danger font-weight-bold"> No esta disponible </i>
-                {% endif %}
-                    
-            </p>
-
-            <div class="row">
-                <div class="col-lg-10">
-
-                </div>
-                <div class="col-lg-2">
-                    <!-- circulo de color de la bicicleta de la card  -->
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                    viewBox="0 0 120 120">
-                    <circle cx="60" cy="45" r="40" fill="{{object.color}}" />
-                </svg>      
-                </div>
+          <fieldset disabled>
+            <div class="form-group">
+              <label for="disabledTextInput">Bicicleta de </label>
+              <input type="text" id="disabledTextInput" class="form-control inputs_forms" placeholder="{{object.user.first_name}} {{object.user.last_name}}">
             </div>
-        </div>
+          </fieldset>
+
+            <div class="form-group">
+                <label for="email">Tipo de Documento de Identidad</label>
+                {% render_field form.tipodocumento class="form-control inputs_forms" type="select" placeholder="@example.com"%}
+            </div>
+
+            <div class="formulario__grupo" id="grupo__numerodocumento">
+              <label for="numerodocumento" class="formulario__label mt-4">Número de Documento</label>
+              <div class="formulario__grupo-input">
+                  {% render_field form.numerodocumento class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu número de documento" name="numerodocumento" id="numerodocumento" %}
+              </div>
+              <p class="formulario__input-error">Agregue un número de documento válido</p>
+            </div>
+
+
+            <!-- <div class="form-group">
+                <label for="email">Número de documento</label>
+                {% render_field form.numerodocumento class="form-control inputs_forms" type="" placeholder="Num de documento"%}
+            </div> -->
+
+
+            <div class="formulario__grupo mb-4" id="grupo__direccion">
+              <label for="direccion" class="formulario__label mt-4">Dirección</label>
+              <div class="formulario__grupo-input">
+                  {% render_field form.direccion class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu dirección" name="direccion" id="direccion" %}
+              </div>
+              <p class="formulario__input-error">Agregue una hora correcta</p>
+            </div>
+
+
+            <!-- <div class="form-group">
+                <label for="email">Dirección</label>
+                {% render_field form.direccion class="form-control inputs_forms" type="" placeholder="Dirección"%}
+            </div> -->
+
+            
+            <div class="formulario__grupo mb-4" id="grupo__horainicio">
+              <label for="horainicio" class="formulario__label mt-4">Hora Inicio</label>
+              <div class="formulario__grupo-input">
+                  {% render_field form.horainicio class="form-control inputs_forms formulario__input" type="time"  name="horainicio" id="horainicio" %}
+              </div>
+              <p class="formulario__input-error">Formato inválido<p>
+            </div>
+
+
+            <div class="formulario__grupo mb-4" id="grupo__horafin">
+              <label for="horafin" class="formulario__label mt-4">Hora Fin</label>
+              <div class="formulario__grupo-input">
+                  {% render_field form.horafin class="form-control inputs_forms formulario__input" type="time"  name="horafin" id="horafin" %}
+              </div>
+              <p class="formulario__input-error">La hora fin debe tener diferencia máxima de una hora con respecto a la de inicio</p>  
+            </div>
+
+
+            <!-- <div class="form-group">
+                <label for="email">Hora inicio</label>
+                {% render_field form.horainicio class="form-control inputs_forms" type="time"%}
+            </div> -->
+            <!-- <div class="form-group">
+              <label for="email">Hora Fin</label>
+              {% render_field form.horafin class="form-control inputs_forms" type="time"%}
+          </div> -->
+
+          
+
+          <button class="btn btn_biken_success " id="buttonsubmit" type="submit">Continúar</button>
+
+        </form>
+
+    
       </div>
 
-    </div>
+      <div class="col-lg-6 mt-5" >
+
+        <div class="card mb-5 sticky-top">
+          <a href="#">
+              <img class="card-img-top imgcatalogo placeholderimgdown" src="{{object.foto.url}}" alt="Card image cap"></a>
+          <div class="card-body">
+              <p class="card-text textnamecard font-weight-bold">
+                  <img src="{{object.user.perfil.get_image}}" alt="" class="imgperfil_post">
+                  <a href="#">{%if object.user.first_name == '' %}
+                      {{ object.username}}
+                      {%else%}
+                      {{ object.user.first_name|capfirst}} {{object.user.last_name|capfirst}}
+                      {%endif%}
+                  </a>
+              </p>
+
+              <p class="card-text textcategoriacard text-capitalize font-weight-bold">{{object.categoria}}</p>
+              <p class="card-text texttiempocard">{{object.timestamp|naturaltime}}</p>
+              <p class="card-text textpreciocard">Alquiler <strong>${{object.precioalquiler}}</strong><i > {{object.valortiempohoras}} hora{{object.valortiempohoras|pluralize}}</i></p>
+              <p class="card-text">
+                  
+                  {% if object.disponible == True %}
+                      <i class="text-success font-weight-bold"> Disponible </i>
+                  {% else %}
+                      <i class="text-danger font-weight-bold"> No esta disponible </i>
+                  {% endif %}
+                      
+              </p>
+
+              <div class="row">
+                  <div class="col-lg-10">
+
+                  </div>
+                  <div class="col-lg-2">
+                      <!-- circulo de color de la bicicleta de la card  -->
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                      viewBox="0 0 120 120">
+                      <circle cx="60" cy="45" r="40" fill="{{object.color}}" />
+                  </svg>      
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      {%endif%}
     {% endif %}
+
+    {% include 'pages/components/messages/messages_forms.html' %}
+
 
   </div>
 
@@ -127,3 +188,10 @@
 
 
 {% endblock content %}
+
+
+
+{% block script %}
+  <script src="{% static 'js/validations/formulariocontrato.js' %}"></script>
+{% endblock script %}
+  

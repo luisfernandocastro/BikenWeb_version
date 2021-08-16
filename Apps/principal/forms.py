@@ -1,13 +1,11 @@
 from django import forms
 from django.core import validators
-from django.core.validators import RegexValidator
 from django.db.models import fields
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
+from .validators import *
 
 
-# validators
-validatorLetters= RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El campo de marca solo puede contener letras")
-validatornum= RegexValidator(r"^[a-zA-ZÀ-ÿ\s]{1,40}$","El campo de marca solo puede contener letras")
+
 
 
 # formulario para  subir bicicletas 
@@ -22,7 +20,7 @@ class BicicletasForm(forms.ModelForm):
         #fields = ('apellidos',) 
 
 
-
+# formulario para editar bicicletas
 class EditBicicletaForm(forms.ModelForm):
     marca = forms.CharField(validators=[validatorLetters])
     disponible = forms.BooleanField(required=False)
@@ -36,13 +34,22 @@ class EditBicicletaForm(forms.ModelForm):
         #fields = ('apellidos',) 
 
 
-
+# formulario de contratos en bicicletas
 class ContratoBicicletaForm(forms.ModelForm):
+    numerodocumento = forms.CharField(validators=[validatornumdocumento])
+    direccion = forms.CharField(validators=[validatordireccion])
+
     class Meta:
-        model=  ContratoBicicleta
+        model=  ContratoBicicleta # modelo usado para mostrar el formulario de contrato
         fields = ('tipodocumento','numerodocumento','direccion','horainicio','horafin')
 
 
+
+# formulario de contacto de usuarios
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model= Contacto
+        fields = '__all__'
 
 
 

@@ -139,3 +139,10 @@ body.dark .helptext_input-number {
     color: #8f0000;
     box-shadow: inset 0 1px 1px rgba(231, 6, 6, 0.075), 0 0 8px rgba(224, 15, 8, 0.6);
 }
+
+
+
+/* ---------------- */
+.ocultarboton{
+    display: none;
+}

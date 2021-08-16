@@ -1,5 +1,6 @@
 {% extends 'pages/quienesSomos.html' %}
 
+{% load widget_tweaks %}
 {% load static %}
 
 {% block title %}Biken || Contacto{% endblock %}
@@ -25,62 +26,40 @@
 
 
     <div class="col-md-6">
-      <form>
+      <center>
+        <div class="p-2 mb-3 bgnav text-white">Formulario Contacto</div>
+      </center>
 
-        <center>
-          <div class="p-2 mb-3 bgnav text-white">Formulario Contacto</div>
-        </center>
 
-        
-        <div class="formulario__grupo" id="grupo__first_name">
+      <form method="POST" id="formulariocontacto">
+
+        {% csrf_token %}  
+
+        <div class="formulario__grupo mb-3" id="grupo__name">
           <div class="formulario__grupo-input">
-              {% render_field form.first_name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu nombre" name="first_name" id="first_name" %}
+              {% render_field form.name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu nombre y Apellido" name="name" id="name" %}
           </div>
-          <p class="formulario__input-error"></p>
+          <p class="formulario__input-error">Este campo solo puede contener letras</p>
+        </div>
+
+        
+        <div class="formulario__grupo mb-3" id="grupo__email">
+          <div class="formulario__grupo-input input-group">
+              {% render_field form.email class="form-control inputs_forms formulario__input" type="email" placeholder="E-mail" name="email" id="email" %}
+            </div>
+          <p class="formulario__input-error">Introduzca una dirección de Correo Electrónico válida</p>
         </div>
 
 
-
-
-        <!-- <div class="form-group">
-
-          <input type="text" class="form-control" placeholder="Nombres completos" maxlength="50" required>
-          <div class="invalid-feedback">No valido</div>
-        </div> -->
-
-        <div class="formulario__grupo" id="grupo__last_name">
+        <div class="formulario__grupo mb-3" id="grupo__mensaje">
           <div class="formulario__grupo-input">
-              {% render_field form.first_name class="form-control inputs_forms formulario__input" type="text" placeholder="Apellidos" name="first_name" id="first_name" %}
-          </div>
-          <p class="formulario__input-error"></p>
-        </div>
-
-        <div class="form-group">
-
-          <input type="text" class="form-control" placeholder="Apellidos completos" maxlength="50" required>
-        </div>
-
-        <div class="input-group mb-3">
-
-          <input type="email" class="form-control" placeholder="Email" id="demo" name="email" maxlength="50"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="El dominio del correo no es Valido" required>
-          <div class="input-group-append">
-            <span class="input-group-text">@example.com</span>
-          </div>
-        </div>
-        
-        <input type="tex" class="form-control" placeholder="Num Telefono" pattern="^[1|2|3|4|5|6|7|8|9]\d{9}$"
-          itle="El numero de Telefono no es Valido" maxlength="10" required>
-      
-        
-          <div class="form-group">
-          <label for="exampleFormControlTextarea1"></label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje" id="comment"
-            required></textarea>
+              {% render_field form.mensaje class="form-control inputs_forms formulario__input"  placeholder="Tu mensaje..." name="mensaje" id="mensaje" %}
+            </div>
+          <p class="formulario__input-error">Este campo no puede contener caracteres especiales</p>
         </div>
 
 
-        <button type="submit" class="btn btn-primary colorbiken d-block mx-auto">Enviar</button>
+        <button type="submit" class="btn btn_biken_success d-block mx-auto">Enviar</button>
       </form>
     </div>
 
@@ -91,3 +70,9 @@
 </div>
 
 {% endblock %}
+
+
+{% block script %}
+  <script src="{% static 'js/validations/formulariocontacto.js'%}" type="text/javascript"></script>
+{% endblock script %}
+  

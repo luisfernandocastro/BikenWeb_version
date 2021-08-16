@@ -14,8 +14,8 @@ urlpatterns = [
     path('profile/<str:username>/',views.profileUser,name='perfil'),# url de perfiles de usuarios con parametro de username
     path('profile/settings/editprofile/',views.ProfileUpdate.as_view(),name='editprofile'),# url de la vista de edicion de perfil de usuarios registrados
     path('profile/settings/editemail',views.EmailUpdate.as_view(),name='editemail'),# url de la vista de edicion de email de usuarios registrados
-    path('profile/settings/edituser',views.UserUpdate.as_view(),name='edituser'),
-    path('change_password',views.change_password,name='cambiar_password')
+    path('profile/settings/edituser',views.UserUpdate.as_view(),name='edituser'),# url de la vista de edicion de datos secundarios de  usuario
+    path('change_password',views.change_password,name='cambiar_password') #url de la vista de cambio de password del usuario logueado
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
 

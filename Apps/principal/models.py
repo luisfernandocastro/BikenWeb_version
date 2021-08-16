@@ -118,15 +118,7 @@ class Categoria(models.Model):
 
 from datetime import datetime, timedelta
 
-
-now = datetime.now()
-# print now
-# 2010-05-18 23:16:24.770533
-# this_time_yesterday = now - timedelta(hours=24)
-# print this_time_yesterday
-# 2010-05-17 23:16:24.770533
-# (now - this_time_yesterday).days
-# 1
+datenow = datetime.now()
 
 opcionesdocumento=[
     [0,'Cédula de Ciudadania'],
@@ -134,8 +126,8 @@ opcionesdocumento=[
 ]
 
 class ContratoBicicleta(models.Model):
-    fechainicio=models.DateTimeField(db_column='Fecha Inicio Contrato',default=now)
-    fechafin=models.DateTimeField(db_column='fechafin',default=now+timedelta(hours=48))
+    fechainicio=models.DateTimeField(db_column='Fecha Inicio Contrato',default=datetime.now)
+    fechafin=models.DateTimeField(db_column='fechafin',default=datenow+timedelta(hours=48))
     tipodocumento=models.IntegerField(db_column='Tipo de Documento',choices=opcionesdocumento,default=0)
     numerodocumento=models.BigIntegerField(db_column='Numero Documento',default=None)
     direccion=models.CharField(db_column='Direccion',null=True,blank=True,max_length=45)
@@ -271,6 +263,8 @@ class Tipocontrato(models.Model):
         verbose_name_plural='Tipo contrato'
         managed = False
 
+    def __str__(self):
+        return self.nombre 
 
 class Usuario(models.Model):
     idusuario = models.AutoField(db_column='idUsuario', primary_key=True)  # Field name made lowercase.
@@ -292,3 +286,10 @@ class CatalogoBicicleta(models.Model):
 
 
 
+class Contacto(models.Model):
+    name = models.CharField(max_length=100,db_column="Nombres y Apellidos")
+    email = models.EmailField(max_length=120,db_column="Email")
+    mensaje = models.TextField(max_length=500,db_column="Mensaje")
+
+    class Meta:
+        verbose_name_plural = 'Contacto'

@@ -6,26 +6,16 @@ from django.dispatch import receiver
 
 User=get_user_model()
 
+# Crea automaticamente un perfil del usuario registrado
 @receiver(post_save,sender=User)
 def create_profile(sender,instance,created, **kwargs):
     if created:
         Perfil.objects.create(user=instance)
 
 
-# @receiver(post_save,sender=MiBicicleta)
-# def create_catalogoBicicleta(sender,instance,created,**kwargs):
-#     if created:
-#         CatalogoBicicleta.objects.create(bicicleta=instance)
-
-
-
-# @receiver(post_save,sender=ContratoBicicleta)
-# def change_disponible(sender,instance,created, **kwargs):
-#     if created:
-#         MiBicicleta.objects.create(disponible=.)Z
-
+# Cambia la disponibilidad ( True= False) de la bicicleta al completar el contrato de esta bicicleta
 @receiver(post_save, sender=ContratoBicicleta)
 def change_disponible(sender, instance, **kwargs):
     instance.bicicleta.disponible = False # Puedes ser True o False
-    instance.bicicleta.save()
+    instance.bicicleta.save() 
 
