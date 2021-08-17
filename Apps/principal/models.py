@@ -288,8 +288,11 @@ class CatalogoBicicleta(models.Model):
 
 class Contacto(models.Model):
     name = models.CharField(max_length=100,db_column="Nombres y Apellidos")
+    asunto = models.CharField(max_length=100,db_column="Asunto",null=True)
     email = models.EmailField(max_length=120,db_column="Email")
     mensaje = models.TextField(max_length=500,db_column="Mensaje")
+    datetimemsg=models.DateTimeField(db_column='Fecha del mensaje',default=timezone.now)
+
 
     class Meta:
         verbose_name_plural = 'Contacto'

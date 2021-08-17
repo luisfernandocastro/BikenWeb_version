@@ -6,12 +6,14 @@ const textarea = document.querySelectorAll('#formulariocontacto textarea')
 const expresiones = {
 	name: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
 	mensaje: /^[0-9a-zA-ZÀ-ÿ\s]{1,200}$/,
+	asunto: /^[a-zA-ZÀ-ÿ\s]{3,40}$/,
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 }
 
 	
 const campos = {
 	name: false,
+	asunto:false,
 	mensaje: false,
 	email: false
 }
@@ -22,6 +24,9 @@ const validarFormulario = (e) => {
 			validarCampo(expresiones.name, e.target, 'name');
 		break;
 		case "email":
+			validarCampo(expresiones.email, e.target, 'email');
+		break;
+		case "asunto":
 			validarCampo(expresiones.email, e.target, 'email');
 		break;
 	}

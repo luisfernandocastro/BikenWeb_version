@@ -28,13 +28,13 @@ from django.contrib.messages.views import SuccessMessageMixin # mensajes a mostr
 from django.contrib.auth.mixins import LoginRequiredMixin # Mixin para solicitar el logueo de usuario para ver la vista( vistas basadas en clases)
 
 
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 # start importaciones pdf------------
 
 import os
 from django.http import HttpResponse
 from django.conf.global_settings import STATIC_ROOT,STATIC_URL,MEDIA_ROOT,MEDIA_URL
-from django.conf import settings
+from django.conf import settings as conf_settings
 from django.template import Context
 from django.template.loader import get_template, render_to_string 
 from xhtml2pdf import pisa 
@@ -551,52 +551,82 @@ def listContratos(request):
 
 
 # metodo para mostrar la vista de contacto con Biken al usuario
-class Contacto(TemplateView):
-    template_name = 'pages/contacto.html'
 
-    def get_context_data(self, **kwargs):
-        context= super().get_context_data(**kwargs)
-        context['form'] = ContactoForm()
+# def contacto(request):
 
-        return context
+#     if request.method =='POST':
+#         subject=request.POST["name"]
 
-    def post(self,request,*args,**kwargs):
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        mensaje =request.POST.get('mensaje')
+#         message= request.POST["mensaje"] + " " + request.POST["email"] 
 
-        body = render_to_string(
-            'email/email_content.html',{
-                'name':name,
-                'email':email,
-                'message':mensaje,
-            },
-        )
+#         email_from=conf_settings.EMAIL_HOST_USER
 
-        email_message = EmailMessage(
-            subject='Mensaje de usuario',
-            body=body,
-            from_email=email,
-            to=['contactbiken@gmail.com'],
-        )
+#         recipient_list=["contactbiken@gmail.com"]
 
-        email_message.content_subtype = 'html'
-        email_message.send()
+#         send_mail(subject,message, email_from,recipient_list)
 
-        print("Nombre")
-        print(name)
-        print('-------------------')
-        print("Correo Electronico")
-        print(email)
-        print('-------------------')
-        print("mensaje")
-        print(mensaje)
+#         return render(request,"pages/contacto.html")
 
-        return redirect('contacto')
+#     return render(request,"pages/contacto.html")
 
 
-# class Contacto(CreateView):
-#     model = Contacto
+
+
+
+
+# class Contacto(TemplateView):
 #     template_name = 'pages/contacto.html'
-#     form_class = ContactoForm
-#     success_url = reverse_lazy('home')
+
+#     def get_context_data(self, **kwargs):
+#         context= super().get_context_data(**kwargs)
+#         context['form'] = ContactoForm()
+
+#         return context
+
+#     def post(self,request,*args,**kwargs):
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         mensaje =request.POST.get('mensaje')
+
+#         body = render_to_string(
+#             'email/email_content.html',{
+#                 'name':name,
+#                 'email':email,
+#                 'message':mensaje,
+#             },
+#         )
+
+#         email_message = EmailMessage(
+#             subject='Mensaje de usuario',
+#             body=body,
+#             from_email=email,
+#             to=['contactbiken@gmail.com'],
+#         )
+
+#         email_message.content_subtype = 'html'
+#         email_message.send()
+
+#         print("Nombre")
+#         print(name)
+#         print('-------------------')
+#         print("Correo Electronico")
+#         print(email)
+#         print('-------------------')
+#         print("mensaje")
+#         print(mensaje)
+
+#         return redirect('contacto')
+
+
+class ContactoView(CreateView):
+    model = Contacto
+    template_name = 'pages/contacto.html'
+    form_class = ContactoForm
+    success_url = reverse_lazy('contacto')
+
+
+# funcion para ver la lista de mensajes del formulario contacto
+@login_required
+def messagesContacto(request):
+    message = Contacto.objects.all()
+    return render(request,'pages/components/modal_messages.html',{'message':message})

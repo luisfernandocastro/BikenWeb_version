@@ -47,8 +47,8 @@ urlpatterns = [
 
     #-------------------- Biken-nosotros  -------------------
     path('quienessomos/' , views.quienesSomos, name='quienessomos'),# url de la vista de  informacion respecto a Biken
-    path('contacto/' ,views.Contacto.as_view(), name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
-    
+    path('contacto/' ,views.ContactoView.as_view(), name='contacto'),# url de la vista del formulario de contacto para comunicacion con nosotros
+    path('messages/', views.messagesContacto,name='messages'),
 
     #-------------------- Biken-menu de configuración  -------------------
     path('profile/settings/user',views.settings,name='settings'),# url de la vista de edicion de email de usuarios registrados

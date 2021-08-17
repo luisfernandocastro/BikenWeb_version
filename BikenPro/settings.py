@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-zdrnz*o9v-duv82bvv!xd&qalgvs62v_-#79b^$d==w#2p-%91
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.101.9', 'localhost', '127.0.0.1','Biken'
+    '192.168.101.9', 'localhost', '127.0.0.1'
 ]
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
@@ -39,7 +39,7 @@ LOGOUT_REDIRECT_URL = '/home'
 
 
 if DEBUG:
-    EMAIL_BACKEND  =  "django.core.mail.backends.filebased.EmailBackend" 
+    # EMAIL_BACKEND: str  =  "django.core.mail.backends.filebased.EmailBackend"
     EMAIL_FILE_PATH  =  os.path.join(BASE_DIR, 'sent_emails' )
 else:
     #agregar configuracion de correo real
@@ -49,8 +49,6 @@ else:
 INSTALLED_APPS = [
     'jet.dashboard',
     'jet',
-    #'admin_interface',
-    #'admin_black.apps.AdminBlackConfig',
     'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -154,6 +152,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'usuario.User'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -194,10 +193,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-
-EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_TLS=True
-EMAIL_HOST="smtp.gmail.com"
+EMAIL_BACKEND='django.core.mail.backends.filebased.EmailBackend'
+EMAIL_USE_TLS= True  
+EMAIL_USE_SSL = False
+EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER="contactbiken@gmail.com"        
 EMAIL_HOST_PASSWORD="projectbiken2021"
-EMAIL_PORT=587    
+EMAIL_PORT= 587
+

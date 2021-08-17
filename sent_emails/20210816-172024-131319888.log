@@ -1,0 +1,22 @@
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Mensaje de usuario
+From: lfcastro334@misena.edu.co
+To: contactbiken@gmail.com
+Date: Mon, 16 Aug 2021 22:20:24 -0000
+Message-ID: <162915242468.7116.3895915442703378958@LuisJr-PC>
+
+<h1 style="font-size: 1.5em; line-height: 2em;">Mensaje de usuario.</h1>
+
+<p>usted ha recibido un nuevo mensaje de un usuario</p>
+
+<dl>
+    <dt>Nombre</dt>
+    <dd>Luis Fernando</dd>
+    <dt>Correo Electrónico</dt>
+    <dd>lfcastro334@misena.edu.co</dd>
+    <dt>Mensaje</dt>
+    <dd></dd>
+</dl>
+-------------------------------------------------------------------------------

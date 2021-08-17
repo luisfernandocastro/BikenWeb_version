@@ -19,7 +19,7 @@
     </div>
 
     <div class="textcontacto">
-      
+
       Para comunicarte con el equipo de BIKEN, déjanos tu mensaje y en pocos días estaremos respondiéndote.
     </div>
     <br>
@@ -33,30 +33,55 @@
 
       <form method="POST" id="formulariocontacto">
 
-        {% csrf_token %}  
+        {% csrf_token %}
 
         <div class="formulario__grupo mb-3" id="grupo__name">
           <div class="formulario__grupo-input">
-              {% render_field form.name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu nombre y Apellido" name="name" id="name" %}
+          {% render_field form.name class="form-control inputs_forms formulario__input" type="text" placeholder="Agrega tu nombre y Apellido" name="name" id="name" %}
+
+            <!-- <input type="text" name="name" id="name" class="form-control inputs_forms formulario__input" placeholder="Agrega tu nombre y Apellido"> -->
           </div>
           <p class="formulario__input-error">Este campo solo puede contener letras</p>
         </div>
 
-        
+
         <div class="formulario__grupo mb-3" id="grupo__email">
           <div class="formulario__grupo-input input-group">
-              {% render_field form.email class="form-control inputs_forms formulario__input" type="email" placeholder="E-mail" name="email" id="email" %}
+
+
+            {% render_field form.email class="form-control inputs_forms formulario__input" type="email" placeholder="E-mail" name="email" id="email" %}
+
+            <!-- <input type="email" name="email" id="email" class="form-control inputs_forms formulario__input" placeholder="E-mail"> -->
+
             </div>
           <p class="formulario__input-error">Introduzca una dirección de Correo Electrónico válida</p>
         </div>
 
 
+
+
+        <div class="formulario__grupo mb-3" id="grupo__asunto">
+          <div class="formulario__grupo-input">
+
+            {% render_field form.asunto class="form-control inputs_forms formulario__input" type="text" placeholder="Asunto" name="asunto" id="asunto" %}
+
+            <!-- <input name="mensaje" id="mensaje" class="form-control inputs_forms formulario__input" placeholder="Tu mensaje..."> -->
+
+            </div>
+          <p class="formulario__input-error">Este campo solo puede contener letras</p>
+        </div>
+
+
         <div class="formulario__grupo mb-3" id="grupo__mensaje">
           <div class="formulario__grupo-input">
-              {% render_field form.mensaje class="form-control inputs_forms formulario__input"  placeholder="Tu mensaje..." name="mensaje" id="mensaje" %}
+            {% render_field form.mensaje class="form-control inputs_forms formulario__input" placeholder="Tu mensaje..." name="mensaje" id="mensaje" %}
+
             </div>
           <p class="formulario__input-error">Este campo no puede contener caracteres especiales</p>
         </div>
+
+
+
 
 
         <button type="submit" class="btn btn_biken_success d-block mx-auto">Enviar</button>
@@ -75,4 +100,3 @@
 {% block script %}
   <script src="{% static 'js/validations/formulariocontacto.js'%}" type="text/javascript"></script>
 {% endblock script %}
-  

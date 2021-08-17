@@ -1,6 +1,7 @@
 from django import forms
 from django.core import validators
 from django.db.models import fields
+from django.forms.fields import EmailField
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
 from .validators import *
 
@@ -47,10 +48,10 @@ class ContratoBicicletaForm(forms.ModelForm):
 
 # formulario de contacto de usuarios
 class ContactoForm(forms.ModelForm):
-    class Meta:
-        model= Contacto
-        fields = '__all__'
 
+    class Meta:
+        model=Contacto
+        fields =('name','email','asunto','mensaje')
 
 
 
