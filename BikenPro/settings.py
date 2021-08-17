@@ -193,11 +193,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-EMAIL_BACKEND='django.core.mail.backends.filebased.EmailBackend'
-EMAIL_USE_TLS= True  
-EMAIL_USE_SSL = False
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER="contactbiken@gmail.com"        
-EMAIL_HOST_PASSWORD="projectbiken2021"
-EMAIL_PORT= 587
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'contactbiken@gmail.com'
+EMAIL_HOST_PASSWORD = 'projectbiken2021'
+EMAIL_PORT = 465

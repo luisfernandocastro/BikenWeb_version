@@ -48,10 +48,12 @@ class ContratoBicicletaForm(forms.ModelForm):
 
 # formulario de contacto de usuarios
 class ContactoForm(forms.ModelForm):
+    asunto= forms.CharField(required=False)
+
 
     class Meta:
         model=Contacto
-        fields =('name','email','asunto','mensaje')
+        fields =('name','email','tipo','asunto','mensaje')
 
 
 

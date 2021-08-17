@@ -285,9 +285,19 @@ class CatalogoBicicleta(models.Model):
         verbose_name_plural='Catalogo'
 
 
+tiposcontacto = [
+    [0,'Dudas'],
+    [1,'Queja'],
+    [2,'Reclamo'],
+    [3,'Denuncias'],
+    [4,'Sugerencias'],
+    [5,'Felicitación']
+]
+
 
 class Contacto(models.Model):
     name = models.CharField(max_length=100,db_column="Nombres y Apellidos")
+    tipo = models.IntegerField(choices=tiposcontacto,null=True)
     asunto = models.CharField(max_length=100,db_column="Asunto",null=True)
     email = models.EmailField(max_length=120,db_column="Email")
     mensaje = models.TextField(max_length=500,db_column="Mensaje")

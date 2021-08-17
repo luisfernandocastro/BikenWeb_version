@@ -109,7 +109,7 @@ class Editar_bicicleta(SuccessMessageMixin,LoginRequiredMixin, UpdateView):
 #----clase para eliminar la bicicleta del usuario
 class Delete_bicicleta(DeleteView):
     model = MiBicicleta # modelo de bicicletas
-    template_name = 'pages/components/modal_deleteBike.html'
+    template_name = 'pages/components/modals/modal_deleteBike.html'
     success_url = reverse_lazy('perfil') # Despues de eliminar regresa al muro del perfil
 
 
@@ -204,7 +204,7 @@ def settings(request):
 # Detalles de una biciclta al dar click sobre la imagen de la bici
 class Descripcionbike(DetailView):
     model = MiBicicleta 
-    template_name = 'pages/components/modal_detailbike.html' # modal 
+    template_name = 'pages/components/modals/modal_detailbike.html' # modal 
 
 
 # filtro de  bicicletas Urbanas-------------------
@@ -546,7 +546,7 @@ def downloadpdf(request):
 @login_required
 def listContratos(request):
     contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user)
-    return render(request,'pages/components/modal_contratos.html',{'contratoUser':contratoUser})
+    return render(request,'pages/components/modals/modal_contratos.html',{'contratoUser':contratoUser})
 
 
 
@@ -629,4 +629,4 @@ class ContactoView(CreateView):
 @login_required
 def messagesContacto(request):
     message = Contacto.objects.all()
-    return render(request,'pages/components/modal_messages.html',{'message':message})
+    return render(request,'pages/components/modals/modal_messages.html',{'message':message})
