@@ -57,9 +57,3 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username','email','password']
 
-
-class CatalogoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CatalogoBicicleta
-        fields = '__all__'
-        depth=3

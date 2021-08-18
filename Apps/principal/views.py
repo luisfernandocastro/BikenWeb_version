@@ -126,15 +126,11 @@ class Delete_bicicleta(DeleteView):
 #     return render(request,)
 
 
-
 # metodo para mostrar la vista de home y mostrar bicicletas en catalogo
 def home(request):
-
-
     queryset = request.GET.get("Buscar")
-    contrato = ContratoBicicleta.objects.all()
     bicicletas = MiBicicleta.objects.all()
-    
+
     # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos

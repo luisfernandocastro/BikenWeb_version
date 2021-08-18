@@ -11,7 +11,6 @@ router.register('categoriabike',viewset.CategoriaBikeViewset)
 router.register('materialbike',viewset.MaterialBikeViewset)
 router.register('registro',viewset.RegisterViewset)
 
-router.register('catalogo',viewset.CatalogoViewset)
 
 
 urlpatterns= router.urls

@@ -278,12 +278,6 @@ class Usuario(models.Model):
         db_table = 'usuario'
 
 
-class CatalogoBicicleta(models.Model):
-    bicicleta = models.JSONField()  # Field name made lowercase.
-    name=models.CharField(db_column='Nombre',max_length=50)
-
-    class Meta:
-        verbose_name_plural='Catalogo'
 
 
 tiposcontacto = [
@@ -306,4 +300,4 @@ class Contacto(models.Model):
 
 
     class Meta:
-        verbose_name_plural = 'Contacto'
+        verbose_name_plural = 'Mensajes de Usuarios'

@@ -44,6 +44,4 @@ class MaterialBikeViewset(viewsets.ModelViewSet):
 
 
 
-class CatalogoViewset(viewsets.ModelViewSet):
-    queryset=CatalogoBicicleta.objects.all()
-    serializer_class= CatalogoSerializer
+

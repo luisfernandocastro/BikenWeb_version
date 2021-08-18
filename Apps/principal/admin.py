@@ -118,11 +118,6 @@ class TiempoprestamoAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(CatalogoBicicleta)
-class CatalogoAdmin(admin.ModelAdmin):
-    list_display=('bicicleta','name')
-
-
 @admin.register(Contacto)
 class ContactoAdmin(admin.ModelAdmin):
     list_display=('id','name','asunto','email','mensaje')

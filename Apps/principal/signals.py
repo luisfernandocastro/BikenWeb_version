@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
-from .models import ContratoBicicleta, MiBicicleta, Perfil,CatalogoBicicleta
+from .models import ContratoBicicleta, MiBicicleta, Perfil
 from django.dispatch import receiver
 
 
@@ -18,4 +18,6 @@ def create_profile(sender,instance,created, **kwargs):
 def change_disponible(sender, instance, **kwargs):
     instance.bicicleta.disponible = False # Puedes ser True o False
     instance.bicicleta.save() 
+
+
 
