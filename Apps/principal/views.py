@@ -384,33 +384,6 @@ def bikedisponibles(request):
     return render(request ,'bike/filtros_categorias/bike_disponibles.html',{'page': bicicletas})
 
 
-
-
-#--------------------------------------------------------
-
-# Formulario de contrato de una bicicleta
-# class ContratoBicicletaView(LoginRequiredMixin,DetailView,CreateView):
-#     model = MiBicicleta
-#     form_class =ContratoBicicletaForm # Formulario creado en forms.py
-#     template_name = 'pages/contrato.html'
-
-
-#     def form_valid(self, form):
-#         current_user = get_object_or_404(User, pk=self.request.user.pk) # Guarda en el modelo contrato la llave pimaria del usuario logueado(auntenticado)
-#         current_bici = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first() # Guarda en el modelo contrato la llave primaria de la biciclta seleccionada
-#         bici = form.save(commit=False) # Necesario para traer la instancias del modelo user y mibicicleta
-#         bici.user = current_user # lleno el campo de user(arrendatario) automaticamente para que se almacena en la tabla  
-#         bici.bicicleta = current_bici # lleno el campo con la pk de la bicicleta seleccionada automaticamente y se guarda en la tabla
-#         bici.save() # Se guarda el formulario
-#         return redirect('downloadcontrato') # Si el fmulario es correcto se pasa a descargar el contrato    
-
-#     def get(self,request,*args,**kwargs):
-#         if self.get_object().disponible == True:
-#             return render(request,self.template_name,{'object':self.get_object()})
-#         return redirect('home')
-
-# -----------------------------------------------------------------------------------------------
-
 class ContratoBicicletaView(CreateView):
     model: MiBicicleta
     form_class = ContratoBicicletaForm # Formulario creado en forms.py
@@ -551,78 +524,12 @@ def listContratos(request):
 
 
 # metodo para mostrar la vista de contacto con Biken al usuario
-
-# def contacto(request):
-
-#     if request.method =='POST':
-#         subject=request.POST["name"]
-
-#         message= request.POST["mensaje"] + " " + request.POST["email"] 
-
-#         email_from=conf_settings.EMAIL_HOST_USER
-
-#         recipient_list=["contactbiken@gmail.com"]
-
-#         send_mail(subject,message, email_from,recipient_list)
-
-#         return render(request,"pages/contacto.html")
-
-#     return render(request,"pages/contacto.html")
-
-
-
-
-
-
-# class Contacto(TemplateView):
-#     template_name = 'pages/contacto.html'
-
-#     def get_context_data(self, **kwargs):
-#         context= super().get_context_data(**kwargs)
-#         context['form'] = ContactoForm()
-
-#         return context
-
-#     def post(self,request,*args,**kwargs):
-#         name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         mensaje =request.POST.get('mensaje')
-
-#         body = render_to_string(
-#             'email/email_content.html',{
-#                 'name':name,
-#                 'email':email,
-#                 'message':mensaje,
-#             },
-#         )
-
-#         email_message = EmailMessage(
-#             subject='Mensaje de usuario',
-#             body=body,
-#             from_email=email,
-#             to=['contactbiken@gmail.com'],
-#         )
-
-#         email_message.content_subtype = 'html'
-#         email_message.send()
-
-#         print("Nombre")
-#         print(name)
-#         print('-------------------')
-#         print("Correo Electronico")
-#         print(email)
-#         print('-------------------')
-#         print("mensaje")
-#         print(mensaje)
-
-#         return redirect('contacto')
-
-
-class ContactoView(CreateView):
+class ContactoView(SuccessMessageMixin,CreateView):
     model = Contacto
     template_name = 'pages/contacto.html'
     form_class = ContactoForm
     success_url = reverse_lazy('contacto')
+    success_message='Gracias por contactarse con Biken'
 
 
 # funcion para ver la lista de mensajes del formulario contacto

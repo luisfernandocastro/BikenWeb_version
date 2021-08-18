@@ -10,16 +10,21 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-2">
-                                        <i class="fas fa-file-pdf d-flex justify-content-center profile-iconpdf"></i>
-                                    </div>
+                                   
                                     <div class="col-lg-10 colorblack">
-                                        <h6>Tipo:</h6> {{message.tipo}}
+                                        <strong>Tipo:</strong>
+                                        {%if message.tipo == 0 %}Duda{%endif %}
+                                        {%if message.tipo == 1 %}Queja{%endif %}
+                                        {%if message.tipo == 2 %}Reclamo{%endif %}                      
+                                        {%if message.tipo == 3 %}Denuncia{%endif %}
+                                        {%if message.tipo == 4 %}Sugerencia{%endif %}
+                                        {%if message.tipo == 5 %}Felicitación{%endif %}
+                                        <br>
                                         <strong>Nombre: </strong> {{message.name}} <br>
-                                        <strong>Email de contacto: </strong> {{message.email}}
+                                        <strong>Email de contacto: </strong> {{message.email}}<br>
                                         <strong>Asunto: </strong> {{message.asunto}}<br>
-                                        <p>{{message.mensaje}}</p>
-                                        <h5>Fecha:</h5> {{message.datetimemsg}}
+                                        <strong class="colorbikentext">Mensaje:</strong><p>{{message.mensaje}}</p>
+                                        <strong>Fecha:</strong> {{message.datetimemsg}}
                                     </div>
                                 </div>
                             </div>

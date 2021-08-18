@@ -13,6 +13,7 @@ from .validators import *
 class BicicletasForm(forms.ModelForm):
     marca = forms.CharField(validators=[validatorLetters])
     foto = forms.ImageField(help_text='La imagen tiene que tener un formato valido, (preferible:jpg,png))')
+    
 
     class Meta:
         model = MiBicicleta # modelo usado para generar el formulario de uploadbike
@@ -48,8 +49,9 @@ class ContratoBicicletaForm(forms.ModelForm):
 
 # formulario de contacto de usuarios
 class ContactoForm(forms.ModelForm):
-    asunto= forms.CharField(required=False)
-
+    asunto = forms.CharField(validators=[validatorasunto])
+    name = forms.CharField(validators=[validatorname])
+    
 
     class Meta:
         model=Contacto

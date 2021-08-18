@@ -198,4 +198,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'contactbiken@gmail.com'
 EMAIL_HOST_PASSWORD = 'projectbiken2021'
-EMAIL_PORT = 465
+EMAIL_PORT = 587

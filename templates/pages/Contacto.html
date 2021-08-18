@@ -12,23 +12,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="titulocontacto">
-        CONTACTO
-      </div>
-    </div>
-
-    <div class="textcontacto">
-
+    <div class="text-center font-italic h6 mt-5 mb-5">
       Para comunicarte con el equipo de BIKEN, déjanos tu mensaje y en pocos días estaremos respondiéndote.
     </div>
+    <div class="col-lg-6">
+
     <br>
 
 
-    <div class="col-md-6">
-      <center>
-        <div class="p-2 mb-3 bgnav text-white">Formulario Contacto</div>
-      </center>
 
 
       <form method="POST" id="formulariocontacto">
@@ -98,6 +89,10 @@
     </div>
   </div>
 </div>
+
+{% include 'pages/components/messages/messages_forms.html' %}
+
+{% include 'pages/components/messages/messages_form_contact.html' %}
 
 {% endblock %}
 

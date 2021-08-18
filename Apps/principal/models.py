@@ -6,6 +6,7 @@ from BikenPro.settings import MEDIA_URL, STATIC_URL
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator, RegexValidator
 from django.utils import timezone
+from .validators import *
 User=get_user_model()
 
 
@@ -300,8 +301,8 @@ class Contacto(models.Model):
     tipo = models.IntegerField(choices=tiposcontacto,null=True)
     asunto = models.CharField(max_length=100,db_column="Asunto",null=True)
     email = models.EmailField(max_length=120,db_column="Email")
-    mensaje = models.TextField(max_length=500,db_column="Mensaje")
-    datetimemsg=models.DateTimeField(db_column='Fecha del mensaje',default=timezone.now)
+    mensaje = models.TextField(max_length=500,db_column="Mensaje", validators=[validatortextarea])
+    datetimemsg=models.DateTimeField(db_column='Fecha del mensaje', default=datetime.now)
 
 
     class Meta:
