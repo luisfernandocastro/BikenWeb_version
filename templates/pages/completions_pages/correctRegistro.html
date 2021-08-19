@@ -31,7 +31,7 @@
     {% for m in messages %}
     <script>
         Swal.fire({
-            "title": '<span class="title_alert"> <br class="h5 text-capitalize">Gracias por ser parte de Biken {{request.user.first_name}}</span>',
+            "title": '<h5 class="title_alert">Gracias {{request.user.first_name|capfirst}} por ser parte de Biken </h6>',
             "text": "{{m}}",
             "icon": "success",
             "confirmButtonText": 'Ok',

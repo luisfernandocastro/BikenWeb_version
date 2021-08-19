@@ -63,7 +63,12 @@
                             {% if b.disponible == True %}
                                 <i class="text-success font-weight-bold"> Disponible </i>
                             {% else %}
-                                <i class="text-danger font-weight-bold"> No esta disponible </i>
+                                
+                                {% if b.user == request.user %}
+                                    <i class="text-danger font-weight-bold"> No esta disponible </i>
+                                    {% else %}
+                                {% endif %}
+                                    
                             {% endif %}
                                 
                         </p>
@@ -85,20 +90,20 @@
                                 </div>
                             {% else%}
                                 
-                            {% if b.disponible == True %}
+                                {% if b.disponible == True %}
                             
                             <div class="col-lg-10">
 
                                 <a href="{% url 'contratobike' b.idmibicicleta %}"  id=alert2 class="btn btncatalogo d-block mx-auto"><i class="far fa-heart"></i>
                                     Alquilar esta Bici</a>                                
                             </div>
-                            {% else %}
-                            
-                            {{contrato.bicicleta}}
+                                {% else %}
                                 
-                                
-                            {% endif %}
-                                
+                                <i class="text-danger font-weight-bold ml-5 mt-2"> No esta disponible </i>
+                                    
+                                    
+                                {% endif %}
+                                    
                             {% endif %}
                                 
                         </div>

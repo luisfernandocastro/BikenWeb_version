@@ -145,7 +145,7 @@ def home(request):
             ).distinct()
 
         # Paginacion del catalogo
-        paginator = Paginator(bicicletas, 12, 3)
+        paginator = Paginator(bicicletas, 9, 3)
         try:
             num = request.GET.get('list', '1')
             number = paginator.page(num)

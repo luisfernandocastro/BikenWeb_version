@@ -60,7 +60,7 @@
                                 {%if request.user.first_name == '' %}
                                 {{request.user.username}}
                                 {%else%}
-                                {{request.user.first_name}}
+                                {{request.user.first_name|capfirst}}
                                 {%endif%}
                             </span>
                         </a>
