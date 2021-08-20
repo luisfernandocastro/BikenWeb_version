@@ -155,8 +155,6 @@ class EmailUpdate(UpdateView):
     # datos necrsarios para la creacion del formulario
     def get_form(self, form_class=None):
         form = super(EmailUpdate, self).get_form()
-        form.fields['email'].widget = forms.EmailInput(
-            attrs={'class': 'form-control-file mt-3', 'placeholder': 'Email'})
         return form
 
 

@@ -106,16 +106,20 @@ class Editar_bicicleta(SuccessMessageMixin,LoginRequiredMixin, UpdateView):
 
 
 
-#----clase para eliminar la bicicleta del usuario
-class Delete_bicicleta(DeleteView):
-    model = MiBicicleta # modelo de bicicletas
-    template_name = 'pages/components/modals/modal_deleteBike.html'
-    success_url = reverse_lazy('perfil') # Despues de eliminar regresa al muro del perfil
 
 
 
+# función para eliminar la bicicleta del usuario en ventana de perfil
+def delete_bike(request,id):
+    bicicleta = MiBicicleta.objects.get(idmibicicleta = id) # se trae el id del objeto escogido
+    if request.method == 'POST': # validaion del metodo solicitado
+        bicicleta.estado = False # El estado de la bicicleta cambia de True a False
+        bicicleta.save() # Se guarda el cambio en base de datos
+        return redirect('perfil')   # Se redirecciona a la ventana de perfil
+    return render(request,'pages/components/modals/modal_deleteBike.html',{'bicicleta':bicicleta}) # modal de mensaje de advertencia de eiminacion
 
-# metodo para mostrar la vista de home y mostrar bicicletas en catalogo
+
+# función para mostrar la vista de home y mostrar bicicletas en catalogo
 def home(request):
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(estado=True)
@@ -528,11 +532,13 @@ def messagesContacto(request):
     return render(request,'pages/components/modals/modal_messages.html',{'message':message})
 
 
-
-def delete(request,id):
-    bicicleta = MiBicicleta.objects.get(idmibicicleta = id)
-    if request.method == 'POST':
-        bicicleta.estado = False
-        bicicleta.save()
-        return redirect('perfil')   
-    return render(request,'pages/components/modals/modal_deleteBike.html',{'bicicleta':bicicleta})
+# def cambiar_disponibilidad(request,id):
+#     disbike = MiBicicleta.objects.get(idmibicicleta = id)
+#     if disbike.disponible == True:
+#         disbike.disponible = False
+#         disbike.save()
+#         return redirect('perfil')
+#     else:
+#         disbike.disponible = True
+#         disbike.save()
+#         return redirect('perfil')

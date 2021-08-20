@@ -32,10 +32,12 @@ urlpatterns = [
     #-------------------- Biken-Bicicletas -------------------
     path('uploadBike/' , views.uploadBike, name='uploadbike'),# url de la vista de  formulario de subir bicicletas por los usuarios
     path('editBike/<int:pk>/', views.Editar_bicicleta.as_view(), name='editar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas
-    path('deleteBike/<int:pk>/' , views.Delete_bicicleta.as_view(), name='eliminar_bicicleta'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
+    path('deleteBike/<int:id>/' , views.delete_bike, name='delete_bike'),# url de la vista de  edicion de bicicletas del  usuario si ha subido bicicletas    
     path('registrocorrecto/' , views.messageRegistro, name='messagereg'),# url de la vista de mensaje de registro exitoso
     path('subidabicicorrecta/' , views.messageUploadBike, name='messagebike'),# url de la vista de  mensaje de bicicleta subida correctamente
     path('descripcion/<int:pk>/',views.Descripcionbike.as_view(),name="descripcionbike"),# url de la vista del modal de descripcion detallda de la bicicleta
+    
+    # path('chagedisponible/<int:id>/',views.cambiar_disponibilidad,name="cambiar_disponibilidad"),
     
     #-------------------- Biken-contratos -------------------
     path('contrato/<int:pk>',views.ContratoBicicletaView.as_view(),name="contratobike"), # url de la vista del formulario de contrato de la bicicleta
@@ -59,7 +61,6 @@ urlpatterns = [
     path('', include('Apps.usuario.urls')), # urls de la app usuario
     path('api/',include(router.urls)), # urls de la api rest
 
-    path('delete/<int:id>/',views.delete,name="delete")
 
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 

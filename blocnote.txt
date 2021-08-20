@@ -19,3 +19,27 @@
 
 
               <!-- {% render_field form.mensaje class="form-control inputs_forms formulario__input"  placeholder="Tu mensaje..." name="mensaje" id="mensaje" %} -->
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# class Delete_bicicleta(DeleteView):
+#     model = MiBicicleta # modelo de bicicletas
+#     template_name = 'pages/components/modals/modal_deleteBike.html'
+#     success_url = reverse_lazy('perfil') # Despues de eliminar regresa al muro del perfil
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+                        <!-- <div class="col-lg-4">
+                            <a href="{% url 'cambiar_disponibilidad' b.idmibicicleta %}">
+                                <button type="button" class="btn btn-success d-block mx-auto "  data-toggle="tooltip" data-placement="bottom" title="Cambiar disponibilidad"><i class="far fa-trash-alt"></i>
+                                </button>
+                            </a>
+
+                        </div> -->

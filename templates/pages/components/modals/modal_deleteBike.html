@@ -3,12 +3,12 @@
 
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-profile">
-        <form  method="post" action="{% url 'delete' bicicleta.idmibicicleta %}">
+        <form  method="post" action="{% url 'delete_bike' bicicleta.idmibicicleta %}">
             {% csrf_token %} 
             <div class="modal-body modal-body-profile">
                 <span class="iconify text-danger d-block mx-auto h-25 w-25 mb-3 iconmodal_deletebike" data-icon="carbon:warning"
                     data-inline="false"></span>
-                <h5>{{user.first_name|capfirst}}, Seguro que quieres eliminar esta
+                <h5>{{user.first_name|capfirst}}, Seguro que quieres eliminar esta  
                     Bicicleta?</h5>
             </div>
             <div class="modal-footer modal-footer-profile">

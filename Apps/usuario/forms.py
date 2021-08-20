@@ -62,7 +62,7 @@ class CustomUserCreationForm(UserCreationForm):
 # actualizacion de los datos secundarios de registro
 class UpdateUserForm(forms.ModelForm):
 
-    username = forms.CharField(required=True)
+    username = forms.CharField(required=False)
     first_name = forms.CharField(required=False,validators=[validatorFirst_name])
     last_name = forms.CharField(required=False,validators=[validatorLast_name])
     numcelular = forms.IntegerField(required=False,validators=[validatornumcelular])
@@ -74,14 +74,14 @@ class UpdateUserForm(forms.ModelForm):
 
 
 
-    # validacion de nombre de usuario,muestra error si el nombre de usuario ya se encuentra en la base de datos
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
+    # # validacion de nombre de usuario,muestra error si el nombre de usuario ya se encuentra en la base de datos
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
     
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(u'El nombre de usuario ya esta registrado en Biken')
+    #     if User.objects.filter(username=username).exists():
+    #         raise forms.ValidationError(u'El nombre de usuario ya esta registrado en Biken')
 
-        return username
+    #     return username
 
 
 
@@ -89,7 +89,6 @@ class UpdateUserForm(forms.ModelForm):
 class ChangeEmailForm(forms.ModelForm):
 
     email = forms.EmailField(required=True,max_length=250, help_text='Requerido como maximo 250 carácteres como máximo y debe ser un email válido.')
-
 
     class Meta:
         model = User
