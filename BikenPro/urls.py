@@ -59,6 +59,8 @@ urlpatterns = [
     path('', include('Apps.usuario.urls')), # urls de la app usuario
     path('api/',include(router.urls)), # urls de la api rest
 
+    path('delete/<int:id>/',views.delete,name="delete")
+
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  # Mostrar imagenes 
 

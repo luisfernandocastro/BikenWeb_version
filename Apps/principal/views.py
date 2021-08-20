@@ -114,22 +114,11 @@ class Delete_bicicleta(DeleteView):
 
 
 
-# def delete_bicicleta(request,id):
-#     bicicleta = MiBicicleta.objects.get(idmibicicleta=id)
-
-#     if  bicicleta.disponible == True:
-#         bicicleta.disponible = False
-#         return redirect('perfil')
-#     else:
-#         return HttpResponse("Esta bicicleta no existe")
-
-#     return render(request,)
-
 
 # metodo para mostrar la vista de home y mostrar bicicletas en catalogo
 def home(request):
     queryset = request.GET.get("Buscar")
-    bicicletas = MiBicicleta.objects.all()
+    bicicletas = MiBicicleta.objects.filter(estado=True)
 
     # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
@@ -209,6 +198,7 @@ def bikeurbanas(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
+        estado = True,
         categoria = Categoria.objects.get(nombre = 'Urbana')
     )
     # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
@@ -253,6 +243,7 @@ def bikeruta(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
+        estado = True,
         categoria = Categoria.objects.get(nombre = 'Ruta')
     )
 
@@ -298,6 +289,7 @@ def biketodoterreno(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
+        estado = True,
         categoria = Categoria.objects.get(nombre = 'Todo terreno')
     )
     # 
@@ -342,6 +334,7 @@ def bikedisponibles(request):
 
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
+        estado=True,
         disponible = True
     )
 
@@ -533,3 +526,13 @@ class ContactoView(SuccessMessageMixin,CreateView):
 def messagesContacto(request):
     message = Contacto.objects.all()
     return render(request,'pages/components/modals/modal_messages.html',{'message':message})
+
+
+
+def delete(request,id):
+    bicicleta = MiBicicleta.objects.get(idmibicicleta = id)
+    if request.method == 'POST':
+        bicicleta.estado = False
+        bicicleta.save()
+        return redirect('perfil')   
+    return render(request,'pages/components/modals/modal_deleteBike.html',{'bicicleta':bicicleta})

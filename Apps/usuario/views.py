@@ -113,13 +113,13 @@ def profileUser(request, username=None):
         numcontratos = None
         contratoUser =  None
         user = User.objects.get(username=username)
-        miBici = user.miBici.all()  # Se muestran las bicicletas subidas por los demas usuarios
+        miBici = user.miBici.filter(estado = True)  # Se muestran las bicicletas subidas por los demas usuarios
     else:
         timesalquiler = ContratoBicicleta.objects.filter(user=request.user).count() # Muestra la cantidad de veces que el usuario logueado alquilo una bici
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos del usuario logueado
         contratoUser = ContratoBicicleta.objects.filter(bicicleta__user=request.user) # Muestra la lista de vontratos que tiene el usuario logueado
         # Se muestran las bicicletas subidas por el  usuario logueado
-        miBici = current_user.miBici.all()
+        miBici = current_user.miBici.filter(estado = True)
         user = current_user
         # se crea un diccionario para mostrar las consulta  en  la plantilla
     return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'timesalquiler':timesalquiler,'numcontratos':numcontratos,'contratoUser':contratoUser})

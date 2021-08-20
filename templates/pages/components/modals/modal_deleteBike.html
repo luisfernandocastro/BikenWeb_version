@@ -3,8 +3,8 @@
 
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-profile">
-        <form action="{% url 'eliminar_bicicleta' object.pk %}" method="post">
-            {% csrf_token %}
+        <form  method="post" action="{% url 'delete' bicicleta.idmibicicleta %}">
+            {% csrf_token %} 
             <div class="modal-body modal-body-profile">
                 <span class="iconify text-danger d-block mx-auto h-25 w-25 mb-3 iconmodal_deletebike" data-icon="carbon:warning"
                     data-inline="false"></span>
