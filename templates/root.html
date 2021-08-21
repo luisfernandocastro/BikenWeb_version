@@ -128,10 +128,19 @@
 
                         
                         {% if request.user.is_superuser %}
+
                         <a href="#" class="nav__link" onclick="abrir_messagesmodal('{% url 'messages' %}')">
+                            
+                            {% if nummensajes > 0 %}
+                                <div class="div_numcontratos mb-3 ml-3 position-absolute">
+                                    <h6 class="numcontratos  font-weight-bold">{{nummensajes}}</h6>
+                                </div>    
+                            {% endif %}
+                            
                             <span class="iconify nav__icon" data-icon="eva:message-square-outline"></span>
                             <span class="nav__text">Mensajes</span>
-                        </a>    
+                        </a>   
+<!-- -------- -->
                         <a href="{% url 'admin:index' %}" class="nav__link">
                             <span class="nav__icon iconify" data-icon="eos-icons:admin-outlined" data-inline="false"></span>
                             <span class="nav__text">Admin Biken</span>

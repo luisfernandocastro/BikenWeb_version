@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, logout,login as auth_login
 from django.views.generic.base import RedirectView
 from django.urls import reverse_lazy  # redireccion de funciones
 from django.shortcuts import redirect, render
-from Apps.principal.models import ContratoBicicleta, Perfil  # se traen todas las tablas del modelo de base de datos
+from Apps.principal.models import Contacto, ContratoBicicleta, Perfil  # se traen todas las tablas del modelo de base de datos
 # importaciones del archivo forms.py
 from .forms import CustomUserCreationForm, EditProfileForm,UpdateUserForm,ChangeEmailForm
 # se muestran los mensajes apartir de una accion de un formulario...etc
@@ -99,8 +99,15 @@ class UserUpdate(UpdateView):
     template_name = 'user/update_user.html' # plantilla a usar
     form_class = UpdateUserForm # formulario a usar
     success_url = reverse_lazy('settings') # redireccion del formulario correcto
+
     def get_object(self):
         return self.request.user
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserUpdate, self).get_context_data(**kwargs)
+        context['nummensajes'] = Contacto.objects.all().count()
+        context['numcontratos'] = ContratoBicicleta.objects.filter(bicicleta__user=self.request.user).count()
+        return context
 
 
 
@@ -108,7 +115,10 @@ class UserUpdate(UpdateView):
 @login_required  # Pedir al usuario iniciar sesion o registrarse para poder ver los perfiles de los usuarios registrados
 def profileUser(request, username=None):
     current_user = request.user
-    if username and username != current_user.username:
+    nummensajes = Contacto.objects.all().count()
+    numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos del usuario logueado
+
+    if username != current_user.username:
         timesalquiler = None
         numcontratos = None
         contratoUser =  None
@@ -122,7 +132,7 @@ def profileUser(request, username=None):
         miBici = current_user.miBici.filter(estado = True)
         user = current_user
         # se crea un diccionario para mostrar las consulta  en  la plantilla
-    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'timesalquiler':timesalquiler,'numcontratos':numcontratos,'contratoUser':contratoUser})
+    return render(request, 'user/profile.html', {'user': user, 'miBici': miBici,'timesalquiler':timesalquiler,'numcontratos':numcontratos,'contratoUser':contratoUser,'nummensajes':nummensajes})
 
 
 
@@ -140,7 +150,11 @@ class ProfileUpdate(UpdateView):
         return profile
 
 
-
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdate, self).get_context_data(**kwargs)
+        context['nummensajes'] = Contacto.objects.all().count()
+        context['numcontratos'] = ContratoBicicleta.objects.filter(bicicleta__user=self.request.user).count()
+        return context
 
 
 # funcion para actualizar el correo eectronico del usuario logueado
@@ -158,10 +172,18 @@ class EmailUpdate(UpdateView):
         return form
 
 
+    def get_context_data(self, **kwargs):
+        context = super(EmailUpdate, self).get_context_data(**kwargs)
+        context['nummensajes'] = Contacto.objects.all().count()
+        context['numcontratos'] = ContratoBicicleta.objects.filter(bicicleta__user=self.request.user).count()
+        return context
+
 
 # funcion para cambiar la contraseña del usuario logueado
 @login_required
 def change_password(request):
+    numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos del usuario logueado
+    nummensajes=  Contacto.objects.all().count()
     if request.method == 'POST': # valida si el formulario es pr metodo POST
         form = PasswordChangeForm(request.user,request.POST)
         if form.is_valid(): # Verifica si el formulario es valido 
@@ -180,7 +202,7 @@ def change_password(request):
             messages.error(request,'Por favor corrija los errores') # mesaje de error si los datos ingresados son incorrectos
     else:
         form = PasswordChangeForm(request.user)
-    return render(request,'user/change_password.html',{'form':form})
+    return render(request,'user/change_password.html',{'form':form,'nummensajes':nummensajes,'numcontratos':numcontratos})
 
 
 

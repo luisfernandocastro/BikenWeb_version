@@ -66,7 +66,10 @@ def messageUploadBike(request):
 
 # metodo para mostrar la vista de Quienes somos (Biken) al usuario
 def quienesSomos(request):
-    return render(request, 'pages/quienessomos.html')
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+        nummensajes = Contacto.objects.all().count()
+    return render(request, 'pages/quienessomos.html',{'numcontratos':numcontratos,'nummensajes':nummensajes})
 
 
 
@@ -77,6 +80,12 @@ def quienesSomos(request):
 @login_required
 def uploadBike(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
+
+    if request.user.is_authenticated:
+        numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+        nummensajes = Contacto.objects.all().count()
+
+
     if request.method == 'POST':
         # request.FILES ,necesario para subir imagenes
         form = BicicletasForm(request.POST, files=request.FILES) # FILES sube la imagen seleccionada a la base de datos
@@ -88,7 +97,7 @@ def uploadBike(request):
             return redirect('messagebike') # si el formulario es almacenado se muestra la ventana con el mensaje de exito [messages.success]
     else:# si el formulario no es por metodo POST se muestra el formulario vacio al hacer submit
         form = BicicletasForm()
-    return render(request, 'bike/uploadBike.html', {'form': form})
+    return render(request, 'bike/uploadBike.html', {'form': form,'numcontratos':numcontratos,'nummensajes':nummensajes})
 
 
 
@@ -126,6 +135,7 @@ def home(request):
 
     # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
+        nummensajes = Contacto.objects.all().count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos
 
         # Barra de busqueda para el usuario logueado
@@ -148,7 +158,7 @@ def home(request):
 
         except EmptyPage:
             number = paginator.page(paginator.num_pages)
-        return render(request,'pages/inicio.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+        return render(request,'pages/inicio.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos,'nummensajes':nummensajes})
 
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
@@ -188,7 +198,11 @@ def home(request):
 # Funcion  para mostrar el template de menu de configuraciones del usuario
 @login_required
 def settings(request):
-    return render(request, 'user/settingsuser.html')
+
+    nummensajes = Contacto.objects.all().count()
+    numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
+
+    return render(request, 'user/settingsuser.html',{'nummensajes':nummensajes,'numcontratos':numcontratos})
 
 # Detalles de una biciclta al dar click sobre la imagen de la bici
 class Descripcionbike(DetailView):
@@ -197,7 +211,6 @@ class Descripcionbike(DetailView):
 
 
 # filtro de  bicicletas Urbanas-------------------
-
 def bikeurbanas(request):
 
     queryset = request.GET.get("Buscar")
@@ -207,6 +220,7 @@ def bikeurbanas(request):
     )
     # Condicion para mostrar la cantidad de contratos si el usuario esta logueado
     if request.user.is_authenticated:
+        nummensajes = Contacto.objects.all().count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count() # Se trae la cantidad de contratos
 
         if queryset :
@@ -227,7 +241,7 @@ def bikeurbanas(request):
 
         except EmptyPage:
             number = paginator.page(paginator.num_pages)
-        return render(request,'bike/filtros_categorias/bike_urbanas.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+        return render(request,'bike/filtros_categorias/bike_urbanas.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos,'nummensajes':nummensajes})
 
     
     if queryset :
@@ -241,8 +255,9 @@ def bikeurbanas(request):
     return render(request ,'bike/filtros_categorias/bike_urbanas.html',{'page': bicicletas})
 
 
-# filtro de  bicicletas de Ruta -------------------
 
+
+# filtro de  bicicletas de Ruta -------------------
 def bikeruta(request):
 
     queryset = request.GET.get("Buscar")
@@ -254,6 +269,7 @@ def bikeruta(request):
 
 
     if request.user.is_authenticated:
+        nummensajes = Contacto.objects.all().count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
 
         if queryset :
@@ -274,7 +290,7 @@ def bikeruta(request):
 
         except EmptyPage:
             number = paginator.page(paginator.num_pages)
-        return render(request,'bike/filtros_categorias/bike_ruta.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+        return render(request,'bike/filtros_categorias/bike_ruta.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos,'nummensajes':nummensajes})
     
     if queryset :
         bicicletas = MiBicicleta.objects.filter(
@@ -287,10 +303,10 @@ def bikeruta(request):
     return render(request ,'bike/filtros_categorias/bike_ruta.html',{'page': bicicletas})
 
 
+
+
 # filtro de  bicicletas de Todo terreno -------------------
-
 def biketodoterreno(request):
-
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
         estado = True,
@@ -298,6 +314,7 @@ def biketodoterreno(request):
     )
     # 
     if request.user.is_authenticated:
+        nummensajes = Contacto.objects.all().count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
 
         if queryset :
@@ -318,7 +335,7 @@ def biketodoterreno(request):
 
         except EmptyPage:
             number = paginator.page(paginator.num_pages)
-        return render(request,'bike/filtros_categorias/bike_todoterreno.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+        return render(request,'bike/filtros_categorias/bike_todoterreno.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos,'nummensajes':nummensajes})
 
 
     if queryset :
@@ -332,10 +349,9 @@ def biketodoterreno(request):
     return render(request ,'bike/filtros_categorias/bike_todoterreno.html',{'page': bicicletas})
 
 
+
 # filto de bicicletas disponibles
-
 def bikedisponibles(request):
-
     queryset = request.GET.get("Buscar")
     bicicletas = MiBicicleta.objects.filter(
         estado=True,
@@ -343,6 +359,7 @@ def bikedisponibles(request):
     )
 
     if request.user.is_authenticated:
+        nummensajes = Contacto.objects.all().count()
         numcontratos = ContratoBicicleta.objects.filter(bicicleta__user=request.user).count()
 
         if queryset :
@@ -363,7 +380,7 @@ def bikedisponibles(request):
 
         except EmptyPage:
             number = paginator.page(paginator.num_pages)
-        return render(request,'bike/filtros_categorias/bike_disponibles.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos})
+        return render(request,'bike/filtros_categorias/bike_disponibles.html',{'page': number, 'paginator': paginator,'numcontratos':numcontratos,'nummensajes':nummensajes})
 
 
     if queryset :
@@ -523,6 +540,14 @@ class ContactoView(SuccessMessageMixin,CreateView):
     form_class = ContactoForm
     success_url = reverse_lazy('contacto')
     success_message='Gracias por contactarse con Biken'
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(ContactoView, self).get_context_data(**kwargs)
+        context['nummensajes'] = Contacto.objects.all().count()
+        context['numcontratos'] = ContratoBicicleta.objects.filter(bicicleta__user=self.request.user).count()
+        return context
+    
 
 
 # funcion para ver la lista de mensajes del formulario contacto
