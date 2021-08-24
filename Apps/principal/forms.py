@@ -2,6 +2,7 @@ from django import forms
 from django.core import validators
 from django.db.models import fields
 from django.forms.fields import EmailField
+from django.forms.widgets import ClearableFileInput
 from .models import * # Traer las tablas del modelo de base de datos en el archivo models.py
 from .validators import *
 
@@ -56,9 +57,5 @@ class ContactoForm(forms.ModelForm):
     class Meta:
         model=Contacto
         fields =('name','email','tipo','asunto','mensaje')
-
-
-
-
 
 

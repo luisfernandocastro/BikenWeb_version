@@ -15,8 +15,8 @@
 
     <div class="container">
         <div class="row-fluid">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
+            <!-- <div class="col-lg-"></div> -->
+            <div class="col-lg-6">
 
                 <!-- <img src="{% static '/img/imgs_plus/portacon.png' %}" height="120px" width="260px"> -->
                 <strong>
@@ -127,7 +127,7 @@
                     {% endif %}
 
                     <button type="submit" class="btn btn_biken_success mt-5">Editar datos</button>
-                    <a href="{% url 'perfil' %}" type="button" class="btn btn-secondary btn_biken_cancel mt-5">Cancelar</a>
+                    <a href="{% url 'perfil' request.user.username %}" type="button" class="btn btn-secondary btn_biken_cancel mt-5">Cancelar</a>
 
                 </form>
 

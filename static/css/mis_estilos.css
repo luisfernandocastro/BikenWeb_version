@@ -1774,5 +1774,18 @@ body.dark .helptext_changepass {
 
 }
 
+/* Card de caracteristicas de la bicicleta en el contrato */
+div.sticky-top{
+  background-color: var(--color-bgcard);
+  border: none;
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+  border-radius: 30px;
+  box-shadow: var(--sombra-light);
+}
+
+
+
+
 /* -----------------------------end styles screen contrato-------------------------------------- */
 

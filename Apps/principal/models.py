@@ -30,55 +30,56 @@ def custom_upload_to_banner(instance, filename):
 # ----------------------------------------------------------------------------------->
 
 
-    
+# perfil de los usuarios regstrados    
 class Perfil(models.Model):
-    user=  models.OneToOneField(User,on_delete=models.CASCADE)
-    telefono = models.CharField(db_column='Telefono',null=True,blank=True, max_length=7,validators=[MinLengthValidator(7)])
+    user=  models.OneToOneField(User,on_delete=models.CASCADE) # Relacion de uno a uno con el usuario
+    telefono = models.CharField(db_column='Telefono',null=True,blank=True, max_length=7,validators=[MinLengthValidator(7)]) 
     direccion = models.CharField(db_column='Direccion', max_length=50,null=True,blank=True)
     estado = models.CharField(db_column='Biografia', max_length=80,null=True,blank=True) 
     image_portada = models.ImageField(upload_to='custom_upload_to_banner',null=True,blank=True,verbose_name='Imagen de portada')
     image_user = models.ImageField(upload_to='custom_upload_to_profile',null=True,blank=True,verbose_name='Imagen de perfil')
 
+    # Cambia el object(0)
     def __str__(self):  
         return f'Perfil de {self.user.username}'
 
+    # funcion para guardar la imagen de perfil en la ruta especificada
     def get_image(self):
         if self.image_user:
             return '{}{}'.format(MEDIA_URL,self.image_user)
         return '{}{}'.format(STATIC_URL,'img/imgs_plus/user.png')
     
+    # funcion para guardar la imagen de portada en la ruta especificada
     def get_imagePortada(self):
         if self.image_portada:
             return '{}{}'.format(MEDIA_URL,self.image_portada)
         return '{}{}'.format(STATIC_URL,'img/imgs_plus/banner.jpg')
     
+
     class Meta:
+        # Nombre general de la tabla a mostrar en el panel de administracion
         verbose_name_plural='Perfiles de usuarios'
 
 
-# opcionesCategorias=[
-#     [0,'Todo terreno'],
-#     [1,'Urbana'],
-#     [2,'Ruta']
-# ]
 
+# Valoidacion del campo decripcion de la bicicleta 
 validatorDescription = RegexValidator(r"^[a-zA-ZÀ-ÿ0-9\s]{1,40}$","La descripcion de tu Bici no puede contener caracteres especiales")
 
-
+# Datos de las bicicletas
 class MiBicicleta(models.Model):
     idmibicicleta = models.BigAutoField(db_column='idmibicicleta',primary_key=True, serialize=False, verbose_name='ID')
     user=models.ForeignKey(User,db_column='Propietario', on_delete=models.CASCADE,related_name='miBici',null=True)
     disponible = models.BooleanField(db_column='Disponible',default=True)
-    marca = models.CharField(db_column='Marca', max_length=45,default=None)  # Field name made lowercase.
-    color = models.CharField(db_column='Color', max_length=50,default=None)  # Field name made lowercase.
-    material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material',default=None)  # Field name made lowercase.
+    marca = models.CharField(db_column='Marca', max_length=45,default=None)  
+    color = models.CharField(db_column='Color', max_length=50,default=None)  
+    material = models.ForeignKey('Materialbicicletas', models.DO_NOTHING, db_column='Material',default=None)  
     timestamp=models.DateTimeField(db_column='Fecha de subida',default=timezone.now)
-    categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria',default=None)  # Field name made lowercase.
-    precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  # Field name made lowercase.
+    categoria = models.ForeignKey('Categoria', models.DO_NOTHING, db_column='Categoria',default=None)  
+    precioalquiler = models.DecimalField(db_column='PrecioAlquiler', max_digits=6, decimal_places=3,verbose_name='Precio Alquiler',default=None)  
     valortiempohoras= models.IntegerField(db_column='Horas de alquiler',null=True,blank=True,default=0)
     valortiempomin= models.IntegerField(db_column='Minutos de alquiler',null=True,blank=True,default=0)
     descripcionbici = models.TextField(db_column='DescripcionBici', max_length=150,null=True,default=None,blank=True,validators=[validatorDescription]) 
-    foto = models.ImageField(db_column='Foto', max_length=100, null=True)  # Field name made lowercase.
+    foto = models.ImageField(db_column='Foto', max_length=100, null=True)  
     estado = models.BooleanField(db_column='estado',default=True)
 
 
@@ -93,19 +94,19 @@ class MiBicicleta(models.Model):
 
 
 class Catalogo(models.Model):
-    idcatalogo = models.AutoField(db_column='idCatalogo', primary_key=True)  # Field name made lowercase.
-    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
-    fechahorasubida = models.DateTimeField(db_column='fechaHoraSubida')  # Field name made lowercase.
+    idcatalogo = models.AutoField(db_column='idCatalogo', primary_key=True)  
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  
+    fechahorasubida = models.DateTimeField(db_column='fechaHoraSubida')  
 
     class Meta:
         managed = False
         db_table = 'catalogo'
         verbose_name_plural='Catalogo' 
 
-
+# Eleccion de categoria de  bicicleta
 class Categoria(models.Model):
-    idmodelo = models.AutoField(db_column='idModelo', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
+    idmodelo = models.AutoField(db_column='idModelo', primary_key=True)  
+    nombre = models.CharField(db_column='Nombre', max_length=45)  
 
     class Meta:
         managed = False
@@ -116,10 +117,10 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
-
+# importacion en datetime para calcular fechas y horas exactas
 from datetime import datetime, timedelta
 
-datenow = datetime.now()
+datenow = datetime.now() # Fecha y  ahora actual
 
 opcionesdocumento=[
     [0,'Cédula de Ciudadania'],
@@ -132,11 +133,11 @@ class ContratoBicicleta(models.Model):
     tipodocumento=models.IntegerField(db_column='Tipo de Documento',choices=opcionesdocumento,default=0)
     numerodocumento=models.BigIntegerField(db_column='Numero Documento',default=None)
     direccion=models.CharField(db_column='Direccion',null=True,blank=True,max_length=45)
-    horainicio = models.TimeField(db_column='Hora inicio',default=None)  # Field name made lowercase.
+    horainicio = models.TimeField(db_column='Hora inicio',default=None)  
     horafin=models.TimeField(db_column='Hora fin',default=None)
-    tipocontrato = models.ForeignKey('Tipocontrato', models.DO_NOTHING, db_column='Tipocontrato',default=1)  # Field name made lowercase.
+    tipocontrato = models.ForeignKey('Tipocontrato', models.DO_NOTHING, db_column='Tipocontrato',default=1)  
     user=models.ForeignKey(User,db_column='Arrendatario', on_delete=models.CASCADE,related_name='bicicleta',null=True)
-    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta',null=True)  # Field name made lowercase.
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta',null=True)  
     estado = models.BooleanField(db_column='estado',default=True)
 
 
@@ -150,18 +151,18 @@ class ContratoBicicleta(models.Model):
 
 
 class FotoPerfiluser(models.Model):
-    idfotouser = models.AutoField(db_column='idfotoUser', primary_key=True)  # Field name made lowercase.
+    idfotouser = models.AutoField(db_column='idfotoUser', primary_key=True)  
     foto = models.CharField(max_length=100)
-    usuario_idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='Usuario_idUsuario')  # Field name made lowercase.
+    usuario_idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='Usuario_idUsuario')  
 
     class Meta:
         managed = False
         db_table = 'foto_perfiluser'
         verbose_name_plural='Foto perfil Usuario'
 
-
+# opciones de materiales de la bicicleta
 class Materialbicicletas(models.Model):
-    idmaterialbicicletas = models.AutoField(db_column='idMaterialBicicletas', primary_key=True)  # Field name made lowercase.
+    idmaterialbicicletas = models.AutoField(db_column='idMaterialBicicletas', primary_key=True)  
     nombre = models.CharField(max_length=45)
 
     class Meta:
@@ -175,24 +176,11 @@ class Materialbicicletas(models.Model):
 
 
 
-class Pagos(models.Model):
-    idpago = models.AutoField(db_column='idPago', primary_key=True)  # Field name made lowercase.
-    fechapago = models.DateTimeField(db_column='FechaPago')  # Field name made lowercase.
-    totalalquiler = models.DecimalField(db_column='TotalAlquiler', max_digits=6, decimal_places=3)  # Field name made lowercase.
-    fechamora = models.DateTimeField(db_column='FechaMora', blank=True, null=True)  # Field name made lowercase.
-    contrato = models.ForeignKey(ContratoBicicleta, models.DO_NOTHING, db_column='contrato')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Pagos'
-        verbose_name_plural='Pagos'
-
-
 class Perfilusuario(models.Model):
-    idroles = models.AutoField(db_column='idRoles', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
-    descripcionrol = models.TextField(db_column='descripcionRol', blank=True, null=True)  # Field name made lowercase.
-    usuario_idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='Usuario_idUsuario')  # Field name made lowercase.
+    idroles = models.AutoField(db_column='idRoles', primary_key=True)  
+    nombre = models.CharField(db_column='Nombre', max_length=45)  
+    descripcionrol = models.TextField(db_column='descripcionRol', blank=True, null=True)  
+    usuario_idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='Usuario_idUsuario')  
 
     class Meta:
         managed = False
@@ -201,13 +189,13 @@ class Perfilusuario(models.Model):
 
 
 class Persona(models.Model):
-    idpersona = models.AutoField(db_column='idPersona', primary_key=True)  # Field name made lowercase.
-    nombres = models.CharField(db_column='Nombres', max_length=50)  # Field name made lowercase.
-    apellidos = models.CharField(db_column='Apellidos', max_length=50)  # Field name made lowercase.
-    numidentificacion = models.BigIntegerField(db_column='NumIdentificacion')  # Field name made lowercase.
-    numcelular = models.BigIntegerField(db_column='NumCelular')  # Field name made lowercase.
-    numtelefono = models.BigIntegerField(db_column='NumTelefono', blank=True, null=True)  # Field name made lowercase.
-    correoelectronico = models.CharField(db_column='CorreoElectronico', max_length=45)  # Field name made lowercase.
+    idpersona = models.AutoField(db_column='idPersona', primary_key=True)  
+    nombres = models.CharField(db_column='Nombres', max_length=50)  
+    apellidos = models.CharField(db_column='Apellidos', max_length=50)  
+    numidentificacion = models.BigIntegerField(db_column='NumIdentificacion')  
+    numcelular = models.BigIntegerField(db_column='NumCelular')  
+    numtelefono = models.BigIntegerField(db_column='NumTelefono', blank=True, null=True)  
+    correoelectronico = models.CharField(db_column='CorreoElectronico', max_length=45)  
 
     class Meta:
         managed = False
@@ -222,7 +210,7 @@ class Persona(models.Model):
 
 
 class Privilegios(models.Model):
-    idprivilegios = models.AutoField(db_column='idPrivilegios', primary_key=True)  # Field name made lowercase.
+    idprivilegios = models.AutoField(db_column='idPrivilegios', primary_key=True)  
     privilegio = models.IntegerField()
 
     class Meta:
@@ -231,10 +219,10 @@ class Privilegios(models.Model):
 
 
 class Reserva(models.Model):
-    idreserva = models.AutoField(db_column='idReserva', primary_key=True)  # Field name made lowercase.
-    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  # Field name made lowercase.
-    disponibleen = models.TimeField(db_column='DisponibleEn', blank=True, null=True)  # Field name made lowercase.
-    disponible = models.CharField(db_column='Disponible', max_length=2)  # Field name made lowercase.
+    idreserva = models.AutoField(db_column='idReserva', primary_key=True)  
+    bicicleta = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicleta')  
+    disponibleen = models.TimeField(db_column='DisponibleEn', blank=True, null=True)  
+    disponible = models.CharField(db_column='Disponible', max_length=2)  
 
     class Meta:
         managed = False
@@ -243,10 +231,10 @@ class Reserva(models.Model):
 
 
 class Tiempoprestamo(models.Model):
-    idtiempodisponibilidad = models.IntegerField(db_column='idTiempoDisponibilidad', primary_key=True)  # Field name made lowercase.
-    bicicletas_idbicicletas = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  # Field name made lowercase.
-    contrato_idcontrato = models.ForeignKey(ContratoBicicleta, models.DO_NOTHING, db_column='Contrato_idContrato')  # Field name made lowercase.
-    tiempoinicio = models.CharField(db_column='tiempoInicio', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    idtiempodisponibilidad = models.IntegerField(db_column='idTiempoDisponibilidad', primary_key=True)  
+    bicicletas_idbicicletas = models.ForeignKey(MiBicicleta, models.DO_NOTHING, db_column='Bicicletas_idBicicletas')  
+    contrato_idcontrato = models.ForeignKey(ContratoBicicleta, models.DO_NOTHING, db_column='Contrato_idContrato')  
+    tiempoinicio = models.CharField(db_column='tiempoInicio', max_length=45, blank=True, null=True)  
 
     class Meta:
         managed = False
@@ -255,9 +243,9 @@ class Tiempoprestamo(models.Model):
 
 
 class Tipocontrato(models.Model):
-    idtipocontrato = models.AutoField(db_column='idtipocontrato', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=45)  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    idtipocontrato = models.AutoField(db_column='idtipocontrato', primary_key=True)  
+    nombre = models.CharField(db_column='Nombre', max_length=45)  
+    descripcion = models.CharField(db_column='Descripcion', max_length=45, blank=True, null=True)  
 
     class Meta:
         db_table = 'tipocontrato'
@@ -268,10 +256,10 @@ class Tipocontrato(models.Model):
         return self.nombre 
 
 class Usuario(models.Model):
-    idusuario = models.AutoField(db_column='idUsuario', primary_key=True)  # Field name made lowercase.
-    usuario = models.CharField(db_column='Usuario', max_length=20)  # Field name made lowercase.
-    password = models.CharField(db_column='Password', max_length=100)  # Field name made lowercase.
-    persona_idpersona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='Persona_idPersona')  # Field name made lowercase.
+    idusuario = models.AutoField(db_column='idUsuario', primary_key=True)  
+    usuario = models.CharField(db_column='Usuario', max_length=20)  
+    password = models.CharField(db_column='Password', max_length=100)  
+    persona_idpersona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='Persona_idPersona')  
 
     class Meta:
         managed = False

@@ -43,13 +43,6 @@ class BicletasAdmin(ImportExportModelAdmin,admin.ModelAdmin):
 
     pass
 
-@admin.register (Pagos)
-class PagosAdmin(admin.ModelAdmin):
-    list_display =  ('idpago','fechapago','totalalquiler','fechamora','contrato')
-    search_fields = ['contrato']
-    list_filter = ['contrato','fechapago']
-    list_per_page = 10
-    pass
 
 
 
@@ -72,14 +65,19 @@ class MaterialbicicletasAdmin(admin.ModelAdmin):
     pass
 
 
+class ContratoResources(resources.ModelResource):
+    class Meta:
+        model = ContratoBicicleta
 
 @admin.register (ContratoBicicleta)
-class ContratoAdmin(admin.ModelAdmin):
+class ContratoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('id','fechainicio', 'fechafin','tipodocumento','numerodocumento','direccion','horainicio','horafin','tipocontrato','user','bicicleta')
     search_fields = ['fechainicio','fechafin']
     # list_editable = ['fechainicio']
     list_filter = ['fechainicio','fechafin']
     list_per_page = 10
+    resource_class = ContratoResources
+
     pass
 
 
@@ -118,6 +116,12 @@ class TiempoprestamoAdmin(admin.ModelAdmin):
     pass
 
 
+class ContactoResources(resources.ModelResource):
+    class Meta:
+        model = Contacto
+
+
 @admin.register(Contacto)
-class ContactoAdmin(admin.ModelAdmin):
+class ContactoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display=('id','name','asunto','email','mensaje')
+    resource_class = ContactoResources

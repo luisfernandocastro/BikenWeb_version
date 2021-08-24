@@ -1,4 +1,4 @@
-// SHOW MENU
+// MUESTRA EL MENU  DE LA BARRA LATERAL
 const showMenu = (toggleId, navbarId,bodyId) =>{
     const toggle = document.getElementById(toggleId),
     navbar = document.getElementById(navbarId),
@@ -6,11 +6,11 @@ const showMenu = (toggleId, navbarId,bodyId) =>{
 
     if(toggle && navbar){
         toggle.addEventListener('click', ()=>{
-            // APARECER MENU
+            // APARECER MENU(MUESTRA EÑL MENU COMPLETO)
             navbar.classList.toggle('shownav')
-            // ROTATE TOGGLE
+            // ROTATE TOGGLE(ICONO DE CONTRAER BARRA LATERAL) GIRA 180°
             toggle.classList.toggle('rotate')
-            // PADDING BODY
+            // PADDING BODY,EL BODY MINIMIZA EL PADDING IZQUIERDO PARA QUE LA BARRA NO TAPE PARTE DE ESTE
             bodypadding.classList.toggle('expander')
         })
     }
@@ -18,24 +18,6 @@ const showMenu = (toggleId, navbarId,bodyId) =>{
 showMenu('nav-toggle','navbar','body')
 
 
-
-// const showMenu = (togglesearchId, navbarsearchId,bodysearchId) =>{
-//     const togglesearch = document.getElementById(togglesearchId),
-//     navbarsearch = document.getElementById(navbarsearchId),
-//     bodypaddingsearch = document.getElementById(bodysearchId)
-
-//     if(togglesearch && navbarsearch){
-//         toggle.addEventListener('click', ()=>{
-//             // APARECER MENU
-//             navbarsearch.classList.toggle('show')
-//             // ROTATE TOGGLE
-//             // toggle.classList.toggle('rotate')
-//             // PADDING BODY
-//             bodypaddingsearch.classList.toggle('expander')
-//         })
-//     }
-// }
-// showMenu('nav-toggle_search','navbar','body')
 
 
 

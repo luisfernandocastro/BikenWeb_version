@@ -74,15 +74,6 @@ class UpdateUserForm(forms.ModelForm):
 
 
 
-    # # validacion de nombre de usuario,muestra error si el nombre de usuario ya se encuentra en la base de datos
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username')
-    
-    #     if User.objects.filter(username=username).exists():
-    #         raise forms.ValidationError(u'El nombre de usuario ya esta registrado en Biken')
-
-    #     return username
-
 
 
 # formulario de cambio de email
@@ -112,5 +103,6 @@ class EditProfileForm(forms.ModelForm):
         model= Perfil
         # campos a mostrar en el template
         fields = ['telefono', 'direccion','estado', 'image_user', 'image_portada']
+
 
 

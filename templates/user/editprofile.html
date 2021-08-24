@@ -65,16 +65,29 @@
                         {% render_field form.estado class="form-control inputs_forms" type="text" placeholder="Estado"%}
                     </div> -->
 
-                    <div class="custom-file mt-4">
+                    <!-- <div class="custom-file mt-4">
                         <label class="custom-file-label inputs_forms" for="customFile ">Imagen de perfil</label>
-                        {% render_field form.image_user class="custom-file-input" type="file" placeholder=""%}
+                        {% render_field form.image_user class="custom-file-input" type="file" id="customFile"%}
                     </div>
 
                     <div class="custom-file mt-4">
                         <label class="custom-file-label inputs_forms" for="customFile">Imagen de Portada</label>
-                        {% render_field form.image_portada class="custom-file-input" type="file" placeholder=""%}
+                        {% render_field form.image_portada class="custom-file-input" type="file" id="customFile"%}
+                    </div> -->
+
+
+                    <!-- var i =  0 ; i++ -->
+                    <div class="custom-file mt-4">
+                        <label class="formulario__label mt-4">Imagen de perfil</label>
+                        {{form.image_user|add_class:"form-control inputs_forms"}}
+                    </div>
+
+                    <div class="custom-file mt-4">
+                        <label class="formulario__label mt-4">Imagen de Portada</label>
+                        {{form.image_portada|add_class:"form-control inputs_forms "}}
                     </div>
                     
+
                     <div class="row d-flex justify-content-center mt-5">
                         <div class="co-lg-6 mr-5">
                             <a class="btn btn-secondary btn_biken_cancel" href="{% url 'settings' %}">Cancelar</a>

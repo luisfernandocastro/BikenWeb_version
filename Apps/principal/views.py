@@ -408,9 +408,14 @@ class ContratoBicicletaView(CreateView):
         bici.save() # Se guarda el formulario
         return redirect('downloadcontrato') # Si el formulario es correcto se pasa a descargar el contrato    
 
+
+    # Funcion para retornar un diccionario de variables a utilizar  en el template
     def get_context_data(self, **kwargs):
-        kwargs['object'] = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
-        return super(ContratoBicicletaView, self).get_context_data(**kwargs)
+        context = super(ContratoBicicletaView, self).get_context_data(**kwargs)
+        context['object'] = MiBicicleta.objects.filter(pk=self.kwargs.get('pk')).first()
+        context['nummensajes'] = Contacto.objects.all().count()
+        context['numcontratos'] = ContratoBicicleta.objects.filter(bicicleta__user=self.request.user).count()
+        return context
 
 # ---------------------------------------------------------------------------------------------
 
@@ -556,14 +561,3 @@ def messagesContacto(request):
     message = Contacto.objects.all()
     return render(request,'pages/components/modals/modal_messages.html',{'message':message})
 
-
-# def cambiar_disponibilidad(request,id):
-#     disbike = MiBicicleta.objects.get(idmibicicleta = id)
-#     if disbike.disponible == True:
-#         disbike.disponible = False
-#         disbike.save()
-#         return redirect('perfil')
-#     else:
-#         disbike.disponible = True
-#         disbike.save()
-#         return redirect('perfil')
